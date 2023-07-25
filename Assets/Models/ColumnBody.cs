@@ -8,8 +8,9 @@ namespace Assets.Models
 {
     public class ColumnBody
     {
-        public float width = 0.005f;
-        public float height = 3f;
-        public float length = 0.08f;
+        public float WidthProfile = 0.005f;
+        public float LengthProfile = 0.08f;
+        public float RadiusProfile = 0.01f;
+        public float Height = 3f;               
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class SideFlatRightPositionTransform : MonoBehaviour
 {
-    private ColumnBody columnBody = new();
+    private readonly ColumnBody columnBody = new();
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0.0475f, columnBody.height / 2, 0);
+        transform.position = new Vector3(0.0475f, columnBody.Height / 2, 0);
     }
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FlatSideGenerator : MonoBehaviour
 {
-    private ColumnBody columnBody = new();
+    private readonly ColumnBody columnBody = new();
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,9 @@ public class FlatSideGenerator : MonoBehaviour
 
     void GenerateRectangleMesh()
     {
-        Vector3 vectorByWidth = new(columnBody.width, 0, 0);
-        Vector3 vectorByHeight = new(0, columnBody.height, 0);
-        Vector3 vectorByLength = new(0, 0, columnBody.length);        
+        Vector3 vectorByWidth = new(columnBody.WidthProfile, 0, 0);
+        Vector3 vectorByHeight = new(0, columnBody.Height, 0);
+        Vector3 vectorByLength = new(0, 0, columnBody.LengthProfile);        
 
         Mesh mesh = new();
 
