@@ -237,10 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949835fc9231df842b4d11a7823ebcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 10
+  xSize: 20
   ySize: 30
-  zSize: 10
-  roundness: 0
+  zSize: 30
+  roundness: 2
 --- !u!33 &257933214
 MeshFilter:
   m_ObjectHideFlags: 0
