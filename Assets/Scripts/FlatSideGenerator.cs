@@ -24,7 +24,7 @@ public class FlatSideGenerator : MonoBehaviour
     {
         Vector3 vectorByWidth = new(columnBody.WidthProfile, 0, 0);
         Vector3 vectorByHeight = new(0, columnBody.Height, 0);
-        Vector3 vectorByLength = new(0, 0, columnBody.LengthProfile);        
+        Vector3 vectorByLength = new(0, 0, columnBody.LengthProfile - columnBody.RadiusProfile * 2);        
 
         Mesh mesh = new();
 

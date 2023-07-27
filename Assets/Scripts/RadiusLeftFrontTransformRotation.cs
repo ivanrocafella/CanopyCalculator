@@ -9,12 +9,12 @@ public class RadiusLeftFrontTransformRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-(columnBody.LengthProfile + columnBody.RadiusProfile)/2, columnBody.Height/2, - (columnBody.LengthProfile + columnBody.RadiusProfile)/2);
+        transform.position = new Vector3((columnBody.RadiusProfile - columnBody.LengthProfile) / 2, columnBody.Height/2, (columnBody.RadiusProfile - columnBody.LengthProfile) / 2);
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
 
     }
 }

@@ -8,11 +8,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2023
 		Month: 7
-		Day: 25
+		Day: 26
 		Hour: 11
-		Minute: 53
-		Second: 56
-		Millisecond: 219
+		Minute: 40
+		Second: 29
+		Millisecond: 501
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.3.2"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -28,8 +28,8 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "C:\Иван\Programming\Калькулятор_навеса\CanopyCalculator\Assets\c0dcdnkn_ColumnBody.fbx"
-			P: "SrcDocumentUrl", "KString", "Url", "", "C:\Иван\Programming\Калькулятор_навеса\CanopyCalculator\Assets\c0dcdnkn_ColumnBody.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "C:\Иван\Programming\Калькулятор_навеса\CanopyCalculator\Assets\9fb78ngk_ColumnBody.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "C:\Иван\Programming\Калькулятор_навеса\CanopyCalculator\Assets\9fb78ngk_ColumnBody.fbx"
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", ""
 			P: "Original|ApplicationName", "KString", "", "", "Unity FBX Exporter"
@@ -75,7 +75,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2354778319744, "Scene", "Scene" {
+	Document: 2641871482000, "Scene", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -220,9 +220,9 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 2358624619744, "Geometry::Scene", "Mesh" {
+	Geometry: 2641715349360, "Geometry::Scene", "Mesh" {
 		Vertices: *24 {
-			a: 0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,3.99999991059303,0.249999994412065,-150,3.99999991059303,0.249999994412065,150,-3.99999991059303,-0.249999994412065,150,-3.99999991059303,0.249999994412065,150,3.99999991059303,-0.249999994412065,150,3.99999991059303
+			a: 250,-150000,-3000,-250,-150000,-3000,-250,-150000,3000,250,-150000,3000,250,150000,-3000,-250,150000,-3000,250,150000,3000,-250,150000,3000
 		} 
 		PolygonVertexIndex: *36 {
 			a: 0,2,-2,0,3,-3,0,5,-5,0,1,-6,0,6,-4,0,4,-7,7,4,-6,7,6,-5,7,3,-7,7,2,-4,7,1,-3,7,5,-2
@@ -277,9 +277,9 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2358624617056, "Geometry::Scene", "Mesh" {
+	Geometry: 2641715350704, "Geometry::Scene", "Mesh" {
 		Vertices: *24 {
-			a: 0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,3.99999991059303,0.249999994412065,-150,3.99999991059303,0.249999994412065,150,-3.99999991059303,-0.249999994412065,150,-3.99999991059303,0.249999994412065,150,3.99999991059303,-0.249999994412065,150,3.99999991059303
+			a: 250,-150000,-3000,-250,-150000,-3000,-250,-150000,3000,250,-150000,3000,250,150000,-3000,-250,150000,-3000,250,150000,3000,-250,150000,3000
 		} 
 		PolygonVertexIndex: *36 {
 			a: 0,2,-2,0,3,-3,0,5,-5,0,1,-6,0,6,-4,0,4,-7,7,4,-6,7,6,-5,7,3,-7,7,2,-4,7,1,-3,7,5,-2
@@ -334,9 +334,9 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2358624616608, "Geometry::Scene", "Mesh" {
+	Geometry: 2641715353840, "Geometry::Scene", "Mesh" {
 		Vertices: *24 {
-			a: 0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,3.99999991059303,0.249999994412065,-150,3.99999991059303,0.249999994412065,150,-3.99999991059303,-0.249999994412065,150,-3.99999991059303,0.249999994412065,150,3.99999991059303,-0.249999994412065,150,3.99999991059303
+			a: 250,-150000,-3000,-250,-150000,-3000,-250,-150000,3000,250,-150000,3000,250,150000,-3000,-250,150000,-3000,250,150000,3000,-250,150000,3000
 		} 
 		PolygonVertexIndex: *36 {
 			a: 0,2,-2,0,3,-3,0,5,-5,0,1,-6,0,6,-4,0,4,-7,7,4,-6,7,6,-5,7,3,-7,7,2,-4,7,1,-3,7,5,-2
@@ -391,9 +391,9 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2354869164800, "Geometry::Scene", "Mesh" {
+	Geometry: 2641715351152, "Geometry::Scene", "Mesh" {
 		Vertices: *24 {
-			a: 0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,-3.99999991059303,-0.249999994412065,-150,3.99999991059303,0.249999994412065,-150,3.99999991059303,0.249999994412065,150,-3.99999991059303,-0.249999994412065,150,-3.99999991059303,0.249999994412065,150,3.99999991059303,-0.249999994412065,150,3.99999991059303
+			a: 250,-150000,-3000,-250,-150000,-3000,-250,-150000,3000,250,-150000,3000,250,150000,-3000,-250,150000,-3000,250,150000,3000,-250,150000,3000
 		} 
 		PolygonVertexIndex: *36 {
 			a: 0,2,-2,0,3,-3,0,5,-5,0,1,-6,0,6,-4,0,4,-7,7,4,-6,7,6,-5,7,3,-7,7,2,-4,7,1,-3,7,5,-2
@@ -448,12 +448,12 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2354869165248, "Geometry::Scene", "Mesh" {
-		Vertices: *24 {
-			a: 0.499999988824129,-135.000002384186,-0.499999988824129,0.499999988824129,135.000002384186,-0.499999988824129,-0.499999988824129,150,-0.499999988824129,-0.499999988824129,-150,-0.499999988824129,0.499999988824129,-150,-0.499999988824129,0.499999988824129,150,-0.499999988824129,0.499999988824129,150,0.499999988824129,0.499999988824129,-150,0.499999988824129
+	Geometry: 2641715349808, "Geometry::Scene", "Mesh" {
+		Vertices: *18 {
+			a: 500,-150000,-500,500,150000,-500,-500,150000,-500,-500,-150000,-500,500,150000,500,500,-150000,500
 		} 
 		PolygonVertexIndex: *12 {
-			a: 0,2,-2,0,3,-3,4,6,-6,4,7,-7
+			a: 0,2,-2,0,3,-3,0,4,-2,0,5,-5
 		} 
 		GeometryVersion: 124
 		LayerElementNormal: 0 {
@@ -505,7 +505,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 2354697899296, "Model::ColumnBody", "Null" {
+	Model: 2640985211008, "Model::ColumnBody", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -516,7 +516,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 2354697883296, "Model::SideFlatLeft", "Mesh" {
+	Model: 2630748952224, "Model::SideFlatLeft", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -524,12 +524,12 @@ Objects:  {
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",4.74999994039536,150,0
+			P: "Lcl Translation", "Lcl Translation", "", "A",3750,150000,0
 		}
 		Shading: W
 		Culling: "CullingOff"
 	}
-	Model: 2354697901296, "Model::SideFlatRight", "Mesh" {
+	Model: 2630748938224, "Model::SideFlatRight", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -537,12 +537,12 @@ Objects:  {
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",-4.74999994039536,150,0
+			P: "Lcl Translation", "Lcl Translation", "", "A",-3750,150000,0
 		}
 		Shading: W
 		Culling: "CullingOff"
 	}
-	Model: 2354697873296, "Model::SideFlatBack", "Mesh" {
+	Model: 2630748954224, "Model::SideFlatBack", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -550,13 +550,13 @@ Objects:  {
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",0,150,4.74999994039536
+			P: "Lcl Translation", "Lcl Translation", "", "A",0,150000,3750
 			P: "Lcl Rotation", "Lcl Rotation", "", "A",-0,90,0
 		}
 		Shading: W
 		Culling: "CullingOff"
 	}
-	Model: 2354785206080, "Model::SideFlatFront", "Mesh" {
+	Model: 2630748944224, "Model::SideFlatFront", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -564,25 +564,25 @@ Objects:  {
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Translation", "Lcl Translation", "", "A",0,150,-4.74999994039536
+			P: "Lcl Translation", "Lcl Translation", "", "A",0,150000,-3750
 			P: "Lcl Rotation", "Lcl Rotation", "", "A",-0,-90,0
 		}
 		Shading: W
 		Culling: "CullingOff"
 	}
-	Model: 2354785208080, "Model::RadiusLeftFront", "Null" {
+	Model: 2637976918096, "Model::RadiusLeftFront", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
-			P: "Lcl Translation", "Lcl Translation", "", "A",4.4999998062849,150,-4.4999998062849
+			P: "Lcl Translation", "Lcl Translation", "", "A",3500,150000,-3500
 		}
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 2354785194080, "Model::OutsideCorner", "Mesh" {
+	Model: 2637976910096, "Model::OutsideCorner", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationOrder", "enum", "", "",4
@@ -594,7 +594,7 @@ Objects:  {
 		Shading: W
 		Culling: "CullingOff"
 	}
-	Material: 2355432730192, "Material::Standard", "" {
+	Material: 2638021442384, "Material::Standard", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -607,7 +607,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Material: 2355432735392, "Material::Standard_1", "" {
+	Material: 2638021439584, "Material::Standard_1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -620,7 +620,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Material: 2355432738192, "Material::Standard_2", "" {
+	Material: 2638732926704, "Material::Standard_2", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -633,7 +633,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Material: 2355432730592, "Material::Standard_3", "" {
+	Material: 2638732929104, "Material::Standard_3", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -646,7 +646,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Material: 2354705483968, "Material::Standard_4", "" {
+	Material: 2638727179152, "Material::Standard_4", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -667,55 +667,55 @@ Objects:  {
 Connections:  {
 	
 	;Model::ColumnBody, Model::RootNode
-	C: "OO",2354697899296,0
+	C: "OO",2640985211008,0
 	
 	;Model::SideFlatLeft, Model::ColumnBody
-	C: "OO",2354697883296,2354697899296
+	C: "OO",2630748952224,2640985211008
 	
 	;Model::SideFlatRight, Model::ColumnBody
-	C: "OO",2354697901296,2354697899296
+	C: "OO",2630748938224,2640985211008
 	
 	;Model::SideFlatBack, Model::ColumnBody
-	C: "OO",2354697873296,2354697899296
+	C: "OO",2630748954224,2640985211008
 	
 	;Model::SideFlatFront, Model::ColumnBody
-	C: "OO",2354785206080,2354697899296
+	C: "OO",2630748944224,2640985211008
 	
 	;Model::RadiusLeftFront, Model::ColumnBody
-	C: "OO",2354785208080,2354697899296
+	C: "OO",2637976918096,2640985211008
 	
 	;Material::Standard, Model::SideFlatLeft
-	C: "OO",2355432730192,2354697883296
+	C: "OO",2638021442384,2630748952224
 	
 	;Geometry::Scene, Model::SideFlatLeft
-	C: "OO",2358624619744,2354697883296
+	C: "OO",2641715349360,2630748952224
 	
 	;Material::Standard_1, Model::SideFlatRight
-	C: "OO",2355432735392,2354697901296
+	C: "OO",2638021439584,2630748938224
 	
 	;Geometry::Scene, Model::SideFlatRight
-	C: "OO",2358624617056,2354697901296
+	C: "OO",2641715350704,2630748938224
 	
 	;Material::Standard_2, Model::SideFlatBack
-	C: "OO",2355432738192,2354697873296
+	C: "OO",2638732926704,2630748954224
 	
 	;Geometry::Scene, Model::SideFlatBack
-	C: "OO",2358624616608,2354697873296
+	C: "OO",2641715353840,2630748954224
 	
 	;Material::Standard_3, Model::SideFlatFront
-	C: "OO",2355432730592,2354785206080
+	C: "OO",2638732929104,2630748944224
 	
 	;Geometry::Scene, Model::SideFlatFront
-	C: "OO",2354869164800,2354785206080
+	C: "OO",2641715351152,2630748944224
 	
 	;Model::OutsideCorner, Model::RadiusLeftFront
-	C: "OO",2354785194080,2354785208080
+	C: "OO",2637976910096,2637976918096
 	
 	;Material::Standard_4, Model::OutsideCorner
-	C: "OO",2354705483968,2354785194080
+	C: "OO",2638727179152,2637976910096
 	
 	;Geometry::Scene, Model::OutsideCorner
-	C: "OO",2354869165248,2354785194080
+	C: "OO",2641715349808,2637976910096
 }
 ;Takes section
 ;----------------------------------------------------

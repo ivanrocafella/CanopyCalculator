@@ -13,6 +13,6 @@ public class TransformPositionRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(0f, 0, -50f);
+        transform.position = new Vector3(0f, 0, -1000f);
     }
 }
