@@ -108,11 +108,7 @@ public class TestRoundedCorner : MonoBehaviour
     private void SetVertex(int i, int x, int y, int z)
     {
         Vector3 inner = vertices[i] = new Vector3(x, y, z);
-        if (x < roundness)
-        {
-            inner.x = roundness;
-        }
-        else if (x > xSize - roundness)
+        if (x > xSize - roundness)
         {
             inner.x = xSize - roundness;
         }
@@ -122,7 +118,8 @@ public class TestRoundedCorner : MonoBehaviour
         }
         else if (z > zSize - roundness)
         {
-            inner.z = zSize - roundness;
+            if (z < zSize / 2)
+                inner.z = zSize - roundness;
         }
         normals[i] = (vertices[i] - inner).normalized;
         vertices[i] = inner + normals[i] * roundness;
