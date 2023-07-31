@@ -12,6 +12,7 @@ public class TestRoundedCorner : MonoBehaviour
     public int xSize, ySize, zSize; // u.m. = μμ
     private int[] ySizes = new int[2]; // sizes from 0 before ySize
     public int roundness; // u.m. = μμ
+    public int thickness; // u.m. = μμ
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -51,29 +52,46 @@ public class TestRoundedCorner : MonoBehaviour
 
     private void CreateVertices()
     {
-        int cornerVertices = 6;
-        int edgeVertices = (xSize + zSize - 2) * 2;
+        int cornerVertices = 12;    
+        int edgeVertices = (xSize + zSize - 2) * 2 + (xSize + zSize - 2 * thickness - 2) * 2;
         int faceVertices = 0;
         vertices = new Vector3[cornerVertices + edgeVertices + faceVertices];
-        normals = new Vector3[vertices.Length];
+         normals = new Vector3[vertices.Length];
         Debug.Log(vertices.Length);
         int v = 0;
         int i = 0;
-        for (int y = 0; y < ySizes.Length; y++)
+        for (int y = 0; y < ySizes.Length; y++) // external rounded side
         {
             for (int x = 0; x <= xSize; x++)
             {
                 i++;
                 SetVertex(v++, x, ySizes[y], 0);
-                // vertices[v++] = new Vector3(x, ySizes[y], 0);
                 Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
             for (int z = 1; z <= zSize; z++)
             {
                 i++;
-                SetVertex(v++, zSize, ySizes[y], z);
-                // vertices[v++] = new Vector3(zSize, ySizes[y], z);
+                SetVertex(v++, xSize, ySizes[y], z);    
+                Debug.Log($"{z}\t{ySizes[y]}\t{i}");
+                // yield return wait;
+            }            
+        }
+        for (int y = 0; y < ySizes.Length; y++) // internal rounded side
+        {                   
+            for (int x = 0; x <= xSize - thickness; x++)
+            {
+                i++;
+              SetVertex(v++, x, ySizes[y], thickness);
+            //  vertices[v++] = new Vector3(x, ySizes[y], thickness);
+                Debug.Log($"{x}\t{ySizes[y]}\t{i}");
+                // yield return wait;
+            }
+            for (int z = thickness + 1; z <= zSize; z++)
+            {
+                i++;
+               SetVertex(v++, xSize - thickness, ySizes[y], z);
+               //  vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
                 Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
@@ -84,15 +102,21 @@ public class TestRoundedCorner : MonoBehaviour
 
     private void CreateTriangles()
     {
-        int quads = xSize + zSize;
+        int quads = xSize + zSize + 2 + xSize + zSize - 2 * thickness;
         int[] triangles = new int[quads * 6];
         mesh.triangles = triangles;
-        int halfRing = (xSize + zSize) + 1;
+        int halfRingExternal = (xSize + zSize) + 1;
+        int halfRingInternal = (xSize + zSize - 2 * thickness) + 1;
         int t = 0, v = 0;
-        for (int q = 0; q < halfRing - 1; q++, v++)
+        for (int q = 0; q < halfRingExternal - 1; q++, v++)
         {
-            t = SetQuad(triangles, t, v, v + 1, v + halfRing, v + halfRing + 1);
+            t = SetQuad(triangles, t, v, v + 1, v + halfRingExternal, v + halfRingExternal + 1);
         }
+        for (int q = 0; q < halfRingInternal - 1; q++, v++)
+        {
+            t = SetQuad(triangles, t, v, v + 1, v + halfRingInternal, v + halfRingInternal + 1);
+        }
+      //  t = SetQuad(triangles, t, halfRingExternal - 1, halfRingExternal * 2, halfRingExternal * 2 - 1, halfRingExternal * 2 + 1);
         mesh.triangles = triangles;
     }
 
@@ -107,21 +131,35 @@ public class TestRoundedCorner : MonoBehaviour
 
     private void SetVertex(int i, int x, int y, int z)
     {
+        int radius;
+        int sizeByX; int sizeByZ;
         Vector3 inner = vertices[i] = new Vector3(x, y, z);
-        if (x > xSize - roundness)
+        if (i < (xSize + ySize + 1) * 2)
         {
-            inner.x = xSize - roundness;
+            sizeByX = xSize;
+            sizeByZ = zSize;
+            radius = roundness;
         }
-        if (z < roundness)
+        else
         {
-            inner.z = roundness;
+            sizeByX = xSize - thickness;
+            sizeByZ = zSize - thickness;
+            radius = roundness - thickness;
+        }       
+        if (x > sizeByX - radius)
+        {
+            inner.x = sizeByX - radius;
         }
-        else if (z > zSize - roundness)
+        if (z < radius)
         {
-            if (z < zSize / 2)
-                inner.z = zSize - roundness;
+            inner.z = radius;
+        }
+        else if (z > sizeByZ - radius)
+        {
+            if (z < sizeByZ / 2)
+                inner.z = sizeByZ - radius;
         }
         normals[i] = (vertices[i] - inner).normalized;
-        vertices[i] = inner + normals[i] * roundness;
+        vertices[i] = inner + normals[i] * radius;
     }
 }
