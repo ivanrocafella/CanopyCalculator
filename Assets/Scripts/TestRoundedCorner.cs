@@ -77,7 +77,7 @@ public class TestRoundedCorner : MonoBehaviour
                 // yield return wait;
             }            
         }
-        for (int y = 0; y < ySizes.Length; y++) // internal rounded side
+        for (int y = ySizes.Length - 1; y >= 0; y--) // internal rounded side
         {                   
             for (int x = 0; x <= xSize - thickness; x++)
             {
@@ -112,11 +112,12 @@ public class TestRoundedCorner : MonoBehaviour
         {
             t = SetQuad(triangles, t, v, v + 1, v + halfRingExternal, v + halfRingExternal + 1);
         }
+        v += halfRingExternal + 1;
         for (int q = 0; q < halfRingInternal - 1; q++, v++)
         {
             t = SetQuad(triangles, t, v, v + 1, v + halfRingInternal, v + halfRingInternal + 1);
         }
-      //  t = SetQuad(triangles, t, halfRingExternal - 1, halfRingExternal * 2, halfRingExternal * 2 - 1, halfRingExternal * 2 + 1);
+        //t = SetQuad(triangles, t, v, halfRingExternal * 2, halfRingExternal * 2 - 1, halfRingExternal * 2 + 1); // end face
         mesh.triangles = triangles;
     }
 
@@ -131,34 +132,40 @@ public class TestRoundedCorner : MonoBehaviour
 
     private void SetVertex(int i, int x, int y, int z)
     {
-        int radius;
+        int radius; int radiusWithThick;
         int sizeByX; int sizeByZ;
+        int zWithoutThick;
         Vector3 inner = vertices[i] = new Vector3(x, y, z);
-        if (i < (xSize + ySize + 1) * 2)
+        if (i < (xSize + zSize + 1) * 2)
         {
             sizeByX = xSize;
             sizeByZ = zSize;
             radius = roundness;
+            zWithoutThick = z;
+            radiusWithThick = radius;
         }
         else
         {
             sizeByX = xSize - thickness;
             sizeByZ = zSize - thickness;
             radius = roundness - thickness;
-        }       
+            zWithoutThick = z - thickness;
+            radiusWithThick = radius + thickness;
+        }
         if (x > sizeByX - radius)
         {
             inner.x = sizeByX - radius;
         }
-        if (z < radius)
+        if (zWithoutThick < radius)
         {
-            inner.z = radius;
+            inner.z = radiusWithThick;
         }
         else if (z > sizeByZ - radius)
         {
-            if (z < sizeByZ / 2)
+            if (zWithoutThick < sizeByZ / 2)
                 inner.z = sizeByZ - radius;
         }
+
         normals[i] = (vertices[i] - inner).normalized;
         vertices[i] = inner + normals[i] * radius;
     }
