@@ -25,6 +25,7 @@ public class TestRoundedCorner : MonoBehaviour
         Generate();
         CreateVertices();
         CreateTriangles();
+        mesh.RecalculateNormals();
        // transform.position = new Vector3(0, 10, -100);
     }
 
@@ -65,14 +66,16 @@ public class TestRoundedCorner : MonoBehaviour
             for (int x = 0; x <= xSize; x++)
             {
                 i++;
-                SetVertex(v++, x, ySizes[y], 0);
+                //SetVertex(v++, x, ySizes[y], 0);
+                vertices[v++] = new Vector3(x, ySizes[y], 0);
                 Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
             for (int z = 1; z <= zSize; z++)
             {
                 i++;
-                SetVertex(v++, xSize, ySizes[y], z);    
+                //SetVertex(v++, xSize, ySizes[y], z);
+                vertices[v++] = new Vector3(xSize, ySizes[y], z);
                 Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }            
@@ -82,16 +85,16 @@ public class TestRoundedCorner : MonoBehaviour
             for (int x = 0; x <= xSize - thickness; x++)
             {
                 i++;
-              SetVertex(v++, x, ySizes[y], thickness);
-            //  vertices[v++] = new Vector3(x, ySizes[y], thickness);
+                //SetVertex(v++, x, ySizes[y], thickness);
+                vertices[v++] = new Vector3(x, ySizes[y], thickness);
                 Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
             for (int z = thickness + 1; z <= zSize; z++)
             {
                 i++;
-               SetVertex(v++, xSize - thickness, ySizes[y], z);
-               //  vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
+                //SetVertex(v++, xSize - thickness, ySizes[y], z);
+                vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
                 Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
@@ -102,7 +105,7 @@ public class TestRoundedCorner : MonoBehaviour
 
     private void CreateTriangles()
     {
-        int quads = xSize + zSize + 2 + xSize + zSize - 2 * thickness;
+        int quads = xSize + zSize + 2 + xSize + zSize - 2 * thickness + (xSize + zSize - thickness) * 2;
         int[] triangles = new int[quads * 6];
         mesh.triangles = triangles;
         int halfRingExternal = (xSize + zSize) + 1;
@@ -117,7 +120,21 @@ public class TestRoundedCorner : MonoBehaviour
         {
             t = SetQuad(triangles, t, v, v + 1, v + halfRingInternal, v + halfRingInternal + 1);
         }
-        //t = SetQuad(triangles, t, v, halfRingExternal * 2, halfRingExternal * 2 - 1, halfRingExternal * 2 + 1); // end face
+        v = 0;
+        int additVar = 2 * halfRingExternal + halfRingInternal;
+        for (int q = 0; q < halfRingInternal - 1; q++, v++)
+        {
+            if (v == xSize - thickness)
+                v += thickness * 2;
+            else
+            {
+                t = SetQuad(triangles, t, v, v + additVar, v + 1, v + additVar + 1);
+                additVar--;
+            }       
+        }
+        //v = halfRingExternal  - 1;
+        //t = SetQuad(triangles, t, v, v + halfRingExternal + 2 * halfRingInternal, v + halfRingExternal, v + halfRingExternal + halfRingInternal); // end face
+
         mesh.triangles = triangles;
     }
 
