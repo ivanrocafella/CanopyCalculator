@@ -6,13 +6,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class TestRoundedCorner : MonoBehaviour
+[RequireComponent(typeof(MeshFilter))]
+public class RoundedCorner : MonoBehaviour
 {
-    public int xSize, ySize, zSize; // u.m. = μμ
+    private readonly ColumnBody columnBody = new();
+    private int xSize, ySize, zSize; // u.m. = μμ
     private int[] ySizes = new int[2]; // sizes from 0 before ySize
-    public int roundness; // u.m. = μμ
-    public int thickness; // u.m. = μμ
+    private int roundness; // u.m. = μμ
+    private int thickness; // u.m. = μμ
 
     private Mesh mesh;
     private Vector3[] vertices;
@@ -21,12 +22,22 @@ public class TestRoundedCorner : MonoBehaviour
 
     private void Start()
     {
-        ySizes[0] = 0; ySizes[1] = ySize;
+        xSize = zSize = (int)columnBody.RadiusProfile;
+        ySize = (int)columnBody.Height;
+        roundness = (int)columnBody.RadiusProfile;
+        thickness = (int)columnBody.WidthProfile;
+        ySizes[0] = 0;
+        ySizes[1] = ySize;
         Generate();
         CreateVertices();
         CreateTriangles();
+        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        Material material = new(Shader.Find("Standard"))
+        {
+            color = Color.black
+        };
+        meshRenderer.material = material;
         mesh.RecalculateNormals();
-       // transform.position = new Vector3(0, 10, -100);
     }
 
     private void Generate()
@@ -57,7 +68,7 @@ public class TestRoundedCorner : MonoBehaviour
         int edgeVertices = (xSize + zSize - 2) * 2 + (xSize + zSize - 2 * thickness - 2) * 2;
         int faceVertices = 0;
         vertices = new Vector3[cornerVertices + edgeVertices + faceVertices];
-         normals = new Vector3[vertices.Length];
+        normals = new Vector3[vertices.Length];
         Debug.Log(vertices.Length);
         int v = 0;
         int i = 0;
@@ -66,16 +77,16 @@ public class TestRoundedCorner : MonoBehaviour
             for (int x = 0; x <= xSize; x++)
             {
                 i++;
-                //SetVertex(v++, x, ySizes[y], 0);
-                vertices[v++] = new Vector3(x, ySizes[y], 0);
+                SetVertex(v++, x, ySizes[y], 0);
+                //vertices[v++] = new Vector3(x, ySizes[y], 0);
                 Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
             for (int z = 1; z <= zSize; z++)
             {
                 i++;
-                //SetVertex(v++, xSize, ySizes[y], z);
-                vertices[v++] = new Vector3(xSize, ySizes[y], z);
+                SetVertex(v++, xSize, ySizes[y], z);
+                //vertices[v++] = new Vector3(xSize, ySizes[y], z);
                 Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }            
@@ -85,16 +96,16 @@ public class TestRoundedCorner : MonoBehaviour
             for (int x = 0; x <= xSize - thickness; x++)
             {
                 i++;
-                //SetVertex(v++, x, ySizes[y], thickness);
-                vertices[v++] = new Vector3(x, ySizes[y], thickness);
+                SetVertex(v++, x, ySizes[y], thickness);
+                //vertices[v++] = new Vector3(x, ySizes[y], thickness);
                 Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
             for (int z = thickness + 1; z <= zSize; z++)
             {
                 i++;
-                //SetVertex(v++, xSize - thickness, ySizes[y], z);
-                vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
+                SetVertex(v++, xSize - thickness, ySizes[y], z);
+                //vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
                 Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                 // yield return wait;
             }
@@ -121,21 +132,46 @@ public class TestRoundedCorner : MonoBehaviour
             t = SetQuad(triangles, t, v, v + 1, v + halfRingInternal, v + halfRingInternal + 1);
         }
         v = 0;
+        int cornerVar = 0;
         int additVar = 2 * halfRingExternal + halfRingInternal;
-        for (int q = 0; q < halfRingInternal - 1; q++, v++)
+        for (int q = 0; q < halfRingExternal - 1; q++, v++)
         {
             if (v == xSize - thickness)
-                v += thickness * 2;
-            else
+                cornerVar = q + additVar;           
+            if (v >= xSize - thickness && v < halfRingExternal - (zSize - thickness) - 1)
             {
-                t = SetQuad(triangles, t, v, v + additVar, v + 1, v + additVar + 1);
+                t = SetAngle(triangles, t, v, cornerVar, v + 1);
                 additVar--;
-            }       
+            }
+            else
+                t = SetQuad(triangles, t, v, v + additVar, v + 1, v + additVar + 1);                   
+        }
+        additVar = halfRingExternal;
+        v = halfRingExternal;
+        for (int q = 0; q < halfRingExternal - 1; q++, v++)
+        {
+            if (v == xSize - thickness + halfRingExternal)
+                cornerVar = q + 2 * additVar;
+            if (v >= xSize + halfRingExternal - thickness && v < halfRingExternal * 2 - (zSize - thickness) - 1)
+            {
+                t = SetAngle(triangles, t, cornerVar, v, v + 1);
+                additVar--;
+            }
+            else
+                t = SetQuad(triangles, t, v + additVar, v, v + additVar + 1, v + 1);
         }
         //v = halfRingExternal  - 1;
         //t = SetQuad(triangles, t, v, v + halfRingExternal + 2 * halfRingInternal, v + halfRingExternal, v + halfRingExternal + halfRingInternal); // end face
 
         mesh.triangles = triangles;
+    }
+
+    private static int SetAngle(int[] triangles, int i, int v00, int v10, int v01)
+    {
+        triangles[i] = v00;
+        triangles[i + 1] = v01;
+        triangles[i + 2] = v10;
+        return i + 3;
     }
 
     private static int SetQuad(int[] triangles, int i, int v00, int v10, int v01, int v11)
