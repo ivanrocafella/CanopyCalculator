@@ -9,7 +9,7 @@ public class SideFlatFrontPositionTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, columnBody.Height / 2, - (columnBody.LengthProfile - columnBody.WidthProfile) / 2);
+        transform.position = new Vector3(0, columnBody.Height / 2, - (columnBody.Material.Length - columnBody.Material.Thickness) / 2);
         transform.Rotate(0f, 90f, 0f);
     }
 
