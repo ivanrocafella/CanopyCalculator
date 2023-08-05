@@ -9,7 +9,7 @@ public class SideFlatLeftPositionTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3( - (columnBody.Material.Length - columnBody.Material.Thickness) / 2, columnBody.Height /2, 0);
+        transform.localPosition = new Vector3( - (columnBody.Material.Length - columnBody.Material.Thickness) / 2, columnBody.Height /2, 0);
     }
 
     // Update is called once per frame

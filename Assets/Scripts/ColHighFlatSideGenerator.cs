@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class FlatSideGenerator : MonoBehaviour
+public class ColHighFlatSideGenerator : MonoBehaviour
 {
     private readonly ColumnBody columnBody = new();
 

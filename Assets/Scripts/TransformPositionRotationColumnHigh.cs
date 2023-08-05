@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SideFlatBackPositionTransform : MonoBehaviour
+public class TransformPositionRotationColumnHigh
+    : MonoBehaviour
 {
     private readonly ColumnBody columnBody = new();
+    private readonly ColumnPlug columnPlug = new();
+    public float y = -1000;
     // Start is called before the first frame update
     void Start()
     {
-        transform.localPosition = new Vector3(0, columnBody.Height /2, (columnBody.Material.Length - columnBody.Material.Thickness) / 2 );
-        transform.Rotate(0f, -90f, 0f);
+        transform.position = new Vector3(0f, 0, y);
     }
 
     // Update is called once per frame

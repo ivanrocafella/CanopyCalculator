@@ -9,7 +9,7 @@ public class RadiusRightBackTransformRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(columnBody.Material.Length / 2, 0, (columnBody.Material.Length / 2 - columnBody.Material.Radius));
+        transform.localPosition = new Vector3(columnBody.Material.Length / 2, 0, (columnBody.Material.Length / 2 - columnBody.Material.Radius));
         transform.Rotate(0f, -90f, 0f);
     }
 

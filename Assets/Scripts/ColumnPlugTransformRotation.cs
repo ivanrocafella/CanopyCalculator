@@ -11,7 +11,7 @@ public class ColumnPlugTransformRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, columnBody.Height + columnPlug.Thickness / 2, 0);
+        transform.localPosition = new Vector3(0, columnBody.Height + columnPlug.Thickness / 2, 0);
     }
 
     // Update is called once per frame  
