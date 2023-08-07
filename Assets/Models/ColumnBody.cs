@@ -8,11 +8,11 @@ namespace Assets.Models
 {
     public class ColumnBody
     {
-        public float Height { get; set; } = 3000f;
+        public float Height { get; set; } = 4000;
         public Material Material { get; set; } = new Material();
         public ColumnBody() {
-            Material.Length = 80;
-            Material.Width = 80;
+            Material.Length = 100;
+            Material.Width = 100;
             Material.Thickness = 5;
             Material.Radius = 10;
         }

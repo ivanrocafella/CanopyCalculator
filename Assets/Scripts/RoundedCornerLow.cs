@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Services;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -9,15 +10,16 @@ using UnityEngine.UIElements;
 using Material = UnityEngine.Material;
 
 [RequireComponent(typeof(MeshFilter))]
-public class RoundedCorner : MonoBehaviour
+public class RoundedCornerLow : MonoBehaviour
 {
     private readonly ColumnBody columnBody = new();
+    private readonly PlanColumn planColumn = new();
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;
 
     private void Start()
     {
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)columnBody.Material.Radius, (int)columnBody.Material.Radius, (int)columnBody.Height
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)columnBody.Material.Radius, (int)columnBody.Material.Radius, (int)Math.Floor(columnBody.Height - Math.Tan(planColumn.Slope) * planColumn.SizeByX)
             , (int)columnBody.Material.Thickness, (int)columnBody.Material.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;

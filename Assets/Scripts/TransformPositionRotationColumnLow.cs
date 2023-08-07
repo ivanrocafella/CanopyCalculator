@@ -10,7 +10,7 @@ public class TransformPositionRotationColumnLow
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(planColumn.SizeByX, 0f, -1000f);
+        transform.localPosition = new Vector3(planColumn.SizeByX, 0, 0);
     }
 
     // Update is called once per frame

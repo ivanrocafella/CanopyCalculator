@@ -8,10 +8,11 @@ namespace Assets.Models
 {
     public class PlanColumn
     {
-        public int SizeByX { get; set; } = 6000; // u.m. = mm
-        public int SizeByZ { get; set; } = 6000; // u.m. = mm
-        public int Slope { get; set; } = 7; // u.m. = degree
-        public int CountStep { get; set; } = 2; // u.m. = 1
+        public int SizeByX { get; set; } = 16000; // u.m. = mm
+        public int SizeByZ { get; set; } = 9000; // u.m. = mm
+        public int SlopeInDegree { get; set; } = 8; // u.m. = degree
+        public double Slope { get { return (Math.PI / 180) * SlopeInDegree; } } // u.m. = rad
+        public int CountStep { get; set; } = 5; // u.m. = 1
         public float Step { get { return (float)SizeByZ / CountStep; } } // u.m. = mm
     }
 }
