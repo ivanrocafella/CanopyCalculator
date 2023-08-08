@@ -20,7 +20,7 @@ public class RoundedCornerLow : MonoBehaviour
     private void Start()
     {
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)columnBody.Material.Radius, (int)columnBody.Material.Radius, (int)Math.Floor(columnBody.Height - Math.Tan(planColumn.Slope) * planColumn.SizeByX)
-            , (int)columnBody.Material.Thickness, (int)columnBody.Material.Radius);
+            , columnBody.Material.Thickness, columnBody.Material.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);

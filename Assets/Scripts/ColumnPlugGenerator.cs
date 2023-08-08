@@ -12,7 +12,7 @@ public class ColumnPlugGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Mesh mesh = _3dObjectConstructor.CreateParallelepiped(columnBody.Material.Length + columnPlug.Thickness * 2, columnPlug.Thickness, columnBody.Material.Width + columnPlug.Thickness * 2, 0);
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Length + columnPlug.Thickness * 2, columnPlug.Thickness, columnBody.Material.Width + columnPlug.Thickness * 2, 0);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

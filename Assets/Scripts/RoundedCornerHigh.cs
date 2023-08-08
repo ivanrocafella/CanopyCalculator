@@ -16,9 +16,9 @@ public class RoundedCornerHigh : MonoBehaviour
     private Vector3[] Normals;
 
     private void Start()
-    {
+    { 
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)columnBody.Material.Radius, (int)columnBody.Material.Radius, (int)columnBody.Height
-            , (int)columnBody.Material.Thickness, (int)columnBody.Material.Radius);
+            , columnBody.Material.Thickness, columnBody.Material.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);

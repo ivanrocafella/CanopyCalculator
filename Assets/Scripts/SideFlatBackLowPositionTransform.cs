@@ -12,7 +12,7 @@ public class SideFlatBackLowPositionTransform : MonoBehaviour
     void Start()
     {
         transform.localPosition = new Vector3(0, (float)Math.Floor(columnBody.Height - Math.Tan(planColumn.Slope) * planColumn.SizeByX) / 2, (columnBody.Material.Length - columnBody.Material.Thickness) / 2 );
-        transform.Rotate(0f, -90f, 0f);
+        transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
     }
 
     // Update is called once per frame

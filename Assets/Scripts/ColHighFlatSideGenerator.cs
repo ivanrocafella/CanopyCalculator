@@ -13,7 +13,7 @@ public class ColHighFlatSideGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Mesh mesh = _3dObjectConstructor.CreateParallelepiped(columnBody.Material.Thickness, columnBody.Height, columnBody.Material.Width, columnBody.Material.Radius);
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Thickness, columnBody.Height, columnBody.Material.Width, columnBody.Material.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

@@ -10,7 +10,7 @@ public class RadiusLeftFrontTransformRotation : MonoBehaviour
     void Start()
     {   
         transform.localPosition = new Vector3(-columnBody.Material.Length / 2, 0, -(columnBody.Material.Length / 2 - columnBody.Material.Radius));
-        transform.Rotate(0f, 90f, 0f);
+        transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
     }
 
     // Update is called once per frame

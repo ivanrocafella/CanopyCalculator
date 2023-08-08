@@ -9,12 +9,12 @@ namespace Assets.Models
     public class ColumnBody
     {
         public float Height { get; set; } = 4000;
-        public Material Material { get; set; } = new Material();
+        public Material Material { get; set; } = new();
         public ColumnBody() {
-            Material.Length = 100;
-            Material.Width = 100;
-            Material.Thickness = 5;
-            Material.Radius = 10;
+            Material.Length = 80;
+            Material.Width = 80;
+            Material.Thickness = 4;
+            Material.Radius = 8;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Assets.Services
     public static class _3dObjectConstructor
     {
         // Methods for creating parallelepipeds
-        public static Mesh CreateParallelepiped(float sizeByX, float height, float sizeByY, float radius)
+        public static Mesh CreateFlatSidePipe(float sizeByX, float height, float sizeByY, float radius)
         {
             Vector3 vectorByWidth = new(sizeByX, 0, 0);
             Vector3 vectorByHeight = new(0, height, 0);
@@ -49,14 +49,16 @@ namespace Assets.Services
 
         // Methods for creating rounded corner
 
-        public static Mesh CreateRoundedCorner(int xSize, int zSize, int ySize, int thickness, int roundness)
-        { 
+        public static Mesh CreateRoundedCorner(int xSize, int zSize, int ySize, float thickness, float roundness)
+        {
+            int thicknessInt = (int)Math.Round(thickness, 0, MidpointRounding.AwayFromZero);
+            int radiusInt = (int)Math.Round(roundness, 0, MidpointRounding.AwayFromZero);
             Mesh mesh = new();
             int[] ySizes = { 0, ySize };
             Vector3[] vertices = null;
             Vector3[] normals = null;
-            CreateVertices(vertices, normals, mesh, xSize, zSize, thickness, ySizes, roundness);
-            CreateTriangles(xSize, zSize, thickness, mesh);
+            CreateVertices(vertices, normals, mesh, xSize, zSize, thicknessInt, ySizes, radiusInt);
+            CreateTriangles(xSize, zSize, thicknessInt, mesh);
             return mesh;
         }
 
