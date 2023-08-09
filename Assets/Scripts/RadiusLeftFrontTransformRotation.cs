@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class RadiusLeftFrontTransformRotation : MonoBehaviour
 {
-    private readonly ColumnBody columnBody = new();
+    static KindLength kindLength;
+    private readonly ColumnBody columnBody = new(kindLength);
     // Start is called before the first frame update
     void Start()
     {   

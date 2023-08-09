@@ -12,7 +12,8 @@ using Material = UnityEngine.Material;
 [RequireComponent(typeof(MeshFilter))]
 public class RoundedCornerLow : MonoBehaviour
 {
-    private readonly ColumnBody columnBody = new();
+    static KindLength kindLength;
+    private readonly ColumnBody columnBody = new(kindLength);
     private readonly PlanColumn planColumn = new();
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;

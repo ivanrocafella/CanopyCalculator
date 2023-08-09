@@ -6,7 +6,8 @@ using Material = UnityEngine.Material;
 
 public class ColumnPlugTransformRotation : MonoBehaviour
 {
-    private readonly ColumnBody columnBody = new();
+    static KindLength kindLength;
+    private readonly ColumnBody columnBody = new(kindLength);
     private readonly ColumnPlug columnPlug = new();
     // Start is called before the first frame update
     void Start()

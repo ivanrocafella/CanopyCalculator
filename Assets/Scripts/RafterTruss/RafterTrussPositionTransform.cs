@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SideFlatRightPositionTransform : MonoBehaviour
+public class RafterTrussPositionTransform : MonoBehaviour
 {
-    private readonly ColumnBody columnBody = new();
+    private readonly RafterTruss rafterTruss = new();
     // Start is called before the first frame update
     void Start()
     {
-        transform.localPosition = new Vector3((columnBody.Material.Length - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
+        transform.position = new Vector3(1000, rafterTruss.LengthTop / 2, 0);
     }
 
     // Update is called once per frame

@@ -8,11 +8,9 @@ namespace Assets.Models
 {
     public class Truss
     {
-        public float LengthTop { get; set; }
-        public float LengthBottom { get; set; }
         public float Height { get; set; }
-        public Material ProfileBelt { get; set; }
-        public Material ProfileCrate { get; set; }
+        public Material ProfileBelt { get; set; } = new Material();
+        public Material ProfileCrate { get; set; } = new Material();
         public Truss()
         {
             ProfileBelt.Length = 20;

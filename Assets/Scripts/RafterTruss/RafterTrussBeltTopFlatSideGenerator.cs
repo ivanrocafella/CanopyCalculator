@@ -7,17 +7,16 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class ColLowFlatSideGenerator : MonoBehaviour
+public class RafterTrussBeltTopFlatSideGenerator : MonoBehaviour
 {
-    private readonly ColumnBody columnBody = new();
+    private RafterTruss rafterTruss = new();
     private readonly PlanColumn planColumn = new();
 
     // Start is called before the first frame update
     void Start()
-    {
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Thickness, (float)Math.Floor(columnBody.Height - Math.Tan(planColumn.Slope) * planColumn.SizeByX), columnBody.Material.Width, columnBody.Material.Radius);
+    {       
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileBelt.Thickness, rafterTruss.LengthTop, rafterTruss.ProfileBelt.Width, rafterTruss.ProfileBelt.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
-        Debug.Log($"{(float)Math.Floor(columnBody.Height - Math.Tan(planColumn.Slope) * planColumn.SizeByX) }");
     }
 
     // Update is called once per frames
