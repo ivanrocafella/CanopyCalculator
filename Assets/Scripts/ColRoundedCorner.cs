@@ -9,15 +9,16 @@ using UnityEngine.UIElements;
 using Material = UnityEngine.Material;
 
 [RequireComponent(typeof(MeshFilter))]
-public class RoundedCornerHigh : MonoBehaviour
+public class ColRoundedCorner : MonoBehaviour
 {
-    static KindLength kindLength;
-    private readonly ColumnBody columnBody = new(kindLength);
+    public KindLength KindLength;
+    private ColumnBody columnBody;
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;
 
     private void Start()
-    { 
+    {
+        columnBody = new(KindLength);
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)columnBody.Material.Radius, (int)columnBody.Material.Radius, (int)columnBody.Height
             , columnBody.Material.Thickness, columnBody.Material.Radius);
         Vertices = mesh.vertices;
@@ -28,7 +29,9 @@ public class RoundedCornerHigh : MonoBehaviour
     private void ApplyMaterial(Mesh mesh, string shaderName, Color color)
     {
         GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
+            ? gameObject.AddComponent<MeshRenderer>()
+            : gameObject.GetComponent<MeshRenderer>();
         Material material = new(Shader.Find(shaderName))
         {
             color = color

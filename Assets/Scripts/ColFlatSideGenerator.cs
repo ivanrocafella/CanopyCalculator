@@ -13,21 +13,26 @@ public class ColFlatSideGenerator : MonoBehaviour
     {
         columnBody = new ColumnBody(selectedKindLength);
         Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Thickness, columnBody.Height, columnBody.Material.Width, columnBody.Material.Radius);
+        WaitForSeconds wait = new WaitForSeconds(0.05f);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 
     // Update is called once per frames
     void Update()
     {
-
+        
     }
 
     void ApplyMaterial(Mesh mesh, string shaderName, Color color)
     {
         GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        UnityEngine.Material material = new(Shader.Find(shaderName));
-        material.color = color;
+        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
+            ? gameObject.AddComponent<MeshRenderer>() 
+            : gameObject.GetComponent<MeshRenderer>();
+        UnityEngine.Material material = new(Shader.Find(shaderName))
+        {
+            color = color
+        };
         meshRenderer.material = material;
     }
 }

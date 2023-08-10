@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformPositionRotationColumnHigh
+public class TransformColumnLow
     : MonoBehaviour
 {
+    private readonly PlanColumn planColumn = new();
     // Start is called before the first frame update
     void Start()
     {
-        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localPosition = new Vector3(planColumn.SizeByX, 0, 0);
     }
 
     // Update is called once per frame
@@ -18,3 +19,4 @@ public class TransformPositionRotationColumnHigh
         
     }
 }
+    

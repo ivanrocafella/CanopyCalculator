@@ -19,11 +19,11 @@ public class CanopyGenerator : MonoBehaviour
         {
             columnsHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
             columnsHigh[i].transform.SetParent(canopy.transform);
-            Destroy(columnsHigh[i].GetComponent("TransformPositionRotationColumnHigh"));
+            Destroy(columnsHigh[i].GetComponent("TransformColumnHigh"));
             columnsHigh[i].transform.localPosition = new Vector3 (0, 0, planColumn.Step + planColumn.Step * i);            
             columnsLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnLow")[0]);
             columnsLow[i].transform.SetParent(canopy.transform);
-            Destroy(columnsLow[i].GetComponent("TransformPositionRotationColumnLow"));
+            Destroy(columnsLow[i].GetComponent("TransformColumnLow"));
             columnsLow[i].transform.localPosition = new Vector3(planColumn.SizeByX, 0, planColumn.Step + planColumn.Step * i);
         }
     }

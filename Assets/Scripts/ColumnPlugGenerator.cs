@@ -28,7 +28,9 @@ public class ColumnPlugGenerator : MonoBehaviour
     private void ApplyMaterial(Mesh mesh, string shaderName, Color color)
     {
         GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
+            ? gameObject.AddComponent<MeshRenderer>()
+            : gameObject.GetComponent<MeshRenderer>();
         Material material = new(Shader.Find(shaderName))
         {
             color = color
