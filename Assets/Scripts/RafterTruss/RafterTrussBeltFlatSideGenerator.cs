@@ -7,15 +7,20 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class RafterTrussBeltTopFlatSideGenerator : MonoBehaviour
+public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
 {
-    private RafterTruss rafterTruss = new();
-    private readonly PlanColumn planColumn = new();
+    private readonly RafterTruss rafterTruss = new();
+    public KindLength KindLength;
 
     // Start is called before the first frame update
     void Start()
-    {       
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileBelt.Thickness, rafterTruss.LengthTop, rafterTruss.ProfileBelt.Width, rafterTruss.ProfileBelt.Radius);
+    {
+        float length = KindLength switch
+        {
+            KindLength.Short => rafterTruss.LengthBottom,
+            _ => rafterTruss.LengthTop
+        };
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileBelt.Thickness, length, rafterTruss.ProfileBelt.Width, rafterTruss.ProfileBelt.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

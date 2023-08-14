@@ -15,12 +15,12 @@ namespace Assets.Models
         {
             ProfileBelt.Length = 20;
             ProfileBelt.Width = 20;
-            ProfileCrate.Thickness = 1.5f;
-            ProfileCrate.Radius = 3;
+            ProfileBelt.Thickness = 1.2f;
+            ProfileBelt.Radius = 2 * ProfileBelt.Thickness;
             ProfileCrate.Length = 15;
             ProfileCrate.Width = 15;
             ProfileCrate.Thickness = 1.2f;
-            ProfileCrate.Radius = 2.4f;
+            ProfileCrate.Radius = 2 * ProfileBelt.Thickness;
         }
     }
 }

@@ -13,9 +13,12 @@ namespace Assets.Services
         // Methods for creating parallelepipeds
         public static Mesh CreateFlatSidePipe(float sizeByX, float height, float sizeByY, float radius)
         {
-            Vector3 vectorByWidth = new(sizeByX, 0, 0);
+            int radiusInt = (int)Math.Round(radius, 0, MidpointRounding.AwayFromZero);
+            int sizeByXInt = (int)Math.Round(sizeByX, 0, MidpointRounding.AwayFromZero);
+
+            Vector3 vectorByWidth = new(sizeByXInt, 0, 0);
             Vector3 vectorByHeight = new(0, height, 0);
-            Vector3 vectorByLength = new(0, 0, sizeByY - radius * 2);
+            Vector3 vectorByLength = new(0, 0, sizeByY - radiusInt * 2);
 
             Mesh mesh = new();
 
