@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Material = UnityEngine.Material;
 
-public class RafterTrussBeltRoundedCorner : MonoBehaviour
+public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
 {
     public KindLength KindLength;
     private readonly RafterTruss rafterTruss = new();
@@ -22,7 +22,7 @@ public class RafterTrussBeltRoundedCorner : MonoBehaviour
             KindLength.Short => rafterTruss.LengthBottom,
             _ => rafterTruss.LengthTop
         };
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)rafterTruss.ProfileBelt.Radius, (int)rafterTruss.ProfileBelt.Radius, (int)length
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileBelt.Radius, rafterTruss.ProfileBelt.Radius, (int)length
             , rafterTruss.ProfileBelt.Thickness, rafterTruss.ProfileBelt.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
@@ -42,18 +42,18 @@ public class RafterTrussBeltRoundedCorner : MonoBehaviour
         meshRenderer.material = material;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (Vertices == null)
-        {
-            return;
-        }       
-        for (int i = 0; i < Vertices.Length; i++)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(Vertices[i], 0.1f);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(Vertices[i], Normals[i]);
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (Vertices == null)
+    //    {
+    //        return;
+    //    }       
+    //    for (int i = 0; i < Vertices.Length; i++)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawSphere(Vertices[i], 0.1f);
+    //        Gizmos.color = Color.yellow;
+    //        Gizmos.DrawRay(Vertices[i], Normals[i]);
+    //    }
+    //}
 }

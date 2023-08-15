@@ -15,6 +15,7 @@ public class ColumnPlugTransform : MonoBehaviour
     {
         columnBody = new(kindLength);
         transform.localPosition = new Vector3(0, columnBody.Height + columnPlug.Thickness / 2, 0);
+        //transform.localScale = new Vector3(0.1f, 1f, 0.1f);
     }
 
     // Update is called once per frame  

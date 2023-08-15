@@ -19,7 +19,7 @@ public class ColRoundedCorner : MonoBehaviour
     private void Start()
     {
         columnBody = new(KindLength);
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner((int)columnBody.Material.Radius, (int)columnBody.Material.Radius, (int)columnBody.Height
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Material.Radius, columnBody.Material.Radius, columnBody.Height
             , columnBody.Material.Thickness, columnBody.Material.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
@@ -39,18 +39,18 @@ public class ColRoundedCorner : MonoBehaviour
         meshRenderer.material = material;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (Vertices == null)
-        {
-            return;
-        }       
-        for (int i = 0; i < Vertices.Length; i++)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(Vertices[i], 0.1f);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(Vertices[i], Normals[i]);
-        }
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (Vertices == null)
+    //    {
+    //        return;
+    //    }
+    //    for (int i = 0; i < Vertices.Length; i++)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawSphere(Vertices[i], 0.1f);
+    //        Gizmos.color = Color.yellow;
+    //        Gizmos.DrawRay(Vertices[i], Normals[i]);
+    //    }
+    //}
 }

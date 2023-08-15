@@ -4,21 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.UIElements;
 
 namespace Assets.Services
 {
     public static class _3dObjectConstructor
     {
         // Methods for creating parallelepipeds
-        public static Mesh CreateFlatSidePipe(float sizeByX, float height, float sizeByY, float radius)
+        public static Mesh CreateFlatSidePipe(float sizeByX, float height, float sizeByZ, float radius)
         {
-            int radiusInt = (int)Math.Round(radius, 0, MidpointRounding.AwayFromZero);
-            int sizeByXInt = (int)Math.Round(sizeByX, 0, MidpointRounding.AwayFromZero);
-
-            Vector3 vectorByWidth = new(sizeByXInt, 0, 0);
+            Vector3 vectorByWidth = new(sizeByX, 0, 0);
             Vector3 vectorByHeight = new(0, height, 0);
-            Vector3 vectorByLength = new(0, 0, sizeByY - radiusInt * 2);
+            Vector3 vectorByLength = new(0, 0, sizeByZ - radius * 2);
 
             Mesh mesh = new();
 
@@ -52,16 +49,20 @@ namespace Assets.Services
 
         // Methods for creating rounded corner
 
-        public static Mesh CreateRoundedCorner(int xSize, int zSize, int ySize, float thickness, float roundness)
+        public static Mesh CreateRoundedCorner(float xSize, float zSize, float ySize, float thickness, float roundness)
         {
-            int thicknessInt = (int)Math.Round(thickness, 0, MidpointRounding.AwayFromZero);
-            int radiusInt = (int)Math.Round(roundness, 0, MidpointRounding.AwayFromZero);
+            int scale = 10;
+            int xSizeInt = (int)Math.Round(xSize * scale, 1, MidpointRounding.AwayFromZero);
+            int zSizeInt = (int)Math.Round(zSize * scale, 1, MidpointRounding.AwayFromZero);
+            int ySizeInt = (int)Math.Round(ySize * scale, 1, MidpointRounding.AwayFromZero);
+            int thicknessInt = (int)Math.Round(thickness * scale, 1, MidpointRounding.AwayFromZero);
+            int radiusInt = (int)Math.Round(roundness * scale, 1, MidpointRounding.AwayFromZero);
             Mesh mesh = new();
-            int[] ySizes = { 0, ySize };
+            int[] ySizes = { 0, ySizeInt };
             Vector3[] vertices = null;
             Vector3[] normals = null;
-            CreateVertices(vertices, normals, mesh, xSize, zSize, thicknessInt, ySizes, radiusInt);
-            CreateTriangles(xSize, zSize, thicknessInt, mesh);
+            CreateVertices(vertices, normals, mesh, xSizeInt, zSizeInt, thicknessInt, ySizes, radiusInt);
+            CreateTriangles(xSizeInt, zSizeInt, thicknessInt, mesh);
             return mesh;
         }
 

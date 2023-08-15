@@ -9,8 +9,8 @@ namespace Assets.Models
     public class Material
     {
         public string Name { get; set; }    
-        public int Length { get; set; }
-        public int Width { get; set; }
+        public float Length { get; set; }
+        public float Width { get; set; }
         public float Thickness { get; set; }
         public float Radius { get; set; }
     }
