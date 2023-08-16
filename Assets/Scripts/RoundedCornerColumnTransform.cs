@@ -14,7 +14,7 @@ public class RoundedCornerColumnTransform : MonoBehaviour
     void Start()
     {
         columnBody = new(KindLength);
-        transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        transform.localScale = new Vector3(0.1f, 1, 0.1f);
         switch (Direction)
         {
             case Direction.Right:

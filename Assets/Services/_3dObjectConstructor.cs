@@ -52,13 +52,14 @@ namespace Assets.Services
         public static Mesh CreateRoundedCorner(float xSize, float zSize, float ySize, float thickness, float roundness)
         {
             int scale = 10;
-            int xSizeInt = (int)Math.Round(xSize * scale, 1, MidpointRounding.AwayFromZero);
-            int zSizeInt = (int)Math.Round(zSize * scale, 1, MidpointRounding.AwayFromZero);
-            int ySizeInt = (int)Math.Round(ySize * scale, 1, MidpointRounding.AwayFromZero);
-            int thicknessInt = (int)Math.Round(thickness * scale, 1, MidpointRounding.AwayFromZero);
-            int radiusInt = (int)Math.Round(roundness * scale, 1, MidpointRounding.AwayFromZero);
+            int xSizeInt = (int)(Math.Round(xSize, 1, MidpointRounding.AwayFromZero) * scale);
+            int zSizeInt = (int)(Math.Round(zSize, 1, MidpointRounding.AwayFromZero) * scale);
+            //int ySizeInt = (int)(Math.Round(ySize, 1, MidpointRounding.AwayFromZero) * scale);
+            int thicknessInt = (int)(Math.Round(thickness, 1, MidpointRounding.AwayFromZero) * scale);
+            int radiusInt = (int)(Math.Round(roundness, 1, MidpointRounding.AwayFromZero) * scale);
             Mesh mesh = new();
-            int[] ySizes = { 0, ySizeInt };
+            //int[] ySizes = { 0, ySizeInt };
+            float[] ySizes = { 0, ySize };
             Vector3[] vertices = null;
             Vector3[] normals = null;
             CreateVertices(vertices, normals, mesh, xSizeInt, zSizeInt, thicknessInt, ySizes, radiusInt);
@@ -66,7 +67,7 @@ namespace Assets.Services
             return mesh;
         }
 
-        private static void CreateVertices(Vector3[] vertices, Vector3[] normals, Mesh mesh, int xSize, int zSize, int thickness, int[] ySizes, int roundness)
+        private static void CreateVertices(Vector3[] vertices, Vector3[] normals, Mesh mesh, int xSize, int zSize, int thickness, float[] ySizes, int roundness)
         {
             int cornerVertices = 12;
             int edgeVertices = (xSize + zSize - 2) * 2 + (xSize + zSize - 2 * thickness - 2) * 2;
@@ -117,7 +118,7 @@ namespace Assets.Services
             mesh.normals = normals;
         }
 
-        private static void SetVertex(int i, int x, int y, int z, Vector3[] vertices, int xSize, int zSize, int thickness, int roundness, Vector3[] normals)
+        private static void SetVertex(int i, int x, float y, int z, Vector3[] vertices, int xSize, int zSize, int thickness, int roundness, Vector3[] normals)
         {
             int radius; int radiusWithThick;
             int sizeByX; int sizeByZ;
