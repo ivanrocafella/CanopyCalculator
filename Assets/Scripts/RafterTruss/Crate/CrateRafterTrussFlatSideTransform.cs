@@ -13,6 +13,14 @@ public class CrateRafterTrussFlatSideTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log($"rafterTruss.CountCratesStandart:{rafterTruss.CountCratesStandart}");
+        Debug.Log($"rafterTruss.LengthNonStandartCrate:{rafterTruss.LengthNonStandartCrate}");
+        Debug.Log($"rafterTruss.PlaceOneCrateStandart:{rafterTruss.PlaceOneCrateStandart}");
+        Debug.Log($"rafterTruss.PlaceOneCrateNonStandart:{rafterTruss.PlaceOneCrateNonStandart}");
+        Debug.Log($"rafterTruss.PlaceAllStandartCrates:{rafterTruss.PlaceAllStandartCrates}");
+        Debug.Log($"rafterTruss.LengthTop:{rafterTruss.LengthTop}");
+        Debug.Log($"rafterTruss.AngleNonStandartCrate:{rafterTruss.AngleNonStandartCrate}");
+        
         switch (Direction)
         {
             case Direction.Right:

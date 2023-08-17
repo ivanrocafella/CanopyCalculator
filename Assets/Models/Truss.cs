@@ -9,8 +9,10 @@ namespace Assets.Models
     public class Truss
     {
         public float Height { get; set; } = 300;
-        public float GapHalf { get; set; } = 8.69262222f;
-        public float LengthCrate { get; set; } = 381.75f;
+        public float Gap { get; set; } = 17.38524445f;
+        public float GapHalf { get { return Gap / 2; } }
+        public float LengthCrate { get; set; } = 381.375f;
+        public float LengthLastCrate { get; set; }
         public float AngleCrate { get; set; } = 45.06955012f;
         public Material ProfileBelt { get; set; } = new Material();
         public Material ProfileCrate { get; set; } = new Material();
