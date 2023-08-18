@@ -20,7 +20,12 @@ public class CrateRafterTrussFlatSideTransform : MonoBehaviour
         Debug.Log($"rafterTruss.PlaceAllStandartCrates:{rafterTruss.PlaceAllStandartCrates}");
         Debug.Log($"rafterTruss.LengthTop:{rafterTruss.LengthTop}");
         Debug.Log($"rafterTruss.AngleNonStandartCrate:{rafterTruss.AngleNonStandartCrate}");
+        Debug.Log($"rafterTruss.PieceMidToExter:{rafterTruss.PieceMidToExter}");
+        Debug.Log($"rafterTruss.PlaceAllNonStandartCrates:{rafterTruss.PlaceAllNonStandartCrates}");
+        Debug.Log($"rafterTruss.FormulaAngle: Math.Atan(({rafterTruss.Height} - {rafterTruss.ProfileBelt.Width}) / {rafterTruss.PlaceOneCrateNonStandart}) * 180 / Math.PI)");
         
+
+
         switch (Direction)
         {
             case Direction.Right:

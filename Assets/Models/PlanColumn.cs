@@ -8,7 +8,7 @@ namespace Assets.Models
 {
     public class PlanColumn
     {
-        public int SizeByX { get; set; } = 4500; // u.m. = mm
+        public int SizeByX { get; set; } = 4350; // u.m. = mm
         public int SizeByZ { get; set; } = 9000; // u.m. = mm
         public int SizeByY { get; set; } = 3000; // u.m. = mm
         public int SlopeInDegree { get; set; } = 6; // u.m. = degree
