@@ -19,7 +19,6 @@ public class ColFlatSideGenerator : MonoBehaviour
     // Update is called once per frames
     void Update()
     {
-        
     }
 
     void ApplyMaterial(Mesh mesh, string shaderName, Color color)

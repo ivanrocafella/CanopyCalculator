@@ -14,16 +14,20 @@ public class CrateRafterTrussFlatSideTransform : MonoBehaviour
     void Start()
     {
         Debug.Log($"rafterTruss.CountCratesStandart:{rafterTruss.CountCratesStandart}");
-        Debug.Log($"rafterTruss.LengthNonStandartCrate:{rafterTruss.LengthNonStandartCrate}");
+        Debug.Log($"rafterTruss.LengthDiagonalNonStandartCrate:{rafterTruss.LengthDiagonalNonStandartCrate}");
         Debug.Log($"rafterTruss.PlaceOneCrateStandart:{rafterTruss.PlaceOneCrateStandart}");
-        Debug.Log($"rafterTruss.PlaceOneCrateNonStandart:{rafterTruss.PlaceOneCrateNonStandart}");
+        Debug.Log($"rafterTruss.PlaceOneCrateNonStandart:{rafterTruss.DimenOneCrateNonStandart}");
         Debug.Log($"rafterTruss.PlaceAllStandartCrates:{rafterTruss.PlaceAllStandartCrates}");
         Debug.Log($"rafterTruss.LengthTop:{rafterTruss.LengthTop}");
-        Debug.Log($"rafterTruss.AngleNonStandartCrate:{rafterTruss.AngleNonStandartCrate}");
+        Debug.Log($"rafterTruss.AngleDiagonalNonStandartCrate:{rafterTruss.AngleDiagonalNonStandartCrate}");
         Debug.Log($"rafterTruss.PieceMidToExter:{rafterTruss.PieceMidToExter}");
         Debug.Log($"rafterTruss.PlaceAllNonStandartCrates:{rafterTruss.PlaceAllNonStandartCrates}");
-        Debug.Log($"rafterTruss.FormulaAngle: Math.Atan(({rafterTruss.Height} - {rafterTruss.ProfileBelt.Width}) / {rafterTruss.PlaceOneCrateNonStandart}) * 180 / Math.PI)");
+        Debug.Log($"rafterTruss.FormulaAngle: Math.Atan(({rafterTruss.Height} - {rafterTruss.ProfileBelt.Width}) / {rafterTruss.DimenOneCrateNonStandart}) * 180 / Math.PI)");
+        Debug.Log($"rafterTruss.AngleNonStandartCrate:{rafterTruss.AngleNonStandartCrate}");
+        Debug.Log($"rafterTruss.LengthNonStandartCrate:{rafterTruss.LengthNonStandartCrate}");
+
         
+
 
 
         switch (Direction)

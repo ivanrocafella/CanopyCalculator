@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Models
 {
@@ -15,7 +16,7 @@ namespace Assets.Models
         public float LengthCrate { get; set; } = 381.375f;
         public float LengthLastCrate { get; set; }
         public float AngleCrateInDegree { get; set; } = 45.06955012f; // u.m. = degree
-        public double AngleCrate { get { return (Math.PI / 180) * AngleCrateInDegree; } } // u.m. = rad
+        public float AngleCrate { get { return Mathf.Deg2Rad * AngleCrateInDegree; } } // u.m. = rad
         public Material ProfileBelt { get; set; } = new Material();
         public Material ProfileCrate { get; set; } = new Material();
         public Truss()
