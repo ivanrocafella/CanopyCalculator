@@ -14,7 +14,6 @@ namespace Assets.Models
         public float GapExter { get; set; } = 12f;
         public float GapHalf { get { return Gap / 2; } }
         public float LengthCrate { get; set; } = 381.375f;
-        public float LengthLastCrate { get; set; }
         public float AngleCrateInDegree { get; set; } = 45.06955012f; // u.m. = degree
         public float AngleCrate { get { return Mathf.Deg2Rad * AngleCrateInDegree; } } // u.m. = rad
         public Material ProfileBelt { get; set; } = new Material();

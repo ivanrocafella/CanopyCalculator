@@ -8,6 +8,9 @@ TagManager:
   - ColumnHigh
   - ColumnLow
   - Canopy
+  - RafterTruss
+  - StandartCrateRafterTruss
+  - NonStandartCrateRafterTruss
   layers:
   - Default
   - TransparentFX

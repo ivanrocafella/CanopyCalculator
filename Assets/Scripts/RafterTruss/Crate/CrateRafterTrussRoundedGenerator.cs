@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using Assets.Services;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +11,13 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
     private readonly RafterTruss rafterTruss = new();
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;
+    public StandartNonStandart StandartNonStandart;
 
     private void Start()
     {
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthCrate
+        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
+            , rafterTruss.ProfileCrate.Thickness, rafterTruss.ProfileCrate.Radius)
+            : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthCrate
             , rafterTruss.ProfileCrate.Thickness, rafterTruss.ProfileCrate.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;

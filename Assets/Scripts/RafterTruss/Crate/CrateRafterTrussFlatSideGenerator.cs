@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using Assets.Services;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,11 +8,13 @@ using UnityEngine;
 public class CrateRafterTrussFlatSideGenerator : MonoBehaviour
 {
     private readonly RafterTruss rafterTruss = new();
+    public StandartNonStandart StandartNonStandart;
 
     // Start is called before the first frame update
     void Start()
     {
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthCrate, rafterTruss.ProfileCrate.Width, rafterTruss.ProfileCrate.Radius);
+        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthNonStandartCrate, rafterTruss.ProfileCrate.Width, rafterTruss.ProfileCrate.Radius)
+            : _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthCrate, rafterTruss.ProfileCrate.Width, rafterTruss.ProfileCrate.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

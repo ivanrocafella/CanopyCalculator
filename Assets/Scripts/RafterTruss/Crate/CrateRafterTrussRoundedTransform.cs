@@ -15,7 +15,7 @@ public class CrateRafterTrussRoundedTransform : MonoBehaviour
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3(rafterTruss.ProfileCrate.Width / 2 - rafterTruss.ProfileCrate.Radius, 0, -rafterTruss.ProfileCrate.Length / 2);
+                transform.localPosition = new Vector3(rafterTruss.ProfileCrate.Width / 2 - rafterTruss.ProfileCrate.Radius, 0, -rafterTruss.ProfileCrate.Width / 2);
                 break;
             case Direction.Left:
                 transform.localPosition = new Vector3(-rafterTruss.ProfileCrate.Width / 2, 0, -(rafterTruss.ProfileCrate.Width / 2 - rafterTruss.ProfileCrate.Radius));
