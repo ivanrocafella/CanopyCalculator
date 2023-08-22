@@ -13,8 +13,8 @@ public class CrateRafterTrussFlatSideGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthNonStandartCrate, rafterTruss.ProfileCrate.Width, rafterTruss.ProfileCrate.Radius)
-            : _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthCrate, rafterTruss.ProfileCrate.Width, rafterTruss.ProfileCrate.Radius);
+        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthNonStandartCrate, rafterTruss.ProfileCrate.Height, rafterTruss.ProfileCrate.Radius)
+            : _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileCrate.Thickness, rafterTruss.LengthCrate, rafterTruss.ProfileCrate.Height, rafterTruss.ProfileCrate.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 
@@ -27,7 +27,9 @@ public class CrateRafterTrussFlatSideGenerator : MonoBehaviour
     void ApplyMaterial(Mesh mesh, string shaderName, Color color)
     {
         GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
+             ? gameObject.AddComponent<MeshRenderer>()
+             : gameObject.GetComponent<MeshRenderer>();
         UnityEngine.Material material = new(Shader.Find(shaderName));
         material.color = color;
         meshRenderer.material = material;

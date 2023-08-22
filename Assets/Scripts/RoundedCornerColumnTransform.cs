@@ -18,18 +18,18 @@ public class RoundedCornerColumnTransform : MonoBehaviour
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3(columnBody.Material.Length / 2 - columnBody.Material.Radius, 0, -columnBody.Material.Length / 2);
+                transform.localPosition = new Vector3(columnBody.Material.Height / 2 - columnBody.Material.Radius, 0, -columnBody.Material.Height / 2);
                 break;
             case Direction.Left:
-                transform.localPosition = new Vector3(-columnBody.Material.Length / 2, 0, -(columnBody.Material.Length / 2 - columnBody.Material.Radius));
+                transform.localPosition = new Vector3(-columnBody.Material.Height / 2, 0, -(columnBody.Material.Height / 2 - columnBody.Material.Radius));
                 transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
                 break;
             case Direction.Back:
-                transform.localPosition = new Vector3(-columnBody.Material.Length / 2 + columnBody.Material.Radius, 0, columnBody.Material.Length / 2);
+                transform.localPosition = new Vector3(-columnBody.Material.Height / 2 + columnBody.Material.Radius, 0, columnBody.Material.Height / 2);
                 transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 break;
             default:
-                transform.localPosition = new Vector3(columnBody.Material.Length / 2, 0, (columnBody.Material.Length / 2 - columnBody.Material.Radius));
+                transform.localPosition = new Vector3(columnBody.Material.Height / 2, 0, (columnBody.Material.Height / 2 - columnBody.Material.Radius));
                 transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                 break;
         }

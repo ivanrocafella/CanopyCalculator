@@ -15,7 +15,7 @@ public class BeltBottomRafterTrussTransform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = new Vector3(rafterTruss.Height - rafterTruss.ProfileBelt.Width
+        transform.localPosition = new Vector3(rafterTruss.Height - rafterTruss.ProfileBelt.Height
             , (rafterTruss.LengthTop - rafterTruss.LengthBottom) / 2, 0);
     }
 }

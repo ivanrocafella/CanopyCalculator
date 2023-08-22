@@ -18,17 +18,17 @@ public class SideFlatColumnTransform : MonoBehaviour
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3((columnBody.Material.Length - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
+                transform.localPosition = new Vector3((columnBody.Material.Height - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
                 break;
             case Direction.Left:
-                transform.localPosition = new Vector3(-(columnBody.Material.Length - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
+                transform.localPosition = new Vector3(-(columnBody.Material.Height - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
                 break;
             case Direction.Back:
-                transform.localPosition = new Vector3(0, columnBody.Height / 2, (columnBody.Material.Length - columnBody.Material.Thickness) / 2);
+                transform.localPosition = new Vector3(0, columnBody.Height / 2, (columnBody.Material.Height - columnBody.Material.Thickness) / 2);
                 transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                 break;
             default:
-                transform.localPosition = new Vector3(0, columnBody.Height / 2, -(columnBody.Material.Length - columnBody.Material.Thickness) / 2);
+                transform.localPosition = new Vector3(0, columnBody.Height / 2, -(columnBody.Material.Height - columnBody.Material.Thickness) / 2);
                 transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
                 break;
         }

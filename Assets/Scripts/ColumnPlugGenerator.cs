@@ -15,7 +15,7 @@ public class ColumnPlugGenerator : MonoBehaviour
     void Start()
     {
         columnBody = new ColumnBody(kindLength);
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Length + columnPlug.Thickness * 2, columnPlug.Thickness, columnBody.Material.Width + columnPlug.Thickness * 2, 0);
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Length + columnPlug.Thickness * 2, columnPlug.Thickness, columnBody.Material.Height + columnPlug.Thickness * 2, 0);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

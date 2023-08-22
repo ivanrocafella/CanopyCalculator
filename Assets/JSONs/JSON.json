@@ -1,0 +1,50 @@
+[
+  {
+    "Name": "ФМ 125",
+    "Height": 125.0,
+    "Gap": 6.30306149,
+    "GapExter": 7.0,
+    "GapHalf": 3.15153074,
+    "LengthCrate": 154.0,
+    "AngleCrateInDegree": 45.58469,
+    "AngleCrate": 0.7956029,
+    "ProfileBelt": {
+      "Name": "Труба 15x15x1.5",
+      "Height": 15.0,
+      "Length": 15.0,
+      "Thickness": 1.5,
+      "Radius": 3.0
+    },
+    "ProfileCrate": {
+      "Name": "Труба 10x10x1.2",
+      "Height": 10.0,
+      "Length": 10.0,
+      "Thickness": 1.2,
+      "Radius": 2.4
+    }
+  },
+  {
+    "Name": "ФМ 150",
+    "Height": 150.0,
+    "Gap": 6.30306149,
+    "GapExter": 7.0,
+    "GapHalf": 3.15153074,
+    "LengthCrate": 189.0,
+    "AngleCrateInDegree": 45.58469,
+    "AngleCrate": 0.7956029,
+    "ProfileBelt": {
+      "Name": "Труба 15x15x1.5",
+      "Height": 15.0,
+      "Length": 15.0,
+      "Thickness": 1.5,
+      "Radius": 3.0
+    },
+    "ProfileCrate": {
+      "Name": "Труба 10x10x1.2",
+      "Height": 10.0,
+      "Length": 10.0,
+      "Thickness": 1.2,
+      "Radius": 2.4
+    }
+  }
+]

@@ -12,7 +12,7 @@ public class ColFlatSideGenerator : MonoBehaviour
     void Start()
     {
         columnBody = new ColumnBody(selectedKindLength);
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Thickness, columnBody.Height, columnBody.Material.Width, columnBody.Material.Radius);
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Material.Thickness, columnBody.Height, columnBody.Material.Height, columnBody.Material.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

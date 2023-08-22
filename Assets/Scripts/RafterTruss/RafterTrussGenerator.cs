@@ -21,7 +21,7 @@ public class RafterTrussGenerator : MonoBehaviour
             Destroy(cratesStandart[i].GetComponent<CrateRafterTrussTransform>());
             if (i % 2 == 0)
             {              
-                cratesStandart[i].transform.localPosition = new Vector3(rafterTrussForRead.Height - rafterTrussForRead.ProfileBelt.Width, rafterTrussForRead.Tail + rafterTrussForRead.PieceMidToExter
+                cratesStandart[i].transform.localPosition = new Vector3(rafterTrussForRead.Height - rafterTrussForRead.ProfileBelt.Height, rafterTrussForRead.Tail + rafterTrussForRead.PieceMidToExter
                                  + rafterTrussForRead.PlaceOneCrateStandart + rafterTrussForRead.Gap
                                  + (rafterTrussForRead.PlaceOneCrateStandart + rafterTrussForRead.Gap) * i, 0);
                 cratesStandart[i].transform.localRotation = Quaternion.Euler(0f, 0f, rafterTrussForRead.AngleCrateInDegree);               
@@ -39,7 +39,7 @@ public class RafterTrussGenerator : MonoBehaviour
             GameObject nonStandartCrateSecond = Object.Instantiate(GameObject.FindGameObjectsWithTag("NonStandartCrateRafterTruss")[0]);
             nonStandartCrateSecond.transform.SetParent(rafterTruss.transform);
             Destroy(nonStandartCrateSecond.GetComponent<CrateRafterTrussTransform>());
-            nonStandartCrateSecond.transform.localPosition = new Vector3(rafterTrussForRead.Height - rafterTrussForRead.ProfileBelt.Width, rafterTrussForRead.LengthTop - rafterTrussForRead.Tail - rafterTrussForRead.PerspectWidthHalfNonStandartCrate
+            nonStandartCrateSecond.transform.localPosition = new Vector3(rafterTrussForRead.Height - rafterTrussForRead.ProfileBelt.Height, rafterTrussForRead.LengthTop - rafterTrussForRead.Tail - rafterTrussForRead.PerspectWidthHalfNonStandartCrate
                 - rafterTrussForRead.DimenOneCrateNonStandart - rafterTrussForRead.GapExter, 0);
             nonStandartCrateSecond.transform.localRotation = Quaternion.Euler(0f, 0f, 180 - rafterTrussForRead.AngleNonStandartCrate);
         }

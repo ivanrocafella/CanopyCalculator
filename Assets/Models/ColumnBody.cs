@@ -20,7 +20,7 @@ namespace Assets.Models
             };
 
             Material.Length = 80;
-            Material.Width = 80;
+            Material.Height = 80;
             Material.Thickness = 4;
             Material.Radius = 8;
         }
