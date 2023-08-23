@@ -3,18 +3,22 @@ using Assets.Models.Enums;
 using Assets.Services;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using Material = UnityEngine.Material;
 
 public class CrateRafterTrussRoundedGenerator : MonoBehaviour
 {
-    private readonly RafterTruss rafterTruss = new();
+    private string path;
+    private RafterTruss rafterTruss;
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;
     public StandartNonStandart StandartNonStandart;
 
     private void Start()
     {
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTruss = new("тл 300", path);
         Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
             , rafterTruss.ProfileCrate.Thickness, rafterTruss.ProfileCrate.Radius)
             : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthCrate

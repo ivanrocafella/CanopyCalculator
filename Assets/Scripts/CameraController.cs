@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     {
         string path = Path.Combine(Application.dataPath,"JSONs","JSON.json");
         Debug.Log(path);
-        Truss truss = new Truss();
+        Truss truss = new();
         //FileAction<Truss>.WriteAndSerialyze(path, truss);
         List<Truss> trusses = FileAction<Truss>.ReadAndDeserialyze(path);
         Debug.Log("");

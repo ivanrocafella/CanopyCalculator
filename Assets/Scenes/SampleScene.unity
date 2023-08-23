@@ -584,6 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   StandartNonStandart: 0
+  HeigthLengthProfile: 0
 --- !u!33 &301432967
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -605,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
+  HeigthLengthProfile: 1
 --- !u!1 &340375978
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   StandartNonStandart: 0
+  HeigthLengthProfile: 1
 --- !u!33 &370409127
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -860,6 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
+  HeigthLengthProfile: 0
 --- !u!1 &481895795
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
+  HeigthLengthProfile: 1
 --- !u!114 &481895800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,6 +934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   StandartNonStandart: 0
+  HeigthLengthProfile: 0
 --- !u!1 &523933274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,6 +2020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   StandartNonStandart: 1
+  HeigthLengthProfile: 1
 --- !u!33 &893481794
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2035,6 +2042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
+  HeigthLengthProfile: 0
 --- !u!1 &911704333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,6 +3016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   StandartNonStandart: 1
+  HeigthLengthProfile: 0
 --- !u!33 &1369649058
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3029,6 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
+  HeigthLengthProfile: 1
 --- !u!1 &1430870481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   StandartNonStandart: 1
+  HeigthLengthProfile: 0
 --- !u!33 &1430870484
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3098,6 +3109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
+  HeigthLengthProfile: 1
 --- !u!1 &1470592603
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,6 +4020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   StandartNonStandart: 0
+  HeigthLengthProfile: 1
 --- !u!33 &1846296855
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4029,6 +4042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
+  HeigthLengthProfile: 0
 --- !u!1 &1861073977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4077,6 +4091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   StandartNonStandart: 1
+  HeigthLengthProfile: 1
 --- !u!33 &1861073980
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4098,6 +4113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
+  HeigthLengthProfile: 0
 --- !u!1 &1876688497
 GameObject:
   m_ObjectHideFlags: 0

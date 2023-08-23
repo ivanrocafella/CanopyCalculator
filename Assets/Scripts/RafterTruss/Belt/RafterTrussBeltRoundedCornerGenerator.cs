@@ -2,6 +2,7 @@ using Assets.Models;
 using Assets.Services;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,13 +11,16 @@ using Material = UnityEngine.Material;
 
 public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
 {
+    private string path;
+    private RafterTruss rafterTruss;
     public KindLength KindLength;
-    private readonly RafterTruss rafterTruss = new();
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;
 
     private void Start()
     {
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTruss = new("тл 300", path);
         float length = KindLength switch
         {
             KindLength.Short => rafterTruss.LengthBottom,

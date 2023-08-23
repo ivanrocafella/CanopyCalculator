@@ -4,14 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.IO;
 
 public class RafterTrussBeltRoundedCornerTransform : MonoBehaviour
 {
-    private readonly RafterTruss rafterTruss = new();
+    private string path;
+    private RafterTruss rafterTruss;
     public Direction Direction;
     // Start is called before the first frame update
     void Start()
     {
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTruss = new("тл 300", path);
         transform.localScale = new Vector3(0.1f, 1f, 0.1f);
         switch (Direction)
         {

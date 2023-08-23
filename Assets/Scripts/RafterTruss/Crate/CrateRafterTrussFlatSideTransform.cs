@@ -5,15 +5,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
+using System.IO;
 
 public class CrateRafterTrussFlatSideTransform : MonoBehaviour
 {
-    private readonly RafterTruss rafterTruss = new();
+    private string path;
+    private RafterTruss rafterTruss;
     public Direction Direction;
     public StandartNonStandart StandartNonStandart;
+    public HeigthLengthProfile HeigthLengthProfile;
     // Start is called before the first frame update
     void Start()
     {
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTruss = new("тл 300", path);
         Debug.Log($"rafterTruss.CountCratesStandart:{rafterTruss.CountCratesStandart}");
         Debug.Log($"rafterTruss.LengthDiagonalNonStandartCrate:{rafterTruss.LengthDiagonalNonStandartCrate}");
         Debug.Log($"rafterTruss.PlaceOneCrateStandart:{rafterTruss.PlaceOneCrateStandart}");
@@ -29,22 +34,22 @@ public class CrateRafterTrussFlatSideTransform : MonoBehaviour
         Debug.Log($"rafterTruss.PerspectWidthHalfNonStandartCrate:{rafterTruss.PerspectWidthHalfNonStandartCrate}");
 
 
-
+        float dimen = HeigthLengthProfile == HeigthLengthProfile.Heigth ? rafterTruss.ProfileCrate.Height : rafterTruss.ProfileCrate.Length;
         float length = StandartNonStandart == StandartNonStandart.NonStandart ? rafterTruss.LengthNonStandartCrate : rafterTruss.LengthCrate;
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3((rafterTruss.ProfileCrate.Height - rafterTruss.ProfileCrate.Thickness) / 2, length / 2, 0);
+                transform.localPosition = new Vector3((dimen - rafterTruss.ProfileCrate.Thickness) / 2, length / 2, 0);
                 break;
             case Direction.Left:
-                transform.localPosition = new Vector3(-(rafterTruss.ProfileCrate.Height - rafterTruss.ProfileCrate.Thickness) / 2, length / 2, 0);
+                transform.localPosition = new Vector3(-(dimen - rafterTruss.ProfileCrate.Thickness) / 2, length / 2, 0);
                 break;
             case Direction.Back:
-                transform.localPosition = new Vector3(0, length / 2, (rafterTruss.ProfileCrate.Height - rafterTruss.ProfileCrate.Thickness) / 2);
+                transform.localPosition = new Vector3(0, length / 2, (dimen - rafterTruss.ProfileCrate.Thickness) / 2);
                 transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                 break;
             default:
-                transform.localPosition = new Vector3(0, length / 2, -(rafterTruss.ProfileCrate.Height - rafterTruss.ProfileCrate.Thickness) / 2);
+                transform.localPosition = new Vector3(0, length / 2, -(dimen - rafterTruss.ProfileCrate.Thickness) / 2);
                 transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
                 break;
         }

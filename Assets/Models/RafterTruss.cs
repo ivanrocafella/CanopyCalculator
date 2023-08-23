@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Assets.Utils;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +16,7 @@ namespace Assets.Models
         public float LengthBottom { get => LengthTop - 400; }
         public float Tail { get; set; } = 200;
         public float PlaceOneCrateStandart { get => Mathf.Cos(AngleCrate) * LengthCrate; }
-        public int CountCratesStandart { get => (int)Math.Floor((LengthTop - 2 * Tail - (PlaceOneCrateStandart + Gap)) / (PlaceOneCrateStandart + Gap)) + 1; }
+        public int CountCratesStandart { get => (int)Math.Floor((LengthTop - 2 * Tail - (PlaceOneCrateStandart + Gap)) / (PlaceOneCrateStandart + Gap)); }
         public float PieceMidToExter { get => (ProfileCrate.Height / 2 - (ProfileBelt.Height / 2) * Mathf.Cos(AngleCrate)) / Mathf.Sin(AngleCrate); }
         public float PlaceAllStandartCrates { get  => CountCratesStandart * (PlaceOneCrateStandart + Gap) - Gap + 2 * PieceMidToExter; }
         public float PlaceAllNonStandartCrates { get => LengthTop - PlaceAllStandartCrates - 2 * Tail; }
@@ -26,5 +28,27 @@ namespace Assets.Models
         public float LengthNonStandartCrate { get => (Height - ProfileBelt.Height) / Mathf.Sin(AngleNonStandartCrate * Mathf.Deg2Rad); }
         public float PerspectWidthHalfNonStandartCrate { get => (ProfileCrate.Height / Mathf.Sin(AngleNonStandartCrate * Mathf.Deg2Rad) - ProfileBelt.Height / Mathf.Tan(AngleNonStandartCrate * Mathf.Deg2Rad)) / 2; }
 
+        public RafterTruss(string nameTruss, string path)
+        {
+            var truss = FileAction<Truss>.ReadAndDeserialyze(path).Find(e => e.Name == nameTruss);
+            Name = truss.Name;
+            Height = truss.Height;
+            Gap = truss.Gap;
+            GapExter = truss.GapExter;
+            LengthCrate = truss.LengthCrate;
+            AngleCrateInDegree = truss.AngleCrateInDegree; // u.m. = degree
+
+            ProfileBelt.Name = truss.ProfileBelt.Name;
+            ProfileBelt.Length = truss.ProfileBelt.Length;
+            ProfileBelt.Height = truss.ProfileBelt.Height;
+            ProfileBelt.Thickness = truss.ProfileBelt.Thickness;
+            ProfileBelt.Radius = 2 * ProfileBelt.Thickness;
+
+            ProfileCrate.Name = truss.ProfileCrate.Name;
+            ProfileCrate.Length = truss.ProfileCrate.Length;
+            ProfileCrate.Height = truss.ProfileCrate.Height;
+            ProfileCrate.Thickness = truss.ProfileCrate.Thickness;
+            ProfileCrate.Radius = 2 * ProfileCrate.Thickness;
+    }
     }
 }

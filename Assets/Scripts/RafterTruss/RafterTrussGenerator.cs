@@ -1,17 +1,21 @@
 using Assets.Models;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class RafterTrussGenerator : MonoBehaviour
 {
-    private readonly RafterTruss rafterTrussForRead = new();
+    private string path;
+    private RafterTruss rafterTrussForRead;
     private GameObject[] cratesStandart;
     private GameObject rafterTruss;
     // Start is called before the first frame update
     void Start()    
     {
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTrussForRead = new("тл 300", path);
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0];
         cratesStandart = new GameObject[rafterTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
@@ -36,7 +40,7 @@ public class RafterTrussGenerator : MonoBehaviour
         }
         if (rafterTrussForRead.HasTwoNonStandartCrate)
         {
-            GameObject nonStandartCrateSecond = Object.Instantiate(GameObject.FindGameObjectsWithTag("NonStandartCrateRafterTruss")[0]);
+            GameObject nonStandartCrateSecond = Object.Instantiate(GameObject.FindGameObjectsWithTag("NonStandartCrateRafterTruss")[0]);    
             nonStandartCrateSecond.transform.SetParent(rafterTruss.transform);
             Destroy(nonStandartCrateSecond.GetComponent<CrateRafterTrussTransform>());
             nonStandartCrateSecond.transform.localPosition = new Vector3(rafterTrussForRead.Height - rafterTrussForRead.ProfileBelt.Height, rafterTrussForRead.LengthTop - rafterTrussForRead.Tail - rafterTrussForRead.PerspectWidthHalfNonStandartCrate

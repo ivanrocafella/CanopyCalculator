@@ -4,17 +4,21 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Linq;
 using UnityEngine;
 
 public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
 {
-    private readonly RafterTruss rafterTruss = new();
+    private string path;
+    private RafterTruss rafterTruss;
     public KindLength KindLength;
 
     // Start is called before the first frame update
     void Start()
     {
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTruss = new("ФМ 300", path);
         float length = KindLength switch
         {
             KindLength.Short => rafterTruss.LengthBottom,

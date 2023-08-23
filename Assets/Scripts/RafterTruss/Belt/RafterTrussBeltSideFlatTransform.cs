@@ -3,17 +3,20 @@ using Assets.Models.Enums;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class RafterTrussBeltSideFlatTransform : MonoBehaviour
 {
-    private readonly RafterTruss rafterTruss = new();
+    private string path;
+    private RafterTruss rafterTruss;
     public Direction Direction;
     public KindLength KindLength;
     // Start is called before the first frame update
     void Start()
     {
-        //transform.localScale = new Vector3(0.1f, 1f, 0.1f);
+        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
+        rafterTruss = new("тл 300", path);
 
         float length = KindLength switch
         {
