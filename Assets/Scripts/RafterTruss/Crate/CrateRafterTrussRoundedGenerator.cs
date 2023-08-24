@@ -17,8 +17,7 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
 
     private void Start()
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTruss = new("тл 300", path);
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
             , rafterTruss.ProfileCrate.Thickness, rafterTruss.ProfileCrate.Radius)
             : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthCrate

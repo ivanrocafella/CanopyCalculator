@@ -17,8 +17,7 @@ public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTruss = new("ФМ 300", path);
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         float length = KindLength switch
         {
             KindLength.Short => rafterTruss.LengthBottom,

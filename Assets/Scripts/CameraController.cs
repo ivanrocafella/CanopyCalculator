@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using Material = Assets.Models.Material;
 using Random = UnityEngine.Random;
 
 public class CameraController : MonoBehaviour
@@ -15,11 +16,11 @@ public class CameraController : MonoBehaviour
     private float speed = 2.0f;
     void Start()
     {
-        string path = Path.Combine(Application.dataPath,"JSONs","JSON.json");
+        string path = Path.Combine(Application.dataPath,"JSONs","Materials.json");
         Debug.Log(path);
-        Truss truss = new();
-        //FileAction<Truss>.WriteAndSerialyze(path, truss);
-        List<Truss> trusses = FileAction<Truss>.ReadAndDeserialyze(path);
+        Material material = new();
+        //FileAction<Material>.WriteAndSerialyze(path, material);
+        List<Material> materials = FileAction<Material>.ReadAndDeserialyze(path);
         Debug.Log("");
      }
     void Update()

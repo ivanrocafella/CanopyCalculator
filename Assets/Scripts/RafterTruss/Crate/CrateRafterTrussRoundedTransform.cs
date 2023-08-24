@@ -13,8 +13,7 @@ public class CrateRafterTrussRoundedTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTruss = new("тл 300", path);
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         transform.localScale = new Vector3(0.1f, 1, 0.1f);
         switch (Direction)
         {

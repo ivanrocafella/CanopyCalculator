@@ -11,8 +11,7 @@ public class BeltBottomRafterTrussTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTruss =  new("тл 300", path);
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         transform.localPosition = new Vector3(rafterTruss.Height - rafterTruss.ProfileBelt.Height
            , (rafterTruss.LengthTop - rafterTruss.LengthBottom) / 2, 0);
 

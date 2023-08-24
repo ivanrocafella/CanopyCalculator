@@ -17,8 +17,7 @@ public class CrateRafterTrussFlatSideTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTruss = new("тл 300", path);
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         Debug.Log($"rafterTruss.CountCratesStandart:{rafterTruss.CountCratesStandart}");
         Debug.Log($"rafterTruss.LengthDiagonalNonStandartCrate:{rafterTruss.LengthDiagonalNonStandartCrate}");
         Debug.Log($"rafterTruss.PlaceOneCrateStandart:{rafterTruss.PlaceOneCrateStandart}");

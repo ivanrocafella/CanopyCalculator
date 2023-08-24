@@ -19,8 +19,7 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
 
     private void Start()
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTruss = new("тл 300", path);
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         float length = KindLength switch
         {
             KindLength.Short => rafterTruss.LengthBottom,

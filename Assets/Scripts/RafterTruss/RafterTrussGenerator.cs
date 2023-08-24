@@ -1,21 +1,27 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class RafterTrussGenerator : MonoBehaviour
 {
     private string path;
-    private RafterTruss rafterTrussForRead;
+    public RafterTruss rafterTrussForRead;
+    public KindTruss KindTruss;
     private GameObject[] cratesStandart;
     private GameObject rafterTruss;
     // Start is called before the first frame update
-    void Start()    
+    private void Awake()
     {
-        path = Path.Combine(Application.dataPath, "JSONs", "JSON.json");
-        rafterTrussForRead = new("тл 300", path);
+        path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
+        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path);
+    }
+    void Start()    
+    {       
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0];
         cratesStandart = new GameObject[rafterTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
