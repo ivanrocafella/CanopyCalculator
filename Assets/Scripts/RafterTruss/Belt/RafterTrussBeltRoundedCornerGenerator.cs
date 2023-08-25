@@ -25,8 +25,8 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
             KindLength.Short => rafterTruss.LengthBottom,
             _ => rafterTruss.LengthTop
         };
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileBelt.Radius, rafterTruss.ProfileBelt.Radius, length
-            , rafterTruss.ProfileBelt.Thickness, rafterTruss.ProfileBelt.Radius);
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, rafterTruss.Truss.ProfileBelt.Radius, length
+            , rafterTruss.Truss.ProfileBelt.Thickness, rafterTruss.Truss.ProfileBelt.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);

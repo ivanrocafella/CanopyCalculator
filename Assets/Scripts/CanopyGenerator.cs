@@ -5,11 +5,29 @@ using UnityEngine;
 
 public class CanopyGenerator : MonoBehaviour
 {
-    private readonly PlanColumn planColumn = new();
+    public PlanColumn planColumn;
     private GameObject[] columnsHigh;
     private GameObject[] columnsLow;
     private GameObject canopy;
-    // Start is called before the first frame update
+    public int SizeByX;
+    public int SizeByZ;
+    public int SizeByY;
+    public int SlopeInDegree;
+    public int CountStep;
+
+    public PlanColumn MakePlanColumn()
+    {
+        planColumn = new PlanColumn()
+        {
+            SizeByX = SizeByX,
+            SizeByZ = SizeByZ,
+            SizeByY = SizeByY,
+            SlopeInDegree = SlopeInDegree,
+            CountStep = CountStep
+        };
+        return planColumn;
+    }
+
     void Start()
     {
         canopy = GameObject.FindGameObjectsWithTag("Canopy")[0];

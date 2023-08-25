@@ -8,10 +8,10 @@ namespace Assets.Models
 {
     public class Material
     {
-        public string Name { get; set; } = "Труба 20x20x1.2";
-        public float Height { get; set; } = 20;
-        public float Length { get; set; } = 20;
-        public float Thickness { get; set; } = 1.2f;
-        public float Radius { get; set; } = 2.4f;
+        public string Name { get; set; }
+        public float Height { get; set; }
+        public float Length { get; set; }
+        public float Thickness { get; set; }
+        public float Radius { get; set; }
     }
 }

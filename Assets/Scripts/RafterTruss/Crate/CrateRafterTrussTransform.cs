@@ -26,7 +26,7 @@ public class CrateRafterTrussTransform : MonoBehaviour
                 break;
             default:
                 positionY = rafterTruss.Tail + rafterTruss.PieceMidToExter;
-                angle = -rafterTruss.AngleCrateInDegree;
+                angle = -rafterTruss.Truss.AngleCrateInDegree;
                 break;
         }
         transform.localPosition = new Vector3 (0, positionY, 0);

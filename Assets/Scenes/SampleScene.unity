@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f43a22a7b619f4c8e764fe2d012443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KindTruss: 6
 --- !u!1 &370409124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,6 +1083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568185836}
   - component: {fileID: 568185837}
+  - component: {fileID: 568185838}
   m_Layer: 0
   m_Name: ColumnHigh
   m_TagString: ColumnHigh
@@ -1118,6 +1120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5f4aba7edbb124ba2e6f2ae07e14b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &568185838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568185835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ac1da5fbf3e3b4d8f705cba15565ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KindMaterial: 5
 --- !u!1 &612977532
 GameObject:
   m_ObjectHideFlags: 0

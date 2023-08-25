@@ -18,10 +18,10 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
     private void Start()
     {
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
-        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
-            , rafterTruss.ProfileCrate.Thickness, rafterTruss.ProfileCrate.Radius)
-            : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.ProfileCrate.Radius, rafterTruss.ProfileCrate.Radius, rafterTruss.LengthCrate
-            , rafterTruss.ProfileCrate.Thickness, rafterTruss.ProfileCrate.Radius);
+        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
+            , rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.ProfileCrate.Radius)
+            : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.LengthCrate
+            , rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.ProfileCrate.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);

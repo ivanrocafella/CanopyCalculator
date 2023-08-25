@@ -23,7 +23,7 @@ public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
             KindLength.Short => rafterTruss.LengthBottom,
             _ => rafterTruss.LengthTop
         };
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.ProfileBelt.Thickness, length, rafterTruss.ProfileBelt.Height, rafterTruss.ProfileBelt.Radius);
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileBelt.Thickness, length, rafterTruss.Truss.ProfileBelt.Height, rafterTruss.Truss.ProfileBelt.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

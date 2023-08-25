@@ -12,7 +12,7 @@ public class BeltBottomRafterTrussTransform : MonoBehaviour
     void Start()
     {
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
-        transform.localPosition = new Vector3(rafterTruss.Height - rafterTruss.ProfileBelt.Height
+        transform.localPosition = new Vector3(rafterTruss.Truss.Height - rafterTruss.Truss.ProfileBelt.Height
            , (rafterTruss.LengthTop - rafterTruss.LengthBottom) / 2, 0);
 
     }

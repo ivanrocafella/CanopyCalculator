@@ -18,18 +18,18 @@ public class CrateRafterTrussRoundedTransform : MonoBehaviour
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3(rafterTruss.ProfileCrate.Height / 2 - rafterTruss.ProfileCrate.Radius, 0, -rafterTruss.ProfileCrate.Length / 2);
+                transform.localPosition = new Vector3(rafterTruss.Truss.ProfileCrate.Height / 2 - rafterTruss.Truss.ProfileCrate.Radius, 0, -rafterTruss.Truss.ProfileCrate.Length / 2);
                 break;
             case Direction.Left:
-                transform.localPosition = new Vector3(-rafterTruss.ProfileCrate.Height / 2, 0, -(rafterTruss.ProfileCrate.Length / 2 - rafterTruss.ProfileCrate.Radius));
+                transform.localPosition = new Vector3(-rafterTruss.Truss.ProfileCrate.Height / 2, 0, -(rafterTruss.Truss.ProfileCrate.Length / 2 - rafterTruss.Truss.ProfileCrate.Radius));
                 transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
                 break;
             case Direction.Back:
-                transform.localPosition = new Vector3(-rafterTruss.ProfileCrate.Height / 2 + rafterTruss.ProfileCrate.Radius, 0, rafterTruss.ProfileCrate.Length / 2);
+                transform.localPosition = new Vector3(-rafterTruss.Truss.ProfileCrate.Height / 2 + rafterTruss.Truss.ProfileCrate.Radius, 0, rafterTruss.Truss.ProfileCrate.Length / 2);
                 transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 break;
             default:
-                transform.localPosition = new Vector3(rafterTruss.ProfileCrate.Height / 2, 0, (rafterTruss.ProfileCrate.Length / 2 - rafterTruss.ProfileCrate.Radius));
+                transform.localPosition = new Vector3(rafterTruss.Truss.ProfileCrate.Height / 2, 0, (rafterTruss.Truss.ProfileCrate.Length / 2 - rafterTruss.Truss.ProfileCrate.Radius));
                 transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                 break;
         }
