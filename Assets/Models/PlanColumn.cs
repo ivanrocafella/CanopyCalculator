@@ -16,5 +16,7 @@ namespace Assets.Models
         public float Slope { get { return Mathf.Deg2Rad * SlopeInDegree; } } // u.m. = rad
         public int CountStep { get; set; } // u.m. = 1
         public float Step { get { return SizeByZ / CountStep; } } // u.m. = mm
+        public float OutputRafter { get; set; }
+        public float OutputBeam { get; set; }
     }
 }

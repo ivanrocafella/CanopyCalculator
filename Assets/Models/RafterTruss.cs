@@ -14,8 +14,8 @@ namespace Assets.Models
         private PlanColumn PlanColumn { get; set; }
         public Truss Truss { get; set; }
         public float LengthTop { get => (float)Math.Round(PlanColumn.SizeByX / Mathf.Cos(PlanColumn.Slope) + 200, 0, MidpointRounding.AwayFromZero); }
-        public float LengthBottom { get => LengthTop - 400; }
-        public float Tail { get; set; } = 200;
+        public float LengthBottom { get; private set; }
+        public float Tail { get; private set; } 
         public float PlaceOneCrateStandart { get => Mathf.Cos(Truss.AngleCrate) * Truss.LengthCrate; }
         public int CountCratesStandart { get => (int)Math.Floor((LengthTop - 2 * Tail - (PlaceOneCrateStandart + Truss.Gap)) / (PlaceOneCrateStandart + Truss.Gap)); }
         public float PieceMidToExter { get => (Truss.ProfileCrate.Height / 2 - (Truss.ProfileBelt.Height / 2) * Mathf.Cos(Truss.AngleCrate)) / Mathf.Sin(Truss.AngleCrate); }
@@ -33,6 +33,8 @@ namespace Assets.Models
         {
             PlanColumn = planColumn;
             Truss = FileAction<Truss>.ReadAndDeserialyze(path).Find(e => e.Name == nameTruss);
-    }
+            Tail = PlanColumn.OutputRafter;
+            LengthBottom = LengthTop - PlanColumn.OutputRafter * 2;
+        }
     }
 }

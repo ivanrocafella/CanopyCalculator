@@ -11,6 +11,9 @@ TagManager:
   - RafterTruss
   - StandartCrateRafterTruss
   - NonStandartCrateRafterTruss
+  - BeamTruss
+  - StandartCrateBeamTruss
+  - NonStandartCrateBeamTruss
   layers:
   - Default
   - TransparentFX

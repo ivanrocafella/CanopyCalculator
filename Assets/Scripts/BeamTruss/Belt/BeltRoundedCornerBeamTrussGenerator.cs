@@ -2,26 +2,31 @@ using Assets.Models;
 using Assets.Services;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Material = UnityEngine.Material;
 
-[RequireComponent(typeof(MeshFilter))]
-public class ColRoundedCorner : MonoBehaviour
+public class BeltRoundedCornerBeamTrussGenerator : MonoBehaviour
 {
+    private string path;
+    private BeamTruss beamTruss;
     public KindLength KindLength;
-    private ColumnBody columnBody;
     private Vector3[] Vertices { get; set; }
     private Vector3[] Normals;
 
     private void Start()
     {
-        columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
-        columnBody.SetHeight(KindLength);
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Material.Radius, columnBody.Material.Radius, columnBody.Height
-            , columnBody.Material.Thickness, columnBody.Material.Radius);
+        beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
+        float length = KindLength switch
+        {
+            KindLength.Short => beamTruss.LengthBottom,
+            _ => beamTruss.LengthTop
+        };
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileBelt.Radius, beamTruss.Truss.ProfileBelt.Radius, length
+            , beamTruss.Truss.ProfileBelt.Thickness, beamTruss.Truss.ProfileBelt.Radius);
         Vertices = mesh.vertices;
         Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);
