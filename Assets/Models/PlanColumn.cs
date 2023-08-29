@@ -11,9 +11,10 @@ namespace Assets.Models
     {
         public int SizeByX { get; set; } // u.m. = mm
         public int SizeByZ { get; set; } // u.m. = mm
-        public int SizeByY { get; set; } // u.m. = mmы
+        public int SizeByY { get; set; } // u.m. = mm
         public int SlopeInDegree { get; set; } // u.m. = degree
         public float Slope { get { return Mathf.Deg2Rad * SlopeInDegree; } } // u.m. = rad
+        public float SizeByYLow { get { return (float)Math.Floor(SizeByY - Math.Tan(Slope) * SizeByX); } } // u.m. = mm
         public int CountStep { get; set; } // u.m. = 1
         public float Step { get { return SizeByZ / CountStep; } } // u.m. = mm
         public float OutputRafter { get; set; }

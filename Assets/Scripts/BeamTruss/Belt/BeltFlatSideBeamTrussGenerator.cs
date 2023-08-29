@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using UnityEngine;
+using Material = UnityEngine.Material;
 
 public class BeltFlatSideBeamTrussGenerator : MonoBehaviour
 {
@@ -33,12 +34,16 @@ public class BeltFlatSideBeamTrussGenerator : MonoBehaviour
         
     }
 
-    void ApplyMaterial(Mesh mesh, string shaderName, Color color)
+    private void ApplyMaterial(Mesh mesh, string shaderName, Color color)
     {
         GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        UnityEngine.Material material = new(Shader.Find(shaderName));
-        material.color = color;
+        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
+            ? gameObject.AddComponent<MeshRenderer>()
+            : gameObject.GetComponent<MeshRenderer>();
+        Material material = new(Shader.Find(shaderName))
+        {
+            color = color
+        };
         meshRenderer.material = material;
     }
 }

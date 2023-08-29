@@ -17,7 +17,7 @@ namespace Assets.Models
         public float LengthBottom { get; private set; }
         public float Tail { get; private set; } 
         public float PlaceOneCrateStandart { get => Mathf.Cos(Truss.AngleCrate) * Truss.LengthCrate; }
-        public int CountCratesStandart { get => (int)Math.Floor((LengthTop - 2 * Tail - (PlaceOneCrateStandart + Truss.Gap)) / (PlaceOneCrateStandart + Truss.Gap)); }
+        public int CountCratesStandart { get => (int)Math.Floor((LengthTop - 2 * Tail - (PlaceOneCrateStandart + Truss.Gap) / 2) / (PlaceOneCrateStandart + Truss.Gap)); }
         public float PieceMidToExter { get => (Truss.ProfileCrate.Height / 2 - (Truss.ProfileBelt.Height / 2) * Mathf.Cos(Truss.AngleCrate)) / Mathf.Sin(Truss.AngleCrate); }
         public float PlaceAllStandartCrates { get  => CountCratesStandart * (PlaceOneCrateStandart + Truss.Gap) - Truss.Gap + 2 * PieceMidToExter; }
         public float PlaceAllNonStandartCrates { get => LengthTop - PlaceAllStandartCrates - 2 * Tail; }

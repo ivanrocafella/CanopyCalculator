@@ -14,7 +14,8 @@ namespace Assets.Models
         public float Height { get; set; }
         public Material Material { get; set; }
         public PlanColumn PlanColumn { get; set; } = new();
-        public ColumnBody(string nameMaterial, string path, PlanColumn planColumn) {        
+        public ColumnBody(string nameMaterial, string path, PlanColumn planColumn)
+        {        
             Material = FileAction<Material>.ReadAndDeserialyze(path).Find(e => e.Name == nameMaterial);
             PlanColumn = planColumn;
         }
@@ -24,7 +25,7 @@ namespace Assets.Models
             KindLength = kindLength;
             Height = KindLength switch
             {
-                KindLength.Short => (float)Math.Floor(PlanColumn.SizeByY - Math.Tan(PlanColumn.Slope) * PlanColumn.SizeByX),
+                KindLength.Short => PlanColumn.SizeByYLow,
                 _ => PlanColumn.SizeByY
             };
         }   

@@ -86,7 +86,7 @@ namespace Assets.Services
                     i++;
                     SetVertex(v++, x, ySizes[y], 0, vertices, xSize, zSize, thickness, roundness, normals);
                     //vertices[v++] = new Vector3(x, ySizes[y], 0);
-                    Debug.Log($"{x}\t{ySizes[y]}\t{i}");
+                    //Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                     // yield return wait;
                 }
                 for (int z = 1; z <= zSize; z++)
@@ -94,7 +94,7 @@ namespace Assets.Services
                     i++;
                     SetVertex(v++, xSize, ySizes[y], z, vertices, xSize, zSize, thickness, roundness, normals);
                     //vertices[v++] = new Vector3(xSize, ySizes[y], z);
-                    Debug.Log($"{z}\t{ySizes[y]}\t{i}");
+                    //Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                     // yield return wait;
                 }
             }
@@ -105,7 +105,7 @@ namespace Assets.Services
                     i++;
                     SetVertex(v++, x, ySizes[y], thickness, vertices, xSize, zSize, thickness, roundness, normals);
                     //vertices[v++] = new Vector3(x, ySizes[y], thickness);
-                    Debug.Log($"{x}\t{ySizes[y]}\t{i}");
+                    //Debug.Log($"{x}\t{ySizes[y]}\t{i}");
                     // yield return wait;
                 }
                 for (int z = thickness + 1; z <= zSize; z++)
@@ -113,7 +113,7 @@ namespace Assets.Services
                     i++;
                     SetVertex(v++, xSize - thickness, ySizes[y], z, vertices, xSize, zSize, thickness, roundness, normals);
                     //vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
-                    Debug.Log($"{z}\t{ySizes[y]}\t{i}");
+                    //Debug.Log($"{z}\t{ySizes[y]}\t{i}");
                     // yield return wait;
                 }
             }

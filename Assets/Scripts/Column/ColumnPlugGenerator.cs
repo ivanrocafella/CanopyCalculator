@@ -38,5 +38,4 @@ public class ColumnPlugGenerator : MonoBehaviour
         };
         meshRenderer.material = material;
     }
-
 }

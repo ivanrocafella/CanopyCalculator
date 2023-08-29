@@ -8,7 +8,13 @@ public class CanopyGenerator : MonoBehaviour
     public PlanColumn planColumn;
     private GameObject[] columnsHigh;
     private GameObject[] columnsLow;
+    private GameObject[] beamTrussesOnHigh;
+    private GameObject[] beamTrussesOnLow;
     private GameObject canopy;
+    private ColumnBody columnBodyHigh;
+    private ColumnBody columnBodyLow;
+    private BeamTruss beamTruss;
+    private ColumnPlug columnPlug = new();
     public int SizeByX;
     public int SizeByZ;
     public int SizeByY;
@@ -37,6 +43,11 @@ public class CanopyGenerator : MonoBehaviour
         canopy = GameObject.FindGameObjectsWithTag("Canopy")[0];
         columnsHigh = new GameObject[planColumn.CountStep + 1];
         columnsLow = new GameObject[planColumn.CountStep + 1];
+        beamTrussesOnHigh = new GameObject[planColumn.CountStep];
+        beamTrussesOnLow = new GameObject[beamTrussesOnHigh.Length];
+        columnBodyHigh = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
+        columnBodyHigh.SetHeight(KindLength.Long);
+        beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         for (int i = 0; i < planColumn.CountStep; i++)
         {
             columnsHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
@@ -47,6 +58,26 @@ public class CanopyGenerator : MonoBehaviour
             columnsLow[i].transform.SetParent(canopy.transform);
             Destroy(columnsLow[i].GetComponent("TransformColumnLow"));
             columnsLow[i].transform.localPosition = new Vector3(planColumn.SizeByX, 0, planColumn.Step + planColumn.Step * i);
+        }
+        for (int i = 0; i < beamTrussesOnHigh.Length - 1; i++)
+        {
+            beamTrussesOnHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
+            beamTrussesOnHigh[i].transform.SetParent(canopy.transform);
+            Destroy(beamTrussesOnHigh[i].GetComponent("BeamTrussTransform"));
+            beamTrussesOnHigh[i].transform.localPosition = new Vector3(0
+           , planColumn.SizeByY + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height / 2
+           , planColumn.Step + planColumn.Step * i);
+            beamTrussesOnHigh[i].transform.localRotation = Quaternion.Euler(0f, -90f, -90f);
+        }
+        for (int i = 0; i < beamTrussesOnLow.Length; i++)
+        {
+            beamTrussesOnLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
+            beamTrussesOnLow[i].transform.SetParent(canopy.transform);
+            Destroy(beamTrussesOnLow[i].GetComponent("BeamTrussTransform"));
+            beamTrussesOnLow[i].transform.localPosition = new Vector3(planColumn.SizeByX
+           , planColumn.SizeByYLow + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height / 2
+           , planColumn.Step * i);
+            beamTrussesOnLow[i].transform.localRotation = Quaternion.Euler(0f, -90f, -90f);
         }
     }
 
