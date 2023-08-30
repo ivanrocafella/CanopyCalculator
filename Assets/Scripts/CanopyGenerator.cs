@@ -10,10 +10,13 @@ public class CanopyGenerator : MonoBehaviour
     private GameObject[] columnsLow;
     private GameObject[] beamTrussesOnHigh;
     private GameObject[] beamTrussesOnLow;
+    private GameObject[] rafterTrusses;
     private GameObject canopy;
     private ColumnBody columnBodyHigh;
     private ColumnBody columnBodyLow;
     private BeamTruss beamTruss;
+    private RafterTruss rafterTruss;
+    private int countStepRafterTruss;
     private ColumnPlug columnPlug = new();
     public int SizeByX;
     public int SizeByZ;
@@ -48,6 +51,14 @@ public class CanopyGenerator : MonoBehaviour
         columnBodyHigh = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
         columnBodyHigh.SetHeight(KindLength.Long);
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
+        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        countStepRafterTruss = Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step);
+        rafterTrusses = new GameObject[countStepRafterTruss + 1];
+
+        float partAdditFromAngle = Mathf.Tan(planColumn.Slope)
+            * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius + planColumn.OutputRafter);
+        float partAdditHalfBeltAngle = rafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(planColumn.Slope);
+
         for (int i = 0; i < planColumn.CountStep; i++)
         {
             columnsHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
@@ -78,6 +89,29 @@ public class CanopyGenerator : MonoBehaviour
            , planColumn.SizeByYLow + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height / 2
            , planColumn.Step * i);
             beamTrussesOnLow[i].transform.localRotation = Quaternion.Euler(0f, -90f, -90f);
+        }
+        for (int i = 0; i < rafterTrusses.Length; i++)
+        {
+            rafterTrusses[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("RafterTruss")[0]);
+            rafterTrusses[i].transform.SetParent(canopy.transform);
+            Destroy(rafterTrusses[i].GetComponent("RafterTrussTransform"));
+            if (i == rafterTrusses.Length - 1)
+            {
+                rafterTrusses[i].transform.localPosition = new Vector3(-planColumn.OutputRafter
+                             , planColumn.SizeByY + columnPlug.Thickness + partAdditFromAngle
+                             + partAdditHalfBeltAngle + beamTruss.Truss.ProfileBelt.Height
+                             , planColumn.SizeByZ);
+                rafterTrusses[i].transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
+            }
+            else
+            {
+                rafterTrusses[i].transform.localPosition = new Vector3(-planColumn.OutputRafter
+                             , planColumn.SizeByY + columnPlug.Thickness + partAdditFromAngle
+                             + partAdditHalfBeltAngle + beamTruss.Truss.ProfileBelt.Height
+                             , rafterTruss.Step + rafterTruss.Step * i);
+                rafterTrusses[i].transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
+            }
+           
         }
     }
 

@@ -11,6 +11,7 @@ public class RafterTrussGenerator : MonoBehaviour
 {
     private string path;
     public RafterTruss rafterTrussForRead;
+    public float Step;
     public KindTruss KindTruss;
     private GameObject[] cratesStandart;
     private GameObject rafterTruss;
@@ -21,6 +22,7 @@ public class RafterTrussGenerator : MonoBehaviour
         planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn);
+        rafterTrussForRead.Step = Step;
     }
     void Start()    
     {       
