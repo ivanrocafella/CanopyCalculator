@@ -25,7 +25,7 @@ public class RafterTrussTransform : MonoBehaviour
             , planColumn.SizeByY + columnPlug.Thickness + partAdditFromAngle
             + partAdditHalfBeltAngle + beamTruss.Truss.ProfileBelt.Height
             , 0);
-        transform.localRotation = Quaternion.Euler(0,0, - (90 + planColumn.SlopeInDegree));
+        transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
     }
 
     // Update is called once per frame

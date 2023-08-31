@@ -13,6 +13,7 @@ public class GirderTransform : MonoBehaviour
     private ColumnPlug columnPlug = new();
     private float partAdditFromAngle;
     private float partAdditHalfBeltAngle;
+    private float partAdditHalfGirderAngle;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +24,13 @@ public class GirderTransform : MonoBehaviour
         partAdditFromAngle = Mathf.Tan(planColumn.Slope)
             * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius + planColumn.OutputRafter);
         partAdditHalfBeltAngle = rafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(planColumn.Slope);
+        partAdditHalfGirderAngle = girder.Material.Height / 2 / Mathf.Cos(planColumn.Slope);
         //columnBody.SetHeight(KindLength.Long);
         //beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         transform.localPosition = new Vector3(-planColumn.OutputRafter
             , planColumn.SizeByY + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height
-            + girder.Material.Height / 2 + partAdditFromAngle + partAdditHalfBeltAngle
+            + partAdditFromAngle + partAdditHalfBeltAngle * 2
+            + partAdditHalfGirderAngle
             , -planColumn.OutputGirder);
         transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
 

@@ -4276,11 +4276,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56f0a563911aa34fb5de876c471b060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeByX: 4000
-  SizeByZ: 6000
+  SizeByX: 5000
+  SizeByZ: 8000
   SizeByY: 4000
   SlopeInDegree: 9
-  CountStep: 1
+  CountStep: 2
   OutputBeam: 100
   OutputRafter: 200
   OutputGirder: 0
