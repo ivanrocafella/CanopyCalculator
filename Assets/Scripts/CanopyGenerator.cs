@@ -25,6 +25,7 @@ public class CanopyGenerator : MonoBehaviour
     public int CountStep;
     public int OutputBeam;
     public int OutputRafter;
+    public int OutputGirder;
 
     public PlanColumn MakePlanColumn()
     {
@@ -36,7 +37,8 @@ public class CanopyGenerator : MonoBehaviour
             SlopeInDegree = SlopeInDegree,
             CountStep = CountStep,
             OutputBeam = OutputBeam,
-            OutputRafter = OutputRafter
+            OutputRafter = OutputRafter,
+            OutputGirder = OutputGirder
         };
         return planColumn;
     }

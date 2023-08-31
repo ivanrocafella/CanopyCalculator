@@ -14,6 +14,7 @@ TagManager:
   - BeamTruss
   - StandartCrateBeamTruss
   - NonStandartCrateBeamTruss
+  - Girder
   layers:
   - Default
   - TransparentFX
