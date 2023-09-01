@@ -4283,7 +4283,7 @@ MonoBehaviour:
   CountStep: 2
   OutputBeam: 100
   OutputRafter: 200
-  OutputGirder: 0
+  OutputGirder: 200
 --- !u!114 &1208353072
 MonoBehaviour:
   m_ObjectHideFlags: 0

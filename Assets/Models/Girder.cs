@@ -11,6 +11,7 @@ namespace Assets.Models
     {
         public float Length { get; }
         public Material Material { get; set; }
+        public float Step { get; set; }
         public PlanColumn PlanColumn { get; set; } = new();
         public Girder(string nameMaterial, string path, PlanColumn planColumn) 
         {
