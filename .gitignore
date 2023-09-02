@@ -42,6 +42,14 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
+# Unity3D generated static 3d files
+*.dwl
+*.dwl2
+*.dwl.meta
+*.dwl2.meta
+*.fbx
+*.fbx.meta
+
 # Unity3D generated file on crash reports
 sysinfo.txt
 
