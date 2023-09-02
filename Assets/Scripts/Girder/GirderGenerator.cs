@@ -20,7 +20,7 @@ public class GirderGenerator : MonoBehaviour
         planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
         path = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         girder = new(KindMaterial.ToString().Insert(5, " ").Replace("_", "."), path, planColumn);
-        girder.Step = Step;
+        girder.Step = Step = Step != 0 ? Step : 500;
     }
 
     void Start()

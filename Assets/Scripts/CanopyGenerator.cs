@@ -62,7 +62,6 @@ public class CanopyGenerator : MonoBehaviour
         countStepGirder = Mathf.FloorToInt(rafterTruss.LengthTop / girder.Step);
         rafterTrusses = new GameObject[countStepRafterTruss + 1];
         girders = new GameObject[countStepGirder + 1];
-
         float partAdditFromAngle = Mathf.Tan(planColumn.Slope)
             * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius + planColumn.OutputRafter);
         float partAdditHalfBeltAngle = rafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(planColumn.Slope);
@@ -155,7 +154,6 @@ public class CanopyGenerator : MonoBehaviour
                              , elemenGirderPosition.z);
                 girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
             }
-
         }
     }
 
