@@ -13,34 +13,19 @@ using Random = UnityEngine.Random;
 
 public class CameraController : MonoBehaviour
 {
-    private float speed = 2.0f;
+    private float x;
+    private float y;
+    public float sensitivity = -1.0f;
+    private Vector3 rotate;
     void Start()
     {
-        string path = Path.Combine(Application.dataPath,"JSONs","Materials.json");
-        Debug.Log(path);
-        Material material = new();
-        //FileAction<Material>.WriteAndSerialyze(path, material);
-        List<Material> materials = FileAction<Material>.ReadAndDeserialyze(path);
-        Debug.Log("");
+        Cursor.lockState = CursorLockMode.Locked;
      }
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.position += Vector3.right * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.position += Vector3.forward * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.position += Vector3.back * speed * Time.deltaTime;
-        }
+        y = Input.GetAxis("Mouse X");
+        x = Input.GetAxis("Mouse Y");
+        rotate = new Vector3(x, y * sensitivity, 0);
+        transform.eulerAngles = transform.eulerAngles - rotate;
     }
 }

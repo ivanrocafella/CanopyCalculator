@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class CanopyTransformPosition : MonoBehaviour
 {
-    private readonly PlanColumn planColumn = new();
+    private PlanColumn planColumn;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+    }
     void Start()
     {
         transform.position = new Vector3(-planColumn.SizeByX / 2, 0, -planColumn.SizeByZ / 2);
