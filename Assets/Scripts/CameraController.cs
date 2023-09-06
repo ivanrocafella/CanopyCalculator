@@ -13,19 +13,27 @@ using Random = UnityEngine.Random;
 
 public class CameraController : MonoBehaviour
 {
-    private float x;
-    private float y;
-    public float sensitivity = -1.0f;
-    private Vector3 rotate;
-    void Start()
+    private Camera m_Camera;
+    private float targetZoom;
+    private float zoomFactor = 10f;
+    [SerializeField]
+    private float zoomLerpSpeed = 10;
+
+    private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-     }
+        m_Camera = Camera.main;
+        targetZoom = m_Camera.fieldOfView;
+    }
+
     void Update()
     {
-        y = Input.GetAxis("Mouse X");
-        x = Input.GetAxis("Mouse Y");
-        rotate = new Vector3(x, y * sensitivity, 0);
-        transform.eulerAngles = transform.eulerAngles - rotate;
+        float scrollData;
+        scrollData = Input.GetAxis("Mouse ScrollWheel");
+        Debug.Log($"{scrollData}");      
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            targetZoom -= scrollData * zoomFactor;
+            m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, targetZoom, Time.deltaTime * zoomLerpSpeed);
+        }            
     }
 }

@@ -3306,6 +3306,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3332,7 +3333,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0.22745098}
-  m_projectionMatrixMode: 2
+  m_projectionMatrixMode: 1
   m_GateFitMode: 1
   m_FOVAxisMode: 0
   m_SensorSize: {x: 70.41, y: 52.63}
@@ -3391,6 +3392,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87639a2e9350c9240bd9ecfbcc4c25e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef6984a9a9a68c4a8015b6ec91660d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomLerpSpeed: 10
 --- !u!1 &987517492
 GameObject:
   m_ObjectHideFlags: 0
@@ -4243,9 +4257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56f0a563911aa34fb5de876c471b060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeByX: 10000
-  SizeByZ: 10000
-  SizeByY: 5000
+  SizeByX: 6000
+  SizeByZ: 6000
+  SizeByY: 6000
   SlopeInDegree: 9
   CountStep: 3
   OutputBeam: 100
