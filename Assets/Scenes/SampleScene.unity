@@ -1865,7 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ac1da5fbf3e3b4d8f705cba15565ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KindMaterial: 38
+  KindMaterial: 29
 --- !u!1 &598530896
 GameObject:
   m_ObjectHideFlags: 0
@@ -4260,7 +4260,7 @@ MonoBehaviour:
   SizeByX: 9600
   SizeByZ: 6000
   SizeByY: 5000
-  SlopeInDegree: 9
+  SlopeInDegree: 10
   CountStep: 4
   OutputBeam: 100
   OutputRafter: 300
