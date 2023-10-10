@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class CrateRafterTrussFlatSideGenerator : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
     public StandartNonStandart StandartNonStandart;
     public HeigthLengthProfile HeigthLengthProfile;

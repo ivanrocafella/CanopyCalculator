@@ -8,10 +8,20 @@ public class BeamTrussTransform : MonoBehaviour
 {
     private ColumnBody columnBody;
     private ColumnPlug columnPlug = new();
-    private PlanColumn planColumn;
     private BeamTruss beamTruss;
     // Start is called before the first frame update
     void Start()
+    {
+        StartCoroutine(BeamTrussTransformCalculation());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    IEnumerator BeamTrussTransformCalculation()
     {
         columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(KindLength.Long);
@@ -20,12 +30,6 @@ public class BeamTrussTransform : MonoBehaviour
             , columnBody.Height + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height / 2
             , 0);
         transform.localRotation = Quaternion.Euler(0f, -90f, -90f);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return null;
     }
 }

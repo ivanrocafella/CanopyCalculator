@@ -10,7 +10,7 @@ public class GirderTransform : MonoBehaviour
     private BeamTruss beamTruss;
     private Girder girder;
     private RafterTruss rafterTruss;
-    private ColumnPlug columnPlug = new();
+    private readonly ColumnPlug columnPlug = new();
     private float partAdditBeamProfileSmall;
     private float partAdditRafterProfile;
     private float partAdditGirderProfile;
@@ -21,6 +21,19 @@ public class GirderTransform : MonoBehaviour
     private float partAdditGirderHalfProfileHor;
     // Start is called before the first frame update
     private void Awake()
+    {
+        StartCoroutine(GirderTransformCalculation());
+    }
+    void Start()
+    {        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {       
+    }
+
+    IEnumerator GirderTransformCalculation()
     {
         planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().planColumn;
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
@@ -44,15 +57,6 @@ public class GirderTransform : MonoBehaviour
             - partToCenterGirderProfileSmall + partOutputRufter - partAdditGirderHalfProfileVert
             , -planColumn.OutputGirder);
         transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
-    }
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return null;
     }
 }

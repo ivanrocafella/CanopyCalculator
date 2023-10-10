@@ -9,10 +9,7 @@ using Material = UnityEngine.Material;
 
 public class CrateRafterTrussRoundedGenerator : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
-    private Vector3[] Vertices { get; set; }
-    private Vector3[] Normals;
     public StandartNonStandart StandartNonStandart;
 
     private void Start()
@@ -22,8 +19,6 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
             , rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.ProfileCrate.Radius)
             : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.LengthCrate
             , rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.ProfileCrate.Radius);
-        Vertices = mesh.vertices;
-        Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

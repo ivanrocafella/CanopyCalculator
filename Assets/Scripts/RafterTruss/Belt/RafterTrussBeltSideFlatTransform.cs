@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class RafterTrussBeltSideFlatTransform : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
     public Direction Direction;
     public KindLength KindLength;

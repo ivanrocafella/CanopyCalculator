@@ -28,8 +28,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         float scrollData;
-        scrollData = Input.GetAxis("Mouse ScrollWheel");
-        Debug.Log($"{scrollData}");      
+        scrollData = Input.GetAxis("Mouse ScrollWheel");     
         if (Input.GetKey(KeyCode.LeftControl))
         {
             targetZoom -= scrollData * zoomFactor;

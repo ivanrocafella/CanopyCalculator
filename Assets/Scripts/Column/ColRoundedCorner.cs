@@ -13,8 +13,6 @@ public class ColRoundedCorner : MonoBehaviour
 {
     public KindLength KindLength;
     private ColumnBody columnBody;
-    private Vector3[] Vertices { get; set; }
-    private Vector3[] Normals;
 
     private void Start()
     {
@@ -22,8 +20,6 @@ public class ColRoundedCorner : MonoBehaviour
         columnBody.SetHeight(KindLength);
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Material.Radius, columnBody.Material.Radius, columnBody.Height
             , columnBody.Material.Thickness, columnBody.Material.Radius);
-        Vertices = mesh.vertices;
-        Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

@@ -11,11 +11,8 @@ using Material = UnityEngine.Material;
 
 public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
     public KindLength KindLength;
-    private Vector3[] Vertices { get; set; }
-    private Vector3[] Normals;
 
     private void Start()
     {
@@ -27,8 +24,6 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
         };
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, rafterTruss.Truss.ProfileBelt.Radius, length
             , rafterTruss.Truss.ProfileBelt.Thickness, rafterTruss.Truss.ProfileBelt.Radius);
-        Vertices = mesh.vertices;
-        Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

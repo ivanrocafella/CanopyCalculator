@@ -7,7 +7,6 @@ using System.IO;
 
 public class CrateRafterTrussRoundedTransform : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
     public Direction Direction;
     // Start is called before the first frame update

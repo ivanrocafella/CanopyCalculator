@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BeltBottomRafterTrussTransform : MonoBehaviour
 {
-    private string path; 
     private RafterTruss rafterTruss;
     // Start is called before the first frame update
     void Start()

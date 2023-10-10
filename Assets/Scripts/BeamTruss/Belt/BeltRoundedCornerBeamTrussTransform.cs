@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BeltRoundedCornerBeamTrussTransform : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public Direction Direction;
     // Start is called before the first frame update

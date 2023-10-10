@@ -9,7 +9,6 @@ using UnityEngine.Rendering;
 
 public class CrateRafterTrussTransform : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
     public StandartNonStandart StandartNonStandart;
     // Start is called before the first frame update

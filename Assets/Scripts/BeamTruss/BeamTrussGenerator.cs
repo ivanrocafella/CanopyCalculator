@@ -25,6 +25,17 @@ public class BeamTrussGenerator : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(MakeBeamTruss());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    IEnumerator MakeBeamTruss()
+    {
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0];
         cratesStandart = new GameObject[beamTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
@@ -56,11 +67,7 @@ public class BeamTrussGenerator : MonoBehaviour
                 - beamTrussForRead.DimenOneCrateNonStandart - beamTrussForRead.Truss.GapExter, 0);
             nonStandartCrateSecond.transform.localRotation = Quaternion.Euler(0f, 0f, 180 - beamTrussForRead.AngleNonStandartCrate);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return null;
     }
 }
+

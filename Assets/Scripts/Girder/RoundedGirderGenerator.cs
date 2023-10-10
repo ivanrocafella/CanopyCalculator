@@ -10,16 +10,12 @@ using Material = UnityEngine.Material;
 public class RoundedGirderGenerator : MonoBehaviour
 {
     private Girder girder;
-    private Vector3[] Vertices { get; set; }
-    private Vector3[] Normals;
 
     private void Start()
     {
         girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Material.Radius, girder.Material.Radius, girder.Length
             , girder.Material.Thickness, girder.Material.Radius);
-        Vertices = mesh.vertices;
-        Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

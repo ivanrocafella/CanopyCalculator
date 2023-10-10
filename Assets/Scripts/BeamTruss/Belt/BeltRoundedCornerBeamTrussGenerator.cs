@@ -11,11 +11,8 @@ using Material = UnityEngine.Material;
 
 public class BeltRoundedCornerBeamTrussGenerator : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public KindLength KindLength;
-    private Vector3[] Vertices { get; set; }
-    private Vector3[] Normals;
 
     private void Start()
     {
@@ -27,8 +24,6 @@ public class BeltRoundedCornerBeamTrussGenerator : MonoBehaviour
         };
         Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileBelt.Radius, beamTruss.Truss.ProfileBelt.Radius, length
             , beamTruss.Truss.ProfileBelt.Thickness, beamTruss.Truss.ProfileBelt.Radius);
-        Vertices = mesh.vertices;
-        Normals = mesh.normals;
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

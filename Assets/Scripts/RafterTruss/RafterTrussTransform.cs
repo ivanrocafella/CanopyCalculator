@@ -15,6 +15,17 @@ public class RafterTrussTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(RafterTrussTransformCalculation()); 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    IEnumerator RafterTrussTransformCalculation()
+    {
         planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().planColumn;
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
@@ -26,11 +37,6 @@ public class RafterTrussTransform : MonoBehaviour
             + partAdditHalfBeltAngle + beamTruss.Truss.ProfileBelt.Height
             , 0);
         transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return null;
     }
 }

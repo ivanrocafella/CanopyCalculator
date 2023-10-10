@@ -11,7 +11,6 @@ using Material = UnityEngine.Material;
 
 public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
 {
-    private string path;
     private RafterTruss rafterTruss;
     public KindLength KindLength;
 
