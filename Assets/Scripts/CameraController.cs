@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
     {
         float scrollData;
         scrollData = Input.GetAxis("Mouse ScrollWheel");     
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             targetZoom -= scrollData * zoomFactor;
             m_Camera.fieldOfView = Mathf.Lerp(m_Camera.fieldOfView, targetZoom, Time.deltaTime * zoomLerpSpeed);

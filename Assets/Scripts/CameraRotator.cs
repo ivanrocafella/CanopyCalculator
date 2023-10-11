@@ -12,7 +12,6 @@ public class CameraRotator : MonoBehaviour
     private Vector3 position;
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {

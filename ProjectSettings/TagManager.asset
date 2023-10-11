@@ -15,6 +15,9 @@ TagManager:
   - StandartCrateBeamTruss
   - NonStandartCrateBeamTruss
   - Girder
+  - SpanInput
+  - LengthInput
+  - HeightInput
   layers:
   - Default
   - TransparentFX
