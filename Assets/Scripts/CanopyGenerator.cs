@@ -1,7 +1,10 @@
 using Assets.Models;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CanopyGenerator : MonoBehaviour
 {
@@ -29,6 +32,8 @@ public class CanopyGenerator : MonoBehaviour
     public int OutputBeam;
     public int OutputRafter;
     public int OutputGirder;
+    private bool hasCloned = false;
+    public GameObject canopyDuplit;
 
     public PlanColumn MakePlanColumn()
     {
@@ -48,6 +53,16 @@ public class CanopyGenerator : MonoBehaviour
 
     void Start()
     {
+        //MakeCanopy();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {       
+    }
+
+    void MakeCanopy()
+    {    
         canopy = GameObject.FindGameObjectsWithTag("Canopy")[0];
         columnsHigh = new GameObject[planColumn.CountStep + 1];
         columnsLow = new GameObject[planColumn.CountStep + 1];
@@ -60,7 +75,6 @@ public class CanopyGenerator : MonoBehaviour
         girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
         countStepRafterTruss = Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step);
         countStepGirder = Mathf.FloorToInt((rafterTruss.LengthTop - girder.Material.Length) / girder.Step);
-       // countStepGirder = rafterTruss.LengthTop - girder.Material.Length - countStepGirder  * girder.Step >= girder.Step / 2 ? countStepGirder : countStepGirder - 1;
         rafterTrusses = new GameObject[countStepRafterTruss + 1];
         girders = new GameObject[countStepGirder + 1];
         float partAdditFromAngle = Mathf.Tan(planColumn.Slope)
@@ -72,11 +86,11 @@ public class CanopyGenerator : MonoBehaviour
         {
             columnsHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
             columnsHigh[i].transform.SetParent(canopy.transform);
-            Destroy(columnsHigh[i].GetComponent("TransformColumnHigh"));
-            columnsHigh[i].transform.localPosition = new Vector3 (0, 0, planColumn.Step + planColumn.Step * i);            
+            Destroy(columnsHigh[i].GetComponent<TransformColumnHigh>());
+            columnsHigh[i].transform.localPosition = new Vector3(0, 0, planColumn.Step + planColumn.Step * i);
             columnsLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnLow")[0]);
             columnsLow[i].transform.SetParent(canopy.transform);
-            Destroy(columnsLow[i].GetComponent("TransformColumnLow"));
+            Destroy(columnsLow[i].GetComponent<TransformColumnLow>());
             columnsLow[i].transform.localPosition = new Vector3(planColumn.SizeByX, 0, planColumn.Step + planColumn.Step * i);
         }
         // Make beam trusses on high columns
@@ -84,7 +98,7 @@ public class CanopyGenerator : MonoBehaviour
         {
             beamTrussesOnHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
             beamTrussesOnHigh[i].transform.SetParent(canopy.transform);
-            Destroy(beamTrussesOnHigh[i].GetComponent("BeamTrussTransform"));
+            Destroy(beamTrussesOnHigh[i].GetComponent<BeamTrussTransform>());
             beamTrussesOnHigh[i].transform.localPosition = new Vector3(0
            , planColumn.SizeByY + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height / 2
            , planColumn.Step + planColumn.Step * i);
@@ -95,7 +109,7 @@ public class CanopyGenerator : MonoBehaviour
         {
             beamTrussesOnLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
             beamTrussesOnLow[i].transform.SetParent(canopy.transform);
-            Destroy(beamTrussesOnLow[i].GetComponent("BeamTrussTransform"));
+            Destroy(beamTrussesOnLow[i].GetComponent<BeamTrussTransform>());
             beamTrussesOnLow[i].transform.localPosition = new Vector3(planColumn.SizeByX
            , planColumn.SizeByYLow + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height / 2
            , planColumn.Step * i);
@@ -106,7 +120,7 @@ public class CanopyGenerator : MonoBehaviour
         {
             rafterTrusses[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("RafterTruss")[0]);
             rafterTrusses[i].transform.SetParent(canopy.transform);
-            Destroy(rafterTrusses[i].GetComponent("RafterTrussTransform"));
+            Destroy(rafterTrusses[i].GetComponent<RafterTrussTransform>());
             if (i == rafterTrusses.Length - 1)
             {
                 rafterTrusses[i].transform.localPosition = new Vector3(-planColumn.OutputRafter
@@ -123,7 +137,7 @@ public class CanopyGenerator : MonoBehaviour
                              , rafterTruss.Step + rafterTruss.Step * i);
                 rafterTrusses[i].transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
             }
-           
+
         }
         // Make girders
         float stepGirder;
@@ -134,7 +148,7 @@ public class CanopyGenerator : MonoBehaviour
         {
             girders[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);
             girders[i].transform.SetParent(canopy.transform);
-            Destroy(girders[i].GetComponent("GirderTransform"));
+            Destroy(girders[i].GetComponent<GirderTransform>());
             if (i == girders.Length - 1)
             {
                 if (rafterTruss.LengthTop - girder.Material.Length - i * girder.Step >= 100)
@@ -146,24 +160,28 @@ public class CanopyGenerator : MonoBehaviour
                                  , elemenGirderPosition.y - projectionVertStepGirder
                                  , elemenGirderPosition.z);
                     girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
-                }                
+                }
             }
             else
             {
-                stepGirder = girder.Step * ( 1 + i);
+                stepGirder = girder.Step * (1 + i);
                 projectionHorStepGirder = Mathf.Cos(planColumn.Slope) * stepGirder;
                 projectionVertStepGirder = Mathf.Sin(planColumn.Slope) * stepGirder;
                 girders[i].transform.localPosition = new Vector3(elemenGirderPosition.x + projectionHorStepGirder
                              , elemenGirderPosition.y - projectionVertStepGirder
                              , elemenGirderPosition.z);
-                girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);             
+                girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CalculateButtonClick()
     {
-        
+        GameObject inputSpan = GameObject.FindGameObjectWithTag("SpanInput");
+        GameObject lengthInput = GameObject.FindGameObjectWithTag("LengthInput");
+        Debug.Log(inputSpan.GetComponent<TMP_InputField>().text);
+        SizeByX = int.Parse(inputSpan.GetComponent<TMP_InputField>().text);
+        SizeByZ = int.Parse(lengthInput.GetComponent<TMP_InputField>().text);
+        MakeCanopy();
     }
 }

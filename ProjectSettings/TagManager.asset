@@ -18,6 +18,11 @@ TagManager:
   - SpanInput
   - LengthInput
   - HeightInput
+  - SlopeInput
+  - CountStepColumnInput
+  - OutputRafterInput
+  - OutputGirderInput
+  - CalculateButton
   layers:
   - Default
   - TransparentFX
