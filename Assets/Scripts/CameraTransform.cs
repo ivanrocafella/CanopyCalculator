@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraTransform : MonoBehaviour
 {  
     private PlanColumn planColumn;
-    private void Awake()
+    void Start()
     {
         planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
         transform.position = new Vector3(0, 2.5f * planColumn.SizeByY, - (planColumn.SizeByZ / 2 + planColumn.SizeByX * Mathf.Tan(50 * Mathf.Deg2Rad)));

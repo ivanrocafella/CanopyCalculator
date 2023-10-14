@@ -1,7 +1,9 @@
 using Assets.Models;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -33,7 +35,7 @@ public class CanopyGenerator : MonoBehaviour
     public int OutputRafter;
     public int OutputGirder;
     private bool hasCloned = false;
-    public GameObject canopyDuplit;
+    public GameObject canopyPrefab;
 
     public PlanColumn MakePlanColumn()
     {
@@ -52,8 +54,8 @@ public class CanopyGenerator : MonoBehaviour
     }
 
     void Start()
-    {
-        //MakeCanopy();
+    {       
+        MakeCanopy();
     }
 
     // Update is called once per frame
@@ -62,7 +64,7 @@ public class CanopyGenerator : MonoBehaviour
     }
 
     void MakeCanopy()
-    {    
+    {       
         canopy = GameObject.FindGameObjectsWithTag("Canopy")[0];
         columnsHigh = new GameObject[planColumn.CountStep + 1];
         columnsLow = new GameObject[planColumn.CountStep + 1];
@@ -143,7 +145,7 @@ public class CanopyGenerator : MonoBehaviour
         float stepGirder;
         float projectionHorStepGirder;
         float projectionVertStepGirder;
-        Vector3 elemenGirderPosition = GameObject.FindGameObjectsWithTag("Girder")[0].transform.position;
+        Vector3 elemenGirderPosition = GameObject.FindGameObjectsWithTag("Girder")[0].transform.localPosition;
         for (int i = 0; i < girders.Length; i++)
         {
             girders[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);
@@ -174,14 +176,5 @@ public class CanopyGenerator : MonoBehaviour
             }
         }
     }
-
-    public void CalculateButtonClick()
-    {
-        GameObject inputSpan = GameObject.FindGameObjectWithTag("SpanInput");
-        GameObject lengthInput = GameObject.FindGameObjectWithTag("LengthInput");
-        Debug.Log(inputSpan.GetComponent<TMP_InputField>().text);
-        SizeByX = int.Parse(inputSpan.GetComponent<TMP_InputField>().text);
-        SizeByZ = int.Parse(lengthInput.GetComponent<TMP_InputField>().text);
-        MakeCanopy();
-    }
 }
+    

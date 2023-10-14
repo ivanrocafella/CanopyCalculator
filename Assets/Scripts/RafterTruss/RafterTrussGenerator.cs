@@ -31,22 +31,24 @@ public class RafterTrussGenerator : MonoBehaviour
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         nameColumnMaterial = nameColumnMaterial.Insert(5, " ").Replace("_", ".");
         columnMaterial = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameColumnMaterial);
-        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnMaterial.Height + columnPlug.Thickness * 2 + 20);
-        rafterTrussForRead.Step = Step;
+        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnMaterial.Height + columnPlug.Thickness * 2 + 20)
+        {
+            Step = Step
+        };
+        StartCoroutine(MakeRafterTruss());
     }
     void Start()    
     {
-        StartCoroutine(MakeRafterTruss());
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {     
     }
 
     IEnumerator MakeRafterTruss()
     {
-        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0];
+        rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss");
         cratesStandart = new GameObject[rafterTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
         {

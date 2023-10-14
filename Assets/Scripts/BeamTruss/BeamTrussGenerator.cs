@@ -21,11 +21,11 @@ public class BeamTrussGenerator : MonoBehaviour
         planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         beamTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn);
+        StartCoroutine(MakeBeamTruss());
     }
 
     void Start()
-    {
-        StartCoroutine(MakeBeamTruss());
+    {       
     }
 
     // Update is called once per frame
