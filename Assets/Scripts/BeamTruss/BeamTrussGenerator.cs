@@ -18,7 +18,7 @@ public class BeamTrussGenerator : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         beamTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn);
         StartCoroutine(MakeBeamTruss());

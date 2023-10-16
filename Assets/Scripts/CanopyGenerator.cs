@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,36 +27,13 @@ public class CanopyGenerator : MonoBehaviour
     private ColumnPlug columnPlug = new();
     private int countStepRafterTruss;
     private int countStepGirder;
-    public int SizeByX;
-    public int SizeByZ;
-    public int SizeByY;
-    public int SlopeInDegree;
-    public int CountStep;
-    public int OutputBeam;
-    public int OutputRafter;
-    public int OutputGirder;
-    private bool hasCloned = false;
-    public GameObject canopyPrefab;
 
-    public PlanColumn MakePlanColumn()
+    private void Awake()
     {
-        planColumn = new PlanColumn()
-        {
-            SizeByX = SizeByX,
-            SizeByZ = SizeByZ,
-            SizeByY = SizeByY,
-            SlopeInDegree = SlopeInDegree,
-            CountStep = CountStep,
-            OutputBeam = OutputBeam,
-            OutputRafter = OutputRafter,
-            OutputGirder = OutputGirder
-        };
-        return planColumn;
     }
-
     void Start()
     {       
-        MakeCanopy();
+        MakeCanopy();       
     }
 
     // Update is called once per frame
@@ -64,8 +42,9 @@ public class CanopyGenerator : MonoBehaviour
     }
 
     void MakeCanopy()
-    {       
-        canopy = GameObject.FindGameObjectsWithTag("Canopy")[0];
+    {
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        canopy = GameObject.FindGameObjectWithTag("Canopy");
         columnsHigh = new GameObject[planColumn.CountStep + 1];
         columnsLow = new GameObject[planColumn.CountStep + 1];
         beamTrussesOnHigh = new GameObject[planColumn.CountStep];
@@ -145,7 +124,7 @@ public class CanopyGenerator : MonoBehaviour
         float stepGirder;
         float projectionHorStepGirder;
         float projectionVertStepGirder;
-        Vector3 elemenGirderPosition = GameObject.FindGameObjectsWithTag("Girder")[0].transform.localPosition;
+        Vector3 elemenGirderPosition = GameObject.FindGameObjectWithTag("Girder").transform.position;
         for (int i = 0; i < girders.Length; i++)
         {
             girders[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);

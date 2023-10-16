@@ -9,7 +9,7 @@ public class CanopyTransformPosition : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
     }
     void Start()
     {

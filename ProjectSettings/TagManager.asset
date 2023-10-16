@@ -23,6 +23,7 @@ TagManager:
   - OutputRafterInput
   - OutputGirderInput
   - CalculateButton
+  - PlanCanopy
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@ public class CameraTransform : MonoBehaviour
     private PlanColumn planColumn;
     void Start()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         transform.position = new Vector3(0, 2.5f * planColumn.SizeByY, - (planColumn.SizeByZ / 2 + planColumn.SizeByX * Mathf.Tan(50 * Mathf.Deg2Rad)));
         transform.rotation = Quaternion.Euler(35,0,0);       
     }

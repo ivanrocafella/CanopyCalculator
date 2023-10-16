@@ -18,7 +18,6 @@ namespace Assets.Models
         public int CountStep { get; set; } // u.m. = 1
         public float Step { get { return SizeByZ / CountStep; } } // u.m. = mm
         public float OutputRafter { get; set; }
-        public float OutputBeam { get; set; }
         public float OutputGirder { get; set; }
     }
 }

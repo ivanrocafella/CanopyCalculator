@@ -10,7 +10,7 @@ public class TransformColumnLow
     // Start is called before the first frame update
     void Start()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         transform.localPosition = new Vector3(planColumn.SizeByX, 0, 0);
     }
 

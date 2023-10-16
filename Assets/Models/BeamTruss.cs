@@ -33,8 +33,8 @@ namespace Assets.Models
             PlanColumn = planColumn;
             Truss = FileAction<Truss>.ReadAndDeserialyze(path).Find(e => e.Name == nameTruss);
             LengthTop = PlanColumn.Step;
-            Tail = PlanColumn.OutputBeam;
-            LengthBottom = LengthTop - PlanColumn.OutputBeam * 2;
+            Tail = 100;
+            LengthBottom = LengthTop - 100 * 2;
         }
     }
 }

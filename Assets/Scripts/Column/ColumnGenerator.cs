@@ -14,7 +14,7 @@ public class ColumnGenerator : MonoBehaviour
 
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         path = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         string nameMaterial = KindMaterial.ToString().Insert(5, " ").Replace("_", ".");
         ColumnBody = new(nameMaterial, path, planColumn);

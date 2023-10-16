@@ -17,7 +17,7 @@ public class GirderGenerator : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         path = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         girder = new(KindMaterial.ToString().Insert(5, " ").Replace("_", "."), path, planColumn);
         girder.Step = Step = Step != 0 ? Step : 500;

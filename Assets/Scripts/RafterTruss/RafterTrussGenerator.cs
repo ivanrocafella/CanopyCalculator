@@ -25,7 +25,7 @@ public class RafterTrussGenerator : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         nameColumnMaterial = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindMaterial.ToString();
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");

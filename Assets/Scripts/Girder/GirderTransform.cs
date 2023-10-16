@@ -21,12 +21,11 @@ public class GirderTransform : MonoBehaviour
     private float partAdditGirderHalfProfileHor;
     // Start is called before the first frame update
     private void Awake()
-    {
-        StartCoroutine(GirderTransformCalculation());
+    {  
+        StartCoroutine(GirderTransformCalculation());             
     }
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class GirderTransform : MonoBehaviour
 
     IEnumerator GirderTransformCalculation()
     {
-        planColumn = GameObject.FindGameObjectsWithTag("Canopy")[0].GetComponent<CanopyGenerator>().planColumn;
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
