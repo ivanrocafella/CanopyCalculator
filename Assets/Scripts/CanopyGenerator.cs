@@ -33,7 +33,7 @@ public class CanopyGenerator : MonoBehaviour
     }
     void Start()
     {       
-        MakeCanopy();       
+        StartCoroutine(MakeCanopy());       
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class CanopyGenerator : MonoBehaviour
     {       
     }
 
-    void MakeCanopy()
+    IEnumerator MakeCanopy()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         canopy = GameObject.FindGameObjectWithTag("Canopy");
@@ -154,6 +154,7 @@ public class CanopyGenerator : MonoBehaviour
                 girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
             }
         }
+        yield return null;
     }
 }
     

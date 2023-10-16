@@ -30,4 +30,10 @@ public class ColumnGenerator : MonoBehaviour
     {
 
     }
+
+    private void OnDestroy()
+    {
+        ColumnBody = null;
+        planColumn = null;
+    }
 }

@@ -22,10 +22,11 @@ public class GirderTransform : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {  
-        StartCoroutine(GirderTransformCalculation());             
+                    
     }
     void Start()
     {
+        StartCoroutine(GirderTransformCalculation());
     }
 
     // Update is called once per frame
