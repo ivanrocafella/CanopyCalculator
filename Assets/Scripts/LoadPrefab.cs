@@ -1,3 +1,4 @@
+using Assets.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -43,7 +44,9 @@ public class LoadPrefab : MonoBehaviour
 
 
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DestroyImmediate(canopy);
+
 
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = int.Parse(spanInput.GetComponent<TMP_InputField>().text) * MultipleForMeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = int.Parse(lengthInput.GetComponent<TMP_InputField>().text) * MultipleForMeter;
@@ -53,6 +56,8 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInput.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInput.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
 
+        mainCamera.GetComponent<CameraController>().transform.position = new Vector3(0, 2.5f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
+            -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
 
         Instantiate(canopyPrefab);
     }

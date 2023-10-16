@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,13 @@ public class PlanCanopyGenerator : MonoBehaviour
     public int CountStep;
     public int OutputRafter;
     public int OutputGirder;
+    public KindMaterial KindMaterialColumn;
+    public KindTruss KindTrussBeam;
+    public KindTruss KindTrussRafter;
+    public float StepRafter;
+    public KindMaterial KindMaterialGirder;
+    public float StepGirder;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +42,13 @@ public class PlanCanopyGenerator : MonoBehaviour
             SlopeInDegree = SlopeInDegree,
             CountStep = CountStep,
             OutputRafter = OutputRafter,
-            OutputGirder = OutputGirder
+            OutputGirder = OutputGirder,
+            KindMaterialColumn = KindMaterialColumn,
+            KindTrussBeam = KindTrussBeam,
+            KindTrussRafter = KindTrussRafter,
+            StepRafter = StepRafter,
+            KindMaterialGirder = KindMaterialGirder,
+            StepGirder = StepGirder
         };
         return planColumn;
     }

@@ -1,6 +1,7 @@
 using Assets.Models;
 using Assets.Models.Enums;
 using Assets.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,9 @@ public class RafterTrussGenerator : MonoBehaviour
 {
     private string path;
     public RafterTruss rafterTrussForRead;
+    [NonSerialized]
     public float Step;
+    [NonSerialized]
     public KindTruss KindTruss;
     private GameObject[] cratesStandart;
     private GameObject rafterTruss;
@@ -26,6 +29,8 @@ public class RafterTrussGenerator : MonoBehaviour
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        KindTruss = planColumn.KindTrussRafter;
+        Step = planColumn.StepRafter;
         nameColumnMaterial = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindMaterial.ToString();
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
@@ -52,7 +57,7 @@ public class RafterTrussGenerator : MonoBehaviour
         cratesStandart = new GameObject[rafterTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
         {
-            cratesStandart[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("StandartCrateRafterTruss")[0]);
+            cratesStandart[i] = Instantiate(GameObject.FindGameObjectsWithTag("StandartCrateRafterTruss")[0]);
             cratesStandart[i].transform.SetParent(rafterTruss.transform);
             Destroy(cratesStandart[i].GetComponent<CrateRafterTrussTransform>());
             if (i % 2 == 0)
@@ -72,7 +77,7 @@ public class RafterTrussGenerator : MonoBehaviour
         }
         if (rafterTrussForRead.HasTwoNonStandartCrate)
         {
-            GameObject nonStandartCrateSecond = Object.Instantiate(GameObject.FindGameObjectsWithTag("NonStandartCrateRafterTruss")[0]);
+            GameObject nonStandartCrateSecond = Instantiate(GameObject.FindGameObjectsWithTag("NonStandartCrateRafterTruss")[0]);
             nonStandartCrateSecond.transform.SetParent(rafterTruss.transform);
             Destroy(nonStandartCrateSecond.GetComponent<CrateRafterTrussTransform>());
             nonStandartCrateSecond.transform.localPosition = new Vector3(rafterTrussForRead.Truss.Height - rafterTrussForRead.Truss.ProfileBelt.Height, rafterTrussForRead.LengthTop - rafterTrussForRead.Tail - rafterTrussForRead.PerspectWidthHalfNonStandartCrate

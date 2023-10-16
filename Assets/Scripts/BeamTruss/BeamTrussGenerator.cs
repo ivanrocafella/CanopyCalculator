@@ -1,16 +1,19 @@
 using Assets.Models;
 using Assets.Models.Enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Object = UnityEngine.Object;
 
 public class BeamTrussGenerator : MonoBehaviour
 {
     private string path;
     public BeamTruss beamTrussForRead;
+    [NonSerialized]
     public KindTruss KindTruss;
     private GameObject[] cratesStandart;
     private GameObject beamTruss;
@@ -19,6 +22,7 @@ public class BeamTrussGenerator : MonoBehaviour
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        KindTruss = planColumn.KindTrussBeam;
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         beamTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn);
         StartCoroutine(MakeBeamTruss());
@@ -40,7 +44,7 @@ public class BeamTrussGenerator : MonoBehaviour
         cratesStandart = new GameObject[beamTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
         {
-            cratesStandart[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("StandartCrateBeamTruss")[0]);
+            cratesStandart[i] = Instantiate(GameObject.FindGameObjectsWithTag("StandartCrateBeamTruss")[0]);
             cratesStandart[i].transform.SetParent(beamTruss.transform);
             Destroy(cratesStandart[i].GetComponent<CrateBeamTrussTransform>());
             if (i % 2 == 0)

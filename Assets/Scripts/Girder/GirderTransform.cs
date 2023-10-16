@@ -21,12 +21,11 @@ public class GirderTransform : MonoBehaviour
     private float partAdditGirderHalfProfileHor;
     // Start is called before the first frame update
     private void Awake()
-    {  
-                    
-    }
-    void Start()
     {
         StartCoroutine(GirderTransformCalculation());
+    }
+    void Start()
+    {        
     }
 
     // Update is called once per frame

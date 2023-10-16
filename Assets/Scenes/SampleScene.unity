@@ -1474,13 +1474,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd9cf373e191954eab0effb71642ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeByX: 10000
+  SizeByX: 4000
   SizeByZ: 5000
   SizeByY: 5000
   SlopeInDegree: 8
   CountStep: 2
   OutputRafter: 200
-  OutputGirder: 200
+  OutputGirder: 400
+  KindMaterialColumn: 38
+  KindTrussBeam: 6
+  KindTrussRafter: 4
+  StepRafter: 1200
+  KindMaterialGirder: 19
+  StepGirder: 600
 --- !u!4 &358075717
 Transform:
   m_ObjectHideFlags: 0
@@ -5025,7 +5031,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

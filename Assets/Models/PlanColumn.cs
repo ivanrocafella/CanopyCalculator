@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,11 @@ namespace Assets.Models
         public float Step { get { return SizeByZ / CountStep; } } // u.m. = mm
         public float OutputRafter { get; set; }
         public float OutputGirder { get; set; }
+        public KindMaterial KindMaterialColumn { get; set; }
+        public KindTruss KindTrussBeam { get; set; }
+        public KindTruss KindTrussRafter { get; set; }
+        public float StepRafter { get; set; }
+        public KindMaterial KindMaterialGirder { get; set; }
+        public float StepGirder { get; set; }
     }
 }
