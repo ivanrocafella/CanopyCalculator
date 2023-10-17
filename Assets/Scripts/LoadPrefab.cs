@@ -6,6 +6,8 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -34,27 +36,26 @@ public class LoadPrefab : MonoBehaviour
     {
         planCanopy = GameObject.FindGameObjectWithTag("PlanCanopy");
 
-        GameObject spanInput = GameObject.FindGameObjectWithTag("SpanInput");
-        GameObject lengthInput = GameObject.FindGameObjectWithTag("LengthInput");
-        GameObject heightInput = GameObject.FindGameObjectWithTag("HeightInput");
-        GameObject slopeInput = GameObject.FindGameObjectWithTag("SlopeInput");
-        GameObject ñountStepColumnInput = GameObject.FindGameObjectWithTag("CountStepColumnInput");
-        GameObject outputRafterInput = GameObject.FindGameObjectWithTag("OutputRafterInput");
-        GameObject outputGirderInput = GameObject.FindGameObjectWithTag("OutputGirderInput");
-
+        GameObject spanInputGB = GameObject.FindGameObjectWithTag("SpanInput");
+        GameObject lengthInputGB = GameObject.FindGameObjectWithTag("LengthInput");
+        GameObject heightInputGB = GameObject.FindGameObjectWithTag("HeightInput");
+        GameObject slopeInputGB = GameObject.FindGameObjectWithTag("SlopeInput");
+        GameObject ñountStepColumnInputGB = GameObject.FindGameObjectWithTag("CountStepColumnInput");
+        GameObject outputRafterInputGB = GameObject.FindGameObjectWithTag("OutputRafterInput");
+        GameObject outputGirderInputGB = GameObject.FindGameObjectWithTag("OutputGirderInput");
 
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DestroyImmediate(canopy);
 
 
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = int.Parse(spanInput.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = int.Parse(lengthInput.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = int.Parse(heightInput.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = int.Parse(slopeInput.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = int.Parse(ñountStepColumnInput.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInput.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInput.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = int.Parse(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = int.Parse(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = int.Parse(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = int.Parse(slopeInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = int.Parse(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
 
         mainCamera.GetComponent<CameraController>().transform.position = new Vector3(0, 2.5f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
             -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
