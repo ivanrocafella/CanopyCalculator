@@ -41,6 +41,8 @@ public class LoadPrefab : MonoBehaviour
         GameObject heightInputGB = GameObject.FindGameObjectWithTag("HeightInput");
         GameObject slopeInputGB = GameObject.FindGameObjectWithTag("SlopeInput");
         GameObject ñountStepColumnInputGB = GameObject.FindGameObjectWithTag("CountStepColumnInput");
+        GameObject stepRafterInputGB = GameObject.FindGameObjectWithTag("StepRafterInput");
+        GameObject stepGirderInputGB = GameObject.FindGameObjectWithTag("StepGirderInput");
         GameObject outputRafterInputGB = GameObject.FindGameObjectWithTag("OutputRafterInput");
         GameObject outputGirderInputGB = GameObject.FindGameObjectWithTag("OutputGirderInput");
 
@@ -54,12 +56,15 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = int.Parse(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = int.Parse(slopeInputGB.GetComponent<TMP_InputField>().text);
         planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = int.Parse(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = int.Parse(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = int.Parse(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
 
-        mainCamera.GetComponent<CameraController>().transform.position = new Vector3(0, 2.5f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
-            -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
-
         Instantiate(canopyPrefab);
+        Destroy(mainCamera.GetComponent<CameraTransform>());
+        mainCamera.GetComponent<CameraTransform>().transform.position = new Vector3(0, 2.5f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
+         -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
+        mainCamera.GetComponent<CameraTransform>().transform.rotation = Quaternion.Euler(35, 0, 0);
     }
 }

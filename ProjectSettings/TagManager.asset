@@ -26,6 +26,16 @@ TagManager:
   - PlanCanopy
   - EmSpanInput
   - EmLengthInput
+  - EmHeightInput
+  - EmSlopeInput
+  - EmCountStepColumnInput
+  - EmOutputRafterInput
+  - EmOutputGirderInput
+  - FormInputParametresCanopy
+  - StepRafterInput
+  - StepGirderInput
+  - EmStepRafterInput
+  - EmStepGirderInput
   layers:
   - Default
   - TransparentFX
