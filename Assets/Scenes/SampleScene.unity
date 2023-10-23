@@ -2248,7 +2248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SizeByX: 5000
   SizeByZ: 5000
-  SizeByY: 5000
+  SizeByY: 4000
   SlopeInDegree: 8
   CountStep: 2
   OutputRafter: 200
