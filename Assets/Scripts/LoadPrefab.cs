@@ -62,9 +62,10 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
 
         Instantiate(canopyPrefab);
-        Destroy(mainCamera.GetComponent<CameraTransform>());
-        mainCamera.GetComponent<CameraTransform>().transform.position = new Vector3(0, 2.5f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
-         -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
-        mainCamera.GetComponent<CameraTransform>().transform.rotation = Quaternion.Euler(35, 0, 0);
+        //Destroy(mainCamera.GetComponent<CameraTransform>());
+        //mainCamera.AddComponent<CameraTransform>();
+        //mainCamera.transform.localPosition = new Vector3(0, 2f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
+        // -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
+        //mainCamera.transform.localRotation = Quaternion.Euler(35, 0, 0);
     }
 }

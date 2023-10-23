@@ -31,12 +31,12 @@ public class RafterTrussGenerator : MonoBehaviour
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         KindTruss = planColumn.KindTrussRafter;
         Step = planColumn.StepRafter;
-        nameColumnMaterial = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindMaterial.ToString();
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
+        nameColumnMaterial = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindMaterial.ToString();
         nameColumnMaterial = nameColumnMaterial.Insert(5, " ").Replace("_", ".");
         columnMaterial = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameColumnMaterial);
-        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnMaterial.Height + columnPlug.Thickness * 2 + 20)
+        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnMaterial.Height + columnPlug.Thickness * 2)
         {
             Step = Step
         };

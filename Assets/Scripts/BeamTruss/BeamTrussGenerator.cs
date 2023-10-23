@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Models.Enums;
+using Assets.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Material = Assets.Models.Material;
 using Object = UnityEngine.Object;
 
 public class BeamTrussGenerator : MonoBehaviour
@@ -18,13 +20,21 @@ public class BeamTrussGenerator : MonoBehaviour
     private GameObject[] cratesStandart;
     private GameObject beamTruss;
     private PlanColumn planColumn;
+    private Material columnMaterial;
+    private string nameColumnMaterial;
+    private string pathMaterial;
+    private readonly ColumnPlug columnPlug = new ColumnPlug();
     // Start is called before the first frame update
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
         KindTruss = planColumn.KindTrussBeam;
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
-        beamTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn);
+        pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
+        nameColumnMaterial = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindMaterial.ToString();
+        nameColumnMaterial = nameColumnMaterial.Insert(5, " ").Replace("_", ".");
+        columnMaterial = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameColumnMaterial);
+        beamTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnMaterial.Height + columnPlug.Thickness * 2);
         StartCoroutine(MakeBeamTruss());
     }
 

@@ -34,9 +34,9 @@ namespace Assets.Models
         {
             PlanColumn = planColumn;
             Truss = FileAction<Truss>.ReadAndDeserialyze(path).Find(e => e.Name == nameTruss);
-            Tail = (PlanColumn.OutputRafter + dimensionColumn / 2) / Mathf.Cos(PlanColumn.Slope);
+            Tail = (PlanColumn.OutputRafter + dimensionColumn / 2 + 10) / Mathf.Cos(PlanColumn.Slope);
             LengthTop = (PlanColumn.SizeByX + PlanColumn.OutputRafter * 2) / Mathf.Cos(PlanColumn.Slope);
-            LengthBottom = LengthTop - PlanColumn.OutputRafter * 2 / Mathf.Cos(PlanColumn.Slope);
+            LengthBottom = LengthTop - (2 * Tail + DimenOneCrateNonStandart);
         }
     }
 }
