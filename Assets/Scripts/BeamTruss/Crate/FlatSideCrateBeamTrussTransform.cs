@@ -9,7 +9,6 @@ using System.IO;
 
 public class FlatSideCrateBeamTrussTransform : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public Direction Direction;
     public StandartNonStandart StandartNonStandart;

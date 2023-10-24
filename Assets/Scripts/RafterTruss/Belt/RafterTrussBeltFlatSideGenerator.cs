@@ -17,7 +17,7 @@ public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         float length = KindLength switch
         {
             KindLength.Short => rafterTruss.LengthBottom,

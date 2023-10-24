@@ -13,9 +13,9 @@ public class RoundedGirderGenerator : MonoBehaviour
 
     private void Start()
     {
-        girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Material.Radius, girder.Material.Radius, girder.Length
-            , girder.Material.Thickness, girder.Material.Radius);
+        girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Profile.Radius, girder.Profile.Radius, girder.Length
+            , girder.Profile.Thickness, girder.Profile.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

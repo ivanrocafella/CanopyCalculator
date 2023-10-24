@@ -16,10 +16,10 @@ public class ColRoundedCorner : MonoBehaviour
 
     private void Start()
     {
-        columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
+        columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(KindLength);
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Material.Radius, columnBody.Material.Radius, columnBody.Height
-            , columnBody.Material.Thickness, columnBody.Material.Radius);
+        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Profile.Radius, columnBody.Profile.Radius, columnBody.Height
+            , columnBody.Profile.Thickness, columnBody.Profile.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

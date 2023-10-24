@@ -9,9 +9,8 @@ namespace Assets.Models
     public class Material
     {
         public string Name { get; set; }
-        public float Height { get; set; }
-        public float Length { get; set; }
-        public float Thickness { get; set; }
-        public float Radius { get; set; }
+        public float YieldStrength { get; set; } // u.m. = kg/sm2
+        public float TensileStrength { get; set; } // u.m. = kg/sm2
+        public float ElastiModulus { get; set; } // u.m. = kg/sm2
     }
 }

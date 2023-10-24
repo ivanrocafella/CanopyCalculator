@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Models
 {
-    public class PlanColumn
+    public class PlanCanopy
     {
         public int SizeByX { get; set; } // u.m. = mm
         public int SizeByZ { get; set; } // u.m. = mm
@@ -20,11 +20,12 @@ namespace Assets.Models
         public float Step { get { return SizeByZ / CountStep; } } // u.m. = mm
         public float OutputRafter { get; set; }
         public float OutputGirder { get; set; }
-        public KindMaterial KindMaterialColumn { get; set; }
+        public KindProfilePipe KindProfileColumn { get; set; }
         public KindTruss KindTrussBeam { get; set; }
         public KindTruss KindTrussRafter { get; set; }
         public float StepRafter { get; set; }
-        public KindMaterial KindMaterialGirder { get; set; }
+        public KindProfilePipe KindProfileGirder { get; set; }
         public float StepGirder { get; set; }
+        public KindMaterial KindMaterial { get; set; }
     }
 }

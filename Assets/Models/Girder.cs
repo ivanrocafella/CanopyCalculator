@@ -10,12 +10,12 @@ namespace Assets.Models
     public class Girder
     {
         public float Length { get; }
-        public Material Material { get; set; }
+        public ProfilePipe Profile { get; set; }
         public float Step { get; set; }
-        public PlanColumn PlanColumn { get; set; } = new();
-        public Girder(string nameMaterial, string path, PlanColumn planColumn) 
+        public PlanCanopy PlanColumn { get; set; } = new();
+        public Girder(string nameProfile, string path, PlanCanopy planColumn) 
         {
-            Material = FileAction<Material>.ReadAndDeserialyze(path).Find(e => e.Name == nameMaterial);
+            Profile = FileAction<ProfilePipe>.ReadAndDeserialyze(path).Find(e => e.Name == nameProfile);
             PlanColumn = planColumn;
             Length = planColumn.SizeByZ + 2 * PlanColumn.OutputGirder;
         }

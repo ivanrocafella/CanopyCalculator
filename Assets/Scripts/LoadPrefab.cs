@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Services;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -67,5 +68,8 @@ public class LoadPrefab : MonoBehaviour
         //mainCamera.transform.localPosition = new Vector3(0, 2f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
         // -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
         //mainCamera.transform.localRotation = Quaternion.Euler(35, 0, 0);
+        print(CalculationColumn.Calculate(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
+            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep));
     }
 }

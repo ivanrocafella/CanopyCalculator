@@ -8,7 +8,6 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Material = Assets.Models.Material;
 
 public class RafterTrussGenerator : MonoBehaviour
 {
@@ -20,23 +19,23 @@ public class RafterTrussGenerator : MonoBehaviour
     public KindTruss KindTruss;
     private GameObject[] cratesStandart;
     private GameObject rafterTruss;
-    private PlanColumn planColumn;
-    private Material columnMaterial;
-    private string nameColumnMaterial;
-    private string pathMaterial;
-    private readonly ColumnPlug columnPlug = new ColumnPlug();
+    private PlanCanopy planColumn;
+    private ProfilePipe columnProfile;
+    private string nameColumnProfile;
+    private string pathProfile;
+    private readonly ColumnPlug columnPlug = new();
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindTruss = planColumn.KindTrussRafter;
         Step = planColumn.StepRafter;
         path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
-        pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
-        nameColumnMaterial = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindMaterial.ToString();
-        nameColumnMaterial = nameColumnMaterial.Insert(5, " ").Replace("_", ".");
-        columnMaterial = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameColumnMaterial);
-        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnMaterial.Height + columnPlug.Thickness * 2)
+        pathProfile = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
+        nameColumnProfile = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().KindProfile
+            .ToString().Insert(5, " ").Replace("_", ".");
+        columnProfile = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfile).Find(e => e.Name == nameColumnProfile);
+        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnProfile.Height + columnPlug.Thickness * 2)
         {
             Step = Step
         };
@@ -57,7 +56,7 @@ public class RafterTrussGenerator : MonoBehaviour
         cratesStandart = new GameObject[rafterTrussForRead.CountCratesStandart - 1];
         for (int i = 0; i < cratesStandart.Length; i++)
         {
-            cratesStandart[i] = Instantiate(GameObject.FindGameObjectsWithTag("StandartCrateRafterTruss")[0]);
+            cratesStandart[i] = Instantiate(GameObject.FindGameObjectWithTag("StandartCrateRafterTruss"));
             cratesStandart[i].transform.SetParent(rafterTruss.transform);
             Destroy(cratesStandart[i].GetComponent<CrateRafterTrussTransform>());
             if (i % 2 == 0)
@@ -77,7 +76,7 @@ public class RafterTrussGenerator : MonoBehaviour
         }
         if (rafterTrussForRead.HasTwoNonStandartCrate)
         {
-            GameObject nonStandartCrateSecond = Instantiate(GameObject.FindGameObjectsWithTag("NonStandartCrateRafterTruss")[0]);
+            GameObject nonStandartCrateSecond = Instantiate(GameObject.FindGameObjectWithTag("NonStandartCrateRafterTruss"));
             nonStandartCrateSecond.transform.SetParent(rafterTruss.transform);
             Destroy(nonStandartCrateSecond.GetComponent<CrateRafterTrussTransform>());
             nonStandartCrateSecond.transform.localPosition = new Vector3(rafterTrussForRead.Truss.Height - rafterTrussForRead.Truss.ProfileBelt.Height, rafterTrussForRead.LengthTop - rafterTrussForRead.Tail - rafterTrussForRead.PerspectWidthHalfNonStandartCrate

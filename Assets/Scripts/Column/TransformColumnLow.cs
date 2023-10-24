@@ -6,11 +6,11 @@ using UnityEngine;
 public class TransformColumnLow
     : MonoBehaviour
 {
-    private PlanColumn planColumn;
+    private PlanCanopy planColumn;
     // Start is called before the first frame update
     void Start()
     {
-        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         transform.localPosition = new Vector3(planColumn.SizeByX, 0, 0);
     }
 

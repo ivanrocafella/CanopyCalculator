@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BeltBottomBeamTrussTransform : MonoBehaviour
 {
-    private string path; 
     private BeamTruss beamTruss;
     // Start is called before the first frame update
     void Start()

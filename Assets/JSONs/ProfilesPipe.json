@@ -1,0 +1,282 @@
+[
+{
+  "Name": "Труба 10x10x1.0",
+  "Height": 10.0,
+  "Length": 10.0,
+  "Thickness": 1.0,
+  "Radius": 2.0
+},
+{
+  "Name": "Труба 10x10x1.2",
+  "Height": 10.0,
+  "Length": 10.0,
+  "Thickness": 1.2,
+  "Radius": 2.4
+},
+{
+  "Name": "Труба 15x15x1.2",
+  "Height": 15.0,
+  "Length": 15.0,
+  "Thickness": 1.2,
+  "Radius": 2.4
+},
+{
+  "Name": "Труба 15x15x1.5",
+  "Height": 15.0,
+  "Length": 15.0,
+  "Thickness": 1.5,
+  "Radius": 3.0
+},
+{
+  "Name": "Труба 20x20x1.2",
+  "Height": 20.0,
+  "Length": 20.0,
+  "Thickness": 1.2,
+  "Radius": 2.4
+},
+{
+ "Name": "Труба 20x20x1.5",
+ "Height": 20.0,
+ "Length": 20.0,
+ "Thickness": 1.5,
+ "Radius": 3.0
+ },
+ {
+ "Name": "Труба 20x20x2.0",
+ "Height": 20.0,
+ "Length": 20.0,
+ "Thickness": 2.0,
+ "Radius": 4.0
+ },
+ {
+ "Name": "Труба 25x25x1.2",
+ "Height": 25.0,
+ "Length": 25.0,
+ "Thickness": 1.2,
+ "Radius": 2.4
+ },
+ {
+"Name": "Труба 25x25x1.5",
+"Height": 25.0,
+"Length": 25.0,
+"Thickness": 1.5,
+"Radius": 3.0
+},
+ {
+"Name": "Труба 25x25x1.8",
+"Height": 25.0,
+"Length": 25.0,
+"Thickness": 1.8,
+"Radius": 3.6
+},
+ {
+"Name": "Труба 25x25x2.0",
+"Height": 25.0,
+"Length": 25.0,
+"Thickness": 2.0,
+"Radius": 4.0
+},
+ {
+"Name": "Труба 30x30x1.2",
+"Height": 30.0,
+"Length": 30.0,
+"Thickness": 1.2,
+"Radius": 2.4
+},
+ {
+"Name": "Труба 30x30x1.5",
+"Height": 30.0,
+"Length": 30.0,
+"Thickness": 1.5,
+"Radius": 3.0
+},
+ {
+"Name": "Труба 30x30x1.8",
+"Height": 30.0,
+"Length": 30.0,
+"Thickness": 1.8,
+"Radius": 3.6
+},
+ {
+"Name": "Труба 30x30x2.0",
+"Height": 30.0,
+"Length": 30.0,
+"Thickness": 2.0,
+"Radius": 4.0
+},
+ {
+"Name": "Труба 40x40x1.5",
+"Height": 40.0,
+"Length": 40.0,
+"Thickness": 1.5,
+"Radius": 3.0
+},
+ {
+"Name": "Труба 40x40x2.0",
+"Height": 40.0,
+"Length": 40.0,
+"Thickness": 2.0,
+"Radius": 4.0
+},
+ {
+"Name": "Труба 40x40x3.0",
+"Height": 40.0,
+"Length": 40.0,
+"Thickness": 3.0,
+"Radius": 6.0
+},
+ {
+"Name": "Труба 50x50x1.8",
+"Height": 50.0,
+"Length": 50.0,
+"Thickness": 1.8,
+"Radius": 3.6
+},
+ {
+"Name": "Труба 50x50x2.0",
+"Height": 50.0,
+"Length": 50.0,
+"Thickness": 2.0,
+"Radius": 4.0
+},
+ {
+"Name": "Труба 50x50x3.0",
+"Height": 50.0,
+"Length": 50.0,
+"Thickness": 3.0,
+"Radius": 6.0
+},
+ {
+"Name": "Труба 50x50x4.0",
+"Height": 50.0,
+"Length": 50.0,
+"Thickness": 4.0,
+"Radius": 8.0
+},
+ {
+"Name": "Труба 60x60x1.8",
+"Height": 60.0,
+"Length": 60.0,
+"Thickness": 1.8,
+"Radius": 3.6
+},
+ {
+"Name": "Труба 60x60x2.0",
+"Height": 60.0,
+"Length": 60.0,
+"Thickness": 2.0,
+"Radius": 4.0
+}, 
+ {
+"Name": "Труба 60x60x3.0",
+"Height": 60.0,
+"Length": 60.0,
+"Thickness": 3.0,
+"Radius": 6.0
+}, 
+ {
+"Name": "Труба 60x60x4.0",
+"Height": 60.0,
+"Length": 60.0,
+"Thickness": 4.0,
+"Radius": 8.0
+}, 
+ {
+"Name": "Труба 80x80x2.0",
+"Height": 80.0,
+"Length": 80.0,
+"Thickness": 2.0,
+"Radius": 4.0
+}, 
+ {
+"Name": "Труба 80x80x3.0",
+"Height": 80.0,
+"Length": 80.0,
+"Thickness": 3.0,
+"Radius": 6.0
+}, 
+ {
+"Name": "Труба 80x80x4.0",
+"Height": 80.0,
+"Length": 80.0,
+"Thickness": 4.0,
+"Radius": 8.0
+}, 
+ {
+"Name": "Труба 80x80x5.0",
+"Height": 80.0,
+"Length": 80.0,
+"Thickness": 5.0,
+"Radius": 10.0
+},
+ {
+"Name": "Труба 100x100x3.0",
+"Height": 100.0,
+"Length": 100.0,
+"Thickness": 3.0,
+"Radius": 6.0
+}, 
+ {
+"Name": "Труба 100x100x4.0",
+"Height": 100.0,
+"Length": 100.0,
+"Thickness": 4.0,
+"Radius": 8.0
+}, 
+ {
+"Name": "Труба 100x100x5.0",
+"Height": 100.0,
+"Length": 100.0,
+"Thickness": 5.0,
+"Radius": 10.0
+},
+ {
+"Name": "Труба 120x120x3.0",
+"Height": 120.0,
+"Length": 120.0,
+"Thickness": 3.0,
+"Radius": 6.0
+}, 
+ {
+"Name": "Труба 120x120x4.0",
+"Height": 120.0,
+"Length": 120.0,
+"Thickness": 4.0,
+"Radius": 8.0
+}, 
+ {
+"Name": "Труба 120x120x5.0",
+"Height": 120.0,
+"Length": 120.0,
+"Thickness": 5.0,
+"Radius": 10.0
+}, 
+ {
+"Name": "Труба 140x140x4.0",
+"Height": 140.0,
+"Length": 140.0,
+"Thickness": 4.0,
+"Radius": 8.0
+}, 
+ {
+"Name": "Труба 140x140x5.0",
+"Height": 140.0,
+"Length": 140.0,
+"Thickness": 5.0,
+"Radius": 10.0
+}, 
+ {
+"Name": "Труба 180x180x4.0",
+"Height": 180.0,
+"Length": 180.0,
+"Thickness": 4.0,
+"Radius": 8.0
+},
+ {
+"Name": "Труба 180x180x5.0",
+"Height": 180.0,
+"Length": 180.0,
+"Thickness": 5.0,
+"Radius": 10.0
+} 
+]

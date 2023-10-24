@@ -12,11 +12,11 @@ namespace Assets.Models
     {
         public KindLength KindLength { get; set; }
         public float Height { get; set; }
-        public Material Material { get; set; }
-        public PlanColumn PlanColumn { get; set; } = new();
-        public ColumnBody(string nameMaterial, string path, PlanColumn planColumn)
+        public ProfilePipe Profile { get; set; }
+        public PlanCanopy PlanColumn { get; set; } = new();
+        public ColumnBody(string nameMaterial, string path, PlanCanopy planColumn)
         {        
-            Material = FileAction<Material>.ReadAndDeserialyze(path).Find(e => e.Name == nameMaterial);
+            Profile = FileAction<ProfilePipe>.ReadAndDeserialyze(path).Find(e => e.Name == nameMaterial);
             PlanColumn = planColumn;
         }
 

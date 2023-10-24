@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class BeltFlatSideBeamTrussTransform : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public Direction Direction;
     public KindLength KindLength;

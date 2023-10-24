@@ -13,12 +13,13 @@ public class PlanCanopyGenerator : MonoBehaviour
     public int CountStep;
     public int OutputRafter;
     public int OutputGirder;
-    public KindMaterial KindMaterialColumn;
+    public KindProfilePipe KindProfileColumn;
     public KindTruss KindTrussBeam;
     public KindTruss KindTrussRafter;
     public float StepRafter;
-    public KindMaterial KindMaterialGirder;
+    public KindProfilePipe KindProfileGirder;
     public float StepGirder;
+    public KindMaterial KindMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +33,9 @@ public class PlanCanopyGenerator : MonoBehaviour
         
     }
 
-    public PlanColumn MakePlanColumn()
+    public PlanCanopy MakePlanCanopy()
     {
-        PlanColumn planColumn = new PlanColumn()
+        PlanCanopy planColumn = new PlanCanopy()
         {
             SizeByX = SizeByX,
             SizeByZ = SizeByZ,
@@ -43,12 +44,13 @@ public class PlanCanopyGenerator : MonoBehaviour
             CountStep = CountStep,
             OutputRafter = OutputRafter,
             OutputGirder = OutputGirder,
-            KindMaterialColumn = KindMaterialColumn,
+            KindProfileColumn = KindProfileColumn,
             KindTrussBeam = KindTrussBeam,
             KindTrussRafter = KindTrussRafter,
             StepRafter = StepRafter,
-            KindMaterialGirder = KindMaterialGirder,
-            StepGirder = StepGirder
+            KindProfileGirder = KindProfileGirder,
+            StepGirder = StepGirder,
+            KindMaterial = KindMaterial
         };
         return planColumn;
     }

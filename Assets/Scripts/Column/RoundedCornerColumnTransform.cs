@@ -13,24 +13,24 @@ public class RoundedCornerColumnTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
+        columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(KindLength);
         transform.localScale = new Vector3(0.1f, 1, 0.1f);
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3(columnBody.Material.Height / 2 - columnBody.Material.Radius, 0, -columnBody.Material.Height / 2);
+                transform.localPosition = new Vector3(columnBody.Profile.Height / 2 - columnBody.Profile.Radius, 0, -columnBody.Profile.Height / 2);
                 break;
             case Direction.Left:
-                transform.localPosition = new Vector3(-columnBody.Material.Height / 2, 0, -(columnBody.Material.Height / 2 - columnBody.Material.Radius));
+                transform.localPosition = new Vector3(-columnBody.Profile.Height / 2, 0, -(columnBody.Profile.Height / 2 - columnBody.Profile.Radius));
                 transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
                 break;
             case Direction.Back:
-                transform.localPosition = new Vector3(-columnBody.Material.Height / 2 + columnBody.Material.Radius, 0, columnBody.Material.Height / 2);
+                transform.localPosition = new Vector3(-columnBody.Profile.Height / 2 + columnBody.Profile.Radius, 0, columnBody.Profile.Height / 2);
                 transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 break;
             default:
-                transform.localPosition = new Vector3(columnBody.Material.Height / 2, 0, (columnBody.Material.Height / 2 - columnBody.Material.Radius));
+                transform.localPosition = new Vector3(columnBody.Profile.Height / 2, 0, (columnBody.Profile.Height / 2 - columnBody.Profile.Radius));
                 transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                 break;
         }

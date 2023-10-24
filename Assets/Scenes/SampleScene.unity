@@ -2253,12 +2253,13 @@ MonoBehaviour:
   CountStep: 2
   OutputRafter: 200
   OutputGirder: 400
-  KindMaterialColumn: 38
+  KindProfileColumn: 29
   KindTrussBeam: 6
   KindTrussRafter: 4
   StepRafter: 1200
-  KindMaterialGirder: 19
+  KindProfileGirder: 8
   StepGirder: 600
+  KindMaterial: 0
 --- !u!4 &358075717
 Transform:
   m_ObjectHideFlags: 0

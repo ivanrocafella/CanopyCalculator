@@ -46,10 +46,10 @@ namespace Assets.Services
             };
             return mesh;
         }
-
+        
         // Methods for creating rounded corner
         /// <summary>
-        /// this will be the return Mesh
+        /// This method will return Mesh
         /// </summary>
         /// <param name="xSize">xSize is in float</param>
         public static Mesh CreateRoundedCorner(float xSize, float zSize, float ySize, float thickness, float roundness)

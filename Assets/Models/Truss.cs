@@ -17,7 +17,7 @@ namespace Assets.Models
         public float LengthCrate { get; set; }
         public float AngleCrateInDegree { get; set; } // u.m. = degree
         public float AngleCrate { get { return Mathf.Deg2Rad * AngleCrateInDegree; } } // u.m. = rad
-        public Material ProfileBelt { get; set; } = new Material();
-        public Material ProfileCrate { get; set; } = new Material();
+        public ProfilePipe ProfileBelt { get; set; } = new ProfilePipe();
+        public ProfilePipe ProfileCrate { get; set; } = new ProfilePipe();
     }
 }

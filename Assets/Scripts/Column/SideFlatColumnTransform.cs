@@ -13,23 +13,22 @@ public class SideFlatColumnTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
+        columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(KindLength);
-        //transform.localScale = new Vector3(0.1f, 1f, 0.1f);
         switch (Direction)
         {
             case Direction.Right:
-                transform.localPosition = new Vector3((columnBody.Material.Height - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
+                transform.localPosition = new Vector3((columnBody.Profile.Height - columnBody.Profile.Thickness) / 2, columnBody.Height / 2, 0);
                 break;
             case Direction.Left:
-                transform.localPosition = new Vector3(-(columnBody.Material.Height - columnBody.Material.Thickness) / 2, columnBody.Height / 2, 0);
+                transform.localPosition = new Vector3(-(columnBody.Profile.Height - columnBody.Profile.Thickness) / 2, columnBody.Height / 2, 0);
                 break;
             case Direction.Back:
-                transform.localPosition = new Vector3(0, columnBody.Height / 2, (columnBody.Material.Height - columnBody.Material.Thickness) / 2);
+                transform.localPosition = new Vector3(0, columnBody.Height / 2, (columnBody.Profile.Height - columnBody.Profile.Thickness) / 2);
                 transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
                 break;
             default:
-                transform.localPosition = new Vector3(0, columnBody.Height / 2, -(columnBody.Material.Height - columnBody.Material.Thickness) / 2);
+                transform.localPosition = new Vector3(0, columnBody.Height / 2, -(columnBody.Profile.Height - columnBody.Profile.Thickness) / 2);
                 transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
                 break;
         }

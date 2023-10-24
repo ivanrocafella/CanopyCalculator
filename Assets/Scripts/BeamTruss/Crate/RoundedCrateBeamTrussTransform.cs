@@ -7,7 +7,6 @@ using System.IO;
 
 public class RoundedCrateBeamTrussTransform : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public Direction Direction;
     // Start is called before the first frame update

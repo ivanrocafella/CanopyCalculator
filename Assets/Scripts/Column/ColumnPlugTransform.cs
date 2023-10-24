@@ -13,7 +13,7 @@ public class ColumnPlugTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
+        columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(kindLength);
         transform.localPosition = new Vector3(0, columnBody.Height + columnPlug.Thickness / 2, 0);
     }

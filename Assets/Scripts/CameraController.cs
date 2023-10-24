@@ -7,9 +7,6 @@ using System.IO;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using Material = Assets.Models.Material;
-using Random = UnityEngine.Random;
 
 public class CameraController : MonoBehaviour
 {

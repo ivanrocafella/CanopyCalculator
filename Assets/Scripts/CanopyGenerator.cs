@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class CanopyGenerator : MonoBehaviour
 {
-    public PlanColumn planColumn;
+    public PlanCanopy planColumn;
     private GameObject[] columnsHigh;
     private GameObject[] columnsLow;
     private GameObject[] beamTrussesOnHigh;
@@ -43,7 +43,7 @@ public class CanopyGenerator : MonoBehaviour
 
     IEnumerator MakeCanopy()
     {
-        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         canopy = GameObject.FindGameObjectWithTag("Canopy");
         columnsHigh = new GameObject[planColumn.CountStep + 1];
         columnsLow = new GameObject[planColumn.CountStep + 1];
@@ -55,7 +55,7 @@ public class CanopyGenerator : MonoBehaviour
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
         countStepRafterTruss = Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step);
-        countStepGirder = Mathf.FloorToInt((rafterTruss.LengthTop - girder.Material.Length) / girder.Step);
+        countStepGirder = Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step);
         rafterTrusses = new GameObject[countStepRafterTruss + 1];
         girders = new GameObject[countStepGirder + 1];
         float partAdditFromAngle = Mathf.Tan(planColumn.Slope)
@@ -132,9 +132,9 @@ public class CanopyGenerator : MonoBehaviour
             Destroy(girders[i].GetComponent<GirderTransform>());
             if (i == girders.Length - 1)
             {
-                if (rafterTruss.LengthTop - girder.Material.Length - i * girder.Step >= 100)
+                if (rafterTruss.LengthTop - girder.Profile.Length - i * girder.Step >= 100)
                 {
-                    stepGirder = rafterTruss.LengthTop - girder.Material.Length;
+                    stepGirder = rafterTruss.LengthTop - girder.Profile.Length;
                     projectionHorStepGirder = Mathf.Cos(planColumn.Slope) * stepGirder;
                     projectionVertStepGirder = Mathf.Sin(planColumn.Slope) * stepGirder;
                     girders[i].transform.localPosition = new Vector3(elemenGirderPosition.x + projectionHorStepGirder

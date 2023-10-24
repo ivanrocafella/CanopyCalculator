@@ -15,7 +15,7 @@ public class CrateRafterTrussFlatSideGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         float dimen = HeigthLengthProfile == HeigthLengthProfile.Heigth ? rafterTruss.Truss.ProfileCrate.Height : rafterTruss.Truss.ProfileCrate.Length;
         Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.LengthNonStandartCrate, dimen, rafterTruss.Truss.ProfileCrate.Radius)
             : _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.LengthCrate, dimen, rafterTruss.Truss.ProfileCrate.Radius);

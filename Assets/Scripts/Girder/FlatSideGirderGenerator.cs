@@ -16,8 +16,8 @@ public class FlatSideGirderGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(girder.Material.Thickness, girder.Length, girder.Material.Height, girder.Material.Radius);
+        girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
+        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, girder.Profile.Radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

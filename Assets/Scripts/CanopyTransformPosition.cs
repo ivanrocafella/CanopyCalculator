@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class CanopyTransformPosition : MonoBehaviour
 {
-    private PlanColumn planColumn;
+    private PlanCanopy planColumn;
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
     }
     void Start()
     {

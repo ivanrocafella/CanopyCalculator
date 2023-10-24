@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 
 public class RafterTrussTransform : MonoBehaviour
 {
-    private ColumnPlug columnPlug = new();
-    private PlanColumn planColumn;
+    private readonly ColumnPlug columnPlug = new();
+    private PlanCanopy planColumn;
     private BeamTruss beamTruss;
     private RafterTruss rafterTruss;
     private float partAdditFromAngle;
@@ -26,9 +26,9 @@ public class RafterTrussTransform : MonoBehaviour
 
     IEnumerator RafterTrussTransformCalculation()
     {
-        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
-        beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
-        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
+        beamTruss = GameObject.FindGameObjectWithTag("BeamTruss").GetComponent<BeamTrussGenerator>().beamTrussForRead;
+        rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         partAdditFromAngle = Mathf.Tan(planColumn.Slope)
             * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius + planColumn.OutputRafter);
         partAdditHalfBeltAngle = rafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(planColumn.Slope);

@@ -11,7 +11,7 @@ namespace Assets.Models
 {
     public class RafterTruss
     {
-        private PlanColumn PlanColumn { get; set; }
+        private PlanCanopy PlanColumn { get; set; }
         public Truss Truss { get; set; }
         public float Step { get; set; }
         public float LengthTop { get; private set; }
@@ -30,7 +30,7 @@ namespace Assets.Models
         public float LengthNonStandartCrate { get => (Truss.Height - Truss.ProfileBelt.Height) / Mathf.Sin(AngleNonStandartCrate * Mathf.Deg2Rad); }
         public float PerspectWidthHalfNonStandartCrate { get => (Truss.ProfileCrate.Height / Mathf.Sin(AngleNonStandartCrate * Mathf.Deg2Rad) - Truss.ProfileBelt.Height / Mathf.Tan(AngleNonStandartCrate * Mathf.Deg2Rad)) / 2; }
 
-        public RafterTruss(string nameTruss, string path, PlanColumn planColumn, float dimensionColumn)
+        public RafterTruss(string nameTruss, string path, PlanCanopy planColumn, float dimensionColumn)
         {
             PlanColumn = planColumn;
             Truss = FileAction<Truss>.ReadAndDeserialyze(path).Find(e => e.Name == nameTruss);

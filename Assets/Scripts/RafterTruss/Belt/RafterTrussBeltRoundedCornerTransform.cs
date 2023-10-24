@@ -13,7 +13,7 @@ public class RafterTrussBeltRoundedCornerTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         transform.localScale = new Vector3(0.1f, 1f, 0.1f);
         switch (Direction)
         {

@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class FlatSideCrateBeamTrussGenerator : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public StandartNonStandart StandartNonStandart;
     public HeigthLengthProfile HeigthLengthProfile;

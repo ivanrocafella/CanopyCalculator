@@ -9,7 +9,6 @@ using UnityEngine.Rendering;
 
 public class CrateBeamTrussTransform : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public StandartNonStandart StandartNonStandart;
     // Start is called before the first frame update
@@ -29,8 +28,7 @@ public class CrateBeamTrussTransform : MonoBehaviour
                 angle = -beamTruss.Truss.AngleCrateInDegree;
                 break;
         }
-        transform.localPosition = new Vector3 (0, positionY, 0);
-        transform.localRotation = Quaternion.Euler(0f, 0f, angle);
+        transform.SetLocalPositionAndRotation(new Vector3 (0, positionY, 0), Quaternion.Euler(0f, 0f, angle));
     }
 
     // Update is called once per frame

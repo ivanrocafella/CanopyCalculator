@@ -11,7 +11,6 @@ using Material = UnityEngine.Material;
 
 public class BeltFlatSideBeamTrussGenerator : MonoBehaviour
 {
-    private string path;
     private BeamTruss beamTruss;
     public KindLength KindLength;
 

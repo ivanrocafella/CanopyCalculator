@@ -12,20 +12,22 @@ public class GirderGenerator : MonoBehaviour
 {
     private string path;
     [NonSerialized]
-    public KindMaterial KindMaterial;
+    public KindProfilePipe KindRofile;
     [NonSerialized]
     public float Step;
     public Girder girder;
-    private PlanColumn planColumn;     
+    private PlanCanopy planColumn;     
     // Start is called before the first frame update
     private void Awake()
     {
-        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanColumn();
-        KindMaterial = planColumn.KindMaterialGirder;
+        planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
+        KindRofile = planColumn.KindProfileGirder;
         Step = planColumn.StepGirder;
-        path = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
-        girder = new(KindMaterial.ToString().Insert(5, " ").Replace("_", "."), path, planColumn);
-        girder.Step = Step = Step != 0 ? Step : 500;
+        path = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
+        girder = new(KindRofile.ToString().Insert(5, " ").Replace("_", "."), path, planColumn)
+        {
+            Step = Step = Step != 0 ? Step : 500
+        };
     }
 
     void Start()
