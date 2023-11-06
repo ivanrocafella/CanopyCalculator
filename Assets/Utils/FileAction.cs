@@ -10,8 +10,8 @@ namespace Assets.Utils
 {
     public static class FileAction<T> where T : class
     {
-        public static string Serialize(T t) => JsonConvert.SerializeObject(t, Formatting.Indented);
-        public static T Deserialize(string json) => JsonConvert.DeserializeObject<T>(json);
+        private static string Serialize(T t) => JsonConvert.SerializeObject(t, Formatting.Indented);
+        private static T Deserialize(string json) => JsonConvert.DeserializeObject<T>(json);
 
         public static void WriteAndSerialyze(string path, T t)
         {

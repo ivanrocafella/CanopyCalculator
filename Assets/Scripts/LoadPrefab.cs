@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using Material = Assets.Models.Material;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class LoadPrefab : MonoBehaviour
     private GameObject planCanopy;
     private int MultipleForMeter = 1000;
     private int MultipleForSentimeter = 10;
+    private string pathMaterial;
+    private string pathProfilesPipe;
 
     private void Awake()
     {
@@ -51,7 +55,6 @@ public class LoadPrefab : MonoBehaviour
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DestroyImmediate(canopy);
 
-
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = int.Parse(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = int.Parse(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = int.Parse(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
@@ -61,15 +64,21 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = int.Parse(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
 
         Instantiate(canopyPrefab);
+        pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
+        Material material = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameMaterial);
+        pathProfilesPipe = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
+        List<ProfilePipe> profilePipes = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfilesPipe);
         //Destroy(mainCamera.GetComponent<CameraTransform>());
         //mainCamera.AddComponent<CameraTransform>();
         //mainCamera.transform.localPosition = new Vector3(0, 2f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
         // -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
         //mainCamera.transform.localRotation = Quaternion.Euler(35, 0, 0);
-        print(CalculationColumn.Calculate(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+        print(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
-            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep));
+            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
+            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, 85f, material, profilePipes).Name);
     }
 }

@@ -1,282 +1,482 @@
 [
-{
-  "Name": "Труба 10x10x1.0",
-  "Height": 10.0,
-  "Length": 10.0,
-  "Thickness": 1.0,
-  "Radius": 2.0
-},
-{
-  "Name": "Труба 10x10x1.2",
-  "Height": 10.0,
-  "Length": 10.0,
-  "Thickness": 1.2,
-  "Radius": 2.4
-},
-{
-  "Name": "Труба 15x15x1.2",
-  "Height": 15.0,
-  "Length": 15.0,
-  "Thickness": 1.2,
-  "Radius": 2.4
-},
-{
-  "Name": "Труба 15x15x1.5",
-  "Height": 15.0,
-  "Length": 15.0,
-  "Thickness": 1.5,
-  "Radius": 3.0
-},
-{
-  "Name": "Труба 20x20x1.2",
-  "Height": 20.0,
-  "Length": 20.0,
-  "Thickness": 1.2,
-  "Radius": 2.4
-},
-{
- "Name": "Труба 20x20x1.5",
- "Height": 20.0,
- "Length": 20.0,
- "Thickness": 1.5,
- "Radius": 3.0
- },
- {
- "Name": "Труба 20x20x2.0",
- "Height": 20.0,
- "Length": 20.0,
- "Thickness": 2.0,
- "Radius": 4.0
- },
- {
- "Name": "Труба 25x25x1.2",
- "Height": 25.0,
- "Length": 25.0,
- "Thickness": 1.2,
- "Radius": 2.4
- },
- {
-"Name": "Труба 25x25x1.5",
-"Height": 25.0,
-"Length": 25.0,
-"Thickness": 1.5,
-"Radius": 3.0
-},
- {
-"Name": "Труба 25x25x1.8",
-"Height": 25.0,
-"Length": 25.0,
-"Thickness": 1.8,
-"Radius": 3.6
-},
- {
-"Name": "Труба 25x25x2.0",
-"Height": 25.0,
-"Length": 25.0,
-"Thickness": 2.0,
-"Radius": 4.0
-},
- {
-"Name": "Труба 30x30x1.2",
-"Height": 30.0,
-"Length": 30.0,
-"Thickness": 1.2,
-"Radius": 2.4
-},
- {
-"Name": "Труба 30x30x1.5",
-"Height": 30.0,
-"Length": 30.0,
-"Thickness": 1.5,
-"Radius": 3.0
-},
- {
-"Name": "Труба 30x30x1.8",
-"Height": 30.0,
-"Length": 30.0,
-"Thickness": 1.8,
-"Radius": 3.6
-},
- {
-"Name": "Труба 30x30x2.0",
-"Height": 30.0,
-"Length": 30.0,
-"Thickness": 2.0,
-"Radius": 4.0
-},
- {
-"Name": "Труба 40x40x1.5",
-"Height": 40.0,
-"Length": 40.0,
-"Thickness": 1.5,
-"Radius": 3.0
-},
- {
-"Name": "Труба 40x40x2.0",
-"Height": 40.0,
-"Length": 40.0,
-"Thickness": 2.0,
-"Radius": 4.0
-},
- {
-"Name": "Труба 40x40x3.0",
-"Height": 40.0,
-"Length": 40.0,
-"Thickness": 3.0,
-"Radius": 6.0
-},
- {
-"Name": "Труба 50x50x1.8",
-"Height": 50.0,
-"Length": 50.0,
-"Thickness": 1.8,
-"Radius": 3.6
-},
- {
-"Name": "Труба 50x50x2.0",
-"Height": 50.0,
-"Length": 50.0,
-"Thickness": 2.0,
-"Radius": 4.0
-},
- {
-"Name": "Труба 50x50x3.0",
-"Height": 50.0,
-"Length": 50.0,
-"Thickness": 3.0,
-"Radius": 6.0
-},
- {
-"Name": "Труба 50x50x4.0",
-"Height": 50.0,
-"Length": 50.0,
-"Thickness": 4.0,
-"Radius": 8.0
-},
- {
-"Name": "Труба 60x60x1.8",
-"Height": 60.0,
-"Length": 60.0,
-"Thickness": 1.8,
-"Radius": 3.6
-},
- {
-"Name": "Труба 60x60x2.0",
-"Height": 60.0,
-"Length": 60.0,
-"Thickness": 2.0,
-"Radius": 4.0
-}, 
- {
-"Name": "Труба 60x60x3.0",
-"Height": 60.0,
-"Length": 60.0,
-"Thickness": 3.0,
-"Radius": 6.0
-}, 
- {
-"Name": "Труба 60x60x4.0",
-"Height": 60.0,
-"Length": 60.0,
-"Thickness": 4.0,
-"Radius": 8.0
-}, 
- {
-"Name": "Труба 80x80x2.0",
-"Height": 80.0,
-"Length": 80.0,
-"Thickness": 2.0,
-"Radius": 4.0
-}, 
- {
-"Name": "Труба 80x80x3.0",
-"Height": 80.0,
-"Length": 80.0,
-"Thickness": 3.0,
-"Radius": 6.0
-}, 
- {
-"Name": "Труба 80x80x4.0",
-"Height": 80.0,
-"Length": 80.0,
-"Thickness": 4.0,
-"Radius": 8.0
-}, 
- {
-"Name": "Труба 80x80x5.0",
-"Height": 80.0,
-"Length": 80.0,
-"Thickness": 5.0,
-"Radius": 10.0
-},
- {
-"Name": "Труба 100x100x3.0",
-"Height": 100.0,
-"Length": 100.0,
-"Thickness": 3.0,
-"Radius": 6.0
-}, 
- {
-"Name": "Труба 100x100x4.0",
-"Height": 100.0,
-"Length": 100.0,
-"Thickness": 4.0,
-"Radius": 8.0
-}, 
- {
-"Name": "Труба 100x100x5.0",
-"Height": 100.0,
-"Length": 100.0,
-"Thickness": 5.0,
-"Radius": 10.0
-},
- {
-"Name": "Труба 120x120x3.0",
-"Height": 120.0,
-"Length": 120.0,
-"Thickness": 3.0,
-"Radius": 6.0
-}, 
- {
-"Name": "Труба 120x120x4.0",
-"Height": 120.0,
-"Length": 120.0,
-"Thickness": 4.0,
-"Radius": 8.0
-}, 
- {
-"Name": "Труба 120x120x5.0",
-"Height": 120.0,
-"Length": 120.0,
-"Thickness": 5.0,
-"Radius": 10.0
-}, 
- {
-"Name": "Труба 140x140x4.0",
-"Height": 140.0,
-"Length": 140.0,
-"Thickness": 4.0,
-"Radius": 8.0
-}, 
- {
-"Name": "Труба 140x140x5.0",
-"Height": 140.0,
-"Length": 140.0,
-"Thickness": 5.0,
-"Radius": 10.0
-}, 
- {
-"Name": "Труба 180x180x4.0",
-"Height": 180.0,
-"Length": 180.0,
-"Thickness": 4.0,
-"Radius": 8.0
-},
- {
-"Name": "Труба 180x180x5.0",
-"Height": 180.0,
-"Length": 180.0,
-"Thickness": 5.0,
-"Radius": 10.0
-} 
+  {
+    "Name": "Труба 10x10x1.0",
+    "Height": 10.0,
+    "Length": 10.0,
+    "Thickness": 1.0,
+    "Radius": 2.0,
+    "Area": 0.343,
+    "MomentInertia": 0.0452,
+    "MomentResistance": 0.0904,
+    "WeightMeter": 0.269,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 10x10x1.2",
+    "Height": 10.0,
+    "Length": 10.0,
+    "Thickness": 1.2,
+    "Radius": 2.4,
+    "Area": 0.398,
+    "MomentInertia": 0.05,
+    "MomentResistance": 0.1,
+    "WeightMeter": 0.312,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 15x15x1.2",
+    "Height": 15.0,
+    "Length": 15.0,
+    "Thickness": 1.2,
+    "Radius": 2.4,
+    "Area": 0.638,
+    "MomentInertia": 0.199,
+    "MomentResistance": 0.265,
+    "WeightMeter": 0.501,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 15x15x1.5",
+    "Height": 15.0,
+    "Length": 15.0,
+    "Thickness": 1.5,
+    "Radius": 3.0,
+    "Area": 0.771,
+    "MomentInertia": 0.229,
+    "MomentResistance": 0.305,
+    "WeightMeter": 0.605,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 20x20x1.2",
+    "Height": 20.0,
+    "Length": 20.0,
+    "Thickness": 1.2,
+    "Radius": 2.4,
+    "Area": 0.878,
+    "MomentInertia": 0.51,
+    "MomentResistance": 0.51,
+    "WeightMeter": 0.689,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 20x20x1.5",
+    "Height": 20.0,
+    "Length": 20.0,
+    "Thickness": 1.5,
+    "Radius": 3.0,
+    "Area": 1.071,
+    "MomentInertia": 0.6,
+    "MomentResistance": 0.6,
+    "WeightMeter": 0.841,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 20x20x2.0",
+    "Height": 20.0,
+    "Length": 20.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 1.37,
+    "MomentInertia": 0.723,
+    "MomentResistance": 0.723,
+    "WeightMeter": 1.075,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 25x25x1.2",
+    "Height": 25.0,
+    "Length": 25.0,
+    "Thickness": 1.2,
+    "Radius": 2.4,
+    "Area": 1.12,
+    "MomentInertia": 1.04,
+    "MomentResistance": 0.835,
+    "WeightMeter": 1.878,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 25x25x1.5",
+    "Height": 25.0,
+    "Length": 25.0,
+    "Thickness": 1.5,
+    "Radius": 3.0,
+    "Area": 1.37,
+    "MomentInertia": 1.24,
+    "MomentResistance": 0.996,
+    "WeightMeter": 1.07,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 25x25x1.8",
+    "Height": 25.0,
+    "Length": 25.0,
+    "Thickness": 1.8,
+    "Radius": 3.6,
+    "Area": 1.59,
+    "MomentInertia": 1.38,
+    "MomentResistance": 1.104,
+    "WeightMeter": 1.24,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 25x25x2.0",
+    "Height": 25.0,
+    "Length": 25.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 1.77,
+    "MomentInertia": 1.53,
+    "MomentResistance": 1.22,
+    "WeightMeter": 1.39,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 30x30x1.2",
+    "Height": 30.0,
+    "Length": 30.0,
+    "Thickness": 1.2,
+    "Radius": 2.4,
+    "Area": 1.36,
+    "MomentInertia": 1.86,
+    "MomentResistance": 1.24,
+    "WeightMeter": 1.07,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 30x30x1.5",
+    "Height": 30.0,
+    "Length": 30.0,
+    "Thickness": 1.5,
+    "Radius": 3.0,
+    "Area": 1.67,
+    "MomentInertia": 2.24,
+    "MomentResistance": 1.49,
+    "WeightMeter": 1.31,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 30x30x1.8",
+    "Height": 30.0,
+    "Length": 30.0,
+    "Thickness": 1.8,
+    "Radius": 3.6,
+    "Area": 1.95,
+    "MomentInertia": 2.52,
+    "MomentResistance": 1.68,
+    "WeightMeter": 1.52,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 30x30x2.0",
+    "Height": 30.0,
+    "Length": 30.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 2.17,
+    "MomentInertia": 2.79,
+    "MomentResistance": 1.86,
+    "WeightMeter": 1.7,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 40x40x1.5",
+    "Height": 40.0,
+    "Length": 40.0,
+    "Thickness": 1.5,
+    "Radius": 3.0,
+    "Area": 2.27,
+    "MomentInertia": 5.57,
+    "MomentResistance": 2.78,
+    "WeightMeter": 1.78,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 40x40x2.0",
+    "Height": 40.0,
+    "Length": 40.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 2.97,
+    "MomentInertia": 7.070,
+    "MomentResistance": 3.53,
+    "WeightMeter": 2.33,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 40x40x3.0",
+    "Height": 40.0,
+    "Length": 40.0,
+    "Thickness": 3.0,
+    "Radius": 6.0,
+    "Area": 4.28,
+    "MomentInertia": 9.61,
+    "MomentResistance": 4.81,
+    "WeightMeter": 3.36,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 50x50x1.8",
+    "Height": 50.0,
+    "Length": 50.0,
+    "Thickness": 1.8,
+    "Radius": 3.6,
+    "Area": 3.39,
+    "MomentInertia": 12.95,
+    "MomentResistance": 5.18,
+    "WeightMeter": 2.64,
+    "Gost": "ГОСТ 8639-82"
+  },
+  {
+    "Name": "Труба 50x50x2.0",
+    "Height": 50.0,
+    "Length": 50.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 3.74,
+    "MomentInertia": 14.14,
+    "MomentResistance": 5.66,
+    "WeightMeter": 2.93,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 50x50x3.0",
+    "Height": 50.0,
+    "Length": 50.0,
+    "Thickness": 3.0,
+    "Radius": 6.0,
+    "Area": 5.41,
+    "MomentInertia": 19.45,
+    "MomentResistance": 7.78,
+    "WeightMeter": 4.25,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 50x50x4.0",
+    "Height": 50.0,
+    "Length": 50.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 6.95,
+    "MomentInertia": 23.7,
+    "MomentResistance": 9.48,
+    "WeightMeter": 5.45,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 60x60x1.8",
+    "Height": 60.0,
+    "Length": 60.0,
+    "Thickness": 1.8,
+    "Radius": 3.6,
+    "Area": 4.11,
+    "MomentInertia": 22.95,
+    "MomentResistance": 7.65,
+    "WeightMeter": 3.2,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 60x60x2.0",
+    "Height": 60.0,
+    "Length": 60.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 4.54,
+    "MomentInertia": 25.14,
+    "MomentResistance": 8.38,
+    "WeightMeter": 3.56,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 60x60x3.0",
+    "Height": 60.0,
+    "Length": 60.0,
+    "Thickness": 3.0,
+    "Radius": 6.0,
+    "Area": 6.61,
+    "MomentInertia": 35.11,
+    "MomentResistance": 11.7,
+    "WeightMeter": 5.19,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 60x60x4.0",
+    "Height": 60.0,
+    "Length": 60.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 8.55,
+    "MomentInertia": 43.5,
+    "MomentResistance": 14.5,
+    "WeightMeter": 6.71,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 80x80x2.0",
+    "Height": 80.0,
+    "Length": 80.0,
+    "Thickness": 2.0,
+    "Radius": 4.0,
+    "Area": 6.14,
+    "MomentInertia": 61.7,
+    "MomentResistance": 15.425,
+    "WeightMeter": 4.79,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 80x80x3.0",
+    "Height": 80.0,
+    "Length": 80.0,
+    "Thickness": 3.0,
+    "Radius": 6.0,
+    "Area": 9.01,
+    "MomentInertia": 87.81,
+    "MomentResistance": 21.95,
+    "WeightMeter": 7.07,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 80x80x4.0",
+    "Height": 80.0,
+    "Length": 80.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 11.75,
+    "MomentInertia": 111.0,
+    "MomentResistance": 27.74,
+    "WeightMeter": 9.22,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 80x80x5.0",
+    "Height": 80.0,
+    "Length": 80.0,
+    "Thickness": 5.0,
+    "Radius": 10.0,
+    "Area": 14.36,
+    "MomentInertia": 131.3,
+    "MomentResistance": 32.83,
+    "WeightMeter": 11.27,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 100x100x3.0",
+    "Height": 100.0,
+    "Length": 100.0,
+    "Thickness": 3.0,
+    "Radius": 6.0,
+    "Area": 11.41,
+    "MomentInertia": 177.0,
+    "MomentResistance": 35.4,
+    "WeightMeter": 8.96,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 100x100x4.0",
+    "Height": 100.0,
+    "Length": 100.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 14.95,
+    "MomentInertia": 225.1,
+    "MomentResistance": 45.02,
+    "WeightMeter": 11.73,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 100x100x5.0",
+    "Height": 100.0,
+    "Length": 100.0,
+    "Thickness": 5.0,
+    "Radius": 10.0,
+    "Area": 18.36,
+    "MomentInertia": 270.9,
+    "MomentResistance": 54.19,
+    "WeightMeter": 14.41,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 120x120x3.0",
+    "Height": 120.0,
+    "Length": 120.0,
+    "Thickness": 3.0,
+    "Radius": 6.0,
+    "Area": 13.81,
+    "MomentInertia": 312.3,
+    "MomentResistance": 52.05,
+    "WeightMeter": 10.84,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 120x120x4.0",
+    "Height": 120.0,
+    "Length": 120.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 18.15,
+    "MomentInertia": 402.2,
+    "MomentResistance": 67.03,
+    "WeightMeter": 14.25,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 120x120x5.0",
+    "Height": 120.0,
+    "Length": 120.0,
+    "Thickness": 5.0,
+    "Radius": 10.0,
+    "Area": 22.36,
+    "MomentInertia": 485.3,
+    "MomentResistance": 80.88,
+    "WeightMeter": 17.55,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 140x140x4.0",
+    "Height": 140.0,
+    "Length": 140.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 21.35,
+    "MomentInertia": 651.5,
+    "MomentResistance": 93.07,
+    "WeightMeter": 16.76,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 140x140x5.0",
+    "Height": 140.0,
+    "Length": 140.0,
+    "Thickness": 5.0,
+    "Radius": 10.0,
+    "Area": 26.36,
+    "MomentInertia": 790.3,
+    "MomentResistance": 112.9,
+    "WeightMeter": 20.69,
+    "Gost": "ГОСТ 30245—2012"
+  },
+  {
+    "Name": "Труба 180x180x4.0",
+    "Height": 180.0,
+    "Length": 180.0,
+    "Thickness": 4.0,
+    "Radius": 8.0,
+    "Area": 27.75,
+    "MomentInertia": 1421.74,
+    "MomentResistance": 157.97,
+    "WeightMeter": 21.78,
+    "Gost": "ГОСТ 32931-2015"
+  },
+  {
+    "Name": "Труба 180x180x5.0",
+    "Height": 180.0,
+    "Length": 180.0,
+    "Thickness": 5.0,
+    "Radius": 10.0,
+    "Area": 34.36,
+    "MomentInertia": 1737.0,
+    "MomentResistance": 192.9,
+    "WeightMeter": 26.97,
+    "Gost": "ГОСТ 30245—2012"
+  }
 ]
