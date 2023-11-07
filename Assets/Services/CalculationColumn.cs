@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using Material = Assets.Models.Material;
 
@@ -16,18 +17,20 @@ namespace Assets.Services
         public static ProfilePipe CalculateColumn(int segmentBySlope, int segmentByLength, int segmentByHeight, int countStep
                                             , float cargo, Material material, List<ProfilePipe> profilePipes)
         {
-            profilePipes.Sort((p, q) => p.Area.CompareTo(q.Area)); // Sorted list of all pipes by area cross section
             float force = CalculateForce(segmentBySlope, segmentByLength, countStep, cargo); // u.m. = kg
-            float areaRequiredCrossSec = force / material.YieldStrength; // u.m. = sm
-            ProfilePipe profilePipe = new();
+            float areaRequiredCrossSec = force / material.YieldStrength; // u.m. = sm2
+            ProfilePipe profilePipe = profilePipes.First(e => e.Area > areaRequiredCrossSec);
             float elasticity;
             float elasticityReduced;
             float coefficientFi;
             float forceCritical;
             float comparer;
+            int i = profilePipes.IndexOf(profilePipe);
             do
             {
-                profilePipe = profilePipes.First(e => e.Area > areaRequiredCrossSec);
+                if (i == profilePipes.Count)
+                    return null;
+                profilePipe = profilePipes[i];
                 elasticity = (segmentByHeight / 10) / profilePipe.RadiusInertia;
                 elasticityReduced = elasticity * (Mathf.Pow(material.YieldStrength / material.ElastiModulus, 0.5f));
                 if (elasticityReduced <= 2.5f)
@@ -38,7 +41,7 @@ namespace Assets.Services
                     coefficientFi = 332 / (MathF.Pow(elasticityReduced, 2) * (51 - elasticityReduced));
                 forceCritical = coefficientFi * profilePipe.Area * material.YieldStrength; // u.m. = kg
                 comparer = force / (coefficientFi * profilePipe.Area * material.YieldStrength);
-                areaRequiredCrossSec = profilePipe.Area;
+                i++;
             } while (comparer > 1);
             return profilePipe; 
         }

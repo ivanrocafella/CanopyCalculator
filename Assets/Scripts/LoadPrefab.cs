@@ -1,15 +1,19 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using Assets.Services;
 using Assets.Utils;
+using Autodesk.Fbx;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEditor;
+using UnityEditor.Formats.Fbx.Exporter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using Button = UnityEngine.UI.Button;
 using Material = Assets.Models.Material;
 
 public class LoadPrefab : MonoBehaviour
@@ -20,6 +24,7 @@ public class LoadPrefab : MonoBehaviour
     private int MultipleForSentimeter = 10;
     private string pathMaterial;
     private string pathProfilesPipe;
+    public Button toFbxButton;
 
     private void Awake()
     {
@@ -66,11 +71,17 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
 
-        Instantiate(canopyPrefab);
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         Material material = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameMaterial);
         pathProfilesPipe = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
         List<ProfilePipe> profilePipes = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfilesPipe);
+        planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
+            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
+            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, 85f, material, profilePipes));
+        Instantiate(canopyPrefab);
+        toFbxButton.interactable = true;
+
         //Destroy(mainCamera.GetComponent<CameraTransform>());
         //mainCamera.AddComponent<CameraTransform>();
         //mainCamera.transform.localPosition = new Vector3(0, 2f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
@@ -80,5 +91,13 @@ public class LoadPrefab : MonoBehaviour
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, 85f, material, profilePipes).Name);
+    }
+
+    public void ToFbxButtonClick()
+    {
+        string filePath = Path.Combine(Application.dataPath, "FbxModels", "canopy.fbx");
+        GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+        ModelExporter.ExportObject(filePath, canopy);
+        toFbxButton.interactable = false;
     }
 }

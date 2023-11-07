@@ -1,3 +1,4 @@
+using Autodesk.Fbx;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -64,7 +65,6 @@ public class FormValidator : MonoBehaviour
         }
         else         
             Button.interactable = false;    
-            
     }
 
     private bool IsValid()
