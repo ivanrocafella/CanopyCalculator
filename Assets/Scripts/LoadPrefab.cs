@@ -3,6 +3,7 @@ using Assets.Models.Enums;
 using Assets.Services;
 using Assets.Utils;
 using Autodesk.Fbx;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -95,6 +96,8 @@ public class LoadPrefab : MonoBehaviour
 
     public void ToFbxButtonClick()
     {
+        if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
+            Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
         string filePath = Path.Combine(Application.dataPath, "FbxModels", "canopy.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         ModelExporter.ExportObject(filePath, canopy);
