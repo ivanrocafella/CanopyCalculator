@@ -2,7 +2,6 @@ using Assets.Models;
 using Assets.Models.Enums;
 using Assets.Services;
 using Assets.Utils;
-using Autodesk.Fbx;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +24,7 @@ public class LoadPrefab : MonoBehaviour
     private int MultipleForSentimeter = 10;
     private string pathMaterial;
     private string pathProfilesPipe;
+    private string pathTrusses;
     public Button toFbxButton;
 
     private void Awake()
@@ -71,17 +71,36 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
+        float cargo = 85f;
 
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         Material material = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameMaterial);
         pathProfilesPipe = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
         List<ProfilePipe> profilePipes = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfilesPipe);
-        planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+        pathTrusses = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
+        List<Truss> trusses = FileAction<Truss>.ReadAndDeserialyze(pathTrusses);
+
+        try
+        {
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
-            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, 85f, material, profilePipes));
-        Instantiate(canopyPrefab);
-        toFbxButton.interactable = true;
+            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes));
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(CalculationBeamTruss.CalculateBeamTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+               , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
+               , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, trusses));
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(CalculationRafterTruss.CalculateRafterTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+             , planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
+             , planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter
+             , cargo, material, trusses));
+            Instantiate(canopyPrefab);
+            toFbxButton.interactable = true;
+        }
+        catch (Exception)
+        {
+            print("Œ¯Ë·Í‡");
+        }
+        
 
         //Destroy(mainCamera.GetComponent<CameraTransform>());
         //mainCamera.AddComponent<CameraTransform>();
@@ -91,14 +110,14 @@ public class LoadPrefab : MonoBehaviour
         print(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
-            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, 85f, material, profilePipes).Name);
+            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes).Name);
     }
 
     public void ToFbxButtonClick()
     {
         if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
             Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
-        string filePath = Path.Combine(Application.dataPath, "FbxModels", "canopy.fbx");
+        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{DateTime.Now.Year}.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         ModelExporter.ExportObject(filePath, canopy);
         toFbxButton.interactable = false;

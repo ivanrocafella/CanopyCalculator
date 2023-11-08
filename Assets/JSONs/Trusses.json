@@ -13,14 +13,24 @@
       "Height": 15.0,
       "Length": 15.0,
       "Thickness": 1.5,
-      "Radius": 3.0
+      "Radius": 3.0,
+      "Area": 0.771,
+      "MomentInertia": 0.229,
+      "MomentResistance": 0.305,
+      "WeightMeter": 0.605,
+      "Gost": "ГОСТ 8639-82"
     },
     "ProfileCrate": {
       "Name": "Труба 10x10x1.2",
       "Height": 10.0,
       "Length": 10.0,
       "Thickness": 1.2,
-      "Radius": 2.4
+      "Radius": 2.4,
+      "Area": 0.398,
+      "MomentInertia": 0.05,
+      "MomentResistance": 0.1,
+      "WeightMeter": 0.312,
+      "Gost": "ГОСТ 8639-82"
     }
   },
   {
@@ -37,14 +47,24 @@
       "Height": 15.0,
       "Length": 15.0,
       "Thickness": 1.5,
-      "Radius": 3.0
+      "Radius": 3.0,
+      "Area": 0.771,
+      "MomentInertia": 0.229,
+      "MomentResistance": 0.305,
+      "WeightMeter": 0.605,
+      "Gost": "ГОСТ 8639-82"
     },
     "ProfileCrate": {
       "Name": "Труба 10x10x1.2",
       "Height": 10.0,
       "Length": 10.0,
       "Thickness": 1.2,
-      "Radius": 2.4
+      "Radius": 2.4,
+      "Area": 0.398,
+      "MomentInertia": 0.05,
+      "MomentResistance": 0.1,
+      "WeightMeter": 0.312,
+      "Gost": "ГОСТ 8639-82"
     }
   },
   {
@@ -61,14 +81,24 @@
       "Height": 20.0,
       "Length": 20.0,
       "Thickness": 1.5,
-      "Radius": 3.0
+      "Radius": 3.0,
+      "Area": 1.071,
+      "MomentInertia": 0.6,
+      "MomentResistance": 0.6,
+      "WeightMeter": 0.841,
+      "Gost": "ГОСТ 8639-82"
     },
     "ProfileCrate": {
       "Name": "Труба 15x15x1.2",
       "Height": 15.0,
       "Length": 15.0,
       "Thickness": 1.2,
-      "Radius": 2.4
+      "Radius": 2.4,
+      "Area": 0.638,
+      "MomentInertia": 0.199,
+      "MomentResistance": 0.265,
+      "WeightMeter": 0.501,
+      "Gost": "ГОСТ 8639-82"
     }
   },
   {
@@ -85,14 +115,24 @@
       "Height": 25.0,
       "Length": 25.0,
       "Thickness": 1.5,
-      "Radius": 3.0
+      "Radius": 3.0,
+      "Area": 1.37,
+      "MomentInertia": 1.24,
+      "MomentResistance": 0.996,
+      "WeightMeter": 1.07,
+      "Gost": "ГОСТ 8639-82"
     },
     "ProfileCrate": {
       "Name": "Труба 20x20x1.2",
       "Height": 20.0,
       "Length": 20.0,
       "Thickness": 1.2,
-      "Radius": 2.4
+      "Radius": 2.4,
+      "Area": 0.878,
+      "MomentInertia": 0.51,
+      "MomentResistance": 0.51,
+      "WeightMeter": 0.689,
+      "Gost": "ГОСТ 8639-82"
     }
   },
   {
@@ -109,14 +149,24 @@
       "Height": 30.0,
       "Length": 30.0,
       "Thickness": 1.8,
-      "Radius": 3.6
+      "Radius": 3.6,
+      "Area": 1.95,
+      "MomentInertia": 2.52,
+      "MomentResistance": 1.68,
+      "WeightMeter": 1.52,
+      "Gost": "ГОСТ 8639-82"
     },
     "ProfileCrate": {
       "Name": "Труба 25x25x1.2",
       "Height": 25.0,
       "Length": 25.0,
       "Thickness": 1.2,
-      "Radius": 2.4
+      "Radius": 2.4,
+      "Area": 1.12,
+      "MomentInertia": 1.04,
+      "MomentResistance": 0.835,
+      "WeightMeter": 1.878,
+      "Gost": "ГОСТ 8639-82"
     }
   },
   {
@@ -133,14 +183,24 @@
       "Height": 40.0,
       "Length": 40.0,
       "Thickness": 2.0,
-      "Radius": 4.0
+      "Radius": 4.0,
+      "Area": 2.97,
+      "MomentInertia": 7.070,
+      "MomentResistance": 3.53,
+      "WeightMeter": 2.33,
+      "Gost": "ГОСТ 8639-82"
     },
     "ProfileCrate": {
       "Name": "Труба 30x30x1.5",
       "Height": 30.0,
       "Length": 30.0,
       "Thickness": 1.5,
-      "Radius": 3.0
+      "Radius": 3.0,
+      "Area": 1.67,
+      "MomentInertia": 2.24,
+      "MomentResistance": 1.49,
+      "WeightMeter": 1.31,
+      "Gost": "ГОСТ 8639-82"
     }
   },
   {
@@ -157,14 +217,24 @@
       "Height": 50.0,
       "Length": 50.0,
       "Thickness": 2.0,
-      "Radius": 4.0
+      "Radius": 4.0,
+      "Area": 3.74,
+      "MomentInertia": 14.14,
+      "MomentResistance": 5.66,
+      "WeightMeter": 2.93,
+      "Gost": "ГОСТ 30245—2012"
     },
     "ProfileCrate": {
       "Name": "Труба 40x20x1.5",
       "Height": 20.0,
       "Length": 40.0,
       "Thickness": 1.5,
-      "Radius": 3.0
+      "Radius": 3.0,
+      "Area": 1.52,
+      "MomentInertia": 1.12,
+      "MomentResistance": 1.12,
+      "WeightMeter": 1.194,
+      "Gost": "ГОСТ 32931-2015"
     }
   }
 ]

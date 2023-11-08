@@ -12,8 +12,7 @@ using Material = Assets.Models.Material;
 namespace Assets.Services
 {
     public static class CalculationColumn
-    {
-        private static int coefficientReducedLength = 1;        
+    {       
         public static ProfilePipe CalculateColumn(int segmentBySlope, int segmentByLength, int segmentByHeight, int countStep
                                             , float cargo, Material material, List<ProfilePipe> profilePipes)
         {
@@ -42,7 +41,7 @@ namespace Assets.Services
                 forceCritical = coefficientFi * profilePipe.Area * material.YieldStrength; // u.m. = kg
                 comparer = force / (coefficientFi * profilePipe.Area * material.YieldStrength);
                 i++;
-            } while (comparer > 1);
+            } while (comparer > 1 || elasticity > 150);
             return profilePipe; 
         }
 
