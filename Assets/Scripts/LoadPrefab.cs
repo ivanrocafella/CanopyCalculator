@@ -62,15 +62,15 @@ public class LoadPrefab : MonoBehaviour
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DestroyImmediate(canopy);
 
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = float.Parse(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = float.Parse(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = float.Parse(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = float.Parse(slopeInputGB.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = (int)float.Parse(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = float.Parse(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = float.Parse(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = float.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = float.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = ToFloat(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = ToFloat(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = ToFloat(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = ToFloat(slopeInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = (int)ToFloat(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = ToFloat(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = ToFloat(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         float cargo = 85f;
 
@@ -122,14 +122,25 @@ public class LoadPrefab : MonoBehaviour
     {
         if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
             Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
-        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{DateTime.Now.Year}.fbx");
+        string format = "dd.MM.yyyy_hh:mm:ss";
+        string dateTimeNow = DateTime.Now.ToString(format);
+        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{dateTimeNow}.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         ModelExporter.ExportObject(filePath, canopy);
         toFbxButton.interactable = false;
     }
 
     private float ToFloat(string textInput)
-    { 
-        
+    {
+        string commoTextInput;
+        float value;
+        if (textInput.Contains('.'))
+        {
+            commoTextInput = textInput.Replace('.', ',');
+            value = float.Parse(commoTextInput);
+        }
+        else
+            value = float.Parse(textInput);
+        return value;
     }
 }

@@ -43,51 +43,21 @@ public class FormValidator : MonoBehaviour
 
         if (IsValid())
         {
-            string commoTextLengthInput;
-            string commoTextSpanInput;
-            string commoTextStepRafterInput;
-            string commoTextStepGirderInput;
-
-            if (LengthInput.text.Contains('.'))
-            {
-                commoTextLengthInput = LengthInput.text.Replace('.', ',');
-                valueLengthInput = float.Parse(commoTextLengthInput) * 1000;
-            }
-            else
-                valueLengthInput = float.Parse(LengthInput.text) * 1000;
-            if (SpanInput.text.Contains('.'))
-            {
-                commoTextSpanInput = SpanInput.text.Replace('.', ',');
-                valueSpanInput = float.Parse(commoTextSpanInput) * 1000;
-            }
-            else
-                valueSpanInput = float.Parse(SpanInput.text) * 1000;
-            if (StepRafterInput.text.Contains('.'))
-            {
-                commoTextStepRafterInput = StepRafterInput.text.Replace('.', ',');
-                valueStepRafterInput = float.Parse(commoTextStepRafterInput) * 10;
-            }
-            else
-                valueStepRafterInput = float.Parse(StepRafterInput.text) * 10;
-            if (StepGirderInput.text.Contains('.'))
-            {
-                commoTextStepGirderInput = StepGirderInput.text.Replace('.', ',');
-                valueStepGirderInput = float.Parse(commoTextStepGirderInput) * 10;
-            }
-            else
-                valueStepGirderInput = float.Parse(StepGirderInput.text) * 10;
-
+            valueLengthInput = ToFloat(LengthInput.text) * 100;
+            valueSpanInput = ToFloat(SpanInput.text) * 100;
+            valueStepRafterInput = ToFloat(StepRafterInput.text);
+            valueStepGirderInput = ToFloat(StepGirderInput.text);
 
             if (valueLengthInput < valueStepRafterInput || valueSpanInput < valueStepGirderInput)
             {
                 if (valueLengthInput < valueStepRafterInput)
                 {
-                    messageStepRafterInput = $"Значение должно быть не больше {valueLengthInput / 10} см";
+                    messageStepRafterInput = $"Значение должно быть не больше {valueLengthInput} см";
                     emStepRafterInput.GetComponent<TMP_Text>().text = messageStepRafterInput;
                 }
                 if (valueSpanInput < valueStepGirderInput)
                 {
-                    messageStepGirderInput = $"Значение должно быть не больше {valueSpanInput / 10} см";
+                    messageStepGirderInput = $"Значение должно быть не больше {valueSpanInput} см";
                     emStepGirderInput.GetComponent<TMP_Text>().text = messageStepGirderInput;
                 }
                 Button.interactable = false;
@@ -110,5 +80,19 @@ public class FormValidator : MonoBehaviour
                 && OutputGirderInput.GetComponent<InputFieldValidator>().isValid
                 && StepRafterInput.GetComponent<InputFieldValidator>().isValid
                 && StepGirderInput.GetComponent<InputFieldValidator>().isValid;
+    }
+
+    private float ToFloat(string textInput)
+    {
+        string commoTextInput;
+        float value;
+        if (textInput.Contains('.'))
+        {
+            commoTextInput = textInput.Replace('.', ',');
+            value = float.Parse(commoTextInput);
+        }
+        else
+            value = float.Parse(textInput);
+        return value;
     }
 }
