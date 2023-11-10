@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class PlanCanopyGenerator : MonoBehaviour
 {
-    public int SizeByX;
-    public int SizeByZ;
-    public int SizeByY;
-    public int SlopeInDegree;
+    public float SizeByX;
+    public float SizeByZ;
+    public float SizeByY;
+    public float SlopeInDegree;
     public int CountStep;
-    public int OutputRafter;
-    public int OutputGirder;
+    public float OutputRafter;
+    public float OutputGirder;
     public KindProfilePipe KindProfileColumn;
     public KindTruss KindTrussBeam;
     public KindTruss KindTrussRafter;
@@ -35,7 +35,7 @@ public class PlanCanopyGenerator : MonoBehaviour
 
     public PlanCanopy MakePlanCanopy()
     {
-        PlanCanopy planColumn = new PlanCanopy()
+        PlanCanopy planColumn = new()
         {
             SizeByX = SizeByX,
             SizeByZ = SizeByZ,

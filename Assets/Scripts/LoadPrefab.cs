@@ -10,6 +10,7 @@ using TMPro;
 using UnityEditor;
 using UnityEditor.Formats.Fbx.Exporter;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
@@ -61,15 +62,15 @@ public class LoadPrefab : MonoBehaviour
         GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DestroyImmediate(canopy);
 
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = int.Parse(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = int.Parse(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = int.Parse(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = int.Parse(slopeInputGB.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = int.Parse(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = int.Parse(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = int.Parse(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = int.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = int.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = float.Parse(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = float.Parse(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = float.Parse(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = float.Parse(slopeInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = (int)float.Parse(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = float.Parse(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = float.Parse(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = float.Parse(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = float.Parse(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         float cargo = 85f;
 
@@ -83,22 +84,26 @@ public class LoadPrefab : MonoBehaviour
         try
         {
             planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
-            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
-            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
-            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes));
+             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
+             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
+             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes));
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(CalculationBeamTruss.CalculateBeamTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
-               , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
-               , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, trusses));
+             , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
+             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, trusses));
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(CalculationRafterTruss.CalculateRafterTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
              , planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter
              , cargo, material, trusses));
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileGirder = (KindProfilePipe)profilePipes.IndexOf(CalculationGirder.CalculateGirder(planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
+             , planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder
+             , planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder
+             , cargo, material, profilePipes));
             Instantiate(canopyPrefab);
             toFbxButton.interactable = true;
         }
         catch (Exception)
         {
-            print("Îøèáêà");
+            print("Ïðåâûøåíû ðàçìåðû!");
         }
         
 
@@ -121,5 +126,10 @@ public class LoadPrefab : MonoBehaviour
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         ModelExporter.ExportObject(filePath, canopy);
         toFbxButton.interactable = false;
+    }
+
+    private float ToFloat(string textInput)
+    { 
+        
     }
 }

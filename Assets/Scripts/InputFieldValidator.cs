@@ -36,11 +36,22 @@ public class InputFieldValidator : MonoBehaviour
 
     private bool IsInputValid(string inputText)
     {
-        bool isInt = int.TryParse(inputText, out int value);
+        string commoText;
+        bool isFloat;
+        float value;
 
-        if (!isInt)
+        if (inputText.Contains('.'))
+        { 
+             commoText = inputText.Replace('.', ',');
+             isFloat = float.TryParse(commoText, out value);     
+        }
+        else
+             isFloat = float.TryParse(inputText, out value);
+
+
+        if (!isFloat)
         {
-            errorMessage = "Поле обязательно для заполнения";
+            errorMessage = "Введите число";
             return false;
         }
         else

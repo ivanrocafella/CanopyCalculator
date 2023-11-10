@@ -11,7 +11,7 @@ namespace Assets.Services
 {
     public static class CalculationBeamTruss
     {
-        public static Truss CalculateBeamTruss(int segmentBySlope, int segmentByLength, int countStep, float cargo,  Material material, List<Truss> trusses)
+        public static Truss CalculateBeamTruss(float segmentBySlope, float segmentByLength, int countStep, float cargo,  Material material, List<Truss> trusses)
         {
             float length = segmentByLength / (countStep * MathF.Pow(10, 3)); // u.m. = m
             float forceLinear = CalculateForceLinear(segmentBySlope, cargo); // u.m. = kg/m
@@ -31,6 +31,6 @@ namespace Assets.Services
             return truss;
         }
 
-        private static float CalculateForceLinear(int segmentBySlope, float cargo) => cargo * segmentBySlope / ( 2 * MathF.Pow(10, 3)); // u.m. = kg/m
+        private static float CalculateForceLinear(float segmentBySlope, float cargo) => cargo * segmentBySlope / ( 2 * MathF.Pow(10, 3)); // u.m. = kg/m
     }
 }

@@ -13,7 +13,7 @@ namespace Assets.Services
 {
     public static class CalculationColumn
     {       
-        public static ProfilePipe CalculateColumn(int segmentBySlope, int segmentByLength, int segmentByHeight, int countStep
+        public static ProfilePipe CalculateColumn(float segmentBySlope, float segmentByLength, float segmentByHeight, int countStep
                                             , float cargo, Material material, List<ProfilePipe> profilePipes)
         {
             float force = CalculateForce(segmentBySlope, segmentByLength, countStep, cargo); // u.m. = kg
@@ -45,7 +45,7 @@ namespace Assets.Services
             return profilePipe; 
         }
 
-        private static float CalculateForce(int segmentBySlope, int segmentByLength, int countStep, float cargo)
+        private static float CalculateForce(float segmentBySlope, float segmentByLength, int countStep, float cargo)
         {
             float lengthStep = countStep > 1 ? (float)segmentByLength / countStep : (float)segmentByLength / 2;
             float areaCargo = ((float)segmentBySlope / 2) * lengthStep;

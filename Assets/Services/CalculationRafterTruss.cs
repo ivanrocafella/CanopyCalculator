@@ -9,7 +9,7 @@ namespace Assets.Services
 {
     public static class CalculationRafterTruss
     {
-        public static Truss CalculateRafterTruss(int segmentBySlope, float stepRafter, int outputRafter, float cargo, Material material, List<Truss> trusses)
+        public static Truss CalculateRafterTruss(float segmentBySlope, float stepRafter, float outputRafter, float cargo, Material material, List<Truss> trusses)
         {
             float length = segmentBySlope / MathF.Pow(10, 3); // u.m. = m
             float console = outputRafter / MathF.Pow(10, 3); // u.m. = m

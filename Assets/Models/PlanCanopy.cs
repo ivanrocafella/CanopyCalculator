@@ -10,10 +10,10 @@ namespace Assets.Models
 {
     public class PlanCanopy
     {
-        public int SizeByX { get; set; } // u.m. = mm
-        public int SizeByZ { get; set; } // u.m. = mm
-        public int SizeByY { get; set; } // u.m. = mm
-        public int SlopeInDegree { get; set; } // u.m. = degree
+        public float SizeByX { get; set; } // u.m. = mm
+        public float SizeByZ { get; set; } // u.m. = mm
+        public float SizeByY { get; set; } // u.m. = mm
+        public float SlopeInDegree { get; set; } // u.m. = degree
         public float Slope { get { return Mathf.Deg2Rad * SlopeInDegree; } } // u.m. = rad
         public float SizeByYLow { get { return SizeByY - (float)Math.Tan(Slope) * SizeByX; } } // u.m. = mm
         public int CountStep { get; set; } // u.m. = 1
