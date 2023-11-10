@@ -19,6 +19,8 @@ namespace Assets.Services
             float momentResistReqSlope = (momentBendMaxSlope * 100) / material.YieldStrength; // u.m. = sm3
             float momentResistReqConsole = (momentBendMaxConsole * 100) / material.YieldStrength; // u.m. = sm3
             ProfilePipe profilePipe = profilePipes.First(e => e.MomentResistance > momentResistReqSlope && e.MomentResistance > momentResistReqConsole);
+            if (profilePipe == null)
+                return null;
             float comparerSlope;
             float comparerConsole;
             int i = profilePipes.IndexOf(profilePipe);

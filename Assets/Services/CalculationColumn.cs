@@ -18,7 +18,9 @@ namespace Assets.Services
         {
             float force = CalculateForce(segmentBySlope, segmentByLength, countStep, cargo); // u.m. = kg
             float areaRequiredCrossSec = force / material.YieldStrength; // u.m. = sm2
-            ProfilePipe profilePipe = profilePipes.First(e => e.Area > areaRequiredCrossSec);
+            ProfilePipe profilePipe = profilePipes.FirstOrDefault(e => e.Area > areaRequiredCrossSec);
+            if (profilePipe == null)
+                return null;
             float elasticity;
             float elasticityReduced;
             float coefficientFi;

@@ -18,7 +18,9 @@ namespace Assets.Services
             float momentBendMaxConsole = forceLinear * MathF.Pow(console, 2) / 2; // u.m. = kg*m
             float momentResistReqSlope = (momentBendMaxSlope * 100) / material.YieldStrength; // u.m. = sm3
             float momentResistReqConsole = (momentBendMaxConsole * 100) / material.YieldStrength; // u.m. = sm3
-            Truss truss = trusses.First(e => e.MomentResistance > momentResistReqSlope && e.ProfileBelt.MomentResistance > momentResistReqConsole);
+            Truss truss = trusses.FirstOrDefault(e => e.MomentResistance > momentResistReqSlope && e.ProfileBelt.MomentResistance > momentResistReqConsole);
+            if (truss == null)
+                return null;
             float comparerSlope;
             float comparerConsole;
             int i = trusses.IndexOf(truss);

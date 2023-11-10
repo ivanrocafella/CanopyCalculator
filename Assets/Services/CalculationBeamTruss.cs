@@ -17,7 +17,9 @@ namespace Assets.Services
             float forceLinear = CalculateForceLinear(segmentBySlope, cargo); // u.m. = kg/m
             float momentBendMax = forceLinear * MathF.Pow(length, 2) / 8; // u.m. = kg*m
             float momentResistReq = (momentBendMax * 100) / material.YieldStrength; // u.m. = sm3
-            Truss truss = trusses.First(e => e.MomentResistance > momentResistReq);
+            Truss truss = trusses.FirstOrDefault(e => e.MomentResistance > momentResistReq);
+            if (truss == null)
+                return null;
             float comparer;
             int i = trusses.IndexOf(truss);
             do

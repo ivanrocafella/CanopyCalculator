@@ -27,6 +27,7 @@ public class LoadPrefab : MonoBehaviour
     private string pathProfilesPipe;
     private string pathTrusses;
     public Button toFbxButton;
+    public GameObject EmProfilePipeCol;
 
     private void Awake()
     {
@@ -71,6 +72,7 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = ToFloat(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         float cargo = 85f;
 
@@ -81,48 +83,57 @@ public class LoadPrefab : MonoBehaviour
         pathTrusses = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
         List<Truss> trusses = FileAction<Truss>.ReadAndDeserialyze(pathTrusses);
 
-        try
-        {
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+        ProfilePipe profilePipeColumn = CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
-             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes));
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(CalculationBeamTruss.CalculateBeamTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes);
+        Truss trussBeam = CalculationBeamTruss.CalculateBeamTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
-             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, trusses));
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(CalculationRafterTruss.CalculateRafterTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
+             , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, trusses);
+        Truss trussRafter = CalculationRafterTruss.CalculateRafterTruss(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
              , planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter
-             , cargo, material, trusses));
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileGirder = (KindProfilePipe)profilePipes.IndexOf(CalculationGirder.CalculateGirder(planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
+             , cargo, material, trusses);
+        ProfilePipe profilePipeGirder = CalculationGirder.CalculateGirder(planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
              , planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder
              , planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder
-             , cargo, material, profilePipes));
+             , cargo, material, profilePipes);
+
+        if (profilePipeColumn != null && trussBeam != null && trussRafter != null && profilePipeGirder != null)
+        {
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(profilePipeColumn);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(trussBeam);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(trussRafter);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileGirder = (KindProfilePipe)profilePipes.IndexOf(profilePipeGirder);
             Instantiate(canopyPrefab);
             toFbxButton.interactable = true;
+            EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Empty;
         }
-        catch (Exception)
+        else
         {
-            print("Превышены размеры!");
+            List<string> errorMessages = new();
+            if (profilePipeColumn == null)
+                errorMessages.Add("Превышен допустимый профиль стойки!");
+            if (trussBeam == null)
+                errorMessages.Add("Превышен допустимый размер балочной фермы!");
+            if (trussRafter == null)
+                errorMessages.Add("Превышен допустимый размер стропильной фермы!");
+            if (profilePipeGirder == null)
+                errorMessages.Add("Превышен допустимый профиль прогона!");
+            EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
         
-
-        //Destroy(mainCamera.GetComponent<CameraTransform>());
-        //mainCamera.AddComponent<CameraTransform>();
-        //mainCamera.transform.localPosition = new Vector3(0, 2f * planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY,
-        // -(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ / 2 + planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX * 1.5f * Mathf.Tan(50 * Mathf.Deg2Rad)));
-        //mainCamera.transform.localRotation = Quaternion.Euler(35, 0, 0);
-        print(CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
-            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
-            , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY
-            , planCanopy.GetComponent<PlanCanopyGenerator>().CountStep, cargo, material, profilePipes).Name);
+        print(profilePipeColumn.Name);
+        print(trussBeam.Name);
+        print(trussRafter.Name);
+        print(profilePipeGirder.Name);
     }
 
     public void ToFbxButtonClick()
     {
         if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
             Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
-        string format = "dd.MM.yyyy_hh:mm:ss";
+        string format = "dd.MM.yyyy_hh.mm.ss";
         string dateTimeNow = DateTime.Now.ToString(format);
         string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{dateTimeNow}.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
