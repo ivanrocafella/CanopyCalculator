@@ -38,6 +38,8 @@ TagManager:
   - EmStepGirderInput
   - ToFbxButton
   - ErrorProfilePipeColumn
+  - ColumnDescription
+  - CanopyDescription
   layers:
   - Default
   - TransparentFX

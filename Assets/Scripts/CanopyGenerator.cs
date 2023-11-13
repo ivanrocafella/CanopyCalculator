@@ -20,20 +20,29 @@ public class CanopyGenerator : MonoBehaviour
     private GameObject[] girders;
     private GameObject canopy;
     private ColumnBody columnBodyHigh;
-    private ColumnBody columnBodyLow;
     private BeamTruss beamTruss;
     private RafterTruss rafterTruss;
     private Girder girder;
     private ColumnPlug columnPlug = new();
     private int countStepRafterTruss;
     private int countStepGirder;
+    public GameObject CanopyDescription;
 
     private void Awake()
     {
     }
+
     void Start()
     {       
-        StartCoroutine(MakeCanopy());       
+        StartCoroutine(MakeCanopy());
+        CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
+        CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {columnBodyHigh.Profile.Name}" +
+            $"\n\tДлина - {Mathf.RoundToInt(planColumn.SizeByY)} мм" +
+            $"\n\tКол-во - {planColumn.CountStep + 1} шт" +
+            $"\nКолонна малой высоты:\n\tПрофиль - {columnBodyHigh.Profile.Name}" +
+            $"\n\tДлина - {Mathf.RoundToInt(planColumn.SizeByYLow)} мм" +
+            $"\n\tКол-во - {planColumn.CountStep + 1} шт";
+        
     }
 
     // Update is called once per frame
@@ -50,7 +59,6 @@ public class CanopyGenerator : MonoBehaviour
         beamTrussesOnHigh = new GameObject[planColumn.CountStep];
         beamTrussesOnLow = new GameObject[beamTrussesOnHigh.Length];
         columnBodyHigh = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
-        columnBodyHigh.SetHeight(KindLength.Long);
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;

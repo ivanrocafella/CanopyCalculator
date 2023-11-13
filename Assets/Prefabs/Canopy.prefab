@@ -516,7 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fd37f3b1afa7a47846ea50444b42bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KindTruss: 5
 --- !u!114 &2700731727859909994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,8 +1229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f43a22a7b619f4c8e764fe2d012443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Step: 1000
-  KindTruss: 3
 --- !u!114 &2700731728110096329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,8 +1363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac876c1022b8c64b9b6b2de8d98a4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KindMaterial: 13
-  Step: 600
 --- !u!114 &2700731728131838101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4917,7 +4912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ac1da5fbf3e3b4d8f705cba15565ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KindMaterial: 29
 --- !u!1 &2700731729055704532
 GameObject:
   m_ObjectHideFlags: 0
@@ -6359,15 +6353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56f0a563911aa34fb5de876c471b060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeByX: 4000
-  SizeByZ: 6000
-  SizeByY: 5000
-  SlopeInDegree: 10
-  CountStep: 4
-  OutputBeam: 100
-  OutputRafter: 300
-  OutputGirder: 400
-  canopyPrefab: {fileID: 2700731729593169047}
+  CanopyDescription: {fileID: 0}
 --- !u!114 &2700731729593169040
 MonoBehaviour:
   m_ObjectHideFlags: 0

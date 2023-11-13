@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEditor;
 using UnityEditor.Formats.Fbx.Exporter;
@@ -28,6 +29,9 @@ public class LoadPrefab : MonoBehaviour
     private string pathTrusses;
     public Button toFbxButton;
     public GameObject EmProfilePipeCol;
+    private BeamTruss BeamTruss;
+    private ColumnBody ColumnBodyHigh;
+    private ColumnBody ColumnBodyLow;
 
     private void Awake()
     {
@@ -122,11 +126,10 @@ public class LoadPrefab : MonoBehaviour
                 errorMessages.Add("Превышен допустимый профиль прогона!");
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
-        
         print(profilePipeColumn.Name);
         print(trussBeam.Name);
         print(trussRafter.Name);
-        print(profilePipeGirder.Name);
+        print(profilePipeGirder.Name);      
     }
 
     public void ToFbxButtonClick()
@@ -138,7 +141,7 @@ public class LoadPrefab : MonoBehaviour
         string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{dateTimeNow}.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         ModelExporter.ExportObject(filePath, canopy);
-        toFbxButton.interactable = false;
+        toFbxButton.interactable = false;        
     }
 
     private float ToFloat(string textInput)
