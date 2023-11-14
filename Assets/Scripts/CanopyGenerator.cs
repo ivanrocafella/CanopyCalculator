@@ -1,4 +1,5 @@
 using Assets.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class CanopyGenerator : MonoBehaviour
 {
@@ -27,6 +29,7 @@ public class CanopyGenerator : MonoBehaviour
     private int countStepRafterTruss;
     private int countStepGirder;
     public GameObject CanopyDescription;
+    public const float factorTolerance = 1.2f;
 
     private void Awake()
     {
@@ -41,7 +44,23 @@ public class CanopyGenerator : MonoBehaviour
             $"\n\tКол-во - {planColumn.CountStep + 1} шт" +
             $"\nКолонна малой высоты:\n\tПрофиль - {columnBodyHigh.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(planColumn.SizeByYLow)} мм" +
-            $"\n\tКол-во - {planColumn.CountStep + 1} шт";
+            $"\n\tКол-во - {planColumn.CountStep + 1} шт" +
+            $"\nКол-во мат-ла на колонны: {Math.Round((float)(Mathf.RoundToInt(planColumn.SizeByY) * (planColumn.CountStep + 1) + Mathf.RoundToInt(planColumn.SizeByYLow) * (planColumn.CountStep + 1)) / 1000, 1)} м" +
+            $"\n" +
+            $"Балочная ферма:\n\tТип - {beamTruss.Truss.Name}" +
+            $"\n\tДлина - {Mathf.RoundToInt(beamTruss.LengthTop)} мм" +
+            $"\n\tКол-во - {planColumn.CountStep * 2} шт" +
+            $"\n" +
+            $"Стропильная ферма:\n\tТип - {rafterTruss.Truss.Name}" +
+            $"\n\tДлина - {Mathf.RoundToInt(rafterTruss.LengthTop)} мм" +
+            $"\n\tКол-во - {rafterTrusses.Length} шт" +
+            $"\n\tПодобранный шаг - {Mathf.RoundToInt(rafterTruss.Step / 10)} см" +
+            $"\n" +
+            $"Прогон:\n\tПрофиль - {girder.Profile.Name}" +
+            $"\n\tДлина - {Mathf.RoundToInt(girder.Length)} мм" +
+            $"\n\tКол-во - {girders.Length} шт" +
+            $"\n\tПодобранный шаг - {Mathf.RoundToInt(girder.Step / 10)} см" +
+            $"\nКол-во мат-ла на прогоны: {Math.Round(girder.Length * girders.Length / 1000, 1)} м";
         
     }
 
@@ -62,8 +81,12 @@ public class CanopyGenerator : MonoBehaviour
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         rafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
-        countStepRafterTruss = Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step);
-        countStepGirder = Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step);
+        countStepRafterTruss = planColumn.SizeByZ / Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step) <= rafterTruss.Step ?
+            Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step) : Mathf.FloorToInt(planColumn.SizeByZ / rafterTruss.Step) + 1;
+        rafterTruss.Step = planColumn.SizeByZ / countStepRafterTruss;
+        countStepGirder = (rafterTruss.LengthTop - girder.Profile.Length) / (Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step)) <= girder.Step ?
+            Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step) : Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step) + 1;
+        girder.Step = rafterTruss.LengthTop / countStepGirder;
         rafterTrusses = new GameObject[countStepRafterTruss + 1];
         girders = new GameObject[countStepGirder + 1];
         float partAdditFromAngle = Mathf.Tan(planColumn.Slope)
@@ -93,7 +116,7 @@ public class CanopyGenerator : MonoBehaviour
            , planColumn.Step + planColumn.Step * i);
             beamTrussesOnHigh[i].transform.localRotation = Quaternion.Euler(0f, -90f, -90f);
         }
-        // Make rafter trusses on low columns
+        // Make beam trusses on low columns
         for (int i = 0; i < beamTrussesOnLow.Length; i++)
         {
             beamTrussesOnLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
@@ -126,7 +149,6 @@ public class CanopyGenerator : MonoBehaviour
                              , rafterTruss.Step + rafterTruss.Step * i);
                 rafterTrusses[i].transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
             }
-
         }
         // Make girders
         float stepGirder;
@@ -140,16 +162,13 @@ public class CanopyGenerator : MonoBehaviour
             Destroy(girders[i].GetComponent<GirderTransform>());
             if (i == girders.Length - 1)
             {
-                if (rafterTruss.LengthTop - girder.Profile.Length - i * girder.Step >= 100)
-                {
-                    stepGirder = rafterTruss.LengthTop - girder.Profile.Length;
-                    projectionHorStepGirder = Mathf.Cos(planColumn.Slope) * stepGirder;
-                    projectionVertStepGirder = Mathf.Sin(planColumn.Slope) * stepGirder;
-                    girders[i].transform.localPosition = new Vector3(elemenGirderPosition.x + projectionHorStepGirder
-                                 , elemenGirderPosition.y - projectionVertStepGirder
-                                 , elemenGirderPosition.z);
-                    girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
-                }
+                stepGirder = rafterTruss.LengthTop - girder.Profile.Length;
+                projectionHorStepGirder = Mathf.Cos(planColumn.Slope) * stepGirder;
+                projectionVertStepGirder = Mathf.Sin(planColumn.Slope) * stepGirder;
+                girders[i].transform.localPosition = new Vector3(elemenGirderPosition.x + projectionHorStepGirder
+                             , elemenGirderPosition.y - projectionVertStepGirder
+                             , elemenGirderPosition.z);
+                girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
             }
             else
             {

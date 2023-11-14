@@ -22,8 +22,8 @@ public class LoadPrefab : MonoBehaviour
 {
     private GameObject canopyPrefab;
     private GameObject planCanopy;
-    private int MultipleForMeter = 1000;
-    private int MultipleForSentimeter = 10;
+    private const int MultipleForMeter = 1000;
+    private const int MultipleForSentimeter = 10;
     private string pathMaterial;
     private string pathProfilesPipe;
     private string pathTrusses;
@@ -32,6 +32,7 @@ public class LoadPrefab : MonoBehaviour
     private BeamTruss BeamTruss;
     private ColumnBody ColumnBodyHigh;
     private ColumnBody ColumnBodyLow;
+    private const float coefficientReliability = 1.4f; 
 
     private void Awake()
     {
@@ -78,7 +79,7 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
-        float cargo = 85f;
+        float cargo = 85f * coefficientReliability;
 
         pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
         Material material = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameMaterial);
@@ -126,10 +127,10 @@ public class LoadPrefab : MonoBehaviour
                 errorMessages.Add("Превышен допустимый профиль прогона!");
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
-        print(profilePipeColumn.Name);
-        print(trussBeam.Name);
-        print(trussRafter.Name);
-        print(profilePipeGirder.Name);      
+        //print(profilePipeColumn.Name);
+        //print(trussBeam.Name);
+        //print(trussRafter.Name);
+        //print(profilePipeGirder.Name);      
     }
 
     public void ToFbxButtonClick()
