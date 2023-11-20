@@ -1,3 +1,4 @@
+using AsciiFBXExporter;
 using Assets.Models;
 using Assets.Models.Enums;
 using Assets.Services;
@@ -8,8 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using TMPro;
-using UnityEditor;
-using UnityEditor.Formats.Fbx.Exporter;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -17,10 +16,16 @@ using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 using Button = UnityEngine.UI.Button;
 using Material = Assets.Models.Material;
+using Object = UnityEngine.Object;
+using System.Numerics;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
+using Vector3 = UnityEngine.Vector3;
+using Random = UnityEngine.Random;
 
 public class LoadPrefab : MonoBehaviour
 {
-    private GameObject canopyPrefab;
+    public GameObject canopyPrefab;
     private GameObject planCanopy;
     private const int MultipleForMeter = 1000;
     private const int MultipleForSentimeter = 10;
@@ -32,11 +37,12 @@ public class LoadPrefab : MonoBehaviour
     private BeamTruss BeamTruss;
     private ColumnBody ColumnBodyHigh;
     private ColumnBody ColumnBodyLow;
-    private const float coefficientReliability = 1.4f; 
+    private const float coefficientReliability = 1.4f;
 
     private void Awake()
     {
-        canopyPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(Path.Combine("Assets", "Prefabs", "Canopy.prefab"), typeof(GameObject));
+        if (canopyPrefab != null)
+            Debug.Log($"[{DateTime.Now}]: {canopyPrefab} is not null");
         Instantiate(canopyPrefab);
     }
     // Start is called before the first frame update
@@ -81,11 +87,11 @@ public class LoadPrefab : MonoBehaviour
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         float cargo = 85f * coefficientReliability;
 
-        pathMaterial = Path.Combine(Application.dataPath, "JSONs", "Materials.json");
+        pathMaterial = Path.Combine(Application.dataPath, "Resources", "Materials.json");
         Material material = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameMaterial);
-        pathProfilesPipe = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
+        pathProfilesPipe = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
         List<ProfilePipe> profilePipes = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfilesPipe);
-        pathTrusses = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
+        pathTrusses = Path.Combine(Application.dataPath, "Resources", "Trusses.json");
         List<Truss> trusses = FileAction<Truss>.ReadAndDeserialyze(pathTrusses);
 
         ProfilePipe profilePipeColumn = CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
@@ -141,7 +147,6 @@ public class LoadPrefab : MonoBehaviour
         string dateTimeNow = DateTime.Now.ToString(format);
         string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{dateTimeNow}.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
-        ModelExporter.ExportObject(filePath, canopy);
         toFbxButton.interactable = false;        
     }
 
@@ -158,4 +163,118 @@ public class LoadPrefab : MonoBehaviour
             value = float.Parse(textInput);
         return value;
     }
+
+    //void ExportSceneToFBX(string exportPath)
+    //{
+    //    List<MeshFilter> meshFilters = new List<MeshFilter>(FindObjectsOfType<MeshFilter>());
+    //    List<UnityEngine.Material> uniqueMaterials = new();
+
+    //    using (StreamWriter writer = new StreamWriter(exportPath))
+    //    {
+    //        // Write FBX header
+    //        WriteFBXHeader(writer);
+
+    //        // Write FBX nodes for each mesh with materials
+    //        foreach (MeshFilter meshFilter in meshFilters)
+    //        {
+    //            UnityEngine.Material[] materials = meshFilter.GetComponent<Renderer>().sharedMaterials;
+
+    //            foreach (UnityEngine.Material material in materials)
+    //            {
+    //                if (!uniqueMaterials.Contains(material))
+    //                {
+    //                    WriteMaterialNode(writer, material);
+    //                    uniqueMaterials.Add(material);
+    //                }
+    //            }
+
+    //            WriteMeshNode(writer, meshFilter, uniqueMaterials.IndexOf(materials[0])); // Assign the index of the first material
+    //        }
+
+    //        // Write FBX footer
+    //        WriteFBXFooter(writer);
+    //    }
+
+    //    Debug.Log("Export to FBX successful: " + exportPath);
+    //}
+
+    //void WriteFBXHeader(StreamWriter writer)
+    //{
+    //    // Write FBX header information (you may need to adjust this based on FBX format)
+    //    writer.WriteLine("; FBX 7.4.0 project file");
+    //    writer.WriteLine("FBXHeaderExtension:  {");
+    //    writer.WriteLine("\tFBXHeaderVersion: 1003");
+    //    writer.WriteLine("\tFBXVersion: 7400");
+    //    writer.WriteLine("}");
+    //    writer.WriteLine("CreationTime: \"\"");
+    //}
+
+    //void WriteMaterialNode(StreamWriter writer, UnityEngine.Material material)
+    //{
+    //    // Write FBX node information for each material (you may need to adjust this based on FBX format)
+    //    writer.WriteLine("Node: {");
+    //    writer.WriteLine($"\tName: \"{material.name}\"");
+    //    writer.WriteLine("\tType: \"Material\"");
+    //    writer.WriteLine("\tVersion: 102");
+    //    writer.WriteLine("\tProperties60: {");
+    //    writer.WriteLine($"\t\tP: \"ShadingModel\", \"KString\", \"\", \"\", \"{material.shader.name}\"");
+    //    writer.WriteLine($"\t\tP: \"MultiLayer\", \"Bool\", \"\", \"\",{material.shader.renderQueue == 2000}");
+    //    writer.WriteLine("\t}");
+    //    writer.WriteLine("\t}");
+    //    writer.WriteLine("\tCulling: \"CullingOff\"");
+    //    writer.WriteLine("\tVisibility: 1");
+    //    writer.WriteLine("\tColor: 1, 1, 1");
+    //    writer.WriteLine("}");
+    //}
+
+    //void WriteMeshNode(StreamWriter writer, MeshFilter meshFilter, int materialIndex)
+    //{
+    //    // Write FBX node information for each mesh (you may need to adjust this based on FBX format)
+    //    writer.WriteLine("Node: {");
+    //    writer.WriteLine($"\tName: \"Mesh_{meshFilter.name}\"");
+    //    writer.WriteLine("\tType: \"Mesh\"");
+    //    writer.WriteLine("\tVersion: 232");
+    //    writer.WriteLine("\tProperties60: {");
+    //    writer.WriteLine("\t\tP: \"Mesh\", \"KString\", \"\", \"\"");
+    //    writer.WriteLine("\t\tP: \"Version\", \"int\", \"\", \"\",1");
+    //    writer.WriteLine("\t\tP: \"Vertices\", \"Vector\", \"Vector\", \"\",{");
+
+    //    Mesh mesh = meshFilter.sharedMesh;
+    //    Vector3[] vertices = mesh.vertices;
+
+    //    for (int i = 0; i < vertices.Length; i++)
+    //    {
+    //        writer.WriteLine($"\t\t\t{vertices[i].x},{vertices[i].y},{vertices[i].z},");
+    //    }
+
+    //    writer.WriteLine("\t\t}");
+    //    writer.WriteLine("\t\tP: \"PolygonVertexIndex\", \"int\", \"\", \"\",{");
+
+    //    int[] triangles = mesh.triangles;
+    //    for (int i = 0; i < triangles.Length; i += 3)
+    //    {
+    //        writer.WriteLine($"\t\t\t{triangles[i]},{triangles[i + 1]},{triangles[i + 2]},");
+    //    }
+
+    //    writer.WriteLine("\t\t}");
+    //    writer.WriteLine("\t\tP: \"Materials\", \"Compound\", \"\", \"\"");
+    //    writer.WriteLine("\t\tP: \"ShadingModel\", \"KString\", \"\", \"\", \"\"");
+    //    writer.WriteLine("\t\tP: \"MultiLayer\", \"Bool\", \"\", \"\", False");
+    //    writer.WriteLine("\t}");
+    //    writer.WriteLine($"\tMaterial: {materialIndex}");
+    //    writer.WriteLine("\tCulling: \"CullingOff\"");
+    //    writer.WriteLine("\tVisibility: 1");
+    //    writer.WriteLine("\tColor: 1, 1, 1");
+    //    writer.WriteLine("}");
+    //}
+
+    //void WriteFBXFooter(StreamWriter writer)
+    //{
+    //    // Write FBX footer information (you may need to adjust this based on FBX format)
+    //    writer.WriteLine("Takes:  {");
+    //    writer.WriteLine("}");
+    //    writer.WriteLine("Comments: \"\"");
+    //}
+
+
 }

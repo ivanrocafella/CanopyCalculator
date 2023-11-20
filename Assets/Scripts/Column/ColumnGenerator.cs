@@ -18,8 +18,9 @@ public class ColumnGenerator : MonoBehaviour
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindProfile = planColumn.KindProfileColumn;
-        path = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
+        path = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
         string nameProfile = KindProfile.ToString().Insert(5, " ").Replace("_", ".");
+        Debug.Log($"path: {path}");
         ColumnBody = new(nameProfile, path, planColumn);
     }
     // Start is called before the first frame update

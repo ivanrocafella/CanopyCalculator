@@ -60,8 +60,7 @@ public class CanopyGenerator : MonoBehaviour
             $"\n\tДлина - {Mathf.RoundToInt(girder.Length)} мм" +
             $"\n\tКол-во - {girders.Length} шт" +
             $"\n\tПодобранный шаг - {Mathf.RoundToInt(girder.Step / 10)} см" +
-            $"\nКол-во мат-ла на прогоны: {Math.Round(girder.Length * girders.Length / 1000, 1)} м";
-        
+            $"\nКол-во мат-ла на прогоны: {Math.Round(girder.Length * girders.Length / 1000, 1)} м";      
     }
 
     // Update is called once per frame

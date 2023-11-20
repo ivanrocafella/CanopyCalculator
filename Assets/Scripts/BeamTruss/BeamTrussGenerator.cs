@@ -28,8 +28,8 @@ public class BeamTrussGenerator : MonoBehaviour
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindTruss = planColumn.KindTrussBeam;
-        path = Path.Combine(Application.dataPath, "JSONs", "Trusses.json");
-        pathProfile = Path.Combine(Application.dataPath, "JSONs", "ProfilesPipe.json");
+        path = Path.Combine(Application.dataPath, "Resources", "Trusses.json");
+        pathProfile = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
         nameColumnProfile = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindProfile
             .ToString().Insert(5, " ").Replace("_", ".");
         columnProfile = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfile).Find(e => e.Name == nameColumnProfile);

@@ -1,0 +1,7 @@
+[20.11.2023 14:46:47]Should not be capturing when there is a hotcontrol
+[20.11.2023 14:53:23]Assets\OBJExport\OBJExporter.cs(165,40): warning CS0618: 'Application.loadedLevelName' is obsolete: 'Use SceneManager to determine what scenes have been loaded'
+[20.11.2023 14:53:23]Assets\OBJExport\OBJExporter.cs(335,33): warning CS0168: The variable 'ex' is declared but never used
+[20.11.2023 17:42:32]Project path contains special characters, which can be an issue when opening Visual Studio
+[20.11.2023 17:42:36]Project path contains special characters, which can be an issue when opening Visual Studio
+[20.11.2023 17:43:27]Should not be capturing when there is a hotcontrol
+[20.11.2023 17:45:09]Should not be capturing when there is a hotcontrol
