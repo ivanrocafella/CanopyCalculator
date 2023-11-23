@@ -2388,7 +2388,7 @@ MonoBehaviour:
   CountStep: 2
   OutputRafter: 200
   OutputGirder: 400
-  KindProfileColumn: 29
+  KindProfileColumn: 25
   KindTrussBeam: 2
   KindTrussRafter: 4
   StepRafter: 1200

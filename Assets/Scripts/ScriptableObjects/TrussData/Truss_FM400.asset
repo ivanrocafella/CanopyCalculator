@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1307948dbae87c14bbf79859facfdc75, type: 3}
+  m_Name: Truss_FM400
+  m_EditorClassIdentifier: 
+  trussName: "\u0424\u041C 400"
+  height: 400
+  gap: 14.4719925
+  gapExter: 12
+  lengthCrate: 508.5
+  angleCrateInDegree: 45.06955
+  profileBeltData: {fileID: 11400000, guid: f91700e16fb1b534d8db3bd2eb9f1a92, type: 2}
+  profileCrateData: {fileID: 11400000, guid: 90824f7301f66964bac20b25dbf87e63, type: 2}

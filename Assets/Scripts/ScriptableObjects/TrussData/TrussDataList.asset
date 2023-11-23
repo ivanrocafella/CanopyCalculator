@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f436998da2d9c694e8336fcea6bd63a0, type: 3}
+  m_Name: TrussDataList
+  m_EditorClassIdentifier: 
+  trussesData:
+  - {fileID: 11400000, guid: 5d5a279b9b3947c4a8970ba8c78da59f, type: 2}
+  - {fileID: 11400000, guid: 9b9901bc4cc245d4ebe616deb2b4f4bf, type: 2}
+  - {fileID: 11400000, guid: 79cc7a27558257744a537316f672a459, type: 2}
+  - {fileID: 11400000, guid: 2b52fc0d287662f42b7f0fce3ed4a09e, type: 2}
+  - {fileID: 11400000, guid: 075f20e55ce5e924dbe4eb35d42ec0be, type: 2}
+  - {fileID: 11400000, guid: cd5f43d3d4fa5b347b2596e92a277d94, type: 2}
+  - {fileID: 11400000, guid: a683d54f9c2e65644b0315d66c0d0aa6, type: 2}

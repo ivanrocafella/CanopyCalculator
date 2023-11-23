@@ -58,9 +58,9 @@ public class CanopyGenerator : MonoBehaviour
             $"\n" +
             $"Прогон:\n\tПрофиль - {girder.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(girder.Length)} мм" +
-            $"\n\tКол-во - {girders.Length} шт" +
+            $"\n\tКол-во - {girders.Length + 1} шт" +
             $"\n\tПодобранный шаг - {Mathf.RoundToInt(girder.Step / 10)} см" +
-            $"\nКол-во мат-ла на прогоны: {Math.Round(girder.Length * girders.Length / 1000, 1)} м";      
+            $"\nКол-во мат-ла на прогоны: {Math.Round((girders.Length + 1) * girder.Length / 1000, 1)} м";      
     }
 
     // Update is called once per frame
@@ -87,7 +87,7 @@ public class CanopyGenerator : MonoBehaviour
             Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step) : Mathf.FloorToInt((rafterTruss.LengthTop - girder.Profile.Length) / girder.Step) + 1;
         girder.Step = rafterTruss.LengthTop / countStepGirder;
         rafterTrusses = new GameObject[countStepRafterTruss + 1];
-        girders = new GameObject[countStepGirder + 1];
+        girders = new GameObject[countStepGirder];
         float partAdditFromAngle = Mathf.Tan(planColumn.Slope)
             * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius + planColumn.OutputRafter);
         float partAdditHalfBeltAngle = rafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(planColumn.Slope);
