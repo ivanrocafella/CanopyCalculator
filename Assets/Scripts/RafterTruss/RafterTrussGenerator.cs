@@ -11,7 +11,6 @@ using UnityEngine.Rendering;
 
 public class RafterTrussGenerator : MonoBehaviour
 {
-    private string path;
     public RafterTruss rafterTrussForRead;
     [NonSerialized]
     public float Step;
@@ -21,21 +20,24 @@ public class RafterTrussGenerator : MonoBehaviour
     private GameObject rafterTruss;
     private PlanCanopy planColumn;
     private ProfilePipe columnProfile;
+    private Truss truss;
     private string nameColumnProfile;
-    private string pathProfile;
+    private string nameTruss;
     private readonly ColumnPlug columnPlug = new();
+    public ProfilePipeDataList profilePipeDataList;
+    public TrussDataList trussDataList;
     // Start is called before the first frame update
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindTruss = planColumn.KindTrussRafter;
         Step = planColumn.StepRafter;
-        path = Path.Combine(Application.dataPath, "Resources", "Trusses.json");
-        pathProfile = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
         nameColumnProfile = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().KindProfile
             .ToString().Insert(5, " ").Replace("_", ".");
-        columnProfile = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfile).Find(e => e.Name == nameColumnProfile);
-        rafterTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnProfile.Height + columnPlug.Thickness * 2)
+        nameTruss = KindTruss.ToString().Insert(2, " ");
+        columnProfile = ScriptObjectsAction.GetProfilePipeByName(nameColumnProfile, profilePipeDataList);
+        truss = ScriptObjectsAction.GetTrussByName(nameTruss, trussDataList);
+        rafterTrussForRead = new(truss, planColumn, columnProfile.Height + columnPlug.Thickness * 2)
         {
             Step = Step
         };

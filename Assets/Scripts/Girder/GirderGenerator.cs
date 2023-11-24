@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Models.Enums;
+using Assets.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,21 +11,24 @@ using UnityEngine.Rendering;
 
 public class GirderGenerator : MonoBehaviour
 {
-    private string path;
     [NonSerialized]
     public KindProfilePipe KindRofile;
     [NonSerialized]
     public float Step;
     public Girder girder;
-    private PlanCanopy planColumn;     
+    private PlanCanopy planColumn;
+    private string nameProfile;
+    private ProfilePipe profilePipe;
+    public ProfilePipeDataList ProfilePipeDataList;
     // Start is called before the first frame update
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindRofile = planColumn.KindProfileGirder;
+        nameProfile = KindRofile.ToString().Insert(5, " ").Replace("_", ".");
         Step = planColumn.StepGirder;
-        path = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
-        girder = new(KindRofile.ToString().Insert(5, " ").Replace("_", "."), path, planColumn)
+        profilePipe = ScriptObjectsAction.GetProfilePipeByName(nameProfile, ProfilePipeDataList);
+        girder = new(profilePipe, planColumn)
         {
             Step = Step = Step != 0 ? Step : 500
         };

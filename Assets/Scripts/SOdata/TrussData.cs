@@ -28,7 +28,7 @@ public class TrussData : ScriptableObject
     public float GapExter { get => gapExter; }
     public float GapHalf { get => gap / 2; }
     public float LengthCrate { get => lengthCrate; }
-    public float AngleCrateInDegree { get => lengthCrate; } // u.m. = degree
+    public float AngleCrateInDegree { get => angleCrateInDegree; } // u.m. = degree
     public float AngleCrate { get => Mathf.Deg2Rad * angleCrateInDegree; } // u.m. = rad 
     public float MomentInertia { get => (float)Math.Round(2 * profileBeltData.Area * Mathf.Pow((height - profileBeltData.Height) / 20, 2), 4); } // u.m. = sm4 
     public float MomentResistance { get => (float)Math.Round(MomentInertia * 2 / ((height - profileBeltData.Height) / 10), 4); } // u.m. = sm3

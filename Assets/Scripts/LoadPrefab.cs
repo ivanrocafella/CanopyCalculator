@@ -38,6 +38,9 @@ public class LoadPrefab : MonoBehaviour
     private ColumnBody ColumnBodyHigh;
     private ColumnBody ColumnBodyLow;
     private const float coefficientReliability = 1.4f;
+    public MaterialDataList materialDataList;
+    public TrussDataList trussDataList;
+    public ProfilePipeDataList profilePipeDataList;
 
     private void Awake()
     {
@@ -87,12 +90,9 @@ public class LoadPrefab : MonoBehaviour
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         float cargo = 85f * coefficientReliability;
 
-        pathMaterial = Path.Combine(Application.dataPath, "Resources", "Materials.json");
-        Material material = FileAction<Material>.ReadAndDeserialyze(pathMaterial).Find(e => e.Name == nameMaterial);
-        pathProfilesPipe = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
-        List<ProfilePipe> profilePipes = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfilesPipe);
-        pathTrusses = Path.Combine(Application.dataPath, "Resources", "Trusses.json");
-        List<Truss> trusses = FileAction<Truss>.ReadAndDeserialyze(pathTrusses);
+        Material material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
+        List<ProfilePipe> profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
+        List<Truss> trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
 
         ProfilePipe profilePipeColumn = CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ

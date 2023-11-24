@@ -13,9 +13,9 @@ namespace Assets.Models
         public ProfilePipe Profile { get; set; }
         public float Step { get; set; }
         public PlanCanopy PlanColumn { get; set; } = new();
-        public Girder(string nameProfile, string path, PlanCanopy planColumn) 
+        public Girder(ProfilePipe profilePipe, PlanCanopy planColumn) 
         {
-            Profile = FileAction<ProfilePipe>.ReadAndDeserialyze(path).Find(e => e.Name == nameProfile);
+            Profile = profilePipe;
             PlanColumn = planColumn;
             Length = planColumn.SizeByZ + 2 * PlanColumn.OutputGirder;
         }

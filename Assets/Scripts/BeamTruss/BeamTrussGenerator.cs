@@ -12,7 +12,6 @@ using Object = UnityEngine.Object;
 
 public class BeamTrussGenerator : MonoBehaviour
 {
-    private string path;
     public BeamTruss beamTrussForRead;
     [NonSerialized]
     public KindTruss KindTruss;
@@ -20,20 +19,23 @@ public class BeamTrussGenerator : MonoBehaviour
     private GameObject beamTruss;
     private PlanCanopy planColumn;
     private ProfilePipe columnProfile;
+    private Truss truss;
     private string nameColumnProfile;
-    private string pathProfile;
-    private readonly ColumnPlug columnPlug = new ColumnPlug();
+    private string nameTruss;
+    private readonly ColumnPlug columnPlug = new();
+    public ProfilePipeDataList profilePipeDataList;
+    public TrussDataList trussDataList;
     // Start is called before the first frame update
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindTruss = planColumn.KindTrussBeam;
-        path = Path.Combine(Application.dataPath, "Resources", "Trusses.json");
-        pathProfile = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
-        nameColumnProfile = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().KindProfile
+        nameTruss = KindTruss.ToString().Insert(2, " ");
+        nameColumnProfile = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().KindProfile
             .ToString().Insert(5, " ").Replace("_", ".");
-        columnProfile = FileAction<ProfilePipe>.ReadAndDeserialyze(pathProfile).Find(e => e.Name == nameColumnProfile);
-        beamTrussForRead = new(KindTruss.ToString().Insert(2, " "), path, planColumn, columnProfile.Height + columnPlug.Thickness * 2);
+        truss = ScriptObjectsAction.GetTrussByName(nameTruss, trussDataList);
+        columnProfile = ScriptObjectsAction.GetProfilePipeByName(nameColumnProfile, profilePipeDataList);
+        beamTrussForRead = new(truss, planColumn, columnProfile.Height + columnPlug.Thickness * 2);
         StartCoroutine(MakeBeamTruss());
     }
 

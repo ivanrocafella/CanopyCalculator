@@ -8751,6 +8751,9 @@ MonoBehaviour:
   canopyPrefab: {fileID: 2700731729593169047, guid: 6499c8f3722c9df4fbdf17b044ed8bb4, type: 3}
   toFbxButton: {fileID: 294298089}
   EmProfilePipeCol: {fileID: 2069604187}
+  materialDataList: {fileID: 11400000, guid: db567dc92a70e904c8257fb1dfe0a92f, type: 2}
+  trussDataList: {fileID: 11400000, guid: 2aa06c074f12cb84da102760721c3117, type: 2}
+  profilePipeDataList: {fileID: 11400000, guid: c5c47766359c02e4e908b4652027d0cf, type: 2}
 --- !u!4 &1958344451
 Transform:
   m_ObjectHideFlags: 0

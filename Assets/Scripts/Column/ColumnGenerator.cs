@@ -5,29 +5,26 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System;
-using UnityEngine.tvOS;
 using Assets.Utils;
+using Material = Assets.Models.Material;
 
 public class ColumnGenerator : MonoBehaviour
 {
-    private string path;
     [NonSerialized]
     public KindProfilePipe KindProfile;
     public ColumnBody ColumnBody;
     public PlanCanopy planColumn;
     public ProfilePipeDataList profilePipeDataList;
-    public List<ProfilePipe> profilePipes;
+    private ProfilePipe profilePipe;
+    private string nameProfile;
 
     private void Awake()
     {
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindProfile = planColumn.KindProfileColumn;
-        path = Path.Combine(Application.dataPath, "Resources", "ProfilesPipe.json");
-        string nameProfile = KindProfile.ToString().Insert(5, " ").Replace("_", ".");
-        Debug.Log($"path: {path}"); 
-        ColumnBody = new(nameProfile, path, planColumn, profilePipeDataList);
-        profilePipes = ListFromScriptObjects.GetListProfilePipes(profilePipeDataList);
-        Debug.Log(profilePipes);
+        nameProfile = KindProfile.ToString().Insert(5, " ").Replace("_", ".");
+        profilePipe = ScriptObjectsAction.GetProfilePipeByName(nameProfile, profilePipeDataList);
+        ColumnBody = new(profilePipe, planColumn);
     }
     // Start is called before the first frame update
     void Start()

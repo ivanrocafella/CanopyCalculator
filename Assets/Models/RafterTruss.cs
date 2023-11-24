@@ -30,10 +30,10 @@ namespace Assets.Models
         public float LengthNonStandartCrate { get => (Truss.Height - Truss.ProfileBelt.Height) / Mathf.Sin(AngleNonStandartCrate * Mathf.Deg2Rad); }
         public float PerspectWidthHalfNonStandartCrate { get => (Truss.ProfileCrate.Height / Mathf.Sin(AngleNonStandartCrate * Mathf.Deg2Rad) - Truss.ProfileBelt.Height / Mathf.Tan(AngleNonStandartCrate * Mathf.Deg2Rad)) / 2; }
 
-        public RafterTruss(string nameTruss, string path, PlanCanopy planColumn, float dimensionColumn)
+        public RafterTruss(Truss truss, PlanCanopy planColumn, float dimensionColumn)
         {
+            Truss = truss;
             PlanColumn = planColumn;
-            Truss = FileAction<Truss>.ReadAndDeserialyze(path).Find(e => e.Name == nameTruss);
             Tail = (PlanColumn.OutputRafter + dimensionColumn / 2 + 10) / Mathf.Cos(PlanColumn.Slope);
             LengthTop = (PlanColumn.SizeByX + PlanColumn.OutputRafter * 2) / Mathf.Cos(PlanColumn.Slope);
             LengthBottom = LengthTop - (2 * Tail + DimenOneCrateNonStandart);
