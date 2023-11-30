@@ -31,6 +31,8 @@ namespace Assets.Services
             combine[5].mesh = Quad(corner1, -vectorByLength, -vectorByHeight);
 
             mesh.CombineMeshes(combine, true, false);
+            mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
             return mesh;
         }
 
@@ -57,16 +59,16 @@ namespace Assets.Services
             int scale = 10;
             int xSizeInt = (int)(Math.Round(xSize, 1, MidpointRounding.AwayFromZero) * scale);
             int zSizeInt = (int)(Math.Round(zSize, 1, MidpointRounding.AwayFromZero) * scale);
-            //int ySizeInt = (int)(Math.Round(ySize, 1, MidpointRounding.AwayFromZero) * scale);
             int thicknessInt = (int)(Math.Round(thickness, 1, MidpointRounding.AwayFromZero) * scale);
             int radiusInt = (int)(Math.Round(roundness, 1, MidpointRounding.AwayFromZero) * scale);
             Mesh mesh = new();
-            //int[] ySizes = { 0, ySizeInt };
             float[] ySizes = { 0, ySize };
             Vector3[] vertices = null;
             Vector3[] normals = null;
             CreateVertices(vertices, normals, mesh, xSizeInt, zSizeInt, thicknessInt, ySizes, radiusInt);
             CreateTriangles(xSizeInt, zSizeInt, thicknessInt, mesh);
+            mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
             return mesh;
         }
 

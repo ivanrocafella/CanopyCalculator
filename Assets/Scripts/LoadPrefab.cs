@@ -22,6 +22,8 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Vector3 = UnityEngine.Vector3;
 using Random = UnityEngine.Random;
+using Assimp;
+using Assimp.Configs;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -145,8 +147,10 @@ public class LoadPrefab : MonoBehaviour
             Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
         string format = "dd.MM.yyyy_hh.mm.ss";
         string dateTimeNow = DateTime.Now.ToString(format);
-        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"canopy_{dateTimeNow}.fbx");
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.name}_{dateTimeNow}.fbx");
+        Debug.Log(filePath);
+        FBXExporter.ExportGameObjToFBX(canopy, filePath);
         toFbxButton.interactable = false;        
     }
 
@@ -164,117 +168,59 @@ public class LoadPrefab : MonoBehaviour
         return value;
     }
 
-    //void ExportSceneToFBX(string exportPath)
-    //{
-    //    List<MeshFilter> meshFilters = new List<MeshFilter>(FindObjectsOfType<MeshFilter>());
-    //    List<UnityEngine.Material> uniqueMaterials = new();
+    private void ExportMeshToFBX(GameObject gameObject, string fileName)
+    {
+        if (gameObject == null)
+        {
+            Debug.LogWarning("GameObject is null.");
+            return;
+        }
 
-    //    using (StreamWriter writer = new StreamWriter(exportPath))
-    //    {
-    //        // Write FBX header
-    //        WriteFBXHeader(writer);
+        MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
 
-    //        // Write FBX nodes for each mesh with materials
-    //        foreach (MeshFilter meshFilter in meshFilters)
-    //        {
-    //            UnityEngine.Material[] materials = meshFilter.GetComponent<Renderer>().sharedMaterials;
+        if (meshFilter == null || meshFilter.sharedMesh == null)
+        {
+            Debug.LogWarning("The selected GameObject must have a MeshFilter component with a valid mesh.");
+            return;
+        }
 
-    //            foreach (UnityEngine.Material material in materials)
-    //            {
-    //                if (!uniqueMaterials.Contains(material))
-    //                {
-    //                    WriteMaterialNode(writer, material);
-    //                    uniqueMaterials.Add(material);
-    //                }
-    //            }
+        // Create an Assimp scene
+        Assimp.Scene scene = new();
 
-    //            WriteMeshNode(writer, meshFilter, uniqueMaterials.IndexOf(materials[0])); // Assign the index of the first material
-    //        }
+        // Create a new mesh
+        Assimp.Mesh aiMesh = new();
+        aiMesh.Vertices.AddRange(Array.ConvertAll(meshFilter.sharedMesh.vertices, v => new Vector3D(v.x, v.y, v.z)));
 
-    //        // Write FBX footer
-    //        WriteFBXFooter(writer);
-    //    }
+        foreach (Vector3 normal in meshFilter.sharedMesh.normals)
+        {
+            aiMesh.Normals.Add(new Vector3D(normal.x, normal.y, normal.z));
+        }
 
-    //    Debug.Log("Export to FBX successful: " + exportPath);
-    //}
+        // Add faces
+        for (int i = 0; i < meshFilter.sharedMesh.subMeshCount; i++)
+        {
+            int[] triangles = meshFilter.sharedMesh.GetTriangles(i);
+            for (int j = 0; j < triangles.Length; j += 3)
+            {
+                Face face = new();
+                face.Indices.Add(triangles[j]);
+                face.Indices.Add(triangles[j + 1]);
+                face.Indices.Add(triangles[j + 2]);
 
-    //void WriteFBXHeader(StreamWriter writer)
-    //{
-    //    // Write FBX header information (you may need to adjust this based on FBX format)
-    //    writer.WriteLine("; FBX 7.4.0 project file");
-    //    writer.WriteLine("FBXHeaderExtension:  {");
-    //    writer.WriteLine("\tFBXHeaderVersion: 1003");
-    //    writer.WriteLine("\tFBXVersion: 7400");
-    //    writer.WriteLine("}");
-    //    writer.WriteLine("CreationTime: \"\"");
-    //}
+                // Add the face to the Assimp meshs
+                aiMesh.Faces.Add(face);
+            }
+        }
 
-    //void WriteMaterialNode(StreamWriter writer, UnityEngine.Material material)
-    //{
-    //    // Write FBX node information for each material (you may need to adjust this based on FBX format)
-    //    writer.WriteLine("Node: {");
-    //    writer.WriteLine($"\tName: \"{material.name}\"");
-    //    writer.WriteLine("\tType: \"Material\"");
-    //    writer.WriteLine("\tVersion: 102");
-    //    writer.WriteLine("\tProperties60: {");
-    //    writer.WriteLine($"\t\tP: \"ShadingModel\", \"KString\", \"\", \"\", \"{material.shader.name}\"");
-    //    writer.WriteLine($"\t\tP: \"MultiLayer\", \"Bool\", \"\", \"\",{material.shader.renderQueue == 2000}");
-    //    writer.WriteLine("\t}");
-    //    writer.WriteLine("\t}");
-    //    writer.WriteLine("\tCulling: \"CullingOff\"");
-    //    writer.WriteLine("\tVisibility: 1");
-    //    writer.WriteLine("\tColor: 1, 1, 1");
-    //    writer.WriteLine("}");
-    //}
+        scene.Meshes.Add(aiMesh);
 
-    //void WriteMeshNode(StreamWriter writer, MeshFilter meshFilter, int materialIndex)
-    //{
-    //    // Write FBX node information for each mesh (you may need to adjust this based on FBX format)
-    //    writer.WriteLine("Node: {");
-    //    writer.WriteLine($"\tName: \"Mesh_{meshFilter.name}\"");
-    //    writer.WriteLine("\tType: \"Mesh\"");
-    //    writer.WriteLine("\tVersion: 232");
-    //    writer.WriteLine("\tProperties60: {");
-    //    writer.WriteLine("\t\tP: \"Mesh\", \"KString\", \"\", \"\"");
-    //    writer.WriteLine("\t\tP: \"Version\", \"int\", \"\", \"\",1");
-    //    writer.WriteLine("\t\tP: \"Vertices\", \"Vector\", \"Vector\", \"\",{");
+        // Set up exporter
+        var exporter = new Assimp.AssimpContext();
 
-    //    Mesh mesh = meshFilter.sharedMesh;
-    //    Vector3[] vertices = mesh.vertices;
-
-    //    for (int i = 0; i < vertices.Length; i++)
-    //    {
-    //        writer.WriteLine($"\t\t\t{vertices[i].x},{vertices[i].y},{vertices[i].z},");
-    //    }
-
-    //    writer.WriteLine("\t\t}");
-    //    writer.WriteLine("\t\tP: \"PolygonVertexIndex\", \"int\", \"\", \"\",{");
-
-    //    int[] triangles = mesh.triangles;
-    //    for (int i = 0; i < triangles.Length; i += 3)
-    //    {
-    //        writer.WriteLine($"\t\t\t{triangles[i]},{triangles[i + 1]},{triangles[i + 2]},");
-    //    }
-
-    //    writer.WriteLine("\t\t}");
-    //    writer.WriteLine("\t\tP: \"Materials\", \"Compound\", \"\", \"\"");
-    //    writer.WriteLine("\t\tP: \"ShadingModel\", \"KString\", \"\", \"\", \"\"");
-    //    writer.WriteLine("\t\tP: \"MultiLayer\", \"Bool\", \"\", \"\", False");
-    //    writer.WriteLine("\t}");
-    //    writer.WriteLine($"\tMaterial: {materialIndex}");
-    //    writer.WriteLine("\tCulling: \"CullingOff\"");
-    //    writer.WriteLine("\tVisibility: 1");
-    //    writer.WriteLine("\tColor: 1, 1, 1");
-    //    writer.WriteLine("}");
-    //}
-
-    //void WriteFBXFooter(StreamWriter writer)
-    //{
-    //    // Write FBX footer information (you may need to adjust this based on FBX format)
-    //    writer.WriteLine("Takes:  {");
-    //    writer.WriteLine("}");
-    //    writer.WriteLine("Comments: \"\"");
-    //}
+        // Export the scene to FBX
+        bool success = exporter.ExportFile(scene, fileName, "obj", PostProcessSteps.ValidateDataStructure);
+        Debug.Log("Mesh exported to FBX: " + success);
+    }
 
 
 }

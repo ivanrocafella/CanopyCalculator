@@ -9,12 +9,10 @@ namespace AsciiFBXExporter
 	public class RuntimeExporterMono : MonoBehaviour
 	{
 		public GameObject rootObjectToExport;
-		public string AbsolutePath = "/Users/kellan/Projects/AsciiFBXExporterForUnity/Build/";
+		public string RelativeFolderPath = "/Ignore/RuntimeExport/";
 		public string FileName = "TestFBXExport.fbx";
 		public string TextureFolderName = "FBXTextures/";
 		public bool UseGUI = true;
-
-		private string exportedFileName = null;
 
 		void OnGUI()
 		{
@@ -25,19 +23,11 @@ namespace AsciiFBXExporter
 			{
 				this.ExportGameObject();
 			}
-
-			if(exportedFileName == null && AbsolutePath.Contains("kellan"))
-			{
-				GUI.Label(new Rect(10, 60, 400, 50), "You have not changed the absolte file name from the default absolute path. Please change.");
-			}
-
-			if(exportedFileName != null)
-				GUI.Label(new Rect(10, 60, 400, 50), "Exported FBX File: `" + exportedFileName + "`");
 		}
 
 		public bool ExportGameObject()
 		{
-			return ExportGameObject(rootObjectToExport, AbsolutePath, FileName, TextureFolderName, ref exportedFileName);
+			return ExportGameObject(rootObjectToExport, RelativeFolderPath, FileName, TextureFolderName);
 		}
 
 		/// <summary>
@@ -48,7 +38,7 @@ namespace AsciiFBXExporter
 		/// <param name="fileName"></param>
 		/// <param name="textureFolderName"></param>
 		/// <returns></returns>
-		public static bool ExportGameObject(GameObject rootGameObject, string folderPath, string fileName, string textureFolderName, ref string exportedFileName)
+		public static bool ExportGameObject(GameObject rootGameObject, string folderPath, string fileName, string textureFolderName)
 		{
 			if(rootGameObject == null)
 			{
@@ -59,6 +49,8 @@ namespace AsciiFBXExporter
 			// forces use of forward slash for directory names
 			folderPath = folderPath.Replace('\\', '/');
 			textureFolderName = textureFolderName.Replace('\\', '/');
+
+			folderPath = Application.dataPath + folderPath;
 
 			if(System.IO.Directory.Exists(folderPath) == false)
 			{
@@ -76,8 +68,6 @@ namespace AsciiFBXExporter
 
 			if(System.IO.File.Exists(folderPath + fileName))
 				System.IO.File.Delete(folderPath + fileName);
-
-			exportedFileName = folderPath + fileName;
 
 			bool exported = FBXExporter.ExportGameObjAtRuntime(rootGameObject, folderPath, fileName, textureFolderName, true);
 

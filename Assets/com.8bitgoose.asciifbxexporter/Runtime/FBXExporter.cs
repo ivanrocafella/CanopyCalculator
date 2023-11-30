@@ -26,8 +26,6 @@
 //  
 // ===============================================================================================
 
-//#define International // Uncomment if provides internationalization for countries that use commas instead of decimals to denote the break point
-
 using UnityEngine;
 using System.Text;
 using System.Collections.Generic;
@@ -43,7 +41,7 @@ namespace AsciiFBXExporter
 	{
 		public static string VersionInformation
 		{
-			get { return "Ascii FBX Exporter version 2.0.2 (Originally created for the Unity Asset, Building Crafter)"; }
+			get { return "FBX Unity Export version 1.4.0 (Originally created for the Unity Asset, Building Crafter)"; }
 		}
 
 		public static bool ExportGameObjToFBX(GameObject gameObj, string newPath, bool copyMaterials = false, bool copyTextures = false)
@@ -75,10 +73,10 @@ namespace AsciiFBXExporter
 
 			string buildMesh = MeshToString(gameObj, newFileNameWithFullPath, copyMaterials, copyTextures, relativeMaterialFolderName, relativeTextureFolderName);
 
-			if(File.Exists(newFileNameWithFullPath))
-				File.Delete(newFileNameWithFullPath);
+			if(System.IO.File.Exists(newFileNameWithFullPath))
+				System.IO.File.Delete(newFileNameWithFullPath);
 
-			File.WriteAllText(newFileNameWithFullPath, buildMesh);
+			System.IO.File.WriteAllText(newFileNameWithFullPath, buildMesh);
 
 #if UNITY_EDITOR
 			// Import the model properly so it looks for the material instead of by the texture name
@@ -721,33 +719,22 @@ namespace AsciiFBXExporter
 		}
 
 		/// <summary>
-		/// Gets the root path of the Unity folder
-		/// </summary>
-		/// <returns>Application.dataPath without Assets on the end</returns>
-		public static string GetApplicationRoot()
-		{
-			return Application.dataPath.Remove(Application.dataPath.LastIndexOf("Assets"), 6);
-		}
-
-		/// <summary>
-		/// Provides internationalization for countries that use commas instead of decimals to denote the break point
+		///  Provides internationalization for countries that use commas instead of decimals to denote the break point
 		/// </summary>
 		/// <param name="val">the float value you wish to convert</param>
 		/// <returns>a string that is formated always to be 1.0 and never 1,0</returns>
 		public static string FBXFormat(float val)
 		{
-#if !International
-			return val.ToString();
-#else
+			if(false) // SET TO TRUE IF YOU USE PERIODS FOR DECIMALS IN YOUR COUNTRY AND ONLY IF (to get a slight reduction in process time)
+				return val.ToString();
+
 			string stringValue = val.ToString();
 
 			int index = CheckForCommaInsteadOfDecimal(ref stringValue);
-
 			if(index > -1)
 				stringValue = ReplaceCommasWithDecimals(stringValue, index);
 
 			return stringValue;
-#endif
 		}
 
 		/// <summary>
@@ -769,6 +756,15 @@ namespace AsciiFBXExporter
 		private static string ReplaceCommasWithDecimals(string vert, int breakIndex)
 		{
 			return vert.Remove(breakIndex, vert.Length - breakIndex) + "." + vert.Remove(0, breakIndex + 1);
+		}
+
+		/// <summary>
+		/// Gets the root path of the Unity folder
+		/// </summary>
+		/// <returns>Application.dataPath without Assets on the end</returns>
+		public static string GetApplicationRoot()
+		{
+			return Application.dataPath.Remove(Application.dataPath.LastIndexOf("Assets"), 6);
 		}
 	}
 }
