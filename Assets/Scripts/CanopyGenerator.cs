@@ -29,6 +29,7 @@ public class CanopyGenerator : MonoBehaviour
     private int countStepRafterTruss;
     private int countStepGirder;
     public GameObject CanopyDescription;
+    public GameObject LoadingTextBox;
     public const float factorTolerance = 1.2f;
 
     private void Awake()
@@ -36,9 +37,10 @@ public class CanopyGenerator : MonoBehaviour
     }
 
     void Start()
-    {       
-        StartCoroutine(MakeCanopy());
+    {
+        LoadingTextBox = GameObject.FindGameObjectWithTag("LoadingTextBox");
         CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
+        StartCoroutine(MakeCanopy());
         CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {columnBodyHigh.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(planColumn.SizeByY)} мм" +
             $"\n\tКол-во - {planColumn.CountStep + 1} шт" +
@@ -70,6 +72,7 @@ public class CanopyGenerator : MonoBehaviour
 
     IEnumerator MakeCanopy()
     {
+        LoadingTextBox.GetComponent<TMP_Text>().text = "Загрузка...";
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         canopy = GameObject.FindGameObjectWithTag("Canopy");
         columnsHigh = new GameObject[planColumn.CountStep + 1];
@@ -180,7 +183,8 @@ public class CanopyGenerator : MonoBehaviour
                 girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
             }
         }
-        yield return null;
+        yield return new WaitForEndOfFrame();
+        LoadingTextBox.GetComponent<TMP_Text>().text = string.Empty;
     }
 }
     

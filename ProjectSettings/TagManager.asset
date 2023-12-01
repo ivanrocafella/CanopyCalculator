@@ -40,6 +40,8 @@ TagManager:
   - ErrorProfilePipeColumn
   - ColumnDescription
   - CanopyDescription
+  - LoadingTextBox
+  - BlockLoading
   layers:
   - Default
   - TransparentFX
