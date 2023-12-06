@@ -34,7 +34,6 @@ public class LoadPrefab : MonoBehaviour
     private string pathMaterial;
     private string pathProfilesPipe;
     private string pathTrusses;
-    public Button toFbxButton;
     public GameObject EmProfilePipeCol;
     private BeamTruss BeamTruss;
     private ColumnBody ColumnBodyHigh;
@@ -43,6 +42,12 @@ public class LoadPrefab : MonoBehaviour
     public MaterialDataList materialDataList;
     public TrussDataList trussDataList;
     public ProfilePipeDataList profilePipeDataList;
+    [SerializeField]
+    private Button calculateButton;
+    [SerializeField]
+    private Button toFbxButton;
+    [SerializeField]
+    private GameObject loadingTextBox;
 
     private void Awake()
     {
@@ -53,16 +58,21 @@ public class LoadPrefab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        calculateButton.onClick.AddListener(ButtonClickHandlerForCalculate);
+        toFbxButton.onClick.AddListener(ButtonClickHandlerForFbx);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    public void CalculateButtonClick()
+    IEnumerator CalculateButtonClick()
     {
+        loadingTextBox.transform.localPosition = new Vector3(-45, -150, 0);
+        loadingTextBox.GetComponent<TMP_Text>().fontSize = 36;
+        loadingTextBox.GetComponent<TMP_Text>().text = "Загрузка...";
+        yield return new WaitForSeconds(0.001f);
         planCanopy = GameObject.FindGameObjectWithTag("PlanCanopy");
 
         GameObject spanInputGB = GameObject.FindGameObjectWithTag("SpanInput");
@@ -141,17 +151,22 @@ public class LoadPrefab : MonoBehaviour
         //print(profilePipeGirder.Name);      
     }
 
-    public void ToFbxButtonClick()
+    IEnumerator ToFbxButtonClick()
     {
         if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
             Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
         string format = "dd.MM.yyyy_hh.mm.ss";
         string dateTimeNow = DateTime.Now.ToString(format);
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
-        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.name}_{dateTimeNow}.fbx");
+        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.tag}_{dateTimeNow}.fbx");
         Debug.Log(filePath);
+        loadingTextBox.GetComponent<TMP_Text>().text = "Сохранение...";
+        yield return new WaitForSeconds(0.001f);
         FBXExporter.ExportGameObjToFBX(canopy, filePath);
-        toFbxButton.interactable = false;        
+        toFbxButton.interactable = false;
+        loadingTextBox.transform.localPosition = new Vector3(-150, -150, 0);
+        loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
+        loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
     }
 
     private float ToFloat(string textInput)
@@ -168,59 +183,15 @@ public class LoadPrefab : MonoBehaviour
         return value;
     }
 
-    private void ExportMeshToFBX(GameObject gameObject, string fileName)
+    void ButtonClickHandlerForCalculate()
     {
-        if (gameObject == null)
-        {
-            Debug.LogWarning("GameObject is null.");
-            return;
-        }
-
-        MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
-
-        if (meshFilter == null || meshFilter.sharedMesh == null)
-        {
-            Debug.LogWarning("The selected GameObject must have a MeshFilter component with a valid mesh.");
-            return;
-        }
-
-        // Create an Assimp scene
-        Assimp.Scene scene = new();
-
-        // Create a new mesh
-        Assimp.Mesh aiMesh = new();
-        aiMesh.Vertices.AddRange(Array.ConvertAll(meshFilter.sharedMesh.vertices, v => new Vector3D(v.x, v.y, v.z)));
-
-        foreach (Vector3 normal in meshFilter.sharedMesh.normals)
-        {
-            aiMesh.Normals.Add(new Vector3D(normal.x, normal.y, normal.z));
-        }
-
-        // Add faces
-        for (int i = 0; i < meshFilter.sharedMesh.subMeshCount; i++)
-        {
-            int[] triangles = meshFilter.sharedMesh.GetTriangles(i);
-            for (int j = 0; j < triangles.Length; j += 3)
-            {
-                Face face = new();
-                face.Indices.Add(triangles[j]);
-                face.Indices.Add(triangles[j + 1]);
-                face.Indices.Add(triangles[j + 2]);
-
-                // Add the face to the Assimp meshs
-                aiMesh.Faces.Add(face);
-            }
-        }
-
-        scene.Meshes.Add(aiMesh);
-
-        // Set up exporter
-        var exporter = new Assimp.AssimpContext();
-
-        // Export the scene to FBX
-        bool success = exporter.ExportFile(scene, fileName, "obj", PostProcessSteps.ValidateDataStructure);
-        Debug.Log("Mesh exported to FBX: " + success);
+        // Запускаем корутину с задержкой
+        StartCoroutine(CalculateButtonClick());
     }
 
-
+    void ButtonClickHandlerForFbx()
+    {
+        // Запускаем корутину с задержкой
+        StartCoroutine(ToFbxButtonClick());
+    }
 }

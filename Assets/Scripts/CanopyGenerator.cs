@@ -72,7 +72,6 @@ public class CanopyGenerator : MonoBehaviour
 
     IEnumerator MakeCanopy()
     {
-        LoadingTextBox.GetComponent<TMP_Text>().text = "Загрузка...";
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         canopy = GameObject.FindGameObjectWithTag("Canopy");
         columnsHigh = new GameObject[planColumn.CountStep + 1];
@@ -183,7 +182,7 @@ public class CanopyGenerator : MonoBehaviour
                 girders[i].transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
             }
         }
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.001f);
         LoadingTextBox.GetComponent<TMP_Text>().text = string.Empty;
     }
 }
