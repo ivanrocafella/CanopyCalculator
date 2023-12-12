@@ -7,23 +7,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 using Button = UnityEngine.UI.Button;
 using Material = Assets.Models.Material;
-using Object = UnityEngine.Object;
-using System.Numerics;
-using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Vector3 = UnityEngine.Vector3;
-using Random = UnityEngine.Random;
-using Assimp;
-using Assimp.Configs;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -84,9 +73,9 @@ public class LoadPrefab : MonoBehaviour
         GameObject stepGirderInputGB = GameObject.FindGameObjectWithTag("StepGirderInput");
         GameObject outputRafterInputGB = GameObject.FindGameObjectWithTag("OutputRafterInput");
         GameObject outputGirderInputGB = GameObject.FindGameObjectWithTag("OutputGirderInput");
+        GameObject workLoadInputGB = GameObject.FindGameObjectWithTag("WorkLoadInput");
 
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
-        GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DestroyImmediate(canopy);
 
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = ToFloat(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;

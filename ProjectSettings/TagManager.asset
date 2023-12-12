@@ -42,6 +42,8 @@ TagManager:
   - CanopyDescription
   - LoadingTextBox
   - BlockLoading
+  - EmWorkLoadInput
+  - WorkLoadInput
   layers:
   - Default
   - TransparentFX
