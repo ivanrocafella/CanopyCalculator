@@ -122,6 +122,13 @@ public class InputFieldValidator : MonoBehaviour
                         return false;
                     }
                     break;
+                case "WorkLoadInput":
+                    if (value < 0 || value > 500)
+                    {
+                        errorMessage = "Значение должно быть в диапазоне от 0 до 500";
+                        return false;
+                    }
+                    break;
                 default:
                     break;
             }

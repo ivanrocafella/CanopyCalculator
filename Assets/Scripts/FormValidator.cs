@@ -17,6 +17,7 @@ public class FormValidator : MonoBehaviour
     public TMP_InputField OutputGirderInput;
     public TMP_InputField StepRafterInput;
     public TMP_InputField StepGirderInput;
+    public TMP_InputField WorkLoadInput;
     public Button Button;
     private GameObject emStepRafterInput;
     private GameObject emStepGirderInput;
@@ -79,7 +80,8 @@ public class FormValidator : MonoBehaviour
                 && OutputRafterInput.GetComponent<InputFieldValidator>().isValid
                 && OutputGirderInput.GetComponent<InputFieldValidator>().isValid
                 && StepRafterInput.GetComponent<InputFieldValidator>().isValid
-                && StepGirderInput.GetComponent<InputFieldValidator>().isValid;
+                && StepGirderInput.GetComponent<InputFieldValidator>().isValid
+                && WorkLoadInput.GetComponent<InputFieldValidator>().isValid;
     }
 
     private float ToFloat(string textInput)

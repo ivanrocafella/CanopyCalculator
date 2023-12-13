@@ -19,13 +19,7 @@ public class ColFlatSideGenerator : MonoBehaviour
     {
         columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(selectedKindLength);
-        if (columnBody != null)
-            Debug.Log($"[{DateTime.Now}]: {columnBody} is not null HeightHigh {columnBody.Height}");
-        if (columnBody.PlanColumn != null)
-            Debug.Log($"[{DateTime.Now}]: {columnBody.PlanColumn} is not null HeightLow {columnBody.PlanColumn.SizeByYLow}");
         Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, columnBody.Profile.Radius);
-        if (mesh == null)
-            Debug.Log($"[{DateTime.Now}]: {mesh} is null");
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

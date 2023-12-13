@@ -87,9 +87,9 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = ToFloat(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        float cargo = ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
-        float cargo = 85f * coefficientReliability;
 
         Material material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
         List<ProfilePipe> profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
@@ -142,20 +142,29 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator ToFbxButtonClick()
     {
-        if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
-            Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
-        string format = "dd.MM.yyyy_hh.mm.ss";
-        string dateTimeNow = DateTime.Now.ToString(format);
-        GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
-        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.tag}_{dateTimeNow}.fbx");
-        Debug.Log(filePath);
-        loadingTextBox.GetComponent<TMP_Text>().text = "Сохранение...";
-        yield return new WaitForSeconds(0.001f);
-        FBXExporter.ExportGameObjToFBX(canopy, filePath);
-        toFbxButton.interactable = false;
-        loadingTextBox.transform.localPosition = new Vector3(-150, -150, 0);
-        loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
-        loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
+        #if UNITY_STANDALONE_WIN || UNITY_EDITOR
+          try
+          {
+              if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
+                  Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
+          }
+          catch (Exception ex)
+          {
+              Debug.Log(ex.Message);
+          }
+          string format = "dd.MM.yyyy_hh.mm.ss";
+          string dateTimeNow = DateTime.Now.ToString(format);
+          GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+          string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.tag}_{dateTimeNow}.fbx");
+          Debug.Log(filePath);
+          loadingTextBox.GetComponent<TMP_Text>().text = "Сохранение...";
+          yield return new WaitForSeconds(0.001f);
+          FBXExporter.ExportGameObjToFBX(canopy, filePath);
+          toFbxButton.interactable = false;
+          loadingTextBox.transform.localPosition = new Vector3(-150, -150, 0);
+          loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
+          loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
+        #endif
     }
 
     private float ToFloat(string textInput)
