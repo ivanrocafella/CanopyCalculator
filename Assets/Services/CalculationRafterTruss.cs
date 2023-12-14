@@ -9,6 +9,8 @@ namespace Assets.Services
 {
     public static class CalculationRafterTruss
     {
+        public static float DeflectionPermissible { get; set; } // u.m. = sm
+        public static float DeflectionFact { get; set; } // u.m. = sm
         public static Truss CalculateRafterTruss(float segmentBySlope, float stepRafter, float outputRafter, float cargo, Material material, List<Truss> trusses)
         {
             float length = segmentBySlope / MathF.Pow(10, 3); // u.m. = m
@@ -33,6 +35,8 @@ namespace Assets.Services
                 comparerConsole = (momentBendMaxConsole * 100) / (truss.ProfileBelt.MomentResistance * material.YieldStrength);
                 i++;
             } while (comparerSlope > 1 && comparerConsole > 1);
+            DeflectionPermissible = CalculationDeflection.GetDeflectionPermissible(length);
+            DeflectionFact = CalculationDeflection.GetDeflectionFact(length, forceLinear, material.ElastiModulus, truss.MomentInertia);
             return truss;
         }
         private static float CalculateForceLinear(float stepRafter, float cargo) => cargo * stepRafter / (MathF.Pow(10, 3)); // u.m. = kg/m

@@ -11,6 +11,8 @@ namespace Assets.Services
 {
     public static class CalculationBeamTruss
     {
+        public static float DeflectionPermissible { get; set; } // u.m. = sm
+        public static float DeflectionFact { get; set; } // u.m. = sm
         public static Truss CalculateBeamTruss(float segmentBySlope, float segmentByLength, int countStep, float cargo,  Material material, List<Truss> trusses)
         {
             float length = segmentByLength / (countStep * MathF.Pow(10, 3)); // u.m. = m
@@ -30,6 +32,8 @@ namespace Assets.Services
                 comparer = (momentBendMax * 100) / (truss.MomentResistance * material.YieldStrength);
                 i++;
             } while (comparer > 1);
+            DeflectionPermissible = CalculationDeflection.GetDeflectionPermissible(length);
+            DeflectionFact = CalculationDeflection.GetDeflectionFact(length, forceLinear, material.ElastiModulus, truss.MomentInertia);
             return truss;
         }
 

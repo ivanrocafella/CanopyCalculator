@@ -9,6 +9,8 @@ namespace Assets.Services
 {
     public static class CalculationGirder
     {
+        public static float DeflectionPermissible { get; set; } // u.m. = sm
+        public static float DeflectionFact { get; set; } // u.m. = sm
         public static ProfilePipe CalculateGirder(float stepRafter, float stepGirder, float outputGirder, float cargo, Material material, List<ProfilePipe> profilePipes)
         {
             float length = stepRafter / MathF.Pow(10, 3); // u.m. = m
@@ -33,6 +35,8 @@ namespace Assets.Services
                 comparerConsole = (momentBendMaxConsole * 100) / (profilePipe.MomentResistance * material.YieldStrength);
                 i++;
             } while (comparerSlope > 1 && comparerConsole > 1);
+            DeflectionPermissible = CalculationDeflection.GetDeflectionPermissible(length);
+            DeflectionFact = CalculationDeflection.GetDeflectionFact(length, forceLinear, material.ElastiModulus, profilePipe.MomentInertia);
             return profilePipe;
         }
         private static float CalculateForceLinear(float stepGirder, float cargo) => cargo * stepGirder / (MathF.Pow(10, 3)); // u.m. = kg/m
