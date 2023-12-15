@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,16 +53,22 @@ public class CanopyGenerator : MonoBehaviour
             $"Балочная ферма:\n\tТип - {beamTruss.Truss.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(beamTruss.LengthTop)} мм" +
             $"\n\tКол-во - {planColumn.CountStep * 2} шт" +
+            $"\nФакт. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionFact, 1)} см" +
+            $" (Доп. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionPermissible, 1)} см)" +
             $"\n" +
             $"Стропильная ферма:\n\tТип - {rafterTruss.Truss.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(rafterTruss.LengthTop)} мм" +
             $"\n\tКол-во - {rafterTrusses.Length} шт" +
             $"\n\tПодобранный шаг - {Mathf.RoundToInt(rafterTruss.Step / 10)} см" +
+            $"\nФакт. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionFact, 1)} см" +
+            $" (Доп. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionPermissible, 1)} см)" +
             $"\n" +
             $"Прогон:\n\tПрофиль - {girder.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(girder.Length)} мм" +
             $"\n\tКол-во - {girders.Length + 1} шт" +
             $"\n\tПодобранный шаг - {Mathf.RoundToInt(girder.Step / 10)} см" +
+            $"\nФакт. прогиб - {MathF.Round(CalculationGirder.DeflectionFact, 1)} см" +
+            $" (Доп. прогиб - {MathF.Round(CalculationGirder.DeflectionPermissible, 1)} см)" +
             $"\nКол-во мат-ла на прогоны: {Math.Round((girders.Length + 1) * girder.Length / 1000, 1)} м";      
     }
 

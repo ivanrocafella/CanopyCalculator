@@ -123,6 +123,7 @@ public class LoadPrefab : MonoBehaviour
         }
         else
         {
+            loadingTextBox.GetComponent<TMP_Text>().text = string.Empty;
             List<string> errorMessages = new();
             if (profilePipeColumn == null)
                 errorMessages.Add("Превышен допустимый профиль стойки!");
@@ -165,6 +166,7 @@ public class LoadPrefab : MonoBehaviour
           loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
           loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
         #endif
+        yield return new WaitForSeconds(0.001f);
     }
 
     private float ToFloat(string textInput)
