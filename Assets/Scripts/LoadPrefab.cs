@@ -135,6 +135,10 @@ public class LoadPrefab : MonoBehaviour
                 errorMessages.Add("Превышен допустимый профиль прогона!");
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+        yield return new WaitForSeconds(0.001f);
+        toFbxButton.gameObject.SetActive(true);
+#endif
         //print(profilePipeColumn.Name);
         //print(trussBeam.Name);
         //print(trussRafter.Name);

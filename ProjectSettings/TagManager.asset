@@ -44,6 +44,8 @@ TagManager:
   - BlockLoading
   - EmWorkLoadInput
   - WorkLoadInput
+  - ExitButton
+  - ToWindowButton
   layers:
   - Default
   - TransparentFX
