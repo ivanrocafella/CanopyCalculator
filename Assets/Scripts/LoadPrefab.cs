@@ -135,9 +135,12 @@ public class LoadPrefab : MonoBehaviour
                 errorMessages.Add("Превышен допустимый профиль прогона!");
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
         yield return new WaitForSeconds(0.001f);
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
         toFbxButton.gameObject.SetActive(true);
+#elif UNITY_WEBGL
+        toFbxButton.gameObject.SetActive(true);
+#else
 #endif
         //print(profilePipeColumn.Name);
         //print(trussBeam.Name);
@@ -169,8 +172,22 @@ public class LoadPrefab : MonoBehaviour
           loadingTextBox.transform.localPosition = new Vector3(-150, -150, 0);
           loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
           loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
+        #elif UNITY_WEBGL
+                try
+          {
+              if (!Directory.Exists(Path.Combine(Application.streamingAssetsPath, "FbxModels")))
+                  Directory.CreateDirectory(Path.Combine(Application.streamingAssetsPath, "FbxModels"));
+              string filePath = Path.Combine(Application.streamingAssetsPath, "FbxModels", $"canopy.fbx");
+              Debug.Log(filePath);
+          }
+          catch (Exception ex)
+          {
+              Debug.Log(ex.Message);
+          }
+        #else
         #endif
         yield return new WaitForSeconds(0.001f);
+
     }
 
     private float ToFloat(string textInput)

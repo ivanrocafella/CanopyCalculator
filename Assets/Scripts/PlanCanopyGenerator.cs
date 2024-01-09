@@ -22,13 +22,13 @@ public class PlanCanopyGenerator : MonoBehaviour
     public float StepGirder;
     public KindMaterial KindMaterial;
     [SerializeField]
-    private Button exitButton;
+    private GameObject groupMainButton;
 
     // Start is called before the first frame update
     void Start()
     {
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
-        exitButton.gameObject.SetActive(true);
+        groupMainButton.SetActive(true);
 #endif
     }
 

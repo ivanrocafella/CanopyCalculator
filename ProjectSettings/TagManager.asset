@@ -46,6 +46,7 @@ TagManager:
   - WorkLoadInput
   - ExitButton
   - ToWindowButton
+  - GroupMainButton
   layers:
   - Default
   - TransparentFX
