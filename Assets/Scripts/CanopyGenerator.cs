@@ -53,6 +53,7 @@ public class CanopyGenerator : MonoBehaviour
             $"Балочная ферма:\n\tТип - {beamTruss.Truss.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(beamTruss.LengthTop)} мм" +
             $"\n\tКол-во - {planColumn.CountStep * 2} шт" +
+            $"\nТреб. момент сопр. - {MathF.Round(CalculationBeamTruss.MomentResistReq, 1)} см3" +
             $"\nФакт. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionFact, 1)} см" +
             $" (Доп. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionPermissible, 1)} см)" +
             $"\n" +
@@ -60,6 +61,7 @@ public class CanopyGenerator : MonoBehaviour
             $"\n\tДлина - {Mathf.RoundToInt(rafterTruss.LengthTop)} мм" +
             $"\n\tКол-во - {rafterTrusses.Length} шт" +
             $"\n\tПодобранный шаг - {Mathf.RoundToInt(rafterTruss.Step / 10)} см" +
+            $"\nТреб. момент сопр. - {MathF.Round(CalculationRafterTruss.MomentResistReqSlope, 1)} см3" +
             $"\nФакт. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionFact, 1)} см" +
             $" (Доп. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionPermissible, 1)} см)" +
             $"\n" +

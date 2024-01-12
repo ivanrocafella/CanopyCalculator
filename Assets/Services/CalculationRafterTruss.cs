@@ -11,6 +11,7 @@ namespace Assets.Services
     {
         public static float DeflectionPermissible { get; set; } // u.m. = sm
         public static float DeflectionFact { get; set; } // u.m. = sm
+        public static float MomentResistReqSlope { get; set; } // u.m. = sm3
         public static Truss CalculateRafterTruss(float segmentBySlope, float stepRafter, float outputRafter, float cargo, Material material, List<Truss> trusses)
         {
             float length = segmentBySlope / MathF.Pow(10, 3); // u.m. = m
@@ -18,9 +19,9 @@ namespace Assets.Services
             float forceLinear = CalculateForceLinear(stepRafter, cargo); // u.m. = kg/m
             float momentBendMaxSlope = forceLinear * MathF.Pow(length, 2) / 8; // u.m. = kg*m
             float momentBendMaxConsole = forceLinear * MathF.Pow(console, 2) / 2; // u.m. = kg*m
-            float momentResistReqSlope = (momentBendMaxSlope * 100) / material.YieldStrength; // u.m. = sm3
+            MomentResistReqSlope = (momentBendMaxSlope * 100) / material.YieldStrength; // u.m. = sm3
             float momentResistReqConsole = (momentBendMaxConsole * 100) / material.YieldStrength; // u.m. = sm3
-            Truss truss = trusses.FirstOrDefault(e => e.MomentResistance > momentResistReqSlope && e.ProfileBelt.MomentResistance > momentResistReqConsole);
+            Truss truss = trusses.FirstOrDefault(e => e.MomentResistance > MomentResistReqSlope && e.ProfileBelt.MomentResistance > momentResistReqConsole);
             if (truss == null)
                 return null;
             float comparerSlope;

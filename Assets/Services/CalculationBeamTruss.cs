@@ -13,13 +13,14 @@ namespace Assets.Services
     {
         public static float DeflectionPermissible { get; set; } // u.m. = sm
         public static float DeflectionFact { get; set; } // u.m. = sm
+        public static float MomentResistReq { get; set; } // u.m. = sm3
         public static Truss CalculateBeamTruss(float segmentBySlope, float segmentByLength, int countStep, float cargo,  Material material, List<Truss> trusses)
         {
             float length = segmentByLength / (countStep * MathF.Pow(10, 3)); // u.m. = m
             float forceLinear = CalculateForceLinear(segmentBySlope, cargo); // u.m. = kg/m
             float momentBendMax = forceLinear * MathF.Pow(length, 2) / 8; // u.m. = kg*m
-            float momentResistReq = (momentBendMax * 100) / material.YieldStrength; // u.m. = sm3
-            Truss truss = trusses.FirstOrDefault(e => e.MomentResistance > momentResistReq);
+            MomentResistReq = (momentBendMax * 100) / material.YieldStrength; // u.m. = sm3
+            Truss truss = trusses.FirstOrDefault(e => e.MomentResistance > MomentResistReq);
             if (truss == null)
                 return null;
             float comparer;
