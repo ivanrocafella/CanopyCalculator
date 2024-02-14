@@ -138,9 +138,6 @@ public class LoadPrefab : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
         toFbxButton.gameObject.SetActive(true);
-#elif UNITY_WEBGL
-        toFbxButton.gameObject.SetActive(true);
-#else
 #endif
         //print(profilePipeColumn.Name);
         //print(trussBeam.Name);
