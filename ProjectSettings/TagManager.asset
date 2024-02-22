@@ -47,6 +47,16 @@ TagManager:
   - ExitButton
   - ToWindowButton
   - GroupMainButton
+  - FormLogin
+  - LoginButton
+  - LoginInput
+  - EmLoginInput
+  - ErrorLogin
+  - PasswordInput
+  - FormForLinks
+  - LoginPageLink
+  - MaterialsPageLink
+  - BackButton
   layers:
   - Default
   - TransparentFX

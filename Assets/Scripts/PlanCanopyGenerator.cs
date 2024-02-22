@@ -1,8 +1,12 @@
 using Assets.Models;
 using Assets.Models.Enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlanCanopyGenerator : MonoBehaviour
@@ -23,6 +27,10 @@ public class PlanCanopyGenerator : MonoBehaviour
     public KindMaterial KindMaterial;
     [SerializeField]
     private GameObject groupMainButton;
+    [SerializeField]
+    private Button LoginPageLink;
+    [SerializeField]
+    private Button MaterialsPageLink;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +38,7 @@ public class PlanCanopyGenerator : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
         groupMainButton.SetActive(true);
 #endif
+        LoginPageLink.onClick.AddListener(ButtonClickHandlerForLoginPage);
     }
 
     // Update is called once per frame
@@ -58,5 +67,17 @@ public class PlanCanopyGenerator : MonoBehaviour
             KindMaterial = KindMaterial
         };
         return planColumn;
+    }
+
+    void ButtonClickHandlerForLoginPage()
+    {
+        // Запускаем корутину с задержкой
+        StartCoroutine(ToLoginPage());
+    }
+
+    IEnumerator ToLoginPage()
+    {
+        SceneManager.LoadScene("LoginScene");
+        yield return null;
     }
 }

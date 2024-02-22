@@ -212,4 +212,10 @@ public class LoadPrefab : MonoBehaviour
         // Запускаем корутину с задержкой
         StartCoroutine(ToFbxButtonClick());
     }
+
+    void ButtonClickHandlerForLoginPage()
+    {
+        // Запускаем корутину с задержкой
+        StartCoroutine(ToFbxButtonClick());
+    }
 }
