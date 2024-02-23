@@ -38,7 +38,17 @@ public class PlanCanopyGenerator : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR
         groupMainButton.SetActive(true);
 #endif
-        LoginPageLink.onClick.AddListener(ButtonClickHandlerForLoginPage);
+        UserManager userManager = UserManager.GetInstance();
+        if (!UserManager.instance.isLogin)
+        { 
+            LoginPageLink.gameObject.SetActive(true);
+            LoginPageLink.onClick.AddListener(ButtonClickHandlerForLoginPage);
+        }
+        else 
+        {
+            LoginPageLink.gameObject.SetActive(false);
+            MaterialsPageLink.gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame

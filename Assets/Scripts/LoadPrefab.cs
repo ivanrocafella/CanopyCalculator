@@ -184,7 +184,6 @@ public class LoadPrefab : MonoBehaviour
         #else
         #endif
         yield return new WaitForSeconds(0.001f);
-
     }
 
     private float ToFloat(string textInput)
@@ -208,12 +207,6 @@ public class LoadPrefab : MonoBehaviour
     }
 
     void ButtonClickHandlerForFbx()
-    {
-        // Запускаем корутину с задержкой
-        StartCoroutine(ToFbxButtonClick());
-    }
-
-    void ButtonClickHandlerForLoginPage()
     {
         // Запускаем корутину с задержкой
         StartCoroutine(ToFbxButtonClick());
