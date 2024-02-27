@@ -48,6 +48,7 @@ public class PlanCanopyGenerator : MonoBehaviour
         {
             LoginPageLink.gameObject.SetActive(false);
             MaterialsPageLink.gameObject.SetActive(true);
+            MaterialsPageLink.onClick.AddListener(ButtonClickHandlerForProfilesPage);
         }
     }
 
@@ -88,6 +89,18 @@ public class PlanCanopyGenerator : MonoBehaviour
     IEnumerator ToLoginPage()
     {
         SceneManager.LoadScene("LoginScene");
+        yield return null;
+    }
+
+    void ButtonClickHandlerForProfilesPage()
+    {
+        // Запускаем корутину с задержкой
+        StartCoroutine(ToProfilesPage());
+    }
+
+    IEnumerator ToProfilesPage()
+    {
+        SceneManager.LoadScene("ProfilesScene");
         yield return null;
     }
 }

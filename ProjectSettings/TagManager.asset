@@ -57,6 +57,8 @@ TagManager:
   - LoginPageLink
   - MaterialsPageLink
   - BackButton
+  - ProfileList
+  - WrapperProfChangeF
   layers:
   - Default
   - TransparentFX

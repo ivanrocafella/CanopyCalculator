@@ -132,6 +132,13 @@ namespace Assets.Utils
                 ElastiModulus = e.ElastiModulus
             }
             ).ToList().Find(e => e.Name == name);
+
+        public static DollarRate GetDollarRate(DollarRateData dollarRatelData) =>
+            new()
+            {
+               Rate = dollarRatelData.Rate
+            };
+
         public static List<ProfilePipe> GetListProfilePipes(ProfilePipeDataList profilePipeDataList) =>
             profilePipeDataList.profilePipesData.Select( e =>
             new ProfilePipe()
