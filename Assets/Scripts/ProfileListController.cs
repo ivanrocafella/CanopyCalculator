@@ -1,3 +1,4 @@
+using Assets.Models;
 using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,10 @@ public class ProfileListController : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown dropdown;
     [SerializeField]
+    private TMP_InputField inputField;
+    [SerializeField]
+    private Button Button;
+    [SerializeField]
     private TrussDataList TrussDataList;
     [SerializeField]
     private ProfilePipeDataList ProfilePipeDataList;
@@ -21,12 +26,12 @@ public class ProfileListController : MonoBehaviour
     {
         // Populate the Dropdown with data
         PopulateDropdown();
+        SetValueInput(dropdown.value);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void PopulateDropdown()
@@ -41,7 +46,14 @@ public class ProfileListController : MonoBehaviour
     }
 
     public void SetValueInput(int value)
-    {     
-        print("Choosen value:" + dropdown.options[value].text);          
+    {
+        string name = dropdown.options[value].text;
+        //ProfilePipe profilePipe = ScriptObjectsAction.GetProfilePipeByName(name, ProfilePipeDataList);
+        //Truss truss = ScriptObjectsAction.GetTrussByName(name, TrussDataList);
+        ProfilePipeData profilePipeData = ProfilePipeDataList.profilePipesData.FirstOrDefault(s => s.Name == name);
+        TrussData trussData = TrussDataList.trussesData.FirstOrDefault(s => s.Name == name);
+        float pricePerM = profilePipeData != null ? profilePipeData.pricePerM : trussData.pricePerM;
+        inputField.text = pricePerM.ToString();
+        print("Choosen value:" + pricePerM);          
     }
 }

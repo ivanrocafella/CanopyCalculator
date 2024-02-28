@@ -27,6 +27,7 @@ public class ProfilePipeData : ScriptableObject
     private float weightMeter; // u.m. = kg
     [SerializeField]
     private string gost;
+    public float pricePerM; // u.m. = $ / m
 
     public string Name { get => profilePipeName; }
     public float Height { get => height; }

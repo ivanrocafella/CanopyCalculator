@@ -22,7 +22,8 @@ namespace Assets.Utils
                 MomentInertia = profilePipeData.MomentInertia,
                 MomentResistance = profilePipeData.MomentResistance,
                 WeightMeter = profilePipeData.WeightMeter,
-                Gost = profilePipeData.Gost
+                Gost = profilePipeData.Gost,
+                PricePerM = profilePipeData.pricePerM
             };
         public static ProfilePipe GetProfilePipeByName(string name, ProfilePipeDataList profilePipeDataList) =>
             profilePipeDataList.profilePipesData.Select(e =>
@@ -37,7 +38,8 @@ namespace Assets.Utils
                 MomentInertia = e.MomentInertia,
                 MomentResistance = e.MomentResistance,
                 WeightMeter = e.WeightMeter,
-                Gost = e.Gost
+                Gost = e.Gost,
+                PricePerM = e.pricePerM
             }
             ).ToList().Find(e => e.Name == name);
         public static Truss GetTruss(TrussData trussData) =>
@@ -49,6 +51,7 @@ namespace Assets.Utils
                 GapExter = trussData.GapExter,
                 LengthCrate = trussData.LengthCrate,
                 AngleCrateInDegree = trussData.AngleCrateInDegree,
+                PricePerM = trussData.pricePerM,
                 ProfileBelt =
                 {
                     Name = trussData.profileBeltData.Name,
@@ -86,6 +89,7 @@ namespace Assets.Utils
                 GapExter = e.GapExter,
                 LengthCrate = e.LengthCrate,
                 AngleCrateInDegree = e.AngleCrateInDegree,
+                PricePerM = e.pricePerM,
                 ProfileBelt =
                 {
                     Name = e.profileBeltData.Name,
@@ -152,7 +156,8 @@ namespace Assets.Utils
                 MomentInertia = e.MomentInertia,
                 MomentResistance = e.MomentResistance,
                 WeightMeter = e.WeightMeter,
-                Gost = e.Gost
+                Gost = e.Gost,
+                PricePerM = e.pricePerM
             }
             ).ToList();
         public static List<Truss> GetListTrusses(TrussDataList trussDataList) =>
@@ -165,6 +170,7 @@ namespace Assets.Utils
                 GapExter = e.GapExter,
                 LengthCrate = e.LengthCrate,
                 AngleCrateInDegree = e.AngleCrateInDegree,
+                PricePerM = e.pricePerM,
                 ProfileBelt = 
                 {
                     Name = e.profileBeltData.Name,

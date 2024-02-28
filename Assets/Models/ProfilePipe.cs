@@ -20,5 +20,6 @@ namespace Assets.Models
         public float RadiusInertia { get => (float)Math.Round(Mathf.Pow(MomentInertia / Area, 0.5f), 4); } // u.m. = sm
         public float WeightMeter { get; set; } // u.m. = kg
         public string Gost { get; set; }
+        public float PricePerM { get; set; } // u.m. = $ / m
     }
 }

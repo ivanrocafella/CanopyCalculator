@@ -19,6 +19,7 @@ public class TrussData : ScriptableObject
     private float lengthCrate;
     [SerializeField]
     private float angleCrateInDegree;
+    public float pricePerM; // u.m. = $ / m
     public ProfilePipeData profileBeltData;
     public ProfilePipeData profileCrateData;
 

@@ -59,6 +59,8 @@ TagManager:
   - BackButton
   - ProfileList
   - WrapperProfChangeF
+  - CostPrInput
+  - EmCostPrInput
   layers:
   - Default
   - TransparentFX
