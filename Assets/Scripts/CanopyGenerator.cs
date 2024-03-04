@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,13 +43,22 @@ public class CanopyGenerator : MonoBehaviour
         LoadingTextBox = GameObject.FindGameObjectWithTag("LoadingTextBox");
         CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
         StartCoroutine(MakeCanopy());
+
+        float columnMaterialLength = (float)(Mathf.RoundToInt(planColumn.SizeByY) * (planColumn.CountStep + 1) + Mathf.RoundToInt(planColumn.SizeByYLow) * (planColumn.CountStep + 1)) / 1000;
+        float girderMaterialLength = (girders.Length + 1) * girder.Length / 1000;
+        float costColumns = Mathf.RoundToInt(ValAction.GetPricePmPlayerPrefs(columnBodyHigh.Profile.Name) * columnMaterialLength * ValAction.GetDollarRatePlayerPrefs());
+        float costBeamTrusses = Mathf.RoundToInt(ValAction.GetPricePmPlayerPrefs(beamTruss.Truss.Name) * beamTruss.LengthTop / 1000 * planColumn.CountStep * 2 * ValAction.GetDollarRatePlayerPrefs());
+        float costRafterTrusses = Mathf.RoundToInt(ValAction.GetPricePmPlayerPrefs(rafterTruss.Truss.Name) * rafterTruss.LengthTop / 1000 * rafterTrusses.Length * ValAction.GetDollarRatePlayerPrefs());
+        float costGirders = Mathf.RoundToInt(ValAction.GetPricePmPlayerPrefs(girder.Profile.Name) * girderMaterialLength * ValAction.GetDollarRatePlayerPrefs());
+
         CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {columnBodyHigh.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(planColumn.SizeByY)} мм" +
             $"\n\tКол-во - {planColumn.CountStep + 1} шт" +
             $"\nКолонна малой высоты:\n\tПрофиль - {columnBodyHigh.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(planColumn.SizeByYLow)} мм" +
             $"\n\tКол-во - {planColumn.CountStep + 1} шт" +
-            $"\nКол-во мат-ла на колонны: {Math.Round((float)(Mathf.RoundToInt(planColumn.SizeByY) * (planColumn.CountStep + 1) + Mathf.RoundToInt(planColumn.SizeByYLow) * (planColumn.CountStep + 1)) / 1000, 1)} м" +
+            $"\nКол-во мат-ла на колонны: {Math.Round(columnMaterialLength, 1)} м" +
+            $"\nСт-ть мат-ла на колонны: {costColumns} сом" +
             $"\n" +
             $"Балочная ферма:\n\tТип - {beamTruss.Truss.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(beamTruss.LengthTop)} мм" +
@@ -56,6 +66,7 @@ public class CanopyGenerator : MonoBehaviour
             $"\nТреб. момент сопр. - {MathF.Round(CalculationBeamTruss.MomentResistReq, 1)} см3" +
             $"\nФакт. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionFact, 1)} см" +
             $" (Доп. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionPermissible, 1)} см)" +
+            $"\nСт-ть балочных ферм: {costBeamTrusses} сом" +
             $"\n" +
             $"Стропильная ферма:\n\tТип - {rafterTruss.Truss.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(rafterTruss.LengthTop)} мм" +
@@ -64,6 +75,7 @@ public class CanopyGenerator : MonoBehaviour
             $"\nТреб. момент сопр. - {MathF.Round(CalculationRafterTruss.MomentResistReqSlope, 1)} см3" +
             $"\nФакт. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionFact, 1)} см" +
             $" (Доп. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionPermissible, 1)} см)" +
+            $"\nСт-ть стропильных ферм: {costRafterTrusses} сом" +
             $"\n" +
             $"Прогон:\n\tПрофиль - {girder.Profile.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(girder.Length)} мм" +
@@ -71,7 +83,9 @@ public class CanopyGenerator : MonoBehaviour
             $"\n\tПодобранный шаг - {Mathf.RoundToInt(girder.Step / 10)} см" +
             $"\nФакт. прогиб - {MathF.Round(CalculationGirder.DeflectionFact, 1)} см" +
             $" (Доп. прогиб - {MathF.Round(CalculationGirder.DeflectionPermissible, 1)} см)" +
-            $"\nКол-во мат-ла на прогоны: {Math.Round((girders.Length + 1) * girder.Length / 1000, 1)} м";      
+            $"\nКол-во мат-ла на прогоны: {Math.Round(girderMaterialLength, 1)} м" +
+            $"\nСт-ть мат-ла на прогоны: {costGirders} сом" +
+            $"\nИтого: {costColumns + costBeamTrusses + costRafterTrusses + costGirders} сом";      
     }
 
     // Update is called once per frame

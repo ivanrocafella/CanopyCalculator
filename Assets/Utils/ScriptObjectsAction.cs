@@ -140,7 +140,7 @@ namespace Assets.Utils
         public static DollarRate GetDollarRate(DollarRateData dollarRatelData) =>
             new()
             {
-               Rate = dollarRatelData.Rate
+               Rate = dollarRatelData.rate
             };
 
         public static List<ProfilePipe> GetListProfilePipes(ProfilePipeDataList profilePipeDataList) =>

@@ -78,16 +78,16 @@ public class LoadPrefab : MonoBehaviour
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
         DestroyImmediate(canopy);
 
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = ToFloat(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = ToFloat(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = ToFloat(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = ToFloat(slopeInputGB.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = (int)ToFloat(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
-        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = ToFloat(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = ToFloat(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
-        float cargo = ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = ValAction.ToFloat(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = ValAction.ToFloat(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SizeByY = ValAction.ToFloat(heightInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().SlopeInDegree = ValAction.ToFloat(slopeInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().CountStep = (int)ValAction.ToFloat(ñountStepColumnInputGB.GetComponent<TMP_InputField>().text);
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter = ValAction.ToFloat(stepRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = ValAction.ToFloat(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ValAction.ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ValAction.ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        float cargo = ValAction.ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
 
@@ -184,20 +184,6 @@ public class LoadPrefab : MonoBehaviour
         #else
         #endif
         yield return new WaitForSeconds(0.001f);
-    }
-
-    private float ToFloat(string textInput)
-    {
-        string commoTextInput;
-        float value;
-        if (textInput.Contains('.'))
-        {
-            commoTextInput = textInput.Replace('.', ',');
-            value = float.Parse(commoTextInput);
-        }
-        else
-            value = float.Parse(textInput);
-        return value;
     }
 
     void ButtonClickHandlerForCalculate()

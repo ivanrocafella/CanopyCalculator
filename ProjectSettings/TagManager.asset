@@ -61,6 +61,8 @@ TagManager:
   - WrapperProfChangeF
   - CostPrInput
   - EmCostPrInput
+  - RateDollarInput
+  - EmRateDollarInput
   layers:
   - Default
   - TransparentFX

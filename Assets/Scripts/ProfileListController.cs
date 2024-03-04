@@ -12,13 +12,15 @@ public class ProfileListController : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown dropdown;
     [SerializeField]
-    private TMP_InputField inputField;
+    private TMP_InputField inputFieldCostPr;
     [SerializeField]
-    private Button Button;
+    private TMP_InputField inputFieldRateDollar;
     [SerializeField]
     private TrussDataList TrussDataList;
     [SerializeField]
     private ProfilePipeDataList ProfilePipeDataList;
+    [SerializeField]
+    private DollarRateData DollarRateData;
     private List<string> options;
 
     // Start is called before the first frame update
@@ -26,7 +28,8 @@ public class ProfileListController : MonoBehaviour
     {
         // Populate the Dropdown with data
         PopulateDropdown();
-        SetValueInput(dropdown.value);
+        SetValueInputCostPr(dropdown.value);
+        SetValueInputRateDollar();
     }
 
     // Update is called once per frame
@@ -45,15 +48,16 @@ public class ProfileListController : MonoBehaviour
         dropdown.AddOptions(options);
     }
 
-    public void SetValueInput(int value)
+    public void SetValueInputCostPr(int value)
     {
         string name = dropdown.options[value].text;
-        //ProfilePipe profilePipe = ScriptObjectsAction.GetProfilePipeByName(name, ProfilePipeDataList);
-        //Truss truss = ScriptObjectsAction.GetTrussByName(name, TrussDataList);
-        ProfilePipeData profilePipeData = ProfilePipeDataList.profilePipesData.FirstOrDefault(s => s.Name == name);
-        TrussData trussData = TrussDataList.trussesData.FirstOrDefault(s => s.Name == name);
-        float pricePerM = profilePipeData != null ? profilePipeData.pricePerM : trussData.pricePerM;
-        inputField.text = pricePerM.ToString();
+        float pricePerM = ValAction.GetPricePmPlayerPrefs(name);
+        inputFieldCostPr.text = pricePerM.ToString();
         print("Choosen value:" + pricePerM);          
+    }
+
+    public void SetValueInputRateDollar()
+    {
+        inputFieldRateDollar.text = PlayerPrefs.GetFloat("DollarRate").ToString();
     }
 }
