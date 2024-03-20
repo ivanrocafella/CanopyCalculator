@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da051ea3b46c404c81d1b6a44245958, type: 3}
   m_Name: ProfilePipe_180x180x5.0
   m_EditorClassIdentifier: 
-  profilePipeName: "\u0422\u0440\u0443\u0431\u0430 180x180x4.0"
+  profilePipeName: "\u0422\u0440\u0443\u0431\u0430 180x180x5.0"
   height: 180
   length: 180
   thickness: 5
@@ -22,3 +22,4 @@ MonoBehaviour:
   momentResistance: 192.9
   weightMeter: 26.97
   gost: "\u0413\u041E\u0421\u0422 30245\u20142012"
+  pricePerM: 0
