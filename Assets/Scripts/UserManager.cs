@@ -15,7 +15,7 @@ public class UserManager
     {
         instance ??= new UserManager
             {
-                admin = new("admin@adminov.ru", "WH90LeZ5uMe9")
+                admin = new("1", "2")
             };
         return instance;
     }

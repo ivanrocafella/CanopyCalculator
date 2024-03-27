@@ -1,3 +1,4 @@
+using Assets.Models;
 using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class ButtonChangeController : MonoBehaviour
@@ -36,7 +38,14 @@ public class ButtonChangeController : MonoBehaviour
     public void ClickButtonChange()
     {
         string name = dropdown.options[dropdown.value].text;
-        ValAction.SetPricePmPlayerPrefs(name, ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text));
+        ProfileListController profileListController = dropdown.GetComponent<ProfileListController>();
+        Truss truss = profileListController.trusses.Find(e => e.Name == name);
+        ProfilePipe profilePipe = profileListController.profilePipes.Find(e => e.Name == name);
+        float newPrice = ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text);
+        if (truss != null)
+            profileListController.trusses.Find(e => e.Name == name).PricePerM = newPrice;
+        else
+            profileListController.profilePipes.Find(e => e.Name == name).PricePerM = newPrice;
         PlayerPrefs.SetFloat("DollarRate", ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text));
         PlayerPrefs.Save();
         print(name);
