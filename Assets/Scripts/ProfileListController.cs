@@ -30,12 +30,14 @@ public class ProfileListController : MonoBehaviour
     private List<string> options;
     public List<ProfilePipe> profilePipes;
     public List<Truss> trusses;
+    public DollarRate dollarRate;
 
     // Start is called before the first frame update
     void Start()
     {
         // Populate the Dropdown with data
-        StartCoroutine(PopulateDropdown());       
+        StartCoroutine(PopulateDropdown());
+        StartCoroutine(SetValueInputRateDollar());
     }
 
     // Update is called once per frame
@@ -48,8 +50,10 @@ public class ProfileListController : MonoBehaviour
         // Make list options from profile and truss SO objects 
         UnityWebRequest unityWebRequestProfilePipes = UnityWebRequest.Get("http://localhost:5004/api/ProfilePipe/ProfilePipes");
         UnityWebRequest unityWebRequestTrusses = UnityWebRequest.Get("http://localhost:5004/api/Truss/Trusses");
+        
         yield return unityWebRequestProfilePipes.SendWebRequest();
         yield return unityWebRequestTrusses.SendWebRequest();
+        
         print("Response:" + unityWebRequestProfilePipes.result);
         switch (unityWebRequestProfilePipes.result)
         {
@@ -66,6 +70,7 @@ public class ProfileListController : MonoBehaviour
         }
         ApiResult<List<ProfilePipe>> apiResultProfilePipe = JsonConvert.DeserializeObject<ApiResult<List<ProfilePipe>>>(unityWebRequestProfilePipes.downloadHandler.text);
         ApiResult<List<Truss>> apiResultTruss = JsonConvert.DeserializeObject<ApiResult<List<Truss>>>(unityWebRequestTrusses.downloadHandler.text);
+        
         profilePipes = apiResultProfilePipe.Result;
         trusses = apiResultTruss.Result;
         // Filling options
@@ -75,7 +80,6 @@ public class ProfileListController : MonoBehaviour
         // Add new options from the dataList
         dropdown.AddOptions(options);
         SetValueInputCostPr(0);
-        SetValueInputRateDollar();
     }
 
     public void SetValueInputCostPr(int value)
@@ -88,8 +92,12 @@ public class ProfileListController : MonoBehaviour
         print("Choosen value:" + pricePerM);          
     }
 
-    public void SetValueInputRateDollar()
+    IEnumerator SetValueInputRateDollar()
     {
-        inputFieldRateDollar.text = PlayerPrefs.GetFloat("DollarRate").ToString();
+        UnityWebRequest unityWebRequestDollarRate = UnityWebRequest.Get("http://localhost:5004/api/DollarRate");
+        yield return unityWebRequestDollarRate.SendWebRequest();
+        ApiResult<DollarRate> apiResultDollarRate = JsonConvert.DeserializeObject<ApiResult<DollarRate>>(unityWebRequestDollarRate.downloadHandler.text);
+        dollarRate = apiResultDollarRate.Result;
+        inputFieldRateDollar.text = dollarRate.Rate.ToString();
     }
 }
