@@ -8,5 +8,7 @@ namespace Assets.ModelsRequest
 {
     public class ProfileUpdateModel
     {
+        public string Name { get; set; }
+        public float PricePerM { get; set; } // u.m. = $ / m
     }
 }

@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.ModelsRequest;
 using Assets.Utils;
 using Newtonsoft.Json;
 using System.Collections;
@@ -46,10 +47,18 @@ public class ButtonChangeController : MonoBehaviour
         ProfilePipe profilePipe = profileListController.profilePipes.Find(e => e.Name == name);
         dollarRate = profileListController.dollarRate;
         float newPrice = ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text);
+        string kindAction;
         if (truss != null)
+        {
             profileListController.trusses.Find(e => e.Name == name).PricePerM = newPrice;
+            kindAction = "TrussUpdate";
+        }
         else
+        { 
             profileListController.profilePipes.Find(e => e.Name == name).PricePerM = newPrice;
+            kindAction = "ProfileUpdate";
+        }
+        StartCoroutine(UpdateProfile(name, newPrice, kindAction));
         StartCoroutine(UpdateDollarRate());
         print(name);
     }
@@ -59,8 +68,7 @@ public class ButtonChangeController : MonoBehaviour
         dollarRate.Rate = ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text);
         string dollarRateJson = JsonConvert.SerializeObject(dollarRate);
         print("dollarRateJson: " + dollarRateJson);
-        byte[] dollarRateJsonInByte = System.Text.Encoding.UTF8.GetBytes(dollarRateJson);
-        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.Put("http://localhost:5004/api/DollarRate/Update", dollarRateJsonInByte);
+        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.Put("http://localhost:5004/api/DollarRate/Update", dollarRateJson);
         unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/json");
         yield return unityWebRequestUpdateDollarRate.SendWebRequest();
         print("unityWebRequestUpdateDollarRate.result: " + unityWebRequestUpdateDollarRate.result);
@@ -68,5 +76,32 @@ public class ButtonChangeController : MonoBehaviour
             Debug.Log(unityWebRequestUpdateDollarRate.error);
         else
             Debug.Log("UpdateDollarRate complete!");
+    }
+
+    IEnumerator UpdateProfile(string name, float newPrice, string kindAction)
+    {
+        ProfileUpdateModel profileUpdateModel = new()
+        {
+            Name = name,
+            PricePerM = newPrice
+        };
+        string profileUpdateModelJson = JsonConvert.SerializeObject(profileUpdateModel);
+        UnityWebRequest unityWebRequest = new();        
+        switch (kindAction)
+        {
+            case "TrussUpdate":
+                unityWebRequest = UnityWebRequest.Put("http://localhost:5004/api/Truss/Update", profileUpdateModelJson);
+                break;
+            case "ProfileUpdate":
+                unityWebRequest = UnityWebRequest.Put("http://localhost:5004/api/ProfilePipe/Update", profileUpdateModelJson);
+                break;
+        }
+        unityWebRequest.SetRequestHeader("Content-Type", "application/json");
+        yield return unityWebRequest.SendWebRequest();
+        print("unityWebRequest.result: " + unityWebRequest.result);
+        if (unityWebRequest.result != UnityWebRequest.Result.Success)
+            Debug.Log(unityWebRequest.error);
+        else
+            Debug.Log("UpdateProfile complete!");
     }
 }
