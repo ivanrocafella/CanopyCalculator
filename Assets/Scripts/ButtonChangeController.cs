@@ -42,6 +42,7 @@ public class ButtonChangeController : MonoBehaviour
     public void ClickButtonChange()
     {
         string name = dropdown.options[dropdown.value].text;
+#if UNITY_WEBGL
         ProfileListController profileListController = dropdown.GetComponent<ProfileListController>();
         Truss truss = profileListController.trusses.Find(e => e.Name == name);
         ProfilePipe profilePipe = profileListController.profilePipes.Find(e => e.Name == name);
@@ -60,6 +61,11 @@ public class ButtonChangeController : MonoBehaviour
         }
         StartCoroutine(UpdateProfile(name, newPrice, kindAction));
         StartCoroutine(UpdateDollarRate());
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        ValAction.SetPricePmPlayerPrefs(name, ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text));
+        PlayerPrefs.SetFloat("DollarRate", ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text));
+        PlayerPrefs.Save();
+#endif
         print(name);
     }
 

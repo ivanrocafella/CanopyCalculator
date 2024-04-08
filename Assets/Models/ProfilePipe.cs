@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Assets.Models
 {
+    [Serializable]
     public class ProfilePipe
     {
         public string Name { get; set; }

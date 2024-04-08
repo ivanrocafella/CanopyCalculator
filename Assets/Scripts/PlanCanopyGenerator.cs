@@ -35,7 +35,9 @@ public class PlanCanopyGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+#if UNITY_WEBGL
+        print("UNITY_WEBGL");
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         groupMainButton.SetActive(true);
 #endif
         UserManager userManager = UserManager.GetInstance();

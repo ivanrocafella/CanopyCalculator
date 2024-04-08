@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,7 @@ namespace Assets.Utils
         public static float GetPricePmPlayerPrefs(string nameProfile) => PlayerPrefs.GetFloat($"{nameProfile}PricePm");
         public static void SetPricePmPlayerPrefs(string nameProfile, float value) => PlayerPrefs.SetFloat($"{nameProfile}PricePm", value);
         public static float GetDollarRatePlayerPrefs() => PlayerPrefs.GetFloat("DollarRate");
+        public static float GetPricePmOfProfilePipe(string nameProfile, List<ProfilePipe> profilePipes) => profilePipes.FirstOrDefault(e => e.Name == nameProfile).PricePerM;
+        public static float GetPricePmOfTruss(string nameProfile, List<Truss> trusses) => trusses.FirstOrDefault(e => e.Name == nameProfile).PricePerM;
     }
 }

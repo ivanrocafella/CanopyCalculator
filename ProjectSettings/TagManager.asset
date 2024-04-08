@@ -63,6 +63,7 @@ TagManager:
   - EmCostPrInput
   - RateDollarInput
   - EmRateDollarInput
+  - LoadPrefab
   layers:
   - Default
   - TransparentFX

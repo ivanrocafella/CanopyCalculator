@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Models
 {
+    [Serializable]
     public class DollarRate
     {
         public float Rate { get; set; } // usd/kgs

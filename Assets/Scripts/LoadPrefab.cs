@@ -13,6 +13,10 @@ using Button = UnityEngine.UI.Button;
 using Material = Assets.Models.Material;
 using Debug = UnityEngine.Debug;
 using Vector3 = UnityEngine.Vector3;
+using Assets.ModelsRequest;
+using Newtonsoft.Json;
+using UnityEngine.Networking;
+using Unity.VisualScripting;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -37,12 +41,22 @@ public class LoadPrefab : MonoBehaviour
     private Button toFbxButton;
     [SerializeField]
     private GameObject loadingTextBox;
+    public List<ProfilePipe> profilePipes;
+    public List<Truss> trusses;
+    public DollarRate dollarRate;
 
     private void Awake()
     {
+        Debug.Log("LoadPrefab");
+#if UNITY_WEBGL
+        StartCoroutine(GetProfiles());
+        StartCoroutine(GetDollarRate());
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
+#endif
         if (canopyPrefab != null)
             Debug.Log($"[{DateTime.Now}]: {canopyPrefab} is not null");
-        Instantiate(canopyPrefab);
+        StartCoroutine(InitializePrefab());
     }
     // Start is called before the first frame update
     void Start()
@@ -90,10 +104,14 @@ public class LoadPrefab : MonoBehaviour
         float cargo = ValAction.ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
-
         Material material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
-        List<ProfilePipe> profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
-        List<Truss> trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
+
+#if UNITY_WEBGL
+        print("UNITY_WEBGL");
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
+        trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
+#endif
 
         ProfilePipe profilePipeColumn = CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
@@ -136,7 +154,9 @@ public class LoadPrefab : MonoBehaviour
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
         yield return new WaitForSeconds(0.001f);
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+#if UNITY_WEBGL
+        print("UNITY_WEBGL");
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR    
         toFbxButton.gameObject.SetActive(true);
 #endif
         //print(profilePipeColumn.Name);
@@ -196,5 +216,64 @@ public class LoadPrefab : MonoBehaviour
     {
         // Запускаем корутину с задержкой
         StartCoroutine(ToFbxButtonClick());
+    }
+
+    IEnumerator InitializePrefab()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(canopyPrefab);
+    }
+
+    IEnumerator GetProfiles()
+    {
+        UnityWebRequest unityWebRequestProfilePipes = UnityWebRequest.Get("http://localhost:5004/api/ProfilePipe/ProfilePipes");
+        UnityWebRequest unityWebRequestTrusses = UnityWebRequest.Get("http://localhost:5004/api/Truss/Trusses");
+
+        yield return unityWebRequestProfilePipes.SendWebRequest();
+        yield return unityWebRequestTrusses.SendWebRequest();
+
+        print("Response:" + unityWebRequestProfilePipes.result);
+        switch (unityWebRequestProfilePipes.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError("Error: " + unityWebRequestProfilePipes.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError("HTTP Error: " + unityWebRequestProfilePipes.error);
+                break;
+            case UnityWebRequest.Result.Success:
+                Debug.Log("Received: " + unityWebRequestProfilePipes.downloadHandler.text);
+                break;
+        }
+        ApiResult<List<ProfilePipe>> apiResultProfilePipe = JsonConvert.DeserializeObject<ApiResult<List<ProfilePipe>>>(unityWebRequestProfilePipes.downloadHandler.text);
+        ApiResult<List<Truss>> apiResultTruss = JsonConvert.DeserializeObject<ApiResult<List<Truss>>>(unityWebRequestTrusses.downloadHandler.text);
+
+        profilePipes = apiResultProfilePipe.Result;
+        trusses = apiResultTruss.Result;
+    }
+
+    IEnumerator GetDollarRate()
+    {
+        UnityWebRequest unityWebRequestDollarRate = UnityWebRequest.Get("http://localhost:5004/api/DollarRate");
+
+        yield return unityWebRequestDollarRate.SendWebRequest();
+
+        print("Response:" + unityWebRequestDollarRate.result);
+        switch (unityWebRequestDollarRate.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError("Error: " + unityWebRequestDollarRate.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError("HTTP Error: " + unityWebRequestDollarRate.error);
+                break;
+            case UnityWebRequest.Result.Success:
+                Debug.Log("Received: " + unityWebRequestDollarRate.downloadHandler.text);
+                break;
+        }
+        ApiResult<DollarRate> apiResultDollarRate = JsonConvert.DeserializeObject<ApiResult<DollarRate>>(unityWebRequestDollarRate.downloadHandler.text);
+        dollarRate = apiResultDollarRate.Result;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 using System;
 using Assets.Utils;
 using Material = Assets.Models.Material;
+using System.Linq;
 
 public class ColumnGenerator : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class ColumnGenerator : MonoBehaviour
 
     private void Awake()
     {
+        print("ColumnGenerator");
         planColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         KindProfile = planColumn.KindProfileColumn;
         nameProfile = KindProfile.ToString().Insert(5, " ").Replace("_", ".");
