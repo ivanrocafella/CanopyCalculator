@@ -48,37 +48,8 @@ public class ProfileListController : MonoBehaviour
     IEnumerator PopulateDropdown()
     {
         // Make list options from profile and truss SO objects 
+        yield return StartCoroutine(GetProfiles());
 
-#if UNITY_WEBGL
-        UnityWebRequest unityWebRequestProfilePipes = UnityWebRequest.Get("http://localhost:5004/api/ProfilePipe/ProfilePipes");
-        UnityWebRequest unityWebRequestTrusses = UnityWebRequest.Get("http://localhost:5004/api/Truss/Trusses");
-
-        yield return unityWebRequestProfilePipes.SendWebRequest();
-        yield return unityWebRequestTrusses.SendWebRequest();
-
-        print("Response:" + unityWebRequestProfilePipes.result);
-        switch (unityWebRequestProfilePipes.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError("Error: " + unityWebRequestProfilePipes.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError("HTTP Error: " + unityWebRequestProfilePipes.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                Debug.Log("Received: " + unityWebRequestProfilePipes.downloadHandler.text);
-                break;
-        }
-        ApiResult<List<ProfilePipe>> apiResultProfilePipe = JsonConvert.DeserializeObject<ApiResult<List<ProfilePipe>>>(unityWebRequestProfilePipes.downloadHandler.text);
-        ApiResult<List<Truss>> apiResultTruss = JsonConvert.DeserializeObject<ApiResult<List<Truss>>>(unityWebRequestTrusses.downloadHandler.text);
-
-        profilePipes = apiResultProfilePipe.Result;
-        trusses = apiResultTruss.Result;
-#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        profilePipes = ScriptObjectsAction.GetListProfilePipes(ProfilePipeDataList);
-        trusses = ScriptObjectsAction.GetListTrusses(TrussDataList);        
-#endif
         // Filling options
         options = trusses.Select(e => e.Name).ToList();
         options.AddRange(profilePipes.Select(e => e.Name));
@@ -86,7 +57,6 @@ public class ProfileListController : MonoBehaviour
         // Add new options from the dataList
         dropdown.AddOptions(options);
         SetValueInputCostPr(0);
-        yield return null;
     }
 
     public void SetValueInputCostPr(int value)
@@ -107,10 +77,7 @@ public class ProfileListController : MonoBehaviour
     IEnumerator SetValueInputRateDollar()
     {
 #if UNITY_WEBGL
-        UnityWebRequest unityWebRequestDollarRate = UnityWebRequest.Get("http://localhost:5004/api/DollarRate");
-        yield return unityWebRequestDollarRate.SendWebRequest();
-        ApiResult<DollarRate> apiResultDollarRate = JsonConvert.DeserializeObject<ApiResult<DollarRate>>(unityWebRequestDollarRate.downloadHandler.text);
-        dollarRate = apiResultDollarRate.Result;
+        yield return DatabaseAction<DollarRate>.GetData("http://localhost:5004/api/DollarRate", (returnedDollarRate) => dollarRate = returnedDollarRate);
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         dollarRate = new()
         {
@@ -123,30 +90,14 @@ public class ProfileListController : MonoBehaviour
 
     IEnumerator GetProfiles()
     {
-        UnityWebRequest unityWebRequestProfilePipes = UnityWebRequest.Get("http://localhost:5004/api/ProfilePipe/ProfilePipes");
-        UnityWebRequest unityWebRequestTrusses = UnityWebRequest.Get("http://localhost:5004/api/Truss/Trusses");
-
-        yield return unityWebRequestProfilePipes.SendWebRequest();
-        yield return unityWebRequestTrusses.SendWebRequest();
-
-        print("Response:" + unityWebRequestProfilePipes.result);
-        switch (unityWebRequestProfilePipes.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError("Error: " + unityWebRequestProfilePipes.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError("HTTP Error: " + unityWebRequestProfilePipes.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                Debug.Log("Received: " + unityWebRequestProfilePipes.downloadHandler.text);
-                break;
-        }
-        ApiResult<List<ProfilePipe>> apiResultProfilePipe = JsonConvert.DeserializeObject<ApiResult<List<ProfilePipe>>>(unityWebRequestProfilePipes.downloadHandler.text);
-        ApiResult<List<Truss>> apiResultTruss = JsonConvert.DeserializeObject<ApiResult<List<Truss>>>(unityWebRequestTrusses.downloadHandler.text);
-
-        profilePipes = apiResultProfilePipe.Result;
-        trusses = apiResultTruss.Result;
+#if UNITY_WEBGL
+        yield return DatabaseAction<List<ProfilePipe>>.GetData("http://localhost:5004/api/ProfilePipe/ProfilePipes", (returnedProfiles) => profilePipes = returnedProfiles);
+        yield return DatabaseAction<List<Truss>>.GetData("http://localhost:5004/api/Truss/Trusses", (returnedProfiles) => trusses = returnedProfiles);
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
+        profilePipes = ScriptObjectsAction.GetListProfilePipes(ProfilePipeDataList);
+        trusses = ScriptObjectsAction.GetListTrusses(TrussDataList);
+#endif
+        yield return null;
     }
 }

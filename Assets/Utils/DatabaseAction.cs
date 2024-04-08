@@ -14,9 +14,9 @@ using static UnityEngine.Rendering.DebugUI;
 
 namespace Assets.Utils
 {
-    public class DatabaseAction<T> where T : class
+    public static class DatabaseAction<T> where T : class
     {
-        public IEnumerator GetProfilePipes(string uri, Action<List<T>> callback)
+        public static IEnumerator GetData(string uri, Action<T> callback)
         { 
             UnityWebRequest unityWebRequest = UnityWebRequest.Get(uri);
             yield return unityWebRequest.SendWebRequest();
@@ -33,7 +33,7 @@ namespace Assets.Utils
                     Debug.Log("Received: " + unityWebRequest.downloadHandler.text);
                     break;
             }
-            ApiResult<List<T>> apiResult = JsonConvert.DeserializeObject<ApiResult<List<T>>>(unityWebRequest.downloadHandler.text);
+            ApiResult<T> apiResult = JsonConvert.DeserializeObject<ApiResult<T>>(unityWebRequest.downloadHandler.text);
             callback(apiResult.Result);
         }
     }

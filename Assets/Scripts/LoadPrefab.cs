@@ -48,12 +48,6 @@ public class LoadPrefab : MonoBehaviour
     private void Awake()
     {
         Debug.Log("LoadPrefab");
-#if UNITY_WEBGL
-        StartCoroutine(GetProfiles());
-        StartCoroutine(GetDollarRate());
-#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
-#endif
         if (canopyPrefab != null)
             Debug.Log($"[{DateTime.Now}]: {canopyPrefab} is not null");
         StartCoroutine(InitializePrefab());
@@ -105,13 +99,6 @@ public class LoadPrefab : MonoBehaviour
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         Material material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
-
-#if UNITY_WEBGL
-        print("UNITY_WEBGL");
-#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
-        trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
-#endif
 
         ProfilePipe profilePipeColumn = CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
@@ -220,60 +207,16 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator InitializePrefab()
     {
-        yield return new WaitForSeconds(0.1f);
+#if UNITY_WEBGL
+        yield return DatabaseAction<List<ProfilePipe>>.GetData("http://localhost:5004/api/ProfilePipe/ProfilePipes", (returnedProfiles) => profilePipes = returnedProfiles);
+        yield return DatabaseAction<List<Truss>>.GetData("http://localhost:5004/api/Truss/Trusses", (returnedProfiles) => trusses = returnedProfiles);
+        yield return DatabaseAction<DollarRate>.GetData("http://localhost:5004/api/DollarRate", (returnedDollarRate) => dollarRate = returnedDollarRate);
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
+        profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
+        trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
+#endif
         Instantiate(canopyPrefab);
-    }
-
-    IEnumerator GetProfiles()
-    {
-        UnityWebRequest unityWebRequestProfilePipes = UnityWebRequest.Get("http://localhost:5004/api/ProfilePipe/ProfilePipes");
-        UnityWebRequest unityWebRequestTrusses = UnityWebRequest.Get("http://localhost:5004/api/Truss/Trusses");
-
-        yield return unityWebRequestProfilePipes.SendWebRequest();
-        yield return unityWebRequestTrusses.SendWebRequest();
-
-        print("Response:" + unityWebRequestProfilePipes.result);
-        switch (unityWebRequestProfilePipes.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError("Error: " + unityWebRequestProfilePipes.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError("HTTP Error: " + unityWebRequestProfilePipes.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                Debug.Log("Received: " + unityWebRequestProfilePipes.downloadHandler.text);
-                break;
-        }
-        ApiResult<List<ProfilePipe>> apiResultProfilePipe = JsonConvert.DeserializeObject<ApiResult<List<ProfilePipe>>>(unityWebRequestProfilePipes.downloadHandler.text);
-        ApiResult<List<Truss>> apiResultTruss = JsonConvert.DeserializeObject<ApiResult<List<Truss>>>(unityWebRequestTrusses.downloadHandler.text);
-
-        profilePipes = apiResultProfilePipe.Result;
-        trusses = apiResultTruss.Result;
-    }
-
-    IEnumerator GetDollarRate()
-    {
-        UnityWebRequest unityWebRequestDollarRate = UnityWebRequest.Get("http://localhost:5004/api/DollarRate");
-
-        yield return unityWebRequestDollarRate.SendWebRequest();
-
-        print("Response:" + unityWebRequestDollarRate.result);
-        switch (unityWebRequestDollarRate.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError("Error: " + unityWebRequestDollarRate.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError("HTTP Error: " + unityWebRequestDollarRate.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                Debug.Log("Received: " + unityWebRequestDollarRate.downloadHandler.text);
-                break;
-        }
-        ApiResult<DollarRate> apiResultDollarRate = JsonConvert.DeserializeObject<ApiResult<DollarRate>>(unityWebRequestDollarRate.downloadHandler.text);
-        dollarRate = apiResultDollarRate.Result;
+        yield return null;
     }
 }
