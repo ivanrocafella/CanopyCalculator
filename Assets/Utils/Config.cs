@@ -8,6 +8,6 @@ namespace Assets.Utils
 {
     public class Config
     {
-        public const string baseUrl = "http://localhost:5004/canopy";
+        public const string baseUrl = "http://192.168.0.232/canopy";
     }
 }
