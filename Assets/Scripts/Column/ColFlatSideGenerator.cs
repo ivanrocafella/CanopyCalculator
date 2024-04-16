@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +20,9 @@ public class ColFlatSideGenerator : MonoBehaviour
     {
         columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(selectedKindLength);
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, columnBody.Profile.Radius);
+        // Setting roundness profile or not 
+        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, columnBody.Profile.Radius) :
+                                 _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, 0);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

@@ -74,7 +74,7 @@ public class ButtonChangeController : MonoBehaviour
         dollarRate.Rate = ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text);
         string dollarRateJson = JsonConvert.SerializeObject(dollarRate);
         print("dollarRateJson: " + dollarRateJson);
-        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.Put("http://localhost:5004/api/DollarRate/Update", dollarRateJson);
+        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.Put("/api/DollarRate/Update", dollarRateJson);
         unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/json");
         yield return unityWebRequestUpdateDollarRate.SendWebRequest();
         print("unityWebRequestUpdateDollarRate.result: " + unityWebRequestUpdateDollarRate.result);
@@ -96,10 +96,10 @@ public class ButtonChangeController : MonoBehaviour
         switch (kindAction)
         {
             case "TrussUpdate":
-                unityWebRequest = UnityWebRequest.Put("http://localhost:5004/api/Truss/Update", profileUpdateModelJson);
+                unityWebRequest = UnityWebRequest.Put("/api/Truss/Update", profileUpdateModelJson);
                 break;
             case "ProfileUpdate":
-                unityWebRequest = UnityWebRequest.Put("http://localhost:5004/api/ProfilePipe/Update", profileUpdateModelJson);
+                unityWebRequest = UnityWebRequest.Put("/api/ProfilePipe/Update", profileUpdateModelJson);
                 break;
         }
         unityWebRequest.SetRequestHeader("Content-Type", "application/json");

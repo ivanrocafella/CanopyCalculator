@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -22,9 +23,13 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
             KindLength.Short => rafterTruss.LengthBottom,
             _ => rafterTruss.LengthTop
         };
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, rafterTruss.Truss.ProfileBelt.Radius, length
+        // Setting roundness profile or not
+        if (ValAction.withRadius)
+        {
+            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, rafterTruss.Truss.ProfileBelt.Radius, length
             , rafterTruss.Truss.ProfileBelt.Thickness, rafterTruss.Truss.ProfileBelt.Radius);
-        ApplyMaterial(mesh, "Standard", Color.black);
+            ApplyMaterial(mesh, "Standard", Color.black);
+        }
     }
 
     private void ApplyMaterial(Mesh mesh, string shaderName, Color color)

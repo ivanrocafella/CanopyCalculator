@@ -1,5 +1,6 @@
 ﻿using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
@@ -23,7 +24,9 @@ public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
             KindLength.Short => rafterTruss.LengthBottom,
             _ => rafterTruss.LengthTop
         };
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileBelt.Thickness, length, rafterTruss.Truss.ProfileBelt.Height, rafterTruss.Truss.ProfileBelt.Radius);
+        // Setting roundness profile or not 
+        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileBelt.Thickness, length, rafterTruss.Truss.ProfileBelt.Height, rafterTruss.Truss.ProfileBelt.Radius) :
+                                 _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileBelt.Thickness, length, rafterTruss.Truss.ProfileBelt.Height, 0);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

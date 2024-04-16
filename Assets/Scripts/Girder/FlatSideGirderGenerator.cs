@@ -1,5 +1,6 @@
 ﻿using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections;
@@ -17,7 +18,9 @@ public class FlatSideGirderGenerator : MonoBehaviour
     void Start()
     {
         girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, girder.Profile.Radius);
+        // Setting roundness profile or not
+        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, girder.Profile.Radius) :
+                                 _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, 0);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

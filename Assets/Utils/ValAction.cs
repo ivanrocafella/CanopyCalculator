@@ -10,6 +10,7 @@ namespace Assets.Utils
 {
     public static class ValAction
     {
+        public static bool withRadius = true; // Setting roundness profile or not 
         public static float ToFloat(string textInput)
         {
             string commoTextInput;

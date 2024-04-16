@@ -1,6 +1,7 @@
 using Assets.Models;
 using Assets.Models.Enums;
 using Assets.Services;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,11 +16,15 @@ public class RoundedCrateBeamTrussGenerator : MonoBehaviour
     private void Start()
     {
         beamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
-        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileCrate.Radius, beamTruss.Truss.ProfileCrate.Radius, beamTruss.LengthNonStandartCrate
+        // Setting roundness profile or not
+        if (ValAction.withRadius)
+        {
+            Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileCrate.Radius, beamTruss.Truss.ProfileCrate.Radius, beamTruss.LengthNonStandartCrate
             , beamTruss.Truss.ProfileCrate.Thickness, beamTruss.Truss.ProfileCrate.Radius)
             : _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileCrate.Radius, beamTruss.Truss.ProfileCrate.Radius, beamTruss.Truss.LengthCrate
             , beamTruss.Truss.ProfileCrate.Thickness, beamTruss.Truss.ProfileCrate.Radius);
-        ApplyMaterial(mesh, "Standard", Color.black);
+            ApplyMaterial(mesh, "Standard", Color.black);
+        }
     }
 
     private void ApplyMaterial(Mesh mesh, string shaderName, Color color)

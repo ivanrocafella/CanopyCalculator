@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Services;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -18,9 +19,13 @@ public class ColRoundedCorner : MonoBehaviour
     {
         columnBody = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(KindLength);
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Profile.Radius, columnBody.Profile.Radius, columnBody.Height
-            , columnBody.Profile.Thickness, columnBody.Profile.Radius);
-        ApplyMaterial(mesh, "Standard", Color.black);
+        // Setting roundness profile or not
+        if (ValAction.withRadius)
+        {
+            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Profile.Radius, columnBody.Profile.Radius, columnBody.Height
+                , columnBody.Profile.Thickness, columnBody.Profile.Radius);
+            ApplyMaterial(mesh, "Standard", Color.black);
+        }
     }
 
     private void ApplyMaterial(Mesh mesh, string shaderName, Color color)

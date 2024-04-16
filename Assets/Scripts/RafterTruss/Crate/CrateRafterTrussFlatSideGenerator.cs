@@ -1,6 +1,7 @@
 using Assets.Models;
 using Assets.Models.Enums;
 using Assets.Services;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +18,10 @@ public class CrateRafterTrussFlatSideGenerator : MonoBehaviour
     {
         rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         float dimen = HeigthLengthProfile == HeigthLengthProfile.Heigth ? rafterTruss.Truss.ProfileCrate.Height : rafterTruss.Truss.ProfileCrate.Length;
-        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.LengthNonStandartCrate, dimen, rafterTruss.Truss.ProfileCrate.Radius)
-            : _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.LengthCrate, dimen, rafterTruss.Truss.ProfileCrate.Radius);
+        // Setting roundness profile or not 
+        float radius = ValAction.withRadius ? rafterTruss.Truss.ProfileCrate.Radius : 0;
+        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.LengthNonStandartCrate, dimen, radius)
+            : _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.LengthCrate, dimen, radius);
         ApplyMaterial(mesh, "Standard", Color.black);
     }
 

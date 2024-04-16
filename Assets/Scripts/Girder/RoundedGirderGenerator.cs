@@ -1,6 +1,7 @@
 using Assets.Models;
 using Assets.Models.Enums;
 using Assets.Services;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -14,9 +15,13 @@ public class RoundedGirderGenerator : MonoBehaviour
     private void Start()
     {
         girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
-        Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Profile.Radius, girder.Profile.Radius, girder.Length
+        // Setting roundness profile or not
+        if (ValAction.withRadius)
+        {
+            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Profile.Radius, girder.Profile.Radius, girder.Length
             , girder.Profile.Thickness, girder.Profile.Radius);
-        ApplyMaterial(mesh, "Standard", Color.black);
+            ApplyMaterial(mesh, "Standard", Color.black);
+        }
     }
 
     private void ApplyMaterial(Mesh mesh, string shaderName, Color color)

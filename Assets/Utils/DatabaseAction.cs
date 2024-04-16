@@ -18,7 +18,7 @@ namespace Assets.Utils
     {
         public static IEnumerator GetData(string uri, Action<T> callback)
         { 
-            UnityWebRequest unityWebRequest = UnityWebRequest.Get(uri);
+            UnityWebRequest unityWebRequest = UnityWebRequest.Get(Config.baseUrl + uri);
             yield return unityWebRequest.SendWebRequest();
             switch (unityWebRequest.result)
             {

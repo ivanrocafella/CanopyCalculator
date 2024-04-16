@@ -77,7 +77,7 @@ public class ProfileListController : MonoBehaviour
     IEnumerator SetValueInputRateDollar()
     {
 #if UNITY_WEBGL
-        yield return DatabaseAction<DollarRate>.GetData("http://localhost:5004/api/DollarRate", (returnedDollarRate) => dollarRate = returnedDollarRate);
+        yield return DatabaseAction<DollarRate>.GetData("/api/DollarRate", (returnedDollarRate) => dollarRate = returnedDollarRate);
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         dollarRate = new()
         {
@@ -91,8 +91,8 @@ public class ProfileListController : MonoBehaviour
     IEnumerator GetProfiles()
     {
 #if UNITY_WEBGL
-        yield return DatabaseAction<List<ProfilePipe>>.GetData("http://localhost:5004/api/ProfilePipe/ProfilePipes", (returnedProfiles) => profilePipes = returnedProfiles);
-        yield return DatabaseAction<List<Truss>>.GetData("http://localhost:5004/api/Truss/Trusses", (returnedProfiles) => trusses = returnedProfiles);
+        yield return DatabaseAction<List<ProfilePipe>>.GetData("/api/ProfilePipe/ProfilePipes", (returnedProfiles) => profilePipes = returnedProfiles);
+        yield return DatabaseAction<List<Truss>>.GetData("/api/Truss/Trusses", (returnedProfiles) => trusses = returnedProfiles);
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
         profilePipes = ScriptObjectsAction.GetListProfilePipes(ProfilePipeDataList);

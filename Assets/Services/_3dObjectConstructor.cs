@@ -87,17 +87,11 @@ namespace Assets.Services
                 {
                     i++;
                     SetVertex(v++, x, ySizes[y], 0, vertices, xSize, zSize, thickness, roundness, normals);
-                    //vertices[v++] = new Vector3(x, ySizes[y], 0);
-                    //Debug.Log($"{x}\t{ySizes[y]}\t{i}");
-                    // yield return wait;
                 }
                 for (int z = 1; z <= zSize; z++)
                 {
                     i++;
                     SetVertex(v++, xSize, ySizes[y], z, vertices, xSize, zSize, thickness, roundness, normals);
-                    //vertices[v++] = new Vector3(xSize, ySizes[y], z);
-                    //Debug.Log($"{z}\t{ySizes[y]}\t{i}");
-                    // yield return wait;
                 }
             }
             for (int y = ySizes.Length - 1; y >= 0; y--) // internal rounded side
@@ -106,17 +100,11 @@ namespace Assets.Services
                 {
                     i++;
                     SetVertex(v++, x, ySizes[y], thickness, vertices, xSize, zSize, thickness, roundness, normals);
-                    //vertices[v++] = new Vector3(x, ySizes[y], thickness);
-                    //Debug.Log($"{x}\t{ySizes[y]}\t{i}");
-                    // yield return wait;
                 }
                 for (int z = thickness + 1; z <= zSize; z++)
                 {
                     i++;
                     SetVertex(v++, xSize - thickness, ySizes[y], z, vertices, xSize, zSize, thickness, roundness, normals);
-                    //vertices[v++] = new Vector3(xSize - thickness, ySizes[y], z);
-                    //Debug.Log($"{z}\t{ySizes[y]}\t{i}");
-                    // yield return wait;
                 }
             }
             mesh.vertices = vertices;
@@ -158,7 +146,6 @@ namespace Assets.Services
                 if (zWithoutThick < sizeByZ / 2)
                     inner.z = sizeByZ - radius;
             }
-
             normals[i] = (vertices[i] - inner).normalized;
             vertices[i] = inner + normals[i] * radius;
         }
