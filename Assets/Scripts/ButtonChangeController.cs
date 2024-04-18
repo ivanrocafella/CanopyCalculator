@@ -74,8 +74,8 @@ public class ButtonChangeController : MonoBehaviour
         dollarRate.Rate = ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text);
         string dollarRateJson = JsonConvert.SerializeObject(dollarRate);
         print("dollarRateJson: " + dollarRateJson);
-        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.PostWwwForm("/api/DollarRate/Update", dollarRateJson);
-        unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.Put(Config.baseUrl + "/api/DollarRate/Update", dollarRateJson);
+        unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/json");
         yield return unityWebRequestUpdateDollarRate.SendWebRequest();
         print("unityWebRequestUpdateDollarRate.result: " + unityWebRequestUpdateDollarRate.result);
         if (unityWebRequestUpdateDollarRate.result != UnityWebRequest.Result.Success)
@@ -96,13 +96,13 @@ public class ButtonChangeController : MonoBehaviour
         switch (kindAction)
         {
             case "TrussUpdate":
-                unityWebRequest = UnityWebRequest.PostWwwForm("/api/Truss/Update", profileUpdateModelJson);
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/Truss/Update", profileUpdateModelJson);
                 break;
             case "ProfileUpdate":
-                unityWebRequest = UnityWebRequest.PostWwwForm("/api/ProfilePipe/Update", profileUpdateModelJson);
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/ProfilePipe/Update", profileUpdateModelJson);
                 break;
         }
-        unityWebRequest.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        unityWebRequest.SetRequestHeader("Content-Type", "application/json");
         yield return unityWebRequest.SendWebRequest();
         print("unityWebRequest.result: " + unityWebRequest.result);
         if (unityWebRequest.result != UnityWebRequest.Result.Success)
