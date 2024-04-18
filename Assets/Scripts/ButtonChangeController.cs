@@ -75,7 +75,7 @@ public class ButtonChangeController : MonoBehaviour
         string dollarRateJson = JsonConvert.SerializeObject(dollarRate);
         print("dollarRateJson: " + dollarRateJson);
         UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.PostWwwForm("/api/DollarRate/Update", dollarRateJson);
-        unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/json");
+        unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         yield return unityWebRequestUpdateDollarRate.SendWebRequest();
         print("unityWebRequestUpdateDollarRate.result: " + unityWebRequestUpdateDollarRate.result);
         if (unityWebRequestUpdateDollarRate.result != UnityWebRequest.Result.Success)
@@ -102,7 +102,7 @@ public class ButtonChangeController : MonoBehaviour
                 unityWebRequest = UnityWebRequest.PostWwwForm("/api/ProfilePipe/Update", profileUpdateModelJson);
                 break;
         }
-        unityWebRequest.SetRequestHeader("Content-Type", "application/json");
+        unityWebRequest.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         yield return unityWebRequest.SendWebRequest();
         print("unityWebRequest.result: " + unityWebRequest.result);
         if (unityWebRequest.result != UnityWebRequest.Result.Success)
