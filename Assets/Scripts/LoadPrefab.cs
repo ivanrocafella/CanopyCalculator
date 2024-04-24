@@ -22,6 +22,7 @@ public class LoadPrefab : MonoBehaviour
 {
     public GameObject canopyPrefab;
     private GameObject planCanopy;
+    private GameObject canopyObj;
     private const int MultipleForMeter = 1000;
     private const int MultipleForSentimeter = 10;
     private string pathMaterial;
@@ -47,10 +48,7 @@ public class LoadPrefab : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("LoadPrefab");
-        if (canopyPrefab != null)
-            Debug.Log($"[{DateTime.Now}]: {canopyPrefab} is not null");
-        StartCoroutine(InitializePrefab());
+        StartCoroutine(StartApp());
     }
     // Start is called before the first frame update
     void Start()
@@ -70,8 +68,8 @@ public class LoadPrefab : MonoBehaviour
         loadingTextBox.GetComponent<TMP_Text>().fontSize = 36;
         loadingTextBox.GetComponent<TMP_Text>().text = "Загрузка...";
         yield return new WaitForSeconds(0.001f);
-        planCanopy = GameObject.FindGameObjectWithTag("PlanCanopy");
 
+        planCanopy = GameObject.FindGameObjectWithTag("PlanCanopy");
         GameObject spanInputGB = GameObject.FindGameObjectWithTag("SpanInput");
         GameObject lengthInputGB = GameObject.FindGameObjectWithTag("LengthInput");
         GameObject heightInputGB = GameObject.FindGameObjectWithTag("HeightInput");
@@ -141,6 +139,9 @@ public class LoadPrefab : MonoBehaviour
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
         yield return new WaitForSeconds(0.001f);
+        canopyObj = GameObject.FindGameObjectWithTag("Canopy");
+        if (canopyObj != null)
+            DontDestroyOnLoad(canopyObj);
 #if UNITY_WEBGL
         print("UNITY_WEBGL");
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR    
@@ -154,29 +155,29 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator ToFbxButtonClick()
     {
-        #if UNITY_STANDALONE_WIN || UNITY_EDITOR
-          try
-          {
-              if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
-                  Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
-          }
-          catch (Exception ex)
-          {
-              Debug.Log(ex.Message);
-          }
-          string format = "dd.MM.yyyy_hh.mm.ss";
-          string dateTimeNow = DateTime.Now.ToString(format);
-          GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
-          string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.tag}_{dateTimeNow}.fbx");
-          Debug.Log(filePath);
-          loadingTextBox.GetComponent<TMP_Text>().text = "Сохранение...";
-          yield return new WaitForSeconds(0.001f);
-          FBXExporter.ExportGameObjToFBX(canopy, filePath);
-          toFbxButton.interactable = false;
-          loadingTextBox.transform.localPosition = new Vector3(-150, -150, 0);
-          loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
-          loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
-        #elif UNITY_WEBGL
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+        try
+        {
+            if (!Directory.Exists(Path.Combine(Application.dataPath, "FbxModels")))
+                Directory.CreateDirectory(Path.Combine(Application.dataPath, "FbxModels"));
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+        string format = "dd.MM.yyyy_hh.mm.ss";
+        string dateTimeNow = DateTime.Now.ToString(format);
+        GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+        string filePath = Path.Combine(Application.dataPath, "FbxModels", $"{canopy.tag}_{dateTimeNow}.fbx");
+        Debug.Log(filePath);
+        loadingTextBox.GetComponent<TMP_Text>().text = "Сохранение...";
+        yield return new WaitForSeconds(0.001f);
+        FBXExporter.ExportGameObjToFBX(canopy, filePath);
+        toFbxButton.interactable = false;
+        loadingTextBox.transform.localPosition = new Vector3(-150, -150, 0);
+        loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
+        loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
+#elif UNITY_WEBGL
                 try
           {
               if (!Directory.Exists(Path.Combine(Application.streamingAssetsPath, "FbxModels")))
@@ -188,8 +189,8 @@ public class LoadPrefab : MonoBehaviour
           {
               Debug.Log(ex.Message);
           }
-        #else
-        #endif
+#else
+#endif
         yield return new WaitForSeconds(0.001f);
     }
 
@@ -207,6 +208,12 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator InitializePrefab()
     {
+        Instantiate(canopyPrefab);
+        yield return null;
+    }
+
+    IEnumerator GetProfiles()
+    {
 #if UNITY_WEBGL
         yield return DatabaseAction<List<ProfilePipe>>.GetData("/api/ProfilePipe/ProfilePipes", (returnedProfiles) => profilePipes = returnedProfiles);
         yield return DatabaseAction<List<Truss>>.GetData("/api/Truss/Trusses", (returnedProfiles) => trusses = returnedProfiles);
@@ -216,7 +223,23 @@ public class LoadPrefab : MonoBehaviour
         profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
         trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
 #endif
-        Instantiate(canopyPrefab);
         yield return null;
+    }
+
+    IEnumerator StartApp()
+    {
+        yield return StartCoroutine(GetProfiles());
+        GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+        GameObject CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
+        Debug.Log("LoadPrefab");
+        if (canopyPrefab != null)
+            Debug.Log($"[{DateTime.Now}]: {canopyPrefab} is not null");
+        if (canopy == null)
+            StartCoroutine(InitializePrefab());
+        else
+        {
+            yield return StartCoroutine(canopy.GetComponent<CanopyGenerator>().Calculate());
+            CanopyDescription.GetComponent<TMP_Text>().text = canopy.GetComponent<CanopyGenerator>().CanopyDescription.GetComponent<TMP_Text>().text;
+        }
     }
 }
