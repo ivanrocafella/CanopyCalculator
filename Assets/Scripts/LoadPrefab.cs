@@ -17,6 +17,8 @@ using Assets.ModelsRequest;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -41,6 +43,8 @@ public class LoadPrefab : MonoBehaviour
     [SerializeField]
     private Button toFbxButton;
     [SerializeField]
+    private Button toResultButton;
+    [SerializeField]
     private GameObject loadingTextBox;
     public List<ProfilePipe> profilePipes;
     public List<Truss> trusses;
@@ -55,6 +59,7 @@ public class LoadPrefab : MonoBehaviour
     {
         calculateButton.onClick.AddListener(ButtonClickHandlerForCalculate);
         toFbxButton.onClick.AddListener(ButtonClickHandlerForFbx);
+        toResultButton.onClick.AddListener(ButtonClickHandlerForResultPage);
     }
 
     // Update is called once per frame
@@ -147,6 +152,7 @@ public class LoadPrefab : MonoBehaviour
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR    
         toFbxButton.gameObject.SetActive(true);
 #endif
+        toResultButton.gameObject.SetActive(true);
         //print(profilePipeColumn.Name);
         //print(trussBeam.Name);
         //print(trussRafter.Name);
@@ -229,17 +235,33 @@ public class LoadPrefab : MonoBehaviour
     IEnumerator StartApp()
     {
         yield return StartCoroutine(GetProfiles());
-        GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+        canopyObj = GameObject.FindGameObjectWithTag("Canopy") ?? Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(e => e.CompareTag("Canopy"));
         GameObject CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
         Debug.Log("LoadPrefab");
         if (canopyPrefab != null)
             Debug.Log($"[{DateTime.Now}]: {canopyPrefab} is not null");
-        if (canopy == null)
+        if (canopyObj == null || canopyObj.GetComponent<CanopyGenerator>().Canopy.RafterTrusses.Length == 0)
             StartCoroutine(InitializePrefab());
         else
         {
-            yield return StartCoroutine(canopy.GetComponent<CanopyGenerator>().Calculate());
-            CanopyDescription.GetComponent<TMP_Text>().text = canopy.GetComponent<CanopyGenerator>().CanopyDescription.GetComponent<TMP_Text>().text;
+            canopyObj.SetActive(true);
+            toResultButton.gameObject.SetActive(true);
+            yield return StartCoroutine(canopyObj.GetComponent<CanopyGenerator>().Calculate());
+            CanopyDescription.GetComponent<TMP_Text>().text = canopyObj.GetComponent<CanopyGenerator>().CanopyDescription.GetComponent<TMP_Text>().text;
         }
+    }
+
+    void ButtonClickHandlerForResultPage()
+    {
+        // Запускаем корутину с задержкой
+        StartCoroutine(ToResultPage());
+        canopyObj = GameObject.FindGameObjectWithTag("Canopy");
+        canopyObj.SetActive(false);
+    } 
+
+    IEnumerator ToResultPage()
+    {
+        SceneManager.LoadScene("CalculationResultScene");
+        yield return null;
     }
 }

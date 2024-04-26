@@ -64,6 +64,8 @@ TagManager:
   - RateDollarInput
   - EmRateDollarInput
   - LoadPrefab
+  - CalculationResult
+  - ToResultButton
   layers:
   - Default
   - TransparentFX

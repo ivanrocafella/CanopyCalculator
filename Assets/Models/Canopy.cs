@@ -25,5 +25,6 @@ namespace Assets.Models
         public int CountStepRafterTruss;
         public int CountStepGirder;
         public string CanopyDescription;
+        public ResultCalculation ResultCalculation;
     }
 }

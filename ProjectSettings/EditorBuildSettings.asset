@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProfilesScene.unity
     guid: 28d8db8702be22a40b15083c18b4a0b2
+  - enabled: 1
+    path: Assets/Scenes/CalculationResultScene.unity
+    guid: 87b43fcf37879c0418df9d98a5b68b9b
   m_configObjects: {}

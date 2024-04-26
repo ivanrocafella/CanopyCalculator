@@ -190,19 +190,29 @@ public class CanopyGenerator : MonoBehaviour
         print("pricePerMgirder:" + pricePerMgirder);
         print("dollarRate:" + dollarRate);
 
-        float costColumns = Mathf.RoundToInt(pricePerMcolumn * columnMaterialLength * dollarRateValue);
+        int costColumns = Mathf.RoundToInt(pricePerMcolumn * columnMaterialLength * dollarRateValue);
         float costBeamTrusses = Mathf.RoundToInt(pricePerMbeamTruss * Canopy.BeamTruss.LengthTop / 1000 * Canopy.PlanColumn.CountStep * 2 * dollarRateValue);
         float costRafterTrusses = Mathf.RoundToInt(pricePerMrafterTruss * Canopy.RafterTruss.LengthTop / 1000 * Canopy.RafterTrusses.Length * dollarRateValue);
         float costGirders = Mathf.RoundToInt(pricePerMgirder * girderMaterialLength * dollarRateValue);
 
-        CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {Canopy.ColumnBodyHigh.Profile.Name}" +
-            $"\n\tДлина - {Mathf.RoundToInt(Canopy.PlanColumn.SizeByY)} мм" +
-            $"\n\tКол-во - {Canopy.PlanColumn.CountStep + 1} шт" +
+        Canopy.ResultCalculation = new()
+        {
+            NameColumn = Canopy.ColumnBodyHigh.Profile.Name,
+            LengthHighColumn = Mathf.RoundToInt(Canopy.PlanColumn.SizeByY),
+            QuantityInRowColumn = Canopy.PlanColumn.CountStep + 1,
+            LengthLowColumn = Mathf.RoundToInt(Canopy.PlanColumn.SizeByYLow),
+            QuantityMaterialColumn = Math.Round(columnMaterialLength, 1),
+            CostColumns = costColumns
+        };
+
+        CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {Canopy.ResultCalculation.NameColumn}" +
+            $"\n\tДлина - {Canopy.ResultCalculation.LengthHighColumn} мм" +
+            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityInRowColumn} шт" +
             $"\nКолонна малой высоты:\n\tПрофиль - {Canopy.ColumnBodyHigh.Profile.Name}" +
-            $"\n\tДлина - {Mathf.RoundToInt(Canopy.PlanColumn.SizeByYLow)} мм" +
-            $"\n\tКол-во - {Canopy.PlanColumn.CountStep + 1} шт" +
-            $"\nКол-во мат-ла на колонны: {Math.Round(columnMaterialLength, 1)} м" +
-            $"\nСт-ть мат-ла на колонны: {costColumns} сом" +
+            $"\n\tДлина - {Canopy.ResultCalculation.LengthLowColumn} мм" +
+            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityInRowColumn} шт" +
+            $"\nКол-во мат-ла на колонны: {Canopy.ResultCalculation.QuantityMaterialColumn} м" +
+            $"\nСт-ть мат-ла на колонны: {Canopy.ResultCalculation.CostColumns} сом" +
             $"\n" +
             $"Балочная ферма:\n\tТип - {Canopy.BeamTruss.Truss.Name}" +
             $"\n\tДлина - {Mathf.RoundToInt(Canopy.BeamTruss.LengthTop)} мм" +
@@ -231,6 +241,7 @@ public class CanopyGenerator : MonoBehaviour
             $"\nСт-ть мат-ла на прогоны: {costGirders} сом" +
             $"\nИтого: {costColumns + costBeamTrusses + costRafterTrusses + costGirders} сом";
         Canopy.CanopyDescription = CanopyDescription.GetComponent<TMP_Text>().text;
+ 
         yield return null;
     }
 }
