@@ -36,5 +36,21 @@ public class TablePopulation : MonoBehaviour
         table.transform.GetChild(2).GetChild(3).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityInRowColumn.ToString();
         table.transform.GetChild(2).GetChild(4).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityMaterialColumn.ToString() + " (на все колонны)";
         table.transform.GetChild(2).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.CostColumns.ToString() + " (на все колонны)";
+        table.transform.GetChild(3).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.NameBeamTruss;
+        table.transform.GetChild(3).GetChild(2).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.LengthBeamTruss.ToString();
+        table.transform.GetChild(3).GetChild(3).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityBeamTruss.ToString();
+        table.transform.GetChild(3).GetChild(4).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityMaterialBeamTruss.ToString();
+        table.transform.GetChild(3).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.CostBeamTrusses.ToString();
+        table.transform.GetChild(4).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.NameRafterTruss;
+        table.transform.GetChild(4).GetChild(2).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.LengthRafterTruss.ToString();
+        table.transform.GetChild(4).GetChild(3).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityRafterTruss.ToString();
+        table.transform.GetChild(4).GetChild(4).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityMaterialRafterTruss.ToString();
+        table.transform.GetChild(4).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.CostRafterTrusses.ToString();
+        table.transform.GetChild(5).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.NameGirder;
+        table.transform.GetChild(5).GetChild(2).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.LengthGirder.ToString();
+        table.transform.GetChild(5).GetChild(3).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityGirder.ToString();
+        table.transform.GetChild(5).GetChild(4).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.QuantityMaterialGirder.ToString();
+        table.transform.GetChild(5).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = canopy.ResultCalculation.CostGirders.ToString();
+        table.transform.GetChild(6).GetChild(5).GetChild(0).GetComponent<TMP_Text>().text = "Итого: " + canopy.ResultCalculation.CostTotal.ToString();
     }
 }

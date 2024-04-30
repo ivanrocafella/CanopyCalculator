@@ -166,6 +166,8 @@ public class CanopyGenerator : MonoBehaviour
 
         float columnMaterialLength = (float)(Mathf.RoundToInt(Canopy.PlanColumn.SizeByY) * (Canopy.PlanColumn.CountStep + 1) + Mathf.RoundToInt(Canopy.PlanColumn.SizeByYLow) * (Canopy.PlanColumn.CountStep + 1)) / 1000;
         float girderMaterialLength = (Canopy.Girders.Length + 1) * Canopy.Girder.Length / 1000;
+        float beamTrussMaterialLength = Canopy.PlanColumn.CountStep * 2 * Canopy.BeamTruss.LengthTop / 1000;
+        float rafterTrussMaterialLength = Canopy.RafterTrusses.Length * Canopy.RafterTruss.LengthTop / 1000;
         float pricePerMcolumn;
         float pricePerMbeamTruss;
         float pricePerMrafterTruss;
@@ -191,8 +193,8 @@ public class CanopyGenerator : MonoBehaviour
         print("dollarRate:" + dollarRate);
 
         int costColumns = Mathf.RoundToInt(pricePerMcolumn * columnMaterialLength * dollarRateValue);
-        float costBeamTrusses = Mathf.RoundToInt(pricePerMbeamTruss * Canopy.BeamTruss.LengthTop / 1000 * Canopy.PlanColumn.CountStep * 2 * dollarRateValue);
-        float costRafterTrusses = Mathf.RoundToInt(pricePerMrafterTruss * Canopy.RafterTruss.LengthTop / 1000 * Canopy.RafterTrusses.Length * dollarRateValue);
+        float costBeamTrusses = Mathf.RoundToInt(pricePerMbeamTruss * beamTrussMaterialLength * dollarRateValue);
+        float costRafterTrusses = Mathf.RoundToInt(pricePerMrafterTruss * rafterTrussMaterialLength * dollarRateValue);
         float costGirders = Mathf.RoundToInt(pricePerMgirder * girderMaterialLength * dollarRateValue);
 
         Canopy.ResultCalculation = new()
@@ -201,8 +203,34 @@ public class CanopyGenerator : MonoBehaviour
             LengthHighColumn = Mathf.RoundToInt(Canopy.PlanColumn.SizeByY),
             QuantityInRowColumn = Canopy.PlanColumn.CountStep + 1,
             LengthLowColumn = Mathf.RoundToInt(Canopy.PlanColumn.SizeByYLow),
-            QuantityMaterialColumn = Math.Round(columnMaterialLength, 1),
-            CostColumns = costColumns
+            QuantityMaterialColumn = MathF.Round(columnMaterialLength, 1),
+            CostColumns = costColumns,
+            NameBeamTruss = Canopy.BeamTruss.Truss.Name,
+            LengthBeamTruss = Mathf.RoundToInt(Canopy.BeamTruss.LengthTop),
+            QuantityBeamTruss = Canopy.PlanColumn.CountStep * 2,
+            QuantityMaterialBeamTruss = MathF.Round(beamTrussMaterialLength, 1),
+            MomentResistReqBeamTruss = MathF.Round(CalculationBeamTruss.MomentResistReq, 1),
+            DeflectionFactBeamTruss = MathF.Round(CalculationBeamTruss.DeflectionFact, 1),
+            DeflectionPermissibleBeamTruss = MathF.Round(CalculationBeamTruss.DeflectionPermissible, 1),
+            CostBeamTrusses = costBeamTrusses,
+            NameRafterTruss = Canopy.RafterTruss.Truss.Name,
+            LengthRafterTruss = Mathf.RoundToInt(Canopy.RafterTruss.LengthTop),
+            QuantityRafterTruss = Canopy.RafterTrusses.Length,
+            QuantityMaterialRafterTruss = MathF.Round(rafterTrussMaterialLength, 1),
+            StepRafterTruss = Mathf.RoundToInt(Canopy.RafterTruss.Step / 10),
+            MomentResistReqRafterTruss = MathF.Round(CalculationRafterTruss.MomentResistReqSlope, 1),
+            DeflectionFactRafterTruss = MathF.Round(CalculationRafterTruss.DeflectionFact, 1),
+            DeflectionPermissibleRafterTruss = MathF.Round(CalculationRafterTruss.DeflectionPermissible, 1),
+            CostRafterTrusses = costRafterTrusses,
+            NameGirder = Canopy.Girder.Profile.Name,
+            LengthGirder = Mathf.RoundToInt(Canopy.Girder.Length),
+            QuantityGirder = Canopy.Girders.Length + 1,
+            QuantityMaterialGirder = girderMaterialLength,
+            StepGirder = Mathf.RoundToInt(Canopy.Girder.Step / 10),
+            DeflectionFactGirder = MathF.Round(CalculationGirder.DeflectionFact, 1),
+            DeflectionPermissibleGirder = MathF.Round(CalculationGirder.DeflectionPermissible, 1),
+            CostGirders = costGirders,
+            CostTotal = costColumns + costBeamTrusses + costRafterTrusses + costGirders
         };
 
         CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {Canopy.ResultCalculation.NameColumn}" +
@@ -214,32 +242,32 @@ public class CanopyGenerator : MonoBehaviour
             $"\nКол-во мат-ла на колонны: {Canopy.ResultCalculation.QuantityMaterialColumn} м" +
             $"\nСт-ть мат-ла на колонны: {Canopy.ResultCalculation.CostColumns} сом" +
             $"\n" +
-            $"Балочная ферма:\n\tТип - {Canopy.BeamTruss.Truss.Name}" +
-            $"\n\tДлина - {Mathf.RoundToInt(Canopy.BeamTruss.LengthTop)} мм" +
-            $"\n\tКол-во - {Canopy.PlanColumn.CountStep * 2} шт" +
-            $"\nТреб. момент сопр. - {MathF.Round(CalculationBeamTruss.MomentResistReq, 1)} см3" +
-            $"\nФакт. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionFact, 1)} см" +
-            $" (Доп. прогиб - {MathF.Round(CalculationBeamTruss.DeflectionPermissible, 1)} см)" +
-            $"\nСт-ть балочных ферм: {costBeamTrusses} сом" +
+            $"Балочная ферма:\n\tТип - {Canopy.ResultCalculation.NameBeamTruss}" +
+            $"\n\tДлина - {Canopy.ResultCalculation.LengthBeamTruss} мм" +
+            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityBeamTruss} шт" +
+            $"\nТреб. момент сопр. - {Canopy.ResultCalculation.MomentResistReqBeamTruss} см3" +
+            $"\nФакт. прогиб - {Canopy.ResultCalculation.DeflectionFactBeamTruss} см" +
+            $" (Доп. прогиб - {Canopy.ResultCalculation.DeflectionPermissibleBeamTruss} см)" +
+            $"\nСт-ть балочных ферм: {Canopy.ResultCalculation.CostBeamTrusses} сом" +
             $"\n" +
-            $"Стропильная ферма:\n\tТип - {Canopy.RafterTruss.Truss.Name}" +
-            $"\n\tДлина - {Mathf.RoundToInt(Canopy.RafterTruss.LengthTop)} мм" +
-            $"\n\tКол-во - {Canopy.RafterTrusses.Length} шт" +
-            $"\n\tПодобранный шаг - {Mathf.RoundToInt(Canopy.RafterTruss.Step / 10)} см" +
-            $"\nТреб. момент сопр. - {MathF.Round(CalculationRafterTruss.MomentResistReqSlope, 1)} см3" +
-            $"\nФакт. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionFact, 1)} см" +
-            $" (Доп. прогиб - {MathF.Round(CalculationRafterTruss.DeflectionPermissible, 1)} см)" +
-            $"\nСт-ть стропильных ферм: {costRafterTrusses} сом" +
+            $"Стропильная ферма:\n\tТип - {Canopy.ResultCalculation.NameRafterTruss}" +
+            $"\n\tДлина - {Canopy.ResultCalculation.LengthRafterTruss} мм" +
+            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityRafterTruss} шт" +
+            $"\n\tПодобранный шаг - {Canopy.ResultCalculation.StepRafterTruss} см" +
+            $"\nТреб. момент сопр. - {Canopy.ResultCalculation.MomentResistReqRafterTruss} см3" +
+            $"\nФакт. прогиб - {Canopy.ResultCalculation.DeflectionFactRafterTruss} см" +
+            $" (Доп. прогиб - {Canopy.ResultCalculation.DeflectionPermissibleRafterTruss} см)" +
+            $"\nСт-ть стропильных ферм: {Canopy.ResultCalculation.CostRafterTrusses} сом" +
             $"\n" +
-            $"Прогон:\n\tПрофиль - {Canopy.Girder.Profile.Name}" +
-            $"\n\tДлина - {Mathf.RoundToInt(Canopy.Girder.Length)} мм" +
-            $"\n\tКол-во - {Canopy.Girders.Length + 1} шт" +
-            $"\n\tПодобранный шаг - {Mathf.RoundToInt(Canopy.Girder.Step / 10)} см" +
-            $"\nФакт. прогиб - {MathF.Round(CalculationGirder.DeflectionFact, 1)} см" +
-            $" (Доп. прогиб - {MathF.Round(CalculationGirder.DeflectionPermissible, 1)} см)" +
-            $"\nКол-во мат-ла на прогоны: {Math.Round(girderMaterialLength, 1)} м" +
-            $"\nСт-ть мат-ла на прогоны: {costGirders} сом" +
-            $"\nИтого: {costColumns + costBeamTrusses + costRafterTrusses + costGirders} сом";
+            $"Прогон:\n\tПрофиль - {Canopy.ResultCalculation.NameGirder}" +
+            $"\n\tДлина - {Canopy.ResultCalculation.LengthGirder} мм" +
+            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityGirder} шт" +
+            $"\n\tПодобранный шаг - {Canopy.ResultCalculation.StepGirder} см" +
+            $"\nФакт. прогиб - {Canopy.ResultCalculation.DeflectionFactGirder} см" +
+            $" (Доп. прогиб - {Canopy.ResultCalculation.DeflectionPermissibleGirder} см)" +
+            $"\nКол-во мат-ла на прогоны: {Canopy.ResultCalculation.QuantityMaterialGirder} м" +
+            $"\nСт-ть мат-ла на прогоны: {Canopy.ResultCalculation.CostGirders} сом" +
+            $"\nИтого: {Canopy.ResultCalculation.CostTotal} сом";
         Canopy.CanopyDescription = CanopyDescription.GetComponent<TMP_Text>().text;
  
         yield return null;

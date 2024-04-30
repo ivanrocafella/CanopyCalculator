@@ -31,6 +31,7 @@ public class PlanCanopyGenerator : MonoBehaviour
     private Button LoginPageLink;
     [SerializeField]
     private Button MaterialsPageLink;
+    private GameObject canopyObj;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +87,8 @@ public class PlanCanopyGenerator : MonoBehaviour
     {
         // Запускаем корутину с задержкой
         StartCoroutine(ToLoginPage());
+        canopyObj = GameObject.FindGameObjectWithTag("Canopy");
+        canopyObj.SetActive(false);
     }
 
     IEnumerator ToLoginPage()
@@ -98,6 +101,8 @@ public class PlanCanopyGenerator : MonoBehaviour
     {
         // Запускаем корутину с задержкой
         StartCoroutine(ToProfilesPage());
+        canopyObj = GameObject.FindGameObjectWithTag("Canopy");
+        canopyObj.SetActive(false);
     }
 
     IEnumerator ToProfilesPage()
