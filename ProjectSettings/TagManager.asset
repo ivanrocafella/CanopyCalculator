@@ -66,6 +66,7 @@ TagManager:
   - LoadPrefab
   - CalculationResult
   - ToResultButton
+  - ProfilePipeTest
   layers:
   - Default
   - TransparentFX

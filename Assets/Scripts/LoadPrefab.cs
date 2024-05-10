@@ -87,7 +87,9 @@ public class LoadPrefab : MonoBehaviour
         GameObject workLoadInputGB = GameObject.FindGameObjectWithTag("WorkLoadInput");
 
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
-        DestroyImmediate(canopy);
+        StartCoroutine(DestroyGO(canopy));
+        StartCoroutine(RunGC());
+        StartCoroutine(UnloadUnusedAssets());
 
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX = ValAction.ToFloat(spanInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ = ValAction.ToFloat(lengthInputGB.GetComponent<TMP_InputField>().text) * MultipleForMeter;
@@ -263,5 +265,23 @@ public class LoadPrefab : MonoBehaviour
     {
         SceneManager.LoadScene("CalculationResultScene");
         yield return null;
+    }
+
+    IEnumerator RunGC()
+    {
+        GC.Collect();
+        yield return null;
+    }
+
+    IEnumerator UnloadUnusedAssets()
+    {
+        Resources.UnloadUnusedAssets();
+        yield return null;
+    }
+
+    IEnumerator DestroyGO(GameObject canopy)
+    {
+        DestroyImmediate(canopy);
+        yield return new WaitForEndOfFrame();
     }
 }

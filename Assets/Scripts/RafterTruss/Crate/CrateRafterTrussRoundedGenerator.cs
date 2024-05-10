@@ -19,10 +19,10 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
         // Setting roundness profile or not
         if (ValAction.withRadius)
         {
-            Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
-            , rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.ProfileCrate.Radius)
-            : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.LengthCrate
-            , rafterTruss.Truss.ProfileCrate.Thickness, rafterTruss.Truss.ProfileCrate.Radius);
+            Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.LengthNonStandartCrate
+            , rafterTruss.Truss.ProfileCrate.Thickness)
+            : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.LengthCrate
+            , rafterTruss.Truss.ProfileCrate.Thickness);
             ApplyMaterial(mesh, "Standard", Color.black);
         }
     }

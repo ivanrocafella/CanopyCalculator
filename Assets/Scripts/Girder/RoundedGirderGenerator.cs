@@ -18,8 +18,8 @@ public class RoundedGirderGenerator : MonoBehaviour
         // Setting roundness profile or not
         if (ValAction.withRadius)
         {
-            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Profile.Radius, girder.Profile.Radius, girder.Length
-            , girder.Profile.Thickness, girder.Profile.Radius);
+            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Profile.Radius, girder.Length
+            , girder.Profile.Thickness);
             ApplyMaterial(mesh, "Standard", Color.black);
         }
     }

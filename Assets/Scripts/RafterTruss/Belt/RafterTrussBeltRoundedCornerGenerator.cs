@@ -26,8 +26,8 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
         // Setting roundness profile or not
         if (ValAction.withRadius)
         {
-            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, rafterTruss.Truss.ProfileBelt.Radius, length
-            , rafterTruss.Truss.ProfileBelt.Thickness, rafterTruss.Truss.ProfileBelt.Radius);
+            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, length
+            , rafterTruss.Truss.ProfileBelt.Thickness);
             ApplyMaterial(mesh, "Standard", Color.black);
         }
     }

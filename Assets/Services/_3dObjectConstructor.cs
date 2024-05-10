@@ -54,19 +54,18 @@ namespace Assets.Services
         /// This method will return Mesh
         /// </summary>
         /// <param name="xSize">xSize is in float</param>
-        public static Mesh CreateRoundedCorner(float xSize, float zSize, float ySize, float thickness, float roundness)
+        public static Mesh CreateRoundedCorner(float sizeRadius, float ySize, float thickness)
         {
             int scale = 10;
-            int xSizeInt = (int)(Math.Round(xSize, 1, MidpointRounding.AwayFromZero) * scale);
-            int zSizeInt = (int)(Math.Round(zSize, 1, MidpointRounding.AwayFromZero) * scale);
+            int sizeRadiusInt = (int)(Math.Round(sizeRadius, 1, MidpointRounding.AwayFromZero) * scale);
             int thicknessInt = (int)(Math.Round(thickness, 1, MidpointRounding.AwayFromZero) * scale);
-            int radiusInt = (int)(Math.Round(roundness, 1, MidpointRounding.AwayFromZero) * scale);
+            int radiusInt = (int)(Math.Round(sizeRadius, 1, MidpointRounding.AwayFromZero) * scale);
             Mesh mesh = new();
             float[] ySizes = { 0, ySize };
             Vector3[] vertices = null;
             Vector3[] normals = null;
-            CreateVertices(vertices, normals, mesh, xSizeInt, zSizeInt, thicknessInt, ySizes, radiusInt);
-            CreateTriangles(xSizeInt, zSizeInt, thicknessInt, mesh);
+            CreateVertices(vertices, normals, mesh, sizeRadiusInt, sizeRadiusInt, thicknessInt, ySizes, radiusInt);
+            CreateTriangles(sizeRadiusInt, sizeRadiusInt, thicknessInt, mesh);
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             return mesh;

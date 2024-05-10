@@ -22,8 +22,8 @@ public class ColRoundedCorner : MonoBehaviour
         // Setting roundness profile or not
         if (ValAction.withRadius)
         {
-            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Profile.Radius, columnBody.Profile.Radius, columnBody.Height
-                , columnBody.Profile.Thickness, columnBody.Profile.Radius);
+            Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Profile.Radius, columnBody.Height
+                , columnBody.Profile.Thickness);
             ApplyMaterial(mesh, "Standard", Color.black);
         }
     }
