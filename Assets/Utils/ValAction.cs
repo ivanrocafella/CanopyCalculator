@@ -1,16 +1,19 @@
 ﻿using Assets.Models;
+using Assimp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Material = UnityEngine.Material;
+using Mesh = UnityEngine.Mesh;
 
 namespace Assets.Utils
 {
     public static class ValAction
     {
-        public static bool withRadius = true; // Setting roundness profile or not 
+        public static bool withRadius = false; // Setting roundness profile or not 
         public static float ToFloat(string textInput)
         {
             string commoTextInput;
@@ -30,5 +33,11 @@ namespace Assets.Utils
         public static float GetDollarRatePlayerPrefs() => PlayerPrefs.GetFloat("DollarRate");
         public static float GetPricePmOfProfilePipe(string nameProfile, List<ProfilePipe> profilePipes) => profilePipes.FirstOrDefault(e => e.Name == nameProfile).PricePerM;
         public static float GetPricePmOfTruss(string nameProfile, List<Truss> trusses) => trusses.FirstOrDefault(e => e.Name == nameProfile).PricePerM;
+        public static void ApplyMaterial(Mesh mesh, GameObject gameObject, Material material)
+        {
+            gameObject.GetComponent<MeshFilter>().mesh = mesh;
+            MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+            meshRenderer.material = material;
+        }
     }
 }

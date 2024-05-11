@@ -13,6 +13,7 @@ using Material = UnityEngine.Material;
 public class FlatSideGirderGenerator : MonoBehaviour
 {
     private Girder girder;
+    public Material material;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class FlatSideGirderGenerator : MonoBehaviour
         // Setting roundness profile or not
         Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, girder.Profile.Radius) :
                                  _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, 0);
-        ApplyMaterial(mesh, "Standard", Color.black);
+        ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 
     // Update is called once per frames

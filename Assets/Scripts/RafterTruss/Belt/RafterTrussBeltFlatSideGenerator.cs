@@ -14,6 +14,7 @@ public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
 {
     private RafterTruss rafterTruss;
     public KindLength KindLength;
+    public Material material;
 
     // Start is called before the first frame update
     void Start()
@@ -27,25 +28,12 @@ public class RafterTrussBeltFlatSideGenerator : MonoBehaviour
         // Setting roundness profile or not 
         Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileBelt.Thickness, length, rafterTruss.Truss.ProfileBelt.Height, rafterTruss.Truss.ProfileBelt.Radius) :
                                  _3dObjectConstructor.CreateFlatSidePipe(rafterTruss.Truss.ProfileBelt.Thickness, length, rafterTruss.Truss.ProfileBelt.Height, 0);
-        ApplyMaterial(mesh, "Standard", Color.black);
+        ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 
     // Update is called once per frames
     void Update()
     {
         
-    }
-
-    private void ApplyMaterial(Mesh mesh, string shaderName, Color color)
-    {
-        GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
-            ? gameObject.AddComponent<MeshRenderer>()
-            : gameObject.GetComponent<MeshRenderer>();
-        Material material = new(Shader.Find(shaderName))
-        {
-            color = color
-        };
-        meshRenderer.material = material;
     }
 }

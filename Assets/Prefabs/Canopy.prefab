@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2700731727740532297}
   - component: {fileID: 2700731727740532296}
   - component: {fileID: 2700731727740532303}
+  - component: {fileID: 8290818420055504684}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731727740532296
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -69,6 +71,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   KindLength: 0
+--- !u!23 &8290818420055504684
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731727740532301}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731727752286448
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +125,7 @@ GameObject:
   - component: {fileID: 2700731727752286412}
   - component: {fileID: 2700731727752286451}
   - component: {fileID: 2700731727752286450}
+  - component: {fileID: 8047549802998628235}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -117,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731727752286451
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -140,6 +186,48 @@ MonoBehaviour:
   Direction: 0
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+--- !u!23 &8047549802998628235
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731727752286448}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731727766468302
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731727766468303
 Transform:
   m_ObjectHideFlags: 0
@@ -220,6 +308,7 @@ GameObject:
   - component: {fileID: 2700731727779613719}
   - component: {fileID: 2700731727779613718}
   - component: {fileID: 2700731727779613717}
+  - component: {fileID: 1701754264846858717}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -255,6 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731727779613718
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -277,6 +367,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   KindLength: 0
+--- !u!23 &1701754264846858717
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731727779613723}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731727785187949
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731727820489245
 Transform:
   m_ObjectHideFlags: 0
@@ -377,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  Material: {fileID: 0}
 --- !u!33 &2700731727820489247
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -416,7 +549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731727859139908
 Transform:
   m_ObjectHideFlags: 0
@@ -542,6 +675,7 @@ GameObject:
   - component: {fileID: 2700731727882963278}
   - component: {fileID: 2700731727882963277}
   - component: {fileID: 2700731727882963276}
+  - component: {fileID: 2228863429353014986}
   m_Layer: 0
   m_Name: ColumnPlug
   m_TagString: Untagged
@@ -576,6 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bbbb3c882a33c45b9e7b6c30dca92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731727882963277
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -597,6 +732,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindLength: 0
+--- !u!23 &2228863429353014986
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731727882963314}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731727908645541
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731727908645542
 Transform:
   m_ObjectHideFlags: 0
@@ -644,6 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  Material: {fileID: 0}
 --- !u!33 &2700731727908645536
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -683,7 +861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731727945646043
 Transform:
   m_ObjectHideFlags: 0
@@ -751,7 +929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731727947922113
 Transform:
   m_ObjectHideFlags: 0
@@ -814,6 +992,7 @@ GameObject:
   - component: {fileID: 2700731727982753563}
   - component: {fileID: 2700731727982753562}
   - component: {fileID: 2700731727982753561}
+  - component: {fileID: 5806794474556246441}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -849,6 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731727982753562
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -871,6 +1051,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   KindLength: 0
+--- !u!23 &5806794474556246441
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731727982753567}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728003005636
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728003005637
 Transform:
   m_ObjectHideFlags: 0
@@ -918,6 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  Material: {fileID: 0}
 --- !u!33 &2700731728003005639
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -951,6 +1174,7 @@ GameObject:
   - component: {fileID: 2700731728041788714}
   - component: {fileID: 2700731728041788713}
   - component: {fileID: 2700731728041788712}
+  - component: {fileID: 6784454628132269451}
   m_Layer: 0
   m_Name: ColumnPlug
   m_TagString: Untagged
@@ -985,6 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bbbb3c882a33c45b9e7b6c30dca92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728041788713
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1006,6 +1231,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindLength: 1
+--- !u!23 &6784454628132269451
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728041788718}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728061983793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,7 +1291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728061983794
 Transform:
   m_ObjectHideFlags: 0
@@ -1086,6 +1353,7 @@ GameObject:
   - component: {fileID: 2700731728076247971}
   - component: {fileID: 2700731728076247970}
   - component: {fileID: 2700731728076247969}
+  - component: {fileID: 2724456403456599643}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -1121,6 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728076247970
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1143,6 +1412,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   KindLength: 1
+--- !u!23 &2724456403456599643
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728076247975}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728078961233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1568,7 @@ GameObject:
   - component: {fileID: 2700731728114783632}
   - component: {fileID: 2700731728114783639}
   - component: {fileID: 2700731728114783638}
+  - component: {fileID: 1390360714913581533}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -1292,6 +1604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728114783639
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1314,6 +1627,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   KindLength: 0
+--- !u!23 &1390360714913581533
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728114783636}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728131838107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,7 +1753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728132221400
 Transform:
   m_ObjectHideFlags: 0
@@ -1461,6 +1816,7 @@ GameObject:
   - component: {fileID: 2700731728162388023}
   - component: {fileID: 2700731728162388022}
   - component: {fileID: 2700731728162388021}
+  - component: {fileID: 8331852753790335503}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -1496,6 +1852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728162388022
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1518,6 +1875,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   KindLength: 1
+--- !u!23 &8331852753790335503
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728162388027}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728168093212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,7 +1935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728168093213
 Transform:
   m_ObjectHideFlags: 0
@@ -1656,7 +2055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728195694165
 Transform:
   m_ObjectHideFlags: 0
@@ -1685,6 +2084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  Material: {fileID: 0}
 --- !u!33 &2700731728195694167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1718,6 +2118,7 @@ GameObject:
   - component: {fileID: 2700731728204021255}
   - component: {fileID: 2700731728204021254}
   - component: {fileID: 2700731728204021253}
+  - component: {fileID: 6641127570386022059}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -1754,6 +2155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728204021254
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1777,6 +2179,48 @@ MonoBehaviour:
   Direction: 2
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+--- !u!23 &6641127570386022059
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728204021259}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728206972670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,6 +2233,7 @@ GameObject:
   - component: {fileID: 2700731728206972666}
   - component: {fileID: 2700731728206972665}
   - component: {fileID: 2700731728206972664}
+  - component: {fileID: 8515843209697707215}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -1824,6 +2269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728206972665
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1846,6 +2292,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   KindLength: 1
+--- !u!23 &8515843209697707215
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728206972670}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728284720542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +2346,7 @@ GameObject:
   - component: {fileID: 2700731728284720538}
   - component: {fileID: 2700731728284720537}
   - component: {fileID: 2700731728284720536}
+  - component: {fileID: 5202847829369119010}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -1894,6 +2383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728284720537
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1917,6 +2407,48 @@ MonoBehaviour:
   Direction: 3
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+--- !u!23 &5202847829369119010
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728284720542}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728291375113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,6 +2461,7 @@ GameObject:
   - component: {fileID: 2700731728291375109}
   - component: {fileID: 2700731728291375108}
   - component: {fileID: 2700731728291375115}
+  - component: {fileID: 9133044127910203370}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -1965,6 +2498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728291375108
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1988,6 +2522,48 @@ MonoBehaviour:
   Direction: 2
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+--- !u!23 &9133044127910203370
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728291375113}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728293899775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +2582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728293899768
 Transform:
   m_ObjectHideFlags: 0
@@ -2074,7 +2650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728299932482
 Transform:
   m_ObjectHideFlags: 0
@@ -2136,6 +2712,7 @@ GameObject:
   - component: {fileID: 2700731728313061509}
   - component: {fileID: 2700731728313061508}
   - component: {fileID: 2700731728313061515}
+  - component: {fileID: 8057036055726521014}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -2172,6 +2749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728313061508
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2195,6 +2773,48 @@ MonoBehaviour:
   Direction: 3
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+--- !u!23 &8057036055726521014
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728313061513}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728325709551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728325709544
 Transform:
   m_ObjectHideFlags: 0
@@ -2242,6 +2862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  Material: {fileID: 0}
 --- !u!33 &2700731728325709546
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2281,7 +2902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728332185168
 Transform:
   m_ObjectHideFlags: 0
@@ -2349,7 +2970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728334280453
 Transform:
   m_ObjectHideFlags: 0
@@ -2378,6 +2999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  Material: {fileID: 0}
 --- !u!33 &2700731728334280455
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2411,6 +3033,7 @@ GameObject:
   - component: {fileID: 2700731728348964592}
   - component: {fileID: 2700731728348964599}
   - component: {fileID: 2700731728348964598}
+  - component: {fileID: 8950299377383526842}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -2447,6 +3070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728348964599
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2470,6 +3094,48 @@ MonoBehaviour:
   Direction: 2
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+--- !u!23 &8950299377383526842
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728348964596}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728351824437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +3154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728351824438
 Transform:
   m_ObjectHideFlags: 0
@@ -2596,7 +3262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728407746819
 Transform:
   m_ObjectHideFlags: 0
@@ -2658,6 +3324,7 @@ GameObject:
   - component: {fileID: 2700731728422888064}
   - component: {fileID: 2700731728422888071}
   - component: {fileID: 2700731728422888070}
+  - component: {fileID: 2849917639888430981}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -2693,6 +3360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728422888071
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2715,6 +3383,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   KindLength: 1
+--- !u!23 &2849917639888430981
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728422888068}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728437512695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,6 +3437,7 @@ GameObject:
   - component: {fileID: 2700731728437512691}
   - component: {fileID: 2700731728437512690}
   - component: {fileID: 2700731728437512689}
+  - component: {fileID: 4145094154772956179}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -2761,6 +3472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809bcd25743b34844acbb0c3046742f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728437512690
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2782,6 +3494,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 3
+--- !u!23 &4145094154772956179
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728437512695}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728458943700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,6 +3548,7 @@ GameObject:
   - component: {fileID: 2700731728458943696}
   - component: {fileID: 2700731728458943703}
   - component: {fileID: 2700731728458943702}
+  - component: {fileID: 3630885927297661590}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -2829,6 +3584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728458943703
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2851,6 +3607,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   KindLength: 1
+--- !u!23 &3630885927297661590
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728458943700}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728461098073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +3661,7 @@ GameObject:
   - component: {fileID: 2700731728461098069}
   - component: {fileID: 2700731728461098068}
   - component: {fileID: 2700731728461098075}
+  - component: {fileID: 3349296086768046690}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -2898,6 +3697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728461098068
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2920,6 +3720,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   KindLength: 1
+--- !u!23 &3349296086768046690
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728461098073}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728501130536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,6 +3774,7 @@ GameObject:
   - component: {fileID: 2700731728501130532}
   - component: {fileID: 2700731728501130539}
   - component: {fileID: 2700731728501130538}
+  - component: {fileID: 4084358166489711909}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -2967,6 +3810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728501130539
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2989,6 +3833,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   KindLength: 0
+--- !u!23 &4084358166489711909
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728501130536}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728522468071
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,6 +3887,7 @@ GameObject:
   - component: {fileID: 2700731728522468067}
   - component: {fileID: 2700731728522468066}
   - component: {fileID: 2700731728522468065}
+  - component: {fileID: 1862809478920016383}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -3035,6 +3922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809bcd25743b34844acbb0c3046742f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728522468066
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3056,6 +3944,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 2
+--- !u!23 &1862809478920016383
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728522468071}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728534774728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,7 +4004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728534774729
 Transform:
   m_ObjectHideFlags: 0
@@ -3142,7 +4072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728542940043
 Transform:
   m_ObjectHideFlags: 0
@@ -3204,6 +4134,7 @@ GameObject:
   - component: {fileID: 2700731728555523309}
   - component: {fileID: 2700731728555523308}
   - component: {fileID: 2700731728555523219}
+  - component: {fileID: 7852996827400836383}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -3239,6 +4170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728555523308
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3261,6 +4193,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   KindLength: 0
+--- !u!23 &7852996827400836383
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728555523217}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728572044044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,6 +4247,7 @@ GameObject:
   - component: {fileID: 2700731728572044040}
   - component: {fileID: 2700731728572044047}
   - component: {fileID: 2700731728572044046}
+  - component: {fileID: 7020727582944365343}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -3308,6 +4283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728572044047
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3330,6 +4306,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   KindLength: 0
+--- !u!23 &7020727582944365343
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728572044044}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728572504888
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,6 +4360,7 @@ GameObject:
   - component: {fileID: 2700731728572504884}
   - component: {fileID: 2700731728572504891}
   - component: {fileID: 2700731728572504890}
+  - component: {fileID: 4383386846358712890}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -3377,6 +4396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728572504891
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3399,6 +4419,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   KindLength: 0
+--- !u!23 &4383386846358712890
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728572504888}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728575742737
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,7 +4479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728575742738
 Transform:
   m_ObjectHideFlags: 0
@@ -3479,6 +4541,7 @@ GameObject:
   - component: {fileID: 2700731728604915805}
   - component: {fileID: 2700731728604915804}
   - component: {fileID: 2700731728604915779}
+  - component: {fileID: 158167232784639576}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -3515,6 +4578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728604915804
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3538,6 +4602,48 @@ MonoBehaviour:
   Direction: 1
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+--- !u!23 &158167232784639576
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728604915777}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728640586633
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,7 +4715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728648625346
 Transform:
   m_ObjectHideFlags: 0
@@ -3671,6 +4777,7 @@ GameObject:
   - component: {fileID: 2700731728656746495}
   - component: {fileID: 2700731728656746494}
   - component: {fileID: 2700731728656746493}
+  - component: {fileID: 8837037882388269194}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -3706,6 +4813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728656746494
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3728,6 +4836,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   KindLength: 1
+--- !u!23 &8837037882388269194
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728656746467}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728706681008
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,7 +4896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728706681009
 Transform:
   m_ObjectHideFlags: 0
@@ -3808,6 +4958,7 @@ GameObject:
   - component: {fileID: 2700731728760765050}
   - component: {fileID: 2700731728760765049}
   - component: {fileID: 2700731728760765048}
+  - component: {fileID: 1962573796071689633}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -3843,6 +4994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728760765049
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3865,6 +5017,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   KindLength: 0
+--- !u!23 &1962573796071689633
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728760765054}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728846649204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,6 +5071,7 @@ GameObject:
   - component: {fileID: 2700731728846649200}
   - component: {fileID: 2700731728846649207}
   - component: {fileID: 2700731728846649206}
+  - component: {fileID: 2392636830605095734}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -3913,6 +5108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728846649207
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3936,6 +5132,48 @@ MonoBehaviour:
   Direction: 0
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+--- !u!23 &2392636830605095734
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728846649204}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728847783164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +5186,7 @@ GameObject:
   - component: {fileID: 2700731728847783160}
   - component: {fileID: 2700731728847783167}
   - component: {fileID: 2700731728847783166}
+  - component: {fileID: 8263813172780848156}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -3984,6 +5223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728847783167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4007,6 +5247,48 @@ MonoBehaviour:
   Direction: 3
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+--- !u!23 &8263813172780848156
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728847783164}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728873298356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,6 +5340,7 @@ GameObject:
   - component: {fileID: 2700731728882539428}
   - component: {fileID: 2700731728882539435}
   - component: {fileID: 2700731728882539434}
+  - component: {fileID: 976650845141128483}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -4094,6 +5377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728882539435
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4117,6 +5401,48 @@ MonoBehaviour:
   Direction: 2
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+--- !u!23 &976650845141128483
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728882539432}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728907584716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,6 +5455,7 @@ GameObject:
   - component: {fileID: 2700731728907584712}
   - component: {fileID: 2700731728907584719}
   - component: {fileID: 2700731728907584718}
+  - component: {fileID: 6161782158678239957}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -4164,6 +5491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728907584719
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4186,6 +5514,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   KindLength: 0
+--- !u!23 &6161782158678239957
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728907584716}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728911200559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4204,7 +5574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728911200552
 Transform:
   m_ObjectHideFlags: 0
@@ -4265,6 +5635,7 @@ GameObject:
   - component: {fileID: 2700731728921068923}
   - component: {fileID: 2700731728921068922}
   - component: {fileID: 2700731728921068921}
+  - component: {fileID: 8875353529595173203}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -4301,6 +5672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728921068922
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4324,6 +5696,48 @@ MonoBehaviour:
   Direction: 1
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+--- !u!23 &8875353529595173203
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728921068927}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728976493690
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,7 +5756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728976493691
 Transform:
   m_ObjectHideFlags: 0
@@ -4404,6 +5818,7 @@ GameObject:
   - component: {fileID: 2700731728987655528}
   - component: {fileID: 2700731728987655535}
   - component: {fileID: 2700731728987655534}
+  - component: {fileID: 2821840610682691529}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -4439,6 +5854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728987655535
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4461,6 +5877,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   KindLength: 1
+--- !u!23 &2821840610682691529
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728987655532}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728996403494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4473,6 +5931,7 @@ GameObject:
   - component: {fileID: 2700731728996403490}
   - component: {fileID: 2700731728996403489}
   - component: {fileID: 2700731728996403488}
+  - component: {fileID: 7463632598349850518}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -4509,6 +5968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731728996403489
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4532,6 +5992,48 @@ MonoBehaviour:
   Direction: 3
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+--- !u!23 &7463632598349850518
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731728996403494}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731728998308693
 GameObject:
   m_ObjectHideFlags: 0
@@ -4550,7 +6052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731728998308694
 Transform:
   m_ObjectHideFlags: 0
@@ -4671,7 +6173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729019469287
 Transform:
   m_ObjectHideFlags: 0
@@ -4733,6 +6235,7 @@ GameObject:
   - component: {fileID: 2700731729026605829}
   - component: {fileID: 2700731729026605828}
   - component: {fileID: 2700731729026605835}
+  - component: {fileID: 6888464642584264061}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -4768,6 +6271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729026605828
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4790,6 +6294,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   KindLength: 1
+--- !u!23 &6888464642584264061
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729026605833}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729029786607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4808,7 +6354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729029786600
 Transform:
   m_ObjectHideFlags: 0
@@ -4930,6 +6476,7 @@ GameObject:
   - component: {fileID: 2700731729055704528}
   - component: {fileID: 2700731729055704535}
   - component: {fileID: 2700731729055704534}
+  - component: {fileID: 1665887361724259354}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -4966,6 +6513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729055704535
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4989,6 +6537,48 @@ MonoBehaviour:
   Direction: 0
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+--- !u!23 &1665887361724259354
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729055704532}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729063480173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5001,6 +6591,7 @@ GameObject:
   - component: {fileID: 2700731729063480169}
   - component: {fileID: 2700731729063480168}
   - component: {fileID: 2700731729063480175}
+  - component: {fileID: 6938166950343468361}
   m_Layer: 0
   m_Name: SideFlatLeft
   m_TagString: Untagged
@@ -5036,6 +6627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729063480168
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5058,6 +6650,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 2
   KindLength: 1
+--- !u!23 &6938166950343468361
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729063480173}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729068561359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,6 +6704,7 @@ GameObject:
   - component: {fileID: 2700731729068561355}
   - component: {fileID: 2700731729068561354}
   - component: {fileID: 2700731729068561353}
+  - component: {fileID: 149096372744713228}
   m_Layer: 0
   m_Name: SideFlatRight
   m_TagString: Untagged
@@ -5105,6 +6740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729068561354
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5127,6 +6763,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 3
   KindLength: 0
+--- !u!23 &149096372744713228
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729068561359}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729081264493
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,6 +6817,7 @@ GameObject:
   - component: {fileID: 2700731729081264489}
   - component: {fileID: 2700731729081264488}
   - component: {fileID: 2700731729081264495}
+  - component: {fileID: 8723341392748278892}
   m_Layer: 0
   m_Name: SideFlatBlack
   m_TagString: Untagged
@@ -5173,6 +6852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809bcd25743b34844acbb0c3046742f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729081264488
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5194,6 +6874,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 1
+--- !u!23 &8723341392748278892
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729081264493}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729105140223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5212,7 +6934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729105140216
 Transform:
   m_ObjectHideFlags: 0
@@ -5279,7 +7001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729192889306
 Transform:
   m_ObjectHideFlags: 0
@@ -5341,6 +7063,7 @@ GameObject:
   - component: {fileID: 2700731729212488133}
   - component: {fileID: 2700731729212488132}
   - component: {fileID: 2700731729212488139}
+  - component: {fileID: 413151734605563056}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -5375,6 +7098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809bcd25743b34844acbb0c3046742f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729212488132
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5396,6 +7120,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: 0
+--- !u!23 &413151734605563056
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729212488137}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729238080528
 GameObject:
   m_ObjectHideFlags: 0
@@ -5414,7 +7180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729238080529
 Transform:
   m_ObjectHideFlags: 0
@@ -5482,7 +7248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729244336444
 Transform:
   m_ObjectHideFlags: 0
@@ -5549,7 +7315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729278671762
 Transform:
   m_ObjectHideFlags: 0
@@ -5617,7 +7383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729292923538
 Transform:
   m_ObjectHideFlags: 0
@@ -5685,7 +7451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729318125018
 Transform:
   m_ObjectHideFlags: 0
@@ -5753,7 +7519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729337065839
 Transform:
   m_ObjectHideFlags: 0
@@ -5860,7 +7626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729373563772
 Transform:
   m_ObjectHideFlags: 0
@@ -5929,7 +7695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729427290982
 Transform:
   m_ObjectHideFlags: 0
@@ -6050,7 +7816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729435235330
 Transform:
   m_ObjectHideFlags: 0
@@ -6113,6 +7879,7 @@ GameObject:
   - component: {fileID: 2700731729441158433}
   - component: {fileID: 2700731729441158432}
   - component: {fileID: 2700731729441158439}
+  - component: {fileID: 3415317432892177160}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -6149,6 +7916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 0
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729441158432
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6172,6 +7940,48 @@ MonoBehaviour:
   Direction: 1
   StandartNonStandart: 0
   HeigthLengthProfile: 1
+--- !u!23 &3415317432892177160
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729441158437}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729526535612
 GameObject:
   m_ObjectHideFlags: 0
@@ -6190,7 +8000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729526535613
 Transform:
   m_ObjectHideFlags: 0
@@ -6259,7 +8069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729583147529
 Transform:
   m_ObjectHideFlags: 0
@@ -6457,7 +8267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729625646998
 Transform:
   m_ObjectHideFlags: 0
@@ -6518,6 +8328,7 @@ GameObject:
   - component: {fileID: 2700731729656683987}
   - component: {fileID: 2700731729656683986}
   - component: {fileID: 2700731729656683985}
+  - component: {fileID: 6574786235148691597}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -6553,6 +8364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729656683986
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6575,6 +8387,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   KindLength: 1
+--- !u!23 &6574786235148691597
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729656683991}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729679652528
 GameObject:
   m_ObjectHideFlags: 0
@@ -6587,6 +8441,7 @@ GameObject:
   - component: {fileID: 2700731729679652492}
   - component: {fileID: 2700731729679652531}
   - component: {fileID: 2700731729679652530}
+  - component: {fileID: 6431160774071165354}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -6622,6 +8477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedKindLength: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729679652531
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6644,6 +8500,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   KindLength: 0
+--- !u!23 &6431160774071165354
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729679652528}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729701060553
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,7 +8560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729701060554
 Transform:
   m_ObjectHideFlags: 0
@@ -6691,6 +8589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  Material: {fileID: 0}
 --- !u!33 &2700731729701060548
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6730,7 +8629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2700731729705458624
 Transform:
   m_ObjectHideFlags: 0
@@ -6759,6 +8658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  Material: {fileID: 0}
 --- !u!33 &2700731729705458626
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6838,6 +8738,7 @@ GameObject:
   - component: {fileID: 2700731729714203327}
   - component: {fileID: 2700731729714203326}
   - component: {fileID: 2700731729714203325}
+  - component: {fileID: 4514370874046993001}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -6873,6 +8774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KindLength: 1
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729714203326
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6895,6 +8797,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   KindLength: 1
+--- !u!23 &4514370874046993001
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729714203299}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729767418530
 GameObject:
   m_ObjectHideFlags: 0
@@ -6907,6 +8851,7 @@ GameObject:
   - component: {fileID: 2700731729767418558}
   - component: {fileID: 2700731729767418557}
   - component: {fileID: 2700731729767418556}
+  - component: {fileID: 8072717928693047676}
   m_Layer: 0
   m_Name: SideFlatFront
   m_TagString: Untagged
@@ -6943,6 +8888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729767418557
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6966,6 +8912,48 @@ MonoBehaviour:
   Direction: 0
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+--- !u!23 &8072717928693047676
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729767418530}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2700731729815280569
 GameObject:
   m_ObjectHideFlags: 0
@@ -6978,6 +8966,7 @@ GameObject:
   - component: {fileID: 2700731729815280565}
   - component: {fileID: 2700731729815280564}
   - component: {fileID: 2700731729815280571}
+  - component: {fileID: 1856952385593808573}
   m_Layer: 0
   m_Name: SideFlatBack
   m_TagString: Untagged
@@ -7014,6 +9003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StandartNonStandart: 1
   HeigthLengthProfile: 0
+  material: {fileID: 2100000, guid: dfb2293ed69de30419c851adcce0ce97, type: 2}
 --- !u!33 &2700731729815280564
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7037,3 +9027,45 @@ MonoBehaviour:
   Direction: 1
   StandartNonStandart: 1
   HeigthLengthProfile: 1
+--- !u!23 &1856952385593808573
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700731729815280569}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

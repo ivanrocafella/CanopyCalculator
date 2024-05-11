@@ -14,6 +14,7 @@ public class BeltRoundedCornerBeamTrussGenerator : MonoBehaviour
 {
     private BeamTruss beamTruss;
     public KindLength KindLength;
+    public Material Material;
 
     private void Start()
     {
