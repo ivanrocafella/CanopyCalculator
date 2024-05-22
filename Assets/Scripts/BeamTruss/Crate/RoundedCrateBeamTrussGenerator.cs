@@ -12,6 +12,7 @@ public class RoundedCrateBeamTrussGenerator : MonoBehaviour
 {
     private BeamTruss beamTruss;
     public StandartNonStandart StandartNonStandart;
+    public Material material;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class RoundedCrateBeamTrussGenerator : MonoBehaviour
             , beamTruss.Truss.ProfileCrate.Thickness)
             : _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileCrate.Radius, beamTruss.Truss.LengthCrate
             , beamTruss.Truss.ProfileCrate.Thickness);
-            ApplyMaterial(mesh, "Standard", Color.black);
+            ValAction.ApplyMaterial(mesh, transform.gameObject, material);
         }
     }
 

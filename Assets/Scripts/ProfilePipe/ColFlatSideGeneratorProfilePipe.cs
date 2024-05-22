@@ -35,7 +35,6 @@ public class ColFlatSideGeneratorProfilePipe : MonoBehaviour
         Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, columnBody.Profile.Radius) :
                                  _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, 0);
         transform.GetComponent<MeshFilter>().mesh = mesh;
-        //ApplyMaterial(mesh, "Standard", Color.black);
     }
 
     void ApplyMaterial(Mesh mesh, string shaderName, Color color)

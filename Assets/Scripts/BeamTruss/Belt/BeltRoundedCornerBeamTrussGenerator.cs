@@ -14,7 +14,7 @@ public class BeltRoundedCornerBeamTrussGenerator : MonoBehaviour
 {
     private BeamTruss beamTruss;
     public KindLength KindLength;
-    public Material Material;
+    public Material material;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class BeltRoundedCornerBeamTrussGenerator : MonoBehaviour
         {
             Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(beamTruss.Truss.ProfileBelt.Radius, length
                 , beamTruss.Truss.ProfileBelt.Thickness);
-            ApplyMaterial(mesh, "Standard", Color.black);
+            ValAction.ApplyMaterial(mesh, transform.gameObject, material);
         }
     }
 

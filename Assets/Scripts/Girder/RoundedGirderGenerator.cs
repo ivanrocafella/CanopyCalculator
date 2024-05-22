@@ -11,6 +11,7 @@ using Material = UnityEngine.Material;
 public class RoundedGirderGenerator : MonoBehaviour
 {
     private Girder girder;
+    public Material material;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class RoundedGirderGenerator : MonoBehaviour
         {
             Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(girder.Profile.Radius, girder.Length
             , girder.Profile.Thickness);
-            ApplyMaterial(mesh, "Standard", Color.black);
+            ValAction.ApplyMaterial(mesh, transform.gameObject, material);
         }
     }
 

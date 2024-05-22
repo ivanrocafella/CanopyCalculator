@@ -14,7 +14,7 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
 {
     private RafterTruss rafterTruss;
     public KindLength KindLength;
-
+    public Material material;
     private void Start()
     {
         rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
@@ -28,7 +28,7 @@ public class RafterTrussBeltRoundedCornerGenerator : MonoBehaviour
         {
             Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileBelt.Radius, length
             , rafterTruss.Truss.ProfileBelt.Thickness);
-            ApplyMaterial(mesh, "Standard", Color.black);
+            ValAction.ApplyMaterial(mesh, transform.gameObject, material);
         }
     }
 

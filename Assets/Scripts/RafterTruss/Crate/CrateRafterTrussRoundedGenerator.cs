@@ -12,6 +12,7 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
 {
     private RafterTruss rafterTruss;
     public StandartNonStandart StandartNonStandart;
+    public Material materiall;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class CrateRafterTrussRoundedGenerator : MonoBehaviour
             , rafterTruss.Truss.ProfileCrate.Thickness)
             : _3dObjectConstructor.CreateRoundedCorner(rafterTruss.Truss.ProfileCrate.Radius, rafterTruss.Truss.LengthCrate
             , rafterTruss.Truss.ProfileCrate.Thickness);
-            ApplyMaterial(mesh, "Standard", Color.black);
+            ValAction.ApplyMaterial(mesh, transform.gameObject, materiall);
         }
     }
 

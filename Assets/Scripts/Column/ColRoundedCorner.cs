@@ -14,6 +14,7 @@ public class ColRoundedCorner : MonoBehaviour
 {
     public KindLength KindLength;
     private ColumnBody columnBody;
+    public Material material;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class ColRoundedCorner : MonoBehaviour
         {
             Mesh mesh = _3dObjectConstructor.CreateRoundedCorner(columnBody.Profile.Radius, columnBody.Height
                 , columnBody.Profile.Thickness);
-            ApplyMaterial(mesh, "Standard", Color.black);
+            ValAction.ApplyMaterial(mesh, transform.gameObject, material);
         }
     }
 
