@@ -60,49 +60,49 @@ public class InputFieldValidator : MonoBehaviour
             switch (tagInputField)
             {
                 case "SpanInput":
-                    if (value <= 0 || value > 20)
+                    if (value < 1 || value > 20)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 1 до 20";
                         return false;
                     }
                     break;
                 case "LengthInput":
-                    if (value <= 2 || value > 40)
+                    if (value < 2 || value > 40)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 2 до 40";
                         return false;
                     }
                     break;
                 case "HeightInput":
-                    if (value <= 0 || value > 10)
+                    if (value < 1 || value > 10)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 1 до 10";
                         return false;
                     }
                     break;
                 case "SlopeInput":
-                    if (value <= 6 || value > 45)
+                    if (value < 7 || value > 45)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 7 до 45";
                         return false;
                     }
                     break;
                 case "CountStepColumnInput":
-                    if (value <= 0 || value > 10)
+                    if (value < 1 || value > 10)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 1 до 10";
                         return false;
                     }
                     break;
                 case "OutputRafterInput":
-                    if (value <= 9 || value > 50)
+                    if (value < 10 || value > 50)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 10 до 50";
                         return false;
                     }
                     break;
                 case "OutputGirderInput":
-                    if (value <= 9 || value > 40)
+                    if (value < 10 || value > 40)
                     {
                         errorMessage = "Значение должно быть в диапазоне от 10 до 40";
                         return false;

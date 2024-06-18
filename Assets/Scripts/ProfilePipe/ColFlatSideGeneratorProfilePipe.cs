@@ -43,8 +43,10 @@ public class ColFlatSideGeneratorProfilePipe : MonoBehaviour
         MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
              ? gameObject.AddComponent<MeshRenderer>()
              : gameObject.GetComponent<MeshRenderer>();
-        UnityEngine.Material material = new(Shader.Find(shaderName));
-        material.color = color;
+        UnityEngine.Material material = new(Shader.Find(shaderName))
+        {
+            color = color
+        };
         meshRenderer.material = material;
     }
 }

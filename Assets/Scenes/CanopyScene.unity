@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 160764424}
   - component: {fileID: 160764423}
   - component: {fileID: 160764426}
+  - component: {fileID: 160764427}
   m_Layer: 5
   m_Name: InputFieldSlope
   m_TagString: SlopeInput
@@ -1018,6 +1019,19 @@ MonoBehaviour:
   inputField: {fileID: 160764423}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &160764427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160764421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 160764423}
 --- !u!1 &178449168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,6 +2395,7 @@ GameObject:
   - component: {fileID: 354977369}
   - component: {fileID: 354977368}
   - component: {fileID: 354977367}
+  - component: {fileID: 354977371}
   m_Layer: 5
   m_Name: InputFieldStepRafter
   m_TagString: StepRafterInput
@@ -2571,6 +2586,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354977365}
   m_CullTransparentMesh: 1
+--- !u!114 &354977371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354977365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 354977368}
 --- !u!1 &358075715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +2949,7 @@ GameObject:
   - component: {fileID: 414573919}
   - component: {fileID: 414573918}
   - component: {fileID: 414573917}
+  - component: {fileID: 414573921}
   m_Layer: 5
   m_Name: InputFieldWorkLoad
   m_TagString: WorkLoadInput
@@ -3111,6 +3140,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414573915}
   m_CullTransparentMesh: 1
+--- !u!114 &414573921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414573915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 414573918}
 --- !u!1 &468073938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,6 +3270,7 @@ GameObject:
   - component: {fileID: 544430837}
   - component: {fileID: 544430836}
   - component: {fileID: 544430835}
+  - component: {fileID: 544430839}
   m_Layer: 5
   m_Name: InputFieldStepGirder
   m_TagString: StepGirderInput
@@ -3418,6 +3461,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544430833}
   m_CullTransparentMesh: 1
+--- !u!114 &544430839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544430833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 544430836}
 --- !u!1 &583798672
 GameObject:
   m_ObjectHideFlags: 0
@@ -4422,6 +4478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -4506,6 +4563,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &730855224
 GameObject:
   m_ObjectHideFlags: 0
@@ -7419,6 +7499,7 @@ GameObject:
   - component: {fileID: 1389291197}
   - component: {fileID: 1389291196}
   - component: {fileID: 1389291199}
+  - component: {fileID: 1389291200}
   m_Layer: 5
   m_Name: InputFieldCountStepColumn
   m_TagString: CountStepColumnInput
@@ -7609,6 +7690,19 @@ MonoBehaviour:
   inputField: {fileID: 1389291196}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &1389291200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389291194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1389291196}
 --- !u!1 &1389303452
 GameObject:
   m_ObjectHideFlags: 0
@@ -7911,6 +8005,7 @@ GameObject:
   - component: {fileID: 1405193497}
   - component: {fileID: 1405193496}
   - component: {fileID: 1405193499}
+  - component: {fileID: 1405193500}
   m_Layer: 5
   m_Name: InputFieldLength
   m_TagString: LengthInput
@@ -8101,6 +8196,19 @@ MonoBehaviour:
   inputField: {fileID: 1405193496}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &1405193500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405193494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1405193496}
 --- !u!1 &1432279388
 GameObject:
   m_ObjectHideFlags: 0
@@ -8114,6 +8222,7 @@ GameObject:
   - component: {fileID: 1432279391}
   - component: {fileID: 1432279390}
   - component: {fileID: 1432279393}
+  - component: {fileID: 1432279394}
   m_Layer: 5
   m_Name: InputFieldOutputGirder
   m_TagString: OutputGirderInput
@@ -8304,6 +8413,19 @@ MonoBehaviour:
   inputField: {fileID: 1432279390}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &1432279394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432279388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1432279390}
 --- !u!1 &1483056579
 GameObject:
   m_ObjectHideFlags: 0
@@ -9139,6 +9261,7 @@ GameObject:
   - component: {fileID: 1745921469}
   - component: {fileID: 1745921468}
   - component: {fileID: 1745921471}
+  - component: {fileID: 1745921472}
   m_Layer: 5
   m_Name: InputFieldHeight
   m_TagString: HeightInput
@@ -9329,6 +9452,19 @@ MonoBehaviour:
   inputField: {fileID: 1745921468}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &1745921472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745921466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1745921468}
 --- !u!1 &1747615449
 GameObject:
   m_ObjectHideFlags: 0
@@ -10440,6 +10576,7 @@ GameObject:
   - component: {fileID: 1859949788}
   - component: {fileID: 1859949787}
   - component: {fileID: 1859949790}
+  - component: {fileID: 1859949791}
   m_Layer: 5
   m_Name: InputFieldSpan
   m_TagString: SpanInput
@@ -10630,6 +10767,19 @@ MonoBehaviour:
   inputField: {fileID: 1859949787}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &1859949791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859949785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1859949787}
 --- !u!1 &1884144570
 GameObject:
   m_ObjectHideFlags: 0
@@ -11016,6 +11166,7 @@ GameObject:
   - component: {fileID: 1903734909}
   - component: {fileID: 1903734908}
   - component: {fileID: 1903734911}
+  - component: {fileID: 1903734912}
   m_Layer: 5
   m_Name: InputFieldOutputRafter
   m_TagString: OutputRafterInput
@@ -11206,6 +11357,19 @@ MonoBehaviour:
   inputField: {fileID: 1903734908}
   emInputField: {fileID: 0}
   isValid: 0
+--- !u!114 &1903734912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903734906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9514029dcff802e44bfe1705acf680c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1903734908}
 --- !u!1 &1912314116
 GameObject:
   m_ObjectHideFlags: 0

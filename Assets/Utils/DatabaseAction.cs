@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace Assets.Utils
 {
