@@ -67,6 +67,12 @@ TagManager:
   - CalculationResult
   - ToResultButton
   - ProfilePipeTest
+  - WasherMUCBT
+  - NutMUCBT
+  - ScrewMUCBT
+  - FlangeColumnMUCBT
+  - FlangeBeamTrussMUCBT
+  - MountUnitColumnBeamTruss
   layers:
   - Default
   - TransparentFX

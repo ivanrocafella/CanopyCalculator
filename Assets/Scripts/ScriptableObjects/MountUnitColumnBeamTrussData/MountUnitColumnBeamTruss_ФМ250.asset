@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6640a741184d34c9ae5945f5367972, type: 3}
+  m_Name: "MountUnitColumnBeamTruss_\u0424\u041C250"
+  m_EditorClassIdentifier: 
+  mountUnitName: "MountUnitColumnBeamTruss_\u0424\u041C250"
+  beamTrussName: "\u0424\u041C 250"
+  sizeProfileBeamTruss: 25
+  widthFlangeColumn: 50
+  lengthFlangeColumn: 120
+  thicknessFlangeColumn: 8
+  thicknessHeadScrew: 0
+  thicknessHeadNut: 0
+  thicknessWasher: 0
+  widthFlangeBeamTruss: 40
+  lengthFlangeBeamTruss: 120
+  thicknessFlangeBeamTruss: 8
+  centerCenterDistance: 0
+  flangeBeamTruss: {fileID: 0}
+  flangeColumn: {fileID: 0}
+  screw: {fileID: 919132149155446097, guid: 6a5459340b4b7e341a671844ad5314ec, type: 3}
+  nut: {fileID: 919132149155446097, guid: 129bfa686980f1e47a06583112dca937, type: 3}
+  washer: {fileID: 919132149155446097, guid: ada01621e9fcbf549983fa0960589bba, type: 3}

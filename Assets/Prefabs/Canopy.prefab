@@ -9953,6 +9953,8 @@ Transform:
   - {fileID: 2700731728110096328}
   - {fileID: 2700731727859909993}
   - {fileID: 2700731728131838100}
+  - {fileID: 7953204637332833372}
+  - {fileID: 1396583749465355152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2700731729593169041
@@ -9982,6 +9984,7 @@ MonoBehaviour:
   LoadingTextBox: {fileID: 0}
   profilePipes: []
   trusses: []
+  MountUnitColumnBeamTrusses: []
 --- !u!114 &2700731729593169040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10997,3 +11000,103 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4981518062618956878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7953204637332833372}
+  - component: {fileID: 6745849720197144510}
+  m_Layer: 0
+  m_Name: MountUnitColumnBeamTruss
+  m_TagString: MountUnitColumnBeamTruss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7953204637332833372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981518062618956878}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2700731729593169042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6745849720197144510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981518062618956878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9376323d3657b414bb4cebf415dec857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xCoord: 0
+  yCoord: 0
+  zCoord: 0
+  backSideLocation: 0
+  onHighColumns: 1
+  MountUnitColumnBeamTrussDataList: {fileID: 11400000, guid: 5b63d2ce7fd59434dbae6d41fab74bb9, type: 2}
+--- !u!1 &6246395655934068580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1396583749465355152}
+  - component: {fileID: 7371552840196303498}
+  m_Layer: 0
+  m_Name: MountUnitColumnBeamTruss
+  m_TagString: MountUnitColumnBeamTruss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1396583749465355152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246395655934068580}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2700731729593169042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7371552840196303498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246395655934068580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9376323d3657b414bb4cebf415dec857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xCoord: 0
+  yCoord: 0
+  zCoord: 0
+  backSideLocation: 0
+  onHighColumns: 0
+  MountUnitColumnBeamTrussDataList: {fileID: 11400000, guid: 5b63d2ce7fd59434dbae6d41fab74bb9, type: 2}

@@ -154,11 +154,7 @@ public class LoadPrefab : MonoBehaviour
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR    
         toFbxButton.gameObject.SetActive(true);
 #endif
-        toResultButton.gameObject.SetActive(true);
-        //print(profilePipeColumn.Name);
-        //print(trussBeam.Name);
-        //print(trussRafter.Name);
-        //print(profilePipeGirder.Name);      
+        toResultButton.gameObject.SetActive(true);   
     }
 
     IEnumerator ToFbxButtonClick()
@@ -186,17 +182,17 @@ public class LoadPrefab : MonoBehaviour
         loadingTextBox.GetComponent<TMP_Text>().fontSize = 24;
         loadingTextBox.GetComponent<TMP_Text>().text = $"Файл сохранён по пути {filePath}";
 #elif UNITY_WEBGL
-                try
-          {
-              if (!Directory.Exists(Path.Combine(Application.streamingAssetsPath, "FbxModels")))
-                  Directory.CreateDirectory(Path.Combine(Application.streamingAssetsPath, "FbxModels"));
-              string filePath = Path.Combine(Application.streamingAssetsPath, "FbxModels", $"canopy.fbx");
-              Debug.Log(filePath);
-          }
-          catch (Exception ex)
-          {
-              Debug.Log(ex.Message);
-          }
+              try
+        {
+            if (!Directory.Exists(Path.Combine(Application.streamingAssetsPath, "FbxModels")))
+                Directory.CreateDirectory(Path.Combine(Application.streamingAssetsPath, "FbxModels"));
+            string filePath = Path.Combine(Application.streamingAssetsPath, "FbxModels", $"canopy.fbx");
+            Debug.Log(filePath);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
 #else
 #endif
         yield return new WaitForSeconds(0.001f);

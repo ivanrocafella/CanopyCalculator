@@ -26,7 +26,8 @@ public class CanopyGenerator : MonoBehaviour
     public List<ProfilePipe> profilePipes = new();
     public List<Truss> trusses = new();
     public DollarRate dollarRate = new();
-
+    public List<GameObject> MountUnitColumnBeamTrussesOnHC = new();
+    public List<GameObject> MountUnitColumnBeamTrussesOnLC = new();
     void Awake()
     {
         print("CanopyGenerator");
@@ -71,14 +72,49 @@ public class CanopyGenerator : MonoBehaviour
         // Make columns
         for (int i = 0; i < Canopy.PlanColumn.CountStep; i++)
         {
-            Canopy.ColumnsHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
+            Canopy.ColumnsHigh[i] = Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
             Canopy.ColumnsHigh[i].transform.SetParent(CanopyObject.transform);
             Destroy(Canopy.ColumnsHigh[i].GetComponent<TransformColumnHigh>());
             Canopy.ColumnsHigh[i].transform.localPosition = new Vector3(0, 0, Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i);
-            Canopy.ColumnsLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("ColumnLow")[0]);
+            Canopy.ColumnsLow[i] = Instantiate(GameObject.FindGameObjectsWithTag("ColumnLow")[0]);
             Canopy.ColumnsLow[i].transform.SetParent(CanopyObject.transform);
             Destroy(Canopy.ColumnsLow[i].GetComponent<TransformColumnLow>());
             Canopy.ColumnsLow[i].transform.localPosition = new Vector3(Canopy.PlanColumn.SizeByX, 0, Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i);
+        }
+        // Make mountUnitsColumnBeamTruss on highColumns
+        for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
+        {
+            for (int k = 0; k < 2; k++, j++)
+            {
+                if (j == Canopy.PlanColumn.CountStep * 2 - 1)
+                    break;
+                MountUnitColumnBeamTrussesOnHC.Add(Instantiate(GameObject.FindGameObjectWithTag("MountUnitColumnBeamTruss")));
+                MountUnitColumnBeamTrussesOnHC[j].transform.SetParent(CanopyObject.transform);
+                MountUnitColumnBeamTrussesOnHC[j].SetActive(false);
+                MountUnitColumnBeamTrussGenerator mountUnitColumnBeamTrussGenerator = MountUnitColumnBeamTrussesOnHC[j].GetComponent<MountUnitColumnBeamTrussGenerator>();
+                if (j % 2 == 0)
+                    mountUnitColumnBeamTrussGenerator.backSideLocation = true;
+                mountUnitColumnBeamTrussGenerator.zCoord = Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i;
+                MountUnitColumnBeamTrussesOnHC[j].SetActive(true);
+            }
+        }
+        // Make mountUnitsColumnBeamTruss on lowColumns
+        for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
+        {
+            for (int k = 0; k < 2; k++, j++)
+            {
+                if (j == Canopy.PlanColumn.CountStep * 2 - 1)
+                    break;
+                MountUnitColumnBeamTrussesOnLC.Add(Instantiate(GameObject.FindGameObjectWithTag("MountUnitColumnBeamTruss")));
+                MountUnitColumnBeamTrussesOnLC[j].transform.SetParent(CanopyObject.transform);
+                MountUnitColumnBeamTrussesOnLC[j].SetActive(false);
+                MountUnitColumnBeamTrussGenerator mountUnitColumnBeamTrussGenerator = MountUnitColumnBeamTrussesOnLC[j].GetComponent<MountUnitColumnBeamTrussGenerator>();
+                if (j % 2 == 0)
+                    mountUnitColumnBeamTrussGenerator.backSideLocation = true;
+                mountUnitColumnBeamTrussGenerator.onHighColumns = false;
+                mountUnitColumnBeamTrussGenerator.zCoord = Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i;
+                MountUnitColumnBeamTrussesOnLC[j].SetActive(true);
+            }
         }
         // Make beam trusses on high columns
         for (int i = 0; i < Canopy.BeamTrussesOnHigh.Length - 1; i++)
@@ -180,10 +216,10 @@ public class CanopyGenerator : MonoBehaviour
         pricePerMgirder = ValAction.GetPricePmOfProfilePipe(Canopy.Girder.Profile.Name, profilePipes);
         dollarRateValue = dollarRate.Rate;
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        pricePerMcolumn = ValAction.GetPricePmPlayerPrefs(Canopy.columnBodyHigh.Profile.Name);
-        pricePerMbeamTruss = ValAction.GetPricePmPlayerPrefs(Canopy.beamTruss.Truss.Name);
-        pricePerMrafterTruss = ValAction.GetPricePmPlayerPrefs(Canopy.rafterTruss.Truss.Name);
-        pricePerMgirder = ValAction.GetPricePmPlayerPrefs(Canopy.girder.Profile.Name);
+        pricePerMcolumn = ValAction.GetPricePmPlayerPrefs(Canopy.ColumnBodyHigh.Profile.Name);
+        pricePerMbeamTruss = ValAction.GetPricePmPlayerPrefs(Canopy.BeamTruss.Truss.Name);
+        pricePerMrafterTruss = ValAction.GetPricePmPlayerPrefs(Canopy.RafterTruss.Truss.Name);
+        pricePerMgirder = ValAction.GetPricePmPlayerPrefs(Canopy.Girder.Profile.Name);
         dollarRateValue = ValAction.GetDollarRatePlayerPrefs();
 #endif
         print("pricePerMcolumn:" + pricePerMcolumn);

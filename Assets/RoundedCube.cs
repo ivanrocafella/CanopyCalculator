@@ -5,7 +5,6 @@ public class RoundedCube : MonoBehaviour {
 
 	public int xSize, ySize, zSize;
 	public int roundness;
-
 	private Mesh mesh;
 	private Vector3[] vertices;
 	private Vector3[] normals;
@@ -30,7 +29,6 @@ public class RoundedCube : MonoBehaviour {
 			(ySize - 1) * (zSize - 1)) * 2;
 		vertices = new Vector3[cornerVertices + edgeVertices + faceVertices];
 		normals = new Vector3[vertices.Length];
-
 		int v = 0;
 		for (int y = 0; y <= ySize; y++) {
 			for (int x = 0; x <= xSize; x++) {
@@ -56,7 +54,6 @@ public class RoundedCube : MonoBehaviour {
 				SetVertex(v++, x, 0, z);
 			}
 		}
-
 		mesh.vertices = vertices;
 		mesh.normals = normals;
 	}
@@ -82,7 +79,6 @@ public class RoundedCube : MonoBehaviour {
 		else if (z > zSize - roundness) {
 			inner.z = zSize - roundness;
 		}
-
 		normals[i] = (vertices[i] - inner).normalized;
 		vertices[i] = inner + normals[i] * roundness;
 	}
