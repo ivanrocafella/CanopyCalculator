@@ -28,17 +28,4 @@ public class ColRoundedCorner : MonoBehaviour
             ValAction.ApplyMaterial(mesh, transform.gameObject, material);
         }
     }
-
-    private void ApplyMaterial(Mesh mesh, string shaderName, Color color)
-    {
-        GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
-            ? gameObject.AddComponent<MeshRenderer>()
-            : gameObject.GetComponent<MeshRenderer>();
-        Material material = new(Shader.Find(shaderName))
-        {
-            color = color
-        };
-        meshRenderer.material = material;
-    }
 }

@@ -81,9 +81,9 @@ public class InputFieldValidator : MonoBehaviour
                     }
                     break;
                 case "SlopeInput":
-                    if (value < 7 || value > 45)
+                    if (value < 7 || value > 20)
                     {
-                        errorMessage = "Значение должно быть в диапазоне от 7 до 45";
+                        errorMessage = "Значение должно быть в диапазоне от 7 до 20";
                         return false;
                     }
                     break;

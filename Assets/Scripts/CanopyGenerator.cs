@@ -26,8 +26,7 @@ public class CanopyGenerator : MonoBehaviour
     public List<ProfilePipe> profilePipes = new();
     public List<Truss> trusses = new();
     public DollarRate dollarRate = new();
-    public List<GameObject> MountUnitColumnBeamTrussesOnHC = new();
-    public List<GameObject> MountUnitColumnBeamTrussesOnLC = new();
+
     void Awake()
     {
         print("CanopyGenerator");
@@ -65,6 +64,8 @@ public class CanopyGenerator : MonoBehaviour
         Canopy.Girder.Step = Canopy.RafterTruss.LengthTop / Canopy.CountStepGirder;
         Canopy.RafterTrusses = new GameObject[Canopy.CountStepRafterTruss + 1];
         Canopy.Girders = new GameObject[Canopy.CountStepGirder];
+        Canopy.MountUnitsColumnBeamTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * 2];
+        Canopy.MountUnitsColumnBeamTrussOnLC = new GameObject[Canopy.MountUnitsColumnBeamTrussOnHC.Length];
         float partAdditFromAngle = Mathf.Tan(Canopy.PlanColumn.Slope)
             * (Canopy.BeamTruss.Truss.ProfileBelt.Length / 2 - Canopy.BeamTruss.Truss.ProfileBelt.Radius + Canopy.PlanColumn.OutputRafter);
         float partAdditHalfBeltAngle = Canopy.RafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(Canopy.PlanColumn.Slope);
@@ -82,40 +83,9 @@ public class CanopyGenerator : MonoBehaviour
             Canopy.ColumnsLow[i].transform.localPosition = new Vector3(Canopy.PlanColumn.SizeByX, 0, Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i);
         }
         // Make mountUnitsColumnBeamTruss on highColumns
-        for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
-        {
-            for (int k = 0; k < 2; k++, j++)
-            {
-                if (j == Canopy.PlanColumn.CountStep * 2 - 1)
-                    break;
-                MountUnitColumnBeamTrussesOnHC.Add(Instantiate(GameObject.FindGameObjectWithTag("MountUnitColumnBeamTruss")));
-                MountUnitColumnBeamTrussesOnHC[j].transform.SetParent(CanopyObject.transform);
-                MountUnitColumnBeamTrussesOnHC[j].SetActive(false);
-                MountUnitColumnBeamTrussGenerator mountUnitColumnBeamTrussGenerator = MountUnitColumnBeamTrussesOnHC[j].GetComponent<MountUnitColumnBeamTrussGenerator>();
-                if (j % 2 == 0)
-                    mountUnitColumnBeamTrussGenerator.backSideLocation = true;
-                mountUnitColumnBeamTrussGenerator.zCoord = Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i;
-                MountUnitColumnBeamTrussesOnHC[j].SetActive(true);
-            }
-        }
+        MountUnitsColumnBeamTruss(Canopy.MountUnitsColumnBeamTrussOnHC, true);
         // Make mountUnitsColumnBeamTruss on lowColumns
-        for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
-        {
-            for (int k = 0; k < 2; k++, j++)
-            {
-                if (j == Canopy.PlanColumn.CountStep * 2 - 1)
-                    break;
-                MountUnitColumnBeamTrussesOnLC.Add(Instantiate(GameObject.FindGameObjectWithTag("MountUnitColumnBeamTruss")));
-                MountUnitColumnBeamTrussesOnLC[j].transform.SetParent(CanopyObject.transform);
-                MountUnitColumnBeamTrussesOnLC[j].SetActive(false);
-                MountUnitColumnBeamTrussGenerator mountUnitColumnBeamTrussGenerator = MountUnitColumnBeamTrussesOnLC[j].GetComponent<MountUnitColumnBeamTrussGenerator>();
-                if (j % 2 == 0)
-                    mountUnitColumnBeamTrussGenerator.backSideLocation = true;
-                mountUnitColumnBeamTrussGenerator.onHighColumns = false;
-                mountUnitColumnBeamTrussGenerator.zCoord = Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i;
-                MountUnitColumnBeamTrussesOnLC[j].SetActive(true);
-            }
-        }
+        MountUnitsColumnBeamTruss(Canopy.MountUnitsColumnBeamTrussOnLC, false);
         // Make beam trusses on high columns
         for (int i = 0; i < Canopy.BeamTrussesOnHigh.Length - 1; i++)
         {
@@ -188,6 +158,28 @@ public class CanopyGenerator : MonoBehaviour
         }
         yield return new WaitForSeconds(0.001f);
         LoadingTextBox.GetComponent<TMP_Text>().text = string.Empty;
+    }
+
+    // Methode that make mountUnitsColumnBeamTruss
+    private void MountUnitsColumnBeamTruss(GameObject[] MountUnitsColumnBeamTruss, bool isOnHighColumns)
+    {
+        for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
+        {
+            for (int k = 0; k < 2; k++, j++)
+            {
+                if (j == Canopy.PlanColumn.CountStep * 2 - 1)
+                    break;
+                MountUnitsColumnBeamTruss[j] = Instantiate(GameObject.FindGameObjectWithTag("MountUnitColumnBeamTruss"));
+                MountUnitsColumnBeamTruss[j].transform.SetParent(CanopyObject.transform);
+                MountUnitsColumnBeamTruss[j].SetActive(false);
+                MountUnitColumnBeamTrussGenerator mountUnitColumnBeamTrussGenerator = MountUnitsColumnBeamTruss[j].GetComponent<MountUnitColumnBeamTrussGenerator>();
+                if (j % 2 == 0)
+                    mountUnitColumnBeamTrussGenerator.backSideLocation = true;
+                mountUnitColumnBeamTrussGenerator.onHighColumns = isOnHighColumns;
+                mountUnitColumnBeamTrussGenerator.zCoord = Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i;
+                MountUnitsColumnBeamTruss[j].SetActive(true);
+            }
+        }
     }
 
     public IEnumerator Calculate()

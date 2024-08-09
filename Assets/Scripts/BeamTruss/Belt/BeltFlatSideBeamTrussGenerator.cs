@@ -26,8 +26,8 @@ public class BeltFlatSideBeamTrussGenerator : MonoBehaviour
             _ => beamTruss.LengthTop
         };
         // Setting roundness profile or not 
-        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(beamTruss.Truss.ProfileBelt.Thickness, length, beamTruss.Truss.ProfileBelt.Height, beamTruss.Truss.ProfileBelt.Radius) :
-                                 _3dObjectConstructor.CreateFlatSidePipe(beamTruss.Truss.ProfileBelt.Thickness, length, beamTruss.Truss.ProfileBelt.Height, 0);
+        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreatePlate(beamTruss.Truss.ProfileBelt.Thickness, length, beamTruss.Truss.ProfileBelt.Height, beamTruss.Truss.ProfileBelt.Radius) :
+                                 _3dObjectConstructor.CreatePlate(beamTruss.Truss.ProfileBelt.Thickness, length, beamTruss.Truss.ProfileBelt.Height, 0);
         ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 

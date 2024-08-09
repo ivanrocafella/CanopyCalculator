@@ -15,3 +15,8 @@ MonoBehaviour:
   mountUnitColumnBeamTrussDatas:
   - {fileID: 11400000, guid: c7d07b1bda4bf924080583cf3f77c7ad, type: 2}
   - {fileID: 11400000, guid: d5f3c27f81f7e5440ad7c4ce974144bc, type: 2}
+  - {fileID: 11400000, guid: e34a9b1aa2b7dc04698df8b806a89114, type: 2}
+  - {fileID: 11400000, guid: 5ed59e84896408b4e9ba91ad8ead7270, type: 2}
+  - {fileID: 11400000, guid: f25b0bef032bed245baa46931e1a9c62, type: 2}
+  - {fileID: 11400000, guid: b2def9f1c42aa6847a21442377944554, type: 2}
+  - {fileID: 11400000, guid: f31b065b00ad0f0419fa6464c90cc30e, type: 2}

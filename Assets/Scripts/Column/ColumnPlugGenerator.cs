@@ -11,14 +11,14 @@ public class ColumnPlugGenerator : MonoBehaviour
 {
     private readonly KindLength kindLength = KindLength.Long;
     private ColumnBody columnBody;
-    private readonly ColumnPlug columnPlug = new ColumnPlug();
+    private readonly ColumnPlug columnPlug = new();
     public Material material;
     // Start is called before the first frame update
     void Start()
     {
         columnBody = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
         columnBody.SetHeight(kindLength);
-        Mesh mesh = _3dObjectConstructor.CreateFlatSidePipe(columnBody.Profile.Length + columnPlug.Thickness * 2, columnPlug.Thickness, columnBody.Profile.Height + columnPlug.Thickness * 2, 0);
+        Mesh mesh = _3dObjectConstructor.CreatePlate(columnBody.Profile.Length + columnPlug.Thickness * 2, columnPlug.Thickness, columnBody.Profile.Height + columnPlug.Thickness * 2, 0);
         ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 
@@ -26,18 +26,5 @@ public class ColumnPlugGenerator : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void ApplyMaterial(Mesh mesh, string shaderName, Color color)
-    {
-        GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer meshRenderer = !gameObject.GetComponent<MeshRenderer>()
-            ? gameObject.AddComponent<MeshRenderer>()
-            : gameObject.GetComponent<MeshRenderer>();
-        Material material = new(Shader.Find(shaderName))
-        {
-            color = color
-        };
-        meshRenderer.material = material;
     }
 }

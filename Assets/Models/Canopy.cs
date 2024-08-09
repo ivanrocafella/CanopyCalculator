@@ -17,6 +17,8 @@ namespace Assets.Models
         public GameObject[] BeamTrussesOnLow;
         public GameObject[] RafterTrusses;
         public GameObject[] Girders;
+        public GameObject[] MountUnitsColumnBeamTrussOnHC;
+        public GameObject[] MountUnitsColumnBeamTrussOnLC;
         public ColumnBody ColumnBodyHigh;
         public BeamTruss BeamTruss;
         public RafterTruss RafterTruss;

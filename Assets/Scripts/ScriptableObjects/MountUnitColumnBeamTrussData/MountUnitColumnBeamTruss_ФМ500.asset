@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d6640a741184d34c9ae5945f5367972, type: 3}
-  m_Name: "MountUnitColumnBeamTruss_\u0424\u041C250"
+  m_Name: "MountUnitColumnBeamTruss_\u0424\u041C500"
   m_EditorClassIdentifier: 
-  mountUnitName: "MountUnitColumnBeamTruss_\u0424\u041C250"
-  beamTrussName: "\u0424\u041C 250"
-  sizeProfileBeamTruss: 25
+  mountUnitName: "MountUnitColumnBeamTruss_\u0424\u041C500"
+  beamTrussName: "\u0424\u041C 500"
+  sizeProfileBeamTruss: 50
   widthFlangeColumn: 50
-  lengthFlangeColumn: 120
+  lengthFlangeColumn: 145
   thicknessFlangeColumn: 8
   thicknessHeadScrew: 7.5
   thicknessHeadNut: 10
   thicknessWasher: 2.5
   widthFlangeBeamTruss: 40
-  lengthFlangeBeamTruss: 120
+  lengthFlangeBeamTruss: 145
   thicknessFlangeBeamTruss: 8
-  centerCenterDistance: 75
-  flangeBeamTruss: {fileID: 919132149155446097, guid: d308b78c5ee599d46bff7057259081dd, type: 3}
-  flangeColumn: {fileID: 919132149155446097, guid: 5b663bafa88cdb04e80640390f6c7096, type: 3}
+  centerCenterDistance: 100
+  flangeBeamTruss: {fileID: 919132149155446097, guid: d46e155d4868a864799295b4d18d82ea, type: 3}
+  flangeColumn: {fileID: 919132149155446097, guid: 5887705f59c17604d87143d4322d36d8, type: 3}
   screw: {fileID: 919132149155446097, guid: 6a5459340b4b7e341a671844ad5314ec, type: 3}
   nut: {fileID: 919132149155446097, guid: 129bfa686980f1e47a06583112dca937, type: 3}
   washer: {fileID: 919132149155446097, guid: ada01621e9fcbf549983fa0960589bba, type: 3}

@@ -22,8 +22,8 @@ public class FlatSideCrateBeamTrussGenerator : MonoBehaviour
         float dimen = HeigthLengthProfile == HeigthLengthProfile.Heigth ? beamTruss.Truss.ProfileCrate.Height : beamTruss.Truss.ProfileCrate.Length;
         // Setting roundness profile or not 
         float radius = ValAction.withRadius ? beamTruss.Truss.ProfileCrate.Radius : 0;            
-        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreateFlatSidePipe(beamTruss.Truss.ProfileCrate.Thickness, beamTruss.LengthNonStandartCrate, dimen, radius)
-            : _3dObjectConstructor.CreateFlatSidePipe(beamTruss.Truss.ProfileCrate.Thickness, beamTruss.Truss.LengthCrate, dimen, radius);
+        Mesh mesh = StandartNonStandart == StandartNonStandart.NonStandart ? _3dObjectConstructor.CreatePlate(beamTruss.Truss.ProfileCrate.Thickness, beamTruss.LengthNonStandartCrate, dimen, radius)
+            : _3dObjectConstructor.CreatePlate(beamTruss.Truss.ProfileCrate.Thickness, beamTruss.Truss.LengthCrate, dimen, radius);
         ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 

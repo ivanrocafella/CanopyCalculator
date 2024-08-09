@@ -11,7 +11,7 @@ namespace Assets.Services
     public static class _3dObjectConstructor
     {
         // Methods for creating parallelepipeds
-        public static Mesh CreateFlatSidePipe(float sizeByX, float height, float sizeByZ, float radius)
+        public static Mesh CreatePlate(float sizeByX, float height, float sizeByZ, float radius)
         {
             Vector3 vectorByWidth = new(sizeByX, 0, 0);
             Vector3 vectorByHeight = new(0, height, 0);

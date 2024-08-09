@@ -20,8 +20,8 @@ public class FlatSideGirderGenerator : MonoBehaviour
     {
         girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
         // Setting roundness profile or not
-        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, girder.Profile.Radius) :
-                                 _3dObjectConstructor.CreateFlatSidePipe(girder.Profile.Thickness, girder.Length, girder.Profile.Height, 0);
+        Mesh mesh = ValAction.withRadius ? _3dObjectConstructor.CreatePlate(girder.Profile.Thickness, girder.Length, girder.Profile.Height, girder.Profile.Radius) :
+                                 _3dObjectConstructor.CreatePlate(girder.Profile.Thickness, girder.Length, girder.Profile.Height, 0);
         ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 

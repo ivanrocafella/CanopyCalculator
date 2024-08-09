@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1264469a1d384b4a824d194f85406ea, type: 3}
+  m_Name: "MountUnitBeamRafterTruss_\u0424\u041C125"
+  m_EditorClassIdentifier: 
+  mountUnitName: "MountUnitBeamRafterTruss_\u0424\u041C125"
+  rafterTrussName: "\u0424\u041C125"
+  sizeProfileRafterTruss: 15
+  widthFlangeRafterTruss: 40
+  lengthFlangeRafterTruss: 110
+  thicknessFlangeRafterTruss: 8
+  widthFlangeBeamTruss: 60
+  lengthFlangeBeamTruss: 110
+  thicknessFlangeBeamTruss: 6
+  thicknessHeadScrew: 7.5
+  thicknessHeadNut: 10
+  thicknessWasher: 2.5
+  centerCenterDistance: 65
+  flangeBeamTruss: {fileID: 919132149155446097, guid: 1abf86d58a00e7647ba86a9c6657d462, type: 3}
+  flangeRafterTruss: {fileID: 919132149155446097, guid: 00c359bef91610b4390a43566469da9a, type: 3}
+  screw: {fileID: 919132149155446097, guid: 6a5459340b4b7e341a671844ad5314ec, type: 3}
+  nut: {fileID: 919132149155446097, guid: 129bfa686980f1e47a06583112dca937, type: 3}
+  washer: {fileID: 919132149155446097, guid: ada01621e9fcbf549983fa0960589bba, type: 3}
