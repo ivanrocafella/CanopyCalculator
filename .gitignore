@@ -47,8 +47,7 @@ ExportedObj/
 *.dwl2
 *.dwl.meta
 *.dwl2.meta
-*.fbx
-*.fbx.meta
+FbxModels/*
 
 # Unity3D generated file on crash reports
 sysinfo.txt
