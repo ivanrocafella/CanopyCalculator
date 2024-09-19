@@ -73,6 +73,14 @@ TagManager:
   - FlangeColumnMUCBT
   - FlangeBeamTrussMUCBT
   - MountUnitColumnBeamTruss
+  - WasherMUBRT
+  - NutMUBRT
+  - ScrewMUBRT
+  - FlangeBeamTrussMUBRT
+  - FlangeRafterTrussMUBRT
+  - MountUnitBeamRafterTruss
+  - ShelfTableMount
+  - WallTableMount
   layers:
   - Default
   - TransparentFX

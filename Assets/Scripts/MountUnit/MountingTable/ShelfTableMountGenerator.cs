@@ -11,17 +11,18 @@ using Material = UnityEngine.Material;
 public class ShelfTableMountGenerator : MonoBehaviour
 {
     [SerializeField]
-    private MountUnitColumnBeamTrussDataList MountUnitColumnBeamTrussDataList;
-    private MountUnitColumnBeamTrussData MountUnitColumnBeamTrussData;
+    private MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList;
+    private MountUnitBeamRafterTrussData mountUnitBeamRafterTrussData; 
     private Canopy Canopy;
     public Material material;
+    private const int thickness = 4; //thickness of plate = 4 mm
+
     // Start is called before the first frame update
     void Start()
-    {
-        //thickness of plate = 4 mm
+    {  
         Canopy = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(e => e.CompareTag("Canopy")).GetComponent<CanopyGenerator>().Canopy;
-        MountUnitColumnBeamTrussData = MountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.FirstOrDefault(e => e.BeamTrussName == Canopy.BeamTruss.Truss.Name);
-        //Mesh mesh = _3dObjectConstructor.CreatePlate(columnBody.Profile.Thickness, columnBody.Height, columnBody.Profile.Height, columnBody.Profile.Radius);
+        mountUnitBeamRafterTrussData = mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas.FirstOrDefault(e => e.RafterTrussName == Canopy.RafterTruss.Truss.Name);
+        Mesh mesh = _3dObjectConstructor.CreatePlate(mountUnitBeamRafterTrussData.LengthFlangeBeamTruss, Canopy.BeamTruss.Truss.ProfileBelt.Height, thickness, 0);
         //ValAction.ApplyMaterial(mesh, transform.gameObject, material);
     }
 

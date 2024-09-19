@@ -43,7 +43,7 @@ public class MountUnitColumnBeamTrussGenerator : MonoBehaviour
     IEnumerator GetMountUnitColumnBeamTrussData()
     {
         canopy = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(e => e.CompareTag("Canopy")).GetComponent<CanopyGenerator>().Canopy;
-        MountUnitColumnBeamTrussData = MountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.FirstOrDefault(e => e.BeamTrussName == canopy.BeamTruss.Truss.Name)/*MountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas[0]*/;
+        MountUnitColumnBeamTrussData = MountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.FirstOrDefault(e => e.BeamTrussName == canopy.BeamTruss.Truss.Name);
         flangeColumnPrefab = MountUnitColumnBeamTrussData.FlangeColumn;
         flangeColumnPrefab.tag = "FlangeColumnMUCBT";
         flangeBeamTrussPrefab = MountUnitColumnBeamTrussData.FlangeBeamTruss;

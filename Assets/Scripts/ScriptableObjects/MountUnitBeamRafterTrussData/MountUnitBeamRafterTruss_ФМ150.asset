@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1264469a1d384b4a824d194f85406ea, type: 3}
-  m_Name: "MountUnitBeamRafterTruss_\u0424\u041C125"
+  m_Name: "MountUnitBeamRafterTruss_\u0424\u041C150"
   m_EditorClassIdentifier: 
-  mountUnitName: "MountUnitBeamRafterTruss_\u0424\u041C125"
-  rafterTrussName: "\u0424\u041C 125"
+  mountUnitName: "MountUnitBeamRafterTruss_\u0424\u041C150"
+  rafterTrussName: "\u0424\u041C 150"
   sizeProfileRafterTruss: 15
   widthFlangeRafterTruss: 40
   lengthFlangeRafterTruss: 110
