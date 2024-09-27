@@ -27,6 +27,10 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
     private GameObject flangeBeamTruss;
     private GameObject flangeRafterTruss;
     private const int thicknessTableMount = 4;
+    private const int gapBeamRafterFlange = 2;
+    private float widthShelfTableMount;
+    private float offsetHorizFlangeBeamTruss;
+    private float diagonalWidthFlangeBeamTruss;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +61,7 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
             , canopy.BeamTruss.Truss.ProfileBelt.Height / Mathf.Cos(canopy.PlanColumn.Slope)
             , MountUnitBeamRafterTrussData.LengthFlangeBeamTruss
             , thicknessTableMount);
+        widthShelfTableMount = canopy.BeamTruss.Truss.ProfileBelt.Height / Mathf.Cos(canopy.PlanColumn.Slope);
         flangeBeamTruss = Instantiate(MountUnitBeamRafterTrussData.FlangeBeamTruss);
         flangeBeamTruss.tag = "FlangeBeamTrussMUBRT";
         flangeRafterTruss = Instantiate(MountUnitBeamRafterTrussData.FlangeRafterTruss);
@@ -85,16 +90,30 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
            , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
            , Quaternion.Euler(0, 90, 90));
         shelfTableMount.transform.SetParent(gameObject.transform);
-        shelfTableMount.transform.SetLocalPositionAndRotation(new Vector3(0
+        shelfTableMount.transform.SetLocalPositionAndRotation(new Vector3(thicknessTableMount / 2 * Mathf.Sin(canopy.PlanColumn.Slope)
            , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height + thicknessTableMount / 2 + canopy.BeamTruss.Truss.ProfileBelt.Length / 2 * Mathf.Tan(canopy.PlanColumn.Slope)
+           //- (widthShelfTableMount - canopy.BeamTruss.Truss.ProfileBelt.Height) / 2 * Mathf.Tan(canopy.PlanColumn.Slope)
            , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
            , Quaternion.Euler(90 + canopy.PlanColumn.SlopeInDegree, 90, 90));
         flangeBeamTruss.transform.SetParent(gameObject.transform);
-        flangeBeamTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + thicknessTableMount
-            , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height / 2
+        offsetHorizFlangeBeamTruss = MountUnitBeamRafterTrussData.WidthFlangeBeamTruss / 2 - (MountUnitBeamRafterTrussData.WidthFlangeBeamTruss - MountUnitBeamRafterTrussData.WidthFlangeBeamTruss * Mathf.Cos(canopy.PlanColumn.Slope)) / 2
+            + MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss / 2 * Mathf.Sin(canopy.PlanColumn.Slope);
+        diagonalWidthFlangeBeamTruss = Mathf.Sqrt(Mathf.Pow(MountUnitBeamRafterTrussData.WidthFlangeBeamTruss / 2, 2) + Mathf.Pow(MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss / 2, 2));
+        flangeBeamTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + thicknessTableMount + offsetHorizFlangeBeamTruss
+            , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height - thicknessTableMount * Mathf.Tan(canopy.PlanColumn.Slope)
+            - Mathf.Sqrt(Mathf.Pow(diagonalWidthFlangeBeamTruss, 2) - Mathf.Pow(offsetHorizFlangeBeamTruss, 2))
+            - (MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss - thicknessTableMount + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss + gapBeamRafterFlange) / Mathf.Cos(canopy.PlanColumn.Slope)
             , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
-            , Quaternion.Euler(0, 90, 0));
+            , Quaternion.Euler(90 + canopy.PlanColumn.SlopeInDegree, 90, 0));
         flangeRafterTruss.transform.SetParent(gameObject.transform);
+        flangeRafterTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + thicknessTableMount + offsetHorizFlangeBeamTruss
+           + ((MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss) / 2 + gapBeamRafterFlange) * Mathf.Sin(canopy.PlanColumn.Slope)
+           , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height - thicknessTableMount * Mathf.Tan(canopy.PlanColumn.Slope)
+           - Mathf.Sqrt(Mathf.Pow(diagonalWidthFlangeBeamTruss, 2) - Mathf.Pow(offsetHorizFlangeBeamTruss, 2))
+           - (MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss - thicknessTableMount + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss + gapBeamRafterFlange) / Mathf.Cos(canopy.PlanColumn.Slope)
+           + ((MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss) / 2 + gapBeamRafterFlange) * Mathf.Cos(canopy.PlanColumn.Slope)
+           , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
+           , Quaternion.Euler(90 + canopy.PlanColumn.SlopeInDegree, 90, 0));
         yield return null;
     }
 

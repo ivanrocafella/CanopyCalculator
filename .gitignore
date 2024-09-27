@@ -68,3 +68,5 @@ Thumbs.db.meta
 
 # VS Code
 *.vscode
+/Assets/MountUnitBeamRafterTruss2.fbx
+/Assets/MountUnitBeamRafterTruss2.fbx.meta
