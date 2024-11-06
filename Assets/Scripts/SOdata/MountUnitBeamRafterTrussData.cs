@@ -29,6 +29,8 @@ namespace Assets.Scripts.SOdata
         [SerializeField]
         private int thicknessFlangeBeamTruss;
         [SerializeField]
+        private int thicknessTable;
+        [SerializeField]
         private float thicknessHeadScrew;
         [SerializeField]
         private float thicknessHeadNut;
@@ -53,6 +55,7 @@ namespace Assets.Scripts.SOdata
         public int WidthFlangeBeamTruss { get => widthFlangeBeamTruss; }
         public int LengthFlangeBeamTruss { get => lengthFlangeBeamTruss; }
         public int ThicknessFlangeBeamTruss { get => thicknessFlangeBeamTruss; }
+        public int ThicknessTable { get => thicknessTable; }
         public float ThicknessHeadScrew { get => thicknessHeadScrew; }
         public float ThicknessHeadNut { get => thicknessHeadNut; }
         public float ThicknessWasher { get => thicknessWasher; }

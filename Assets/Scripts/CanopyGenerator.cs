@@ -107,23 +107,23 @@ public class CanopyGenerator : MonoBehaviour
            , Canopy.PlanColumn.Step * i), Quaternion.Euler(0f, -90f, -90f));
         }
         // Make rafter trusses
+        yield return null;
+        Vector3 elemenRafterTrussPosition = GameObject.FindGameObjectWithTag("RafterTruss").transform.position;
         for (int i = 0; i < Canopy.RafterTrusses.Length; i++)
         {
-            Canopy.RafterTrusses[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("RafterTruss")[0]);
+            Canopy.RafterTrusses[i] = Object.Instantiate(GameObject.FindGameObjectWithTag("RafterTruss"));
             Canopy.RafterTrusses[i].transform.SetParent(CanopyObject.transform);
             Destroy(Canopy.RafterTrusses[i].GetComponent<RafterTrussTransform>());
             if (i == Canopy.RafterTrusses.Length - 1)
             {
                 Canopy.RafterTrusses[i].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter
-                             , Canopy.PlanColumn.SizeByY + Canopy.ColumnPlug.Thickness + partAdditFromAngle
-                             + partAdditHalfBeltAngle + Canopy.BeamTruss.Truss.ProfileBelt.Height
+                             , elemenRafterTrussPosition.y
                              , Canopy.PlanColumn.SizeByZ), Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
             }
             else
             {
                 Canopy.RafterTrusses[i].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter
-                             , Canopy.PlanColumn.SizeByY + Canopy.ColumnPlug.Thickness + partAdditFromAngle
-                             + partAdditHalfBeltAngle + Canopy.BeamTruss.Truss.ProfileBelt.Height
+                             , elemenRafterTrussPosition.y
                              , Canopy.RafterTruss.Step + Canopy.RafterTruss.Step * i), Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
             }
         }
@@ -131,7 +131,7 @@ public class CanopyGenerator : MonoBehaviour
         float stepGirder;
         float projectionHorStepGirder;
         float projectionVertStepGirder;
-        Vector3 elemenGirderPosition = GameObject.FindGameObjectWithTag("Girder").transform.position;
+        Vector3 elemenGirderPosition = GameObject.FindGameObjectWithTag("Girder").transform.localPosition;
         for (int i = 0; i < Canopy.Girders.Length; i++)
         {
             Canopy.Girders[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);

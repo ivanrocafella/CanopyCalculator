@@ -210,5 +210,46 @@ namespace Assets.Utils
                 ElastiModulus = e.ElastiModulus
             }
             ).ToList();
+
+        public static List<MountUnitBeamRafterTruss> GetListMountUnitBeamRafterTrusses(MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList) => 
+            mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas.Select( e => 
+            new MountUnitBeamRafterTruss()
+            {
+                 MountUnitName = e.MountUnitName,
+                 RafterTrussName = e.RafterTrussName,
+                 SizeProfileRafterTruss = e.SizeProfileRafterTruss,
+                 WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
+                 LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
+                 ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
+                 ThicknessHeadScrew = e.ThicknessHeadScrew,
+                 ThicknessHeadNut = e.ThicknessHeadNut,
+                 ThicknessWasher = e.ThicknessWasher,
+                 WidthFlangeRafterTruss = e.WidthFlangeRafterTruss,
+                 LengthFlangeRafterTruss = e.LengthFlangeRafterTruss,
+                 ThicknessFlangeRafterTruss = e.ThicknessFlangeRafterTruss,
+                 CenterCenterDistance = e.CenterCenterDistance
+            }
+            ).ToList();
+
+        public static MountUnitBeamRafterTruss GetMountUnitBeamRafterTrussByName(string name, MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList) =>
+            mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas.Select(e =>
+            new MountUnitBeamRafterTruss()
+            {
+                MountUnitName = e.MountUnitName,
+                RafterTrussName = e.RafterTrussName,
+                SizeProfileRafterTruss = e.SizeProfileRafterTruss,
+                WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
+                LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
+                ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
+                ThicknessHeadScrew = e.ThicknessHeadScrew,
+                ThicknessHeadNut = e.ThicknessHeadNut,
+                ThicknessWasher = e.ThicknessWasher,
+                WidthFlangeRafterTruss = e.WidthFlangeRafterTruss,
+                LengthFlangeRafterTruss = e.LengthFlangeRafterTruss,
+                ThicknessFlangeRafterTruss = e.ThicknessFlangeRafterTruss,
+                CenterCenterDistance = e.CenterCenterDistance,
+                ThicknessTable = e.ThicknessTable
+            }
+            ).ToList().Find(e => e.RafterTrussName == name);
     }
 }

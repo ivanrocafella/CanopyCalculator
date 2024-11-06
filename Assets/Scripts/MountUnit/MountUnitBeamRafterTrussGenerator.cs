@@ -29,7 +29,6 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
     private GameObject screwPrefab;
     private GameObject washerwPrefab;
     private GameObject nutwPrefab;
-    private const int thicknessTableMount = 4;
     private const int gapBeamRafterFlange = 2;
     private float widthShelfTableMount;
     private float offsetHorizFlangeBeamTruss;
@@ -60,13 +59,13 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
             , "MountUnitBeam"
             , canopy.BeamTruss.Truss.ProfileBelt.Height
             , MountUnitBeamRafterTrussData.LengthFlangeBeamTruss
-            , thicknessTableMount);
+            , MountUnitBeamRafterTrussData.ThicknessTable);
         wallTableMountLong = Instantiate(GameObject.FindGameObjectWithTag("WallTableMount"));
         shelfTableMount = GetGOfromMeshes("ShelfTableMount"
             , "MountUnitBeam"
             , canopy.BeamTruss.Truss.ProfileBelt.Height / Mathf.Cos(canopy.PlanColumn.Slope)
             , MountUnitBeamRafterTrussData.LengthFlangeBeamTruss
-            , thicknessTableMount);
+            , MountUnitBeamRafterTrussData.ThicknessTable);
         widthShelfTableMount = canopy.BeamTruss.Truss.ProfileBelt.Height / Mathf.Cos(canopy.PlanColumn.Slope);
         flangeBeamTruss = Instantiate(MountUnitBeamRafterTrussData.FlangeBeamTruss);
         flangeBeamTruss.tag = "FlangeBeamTrussMUBRT";
@@ -99,18 +98,18 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
                 washers.Add(Instantiate(washerwPrefab));
         }
         wallTableMountShort.transform.SetParent(gameObject.transform);
-        wallTableMountShort.transform.SetLocalPositionAndRotation(new Vector3((canopy.BeamTruss.Truss.ProfileBelt.Length + thicknessTableMount) / 2
+        wallTableMountShort.transform.SetLocalPositionAndRotation(new Vector3((canopy.BeamTruss.Truss.ProfileBelt.Length + MountUnitBeamRafterTrussData.ThicknessTable) / 2
             , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height / 2
             , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
             , Quaternion.Euler(0,90,90));
         wallTableMountLong.transform.SetParent(gameObject.transform);
-        wallTableMountLong.transform.SetLocalPositionAndRotation(new Vector3(-(canopy.BeamTruss.Truss.ProfileBelt.Length + thicknessTableMount) / 2
+        wallTableMountLong.transform.SetLocalPositionAndRotation(new Vector3(-(canopy.BeamTruss.Truss.ProfileBelt.Length + MountUnitBeamRafterTrussData.ThicknessTable) / 2
            , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height / 2 + canopy.BeamTruss.Truss.ProfileBelt.Length * Mathf.Tan(canopy.PlanColumn.Slope)
            , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
            , Quaternion.Euler(0, 90, 90));
         shelfTableMount.transform.SetParent(gameObject.transform);
-        shelfTableMount.transform.SetLocalPositionAndRotation(new Vector3(thicknessTableMount / 2 * Mathf.Sin(canopy.PlanColumn.Slope)
-           , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height + thicknessTableMount / 2 + canopy.BeamTruss.Truss.ProfileBelt.Length / 2 * Mathf.Tan(canopy.PlanColumn.Slope)
+        shelfTableMount.transform.SetLocalPositionAndRotation(new Vector3(MountUnitBeamRafterTrussData.ThicknessTable / 2 * Mathf.Sin(canopy.PlanColumn.Slope)
+           , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height + MountUnitBeamRafterTrussData.ThicknessTable / 2 + canopy.BeamTruss.Truss.ProfileBelt.Length / 2 * Mathf.Tan(canopy.PlanColumn.Slope)
            //- (widthShelfTableMount - canopy.BeamTruss.Truss.ProfileBelt.Height) / 2 * Mathf.Tan(canopy.PlanColumn.Slope)
            , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
            , Quaternion.Euler(90 + canopy.PlanColumn.SlopeInDegree, 90, 90));
@@ -118,18 +117,18 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
         offsetHorizFlangeBeamTruss = MountUnitBeamRafterTrussData.WidthFlangeBeamTruss / 2 - (MountUnitBeamRafterTrussData.WidthFlangeBeamTruss - MountUnitBeamRafterTrussData.WidthFlangeBeamTruss * Mathf.Cos(canopy.PlanColumn.Slope)) / 2
             + MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss / 2 * Mathf.Sin(canopy.PlanColumn.Slope);
         diagonalWidthFlangeBeamTruss = Mathf.Sqrt(Mathf.Pow(MountUnitBeamRafterTrussData.WidthFlangeBeamTruss / 2, 2) + Mathf.Pow(MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss / 2, 2));
-        flangeBeamTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + thicknessTableMount + offsetHorizFlangeBeamTruss
-            , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height - thicknessTableMount * Mathf.Tan(canopy.PlanColumn.Slope)
+        flangeBeamTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + MountUnitBeamRafterTrussData.ThicknessTable + offsetHorizFlangeBeamTruss
+            , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height - MountUnitBeamRafterTrussData.ThicknessTable * Mathf.Tan(canopy.PlanColumn.Slope)
             - Mathf.Sqrt(Mathf.Pow(diagonalWidthFlangeBeamTruss, 2) - Mathf.Pow(offsetHorizFlangeBeamTruss, 2))
-            - (MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss - thicknessTableMount + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss + gapBeamRafterFlange) / Mathf.Cos(canopy.PlanColumn.Slope)
+            - (MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss - MountUnitBeamRafterTrussData.ThicknessTable + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss + gapBeamRafterFlange) / Mathf.Cos(canopy.PlanColumn.Slope)
             , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
             , Quaternion.Euler(90 + canopy.PlanColumn.SlopeInDegree, 90, 0));
         flangeRafterTruss.transform.SetParent(gameObject.transform);
-        flangeRafterTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + thicknessTableMount + offsetHorizFlangeBeamTruss
+        flangeRafterTruss.transform.SetLocalPositionAndRotation(new Vector3(canopy.BeamTruss.Truss.ProfileBelt.Length / 2 + MountUnitBeamRafterTrussData.ThicknessTable + offsetHorizFlangeBeamTruss
            + ((MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss) / 2 + gapBeamRafterFlange) * Mathf.Sin(canopy.PlanColumn.Slope)
-           , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height - thicknessTableMount * Mathf.Tan(canopy.PlanColumn.Slope)
+           , canopy.ColumnPlug.Thickness + canopy.BeamTruss.Truss.ProfileBelt.Height - MountUnitBeamRafterTrussData.ThicknessTable * Mathf.Tan(canopy.PlanColumn.Slope)
            - Mathf.Sqrt(Mathf.Pow(diagonalWidthFlangeBeamTruss, 2) - Mathf.Pow(offsetHorizFlangeBeamTruss, 2))
-           - (MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss - thicknessTableMount + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss + gapBeamRafterFlange) / Mathf.Cos(canopy.PlanColumn.Slope)
+           - (MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss - MountUnitBeamRafterTrussData.ThicknessTable + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss + gapBeamRafterFlange) / Mathf.Cos(canopy.PlanColumn.Slope)
            + ((MountUnitBeamRafterTrussData.ThicknessFlangeBeamTruss + MountUnitBeamRafterTrussData.ThicknessFlangeRafterTruss) / 2 + gapBeamRafterFlange) * Mathf.Cos(canopy.PlanColumn.Slope)
            , (canopy.ColumnBodyHigh.Profile.Height + MountUnitBeamRafterTrussData.LengthFlangeBeamTruss) / 2 + MountUnitColumnBeamTrussData.WidthFlangeColumn)
            , Quaternion.Euler(90 + canopy.PlanColumn.SlopeInDegree, 90, 0));

@@ -38,6 +38,8 @@ public class LoadPrefab : MonoBehaviour
     public MaterialDataList materialDataList;
     public TrussDataList trussDataList;
     public ProfilePipeDataList profilePipeDataList;
+    public MountUnitColumnBeamTrussDataList mountUnitColumnBeamTrussDataList;
+    public MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList;
     [SerializeField]
     private Button calculateButton;
     [SerializeField]
@@ -48,6 +50,7 @@ public class LoadPrefab : MonoBehaviour
     private GameObject loadingTextBox;
     public List<ProfilePipe> profilePipes;
     public List<Truss> trusses;
+    public List<MountUnitBeamRafterTruss> mountUnitBeamRafterTrusses;
     public DollarRate dollarRate;
 
     private void Awake()
@@ -145,6 +148,13 @@ public class LoadPrefab : MonoBehaviour
                 errorMessages.Add("Превышен допустимый профиль прогона!");
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
+
+        if (trussRafter != null)
+        {
+            MountUnitBeamRafterTruss mountUnitBeamRafterTruss = mountUnitBeamRafterTrusses.Find(e => e.RafterTrussName == trussRafter.Name);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitBeamRafterTruss = (KindMountUnitBeamRafterTruss)mountUnitBeamRafterTrusses.IndexOf(mountUnitBeamRafterTruss);
+        }
+        
         yield return new WaitForSeconds(0.001f);
         canopyObj = GameObject.FindGameObjectWithTag("Canopy");
         if (canopyObj != null)
@@ -226,6 +236,7 @@ public class LoadPrefab : MonoBehaviour
         print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
         profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
         trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
+        mountUnitBeamRafterTrusses = ScriptObjectsAction.GetListMountUnitBeamRafterTrusses(mountUnitBeamRafterTrussDataList);
 #endif
         yield return null;
     }

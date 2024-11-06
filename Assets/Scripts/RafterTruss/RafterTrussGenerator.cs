@@ -26,6 +26,10 @@ public class RafterTrussGenerator : MonoBehaviour
     private readonly ColumnPlug columnPlug = new();
     public ProfilePipeDataList profilePipeDataList;
     public TrussDataList trussDataList;
+    private MountUnitBeamRafterTruss mountUnitBeamRafterTruss;
+    [SerializeField]
+    private MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList;
+    private float dimensionConstr;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -37,7 +41,10 @@ public class RafterTrussGenerator : MonoBehaviour
         nameTruss = KindTruss.ToString().Insert(2, " ");
         columnProfile = ScriptObjectsAction.GetProfilePipeByName(nameColumnProfile, profilePipeDataList);
         truss = ScriptObjectsAction.GetTrussByName(nameTruss, trussDataList);
-        rafterTrussForRead = new(truss, planColumn, columnProfile.Height + columnPlug.Thickness * 2)
+        mountUnitBeamRafterTruss = ScriptObjectsAction.GetMountUnitBeamRafterTrussByName(nameTruss, mountUnitBeamRafterTrussDataList);
+        dimensionConstr = columnProfile.Height + columnPlug.Thickness * 2 > mountUnitBeamRafterTruss.WidthFlangeBeamTruss + mountUnitBeamRafterTruss.ThicknessTable ?
+            columnProfile.Height + columnPlug.Thickness * 2 : mountUnitBeamRafterTruss.WidthFlangeBeamTruss + mountUnitBeamRafterTruss.ThicknessTable;
+        rafterTrussForRead = new(truss, planColumn, dimensionConstr)
         {
             Step = Step
         };

@@ -11,7 +11,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class ProfileListController : MonoBehaviour
 {

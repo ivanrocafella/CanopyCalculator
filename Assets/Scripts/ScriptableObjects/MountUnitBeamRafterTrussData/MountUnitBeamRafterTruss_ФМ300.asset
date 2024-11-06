@@ -21,6 +21,7 @@ MonoBehaviour:
   widthFlangeBeamTruss: 60
   lengthFlangeBeamTruss: 125
   thicknessFlangeBeamTruss: 6
+  thicknessTable: 4
   thicknessHeadScrew: 7.5
   thicknessHeadNut: 10
   thicknessWasher: 2.5

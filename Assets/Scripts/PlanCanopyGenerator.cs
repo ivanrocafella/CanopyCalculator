@@ -25,6 +25,7 @@ public class PlanCanopyGenerator : MonoBehaviour
     public KindProfilePipe KindProfileGirder;
     public float StepGirder;
     public KindMaterial KindMaterial;
+    public KindMountUnitBeamRafterTruss KindMountUnitBeamRafterTruss;
     [SerializeField]
     private GameObject groupMainButton;
     [SerializeField]
@@ -78,7 +79,8 @@ public class PlanCanopyGenerator : MonoBehaviour
             StepRafter = StepRafter,
             KindProfileGirder = KindProfileGirder,
             StepGirder = StepGirder,
-            KindMaterial = KindMaterial
+            KindMaterial = KindMaterial,
+            KindMountUnitBeamRafterTruss = KindMountUnitBeamRafterTruss
         };
         return planColumn;
     }

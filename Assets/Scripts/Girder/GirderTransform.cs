@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,9 @@ public class GirderTransform : MonoBehaviour
     private float partOutputRufter;
     private float partAdditGirderHalfProfileVert;
     private float partAdditGirderHalfProfileHor;
+    private MountUnitBeamRafterTruss mountUnitBeamRafterTruss;
+    [SerializeField]
+    private MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -39,6 +43,7 @@ public class GirderTransform : MonoBehaviour
         beamTruss = GameObject.FindGameObjectWithTag("BeamTruss").GetComponent<BeamTrussGenerator>().beamTrussForRead;
         girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
         rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        mountUnitBeamRafterTruss = ScriptObjectsAction.GetMountUnitBeamRafterTrussByName(rafterTruss.Truss.Name, mountUnitBeamRafterTrussDataList);
         partAdditBeamProfileSmall = Mathf.Tan(planColumn.Slope)
             * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius);
         partAdditRafterProfile = rafterTruss.Truss.ProfileBelt.Height / Mathf.Cos(planColumn.Slope);
@@ -55,6 +60,7 @@ public class GirderTransform : MonoBehaviour
             , planColumn.SizeByY + columnPlug.Thickness + beamTruss.Truss.ProfileBelt.Height
             + partAdditBeamProfileSmall + partAdditRafterProfile + partAdditGirderProfile
             - partToCenterGirderProfileSmall + partOutputRufter - partAdditGirderHalfProfileVert
+            + mountUnitBeamRafterTruss.ThicknessTable / Mathf.Cos(planColumn.Slope)
             , -planColumn.OutputGirder);
         transform.localRotation = Quaternion.Euler(-planColumn.SlopeInDegree, -90, -90);
         yield return null;
