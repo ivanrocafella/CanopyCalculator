@@ -10205,6 +10205,7 @@ Transform:
   - {fileID: 7953204637332833372}
   - {fileID: 1396583749465355152}
   - {fileID: 2067267678920324762}
+  - {fileID: 2601682774399452398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2700731729593169041
@@ -10228,12 +10229,16 @@ MonoBehaviour:
     Girders: []
     MountUnitsColumnBeamTrussOnHC: []
     MountUnitsColumnBeamTrussOnLC: []
+    MountUnitsBeamRafterTrussOnHC: []
+    MountUnitsBeamRafterTrussOnLC: []
     CountStepRafterTruss: 0
     CountStepGirder: 0
     CanopyDescription: 
   CanopyObject: {fileID: 0}
   CanopyDescription: {fileID: 0}
   LoadingTextBox: {fileID: 0}
+  MountUnitColumnBeamTrussDataList: {fileID: 11400000, guid: 5b63d2ce7fd59434dbae6d41fab74bb9, type: 2}
+  MountUnitBeamRafterTrussDataList: {fileID: 11400000, guid: e2f2af7a4976b324fb262f928ba79461, type: 2}
   profilePipes: []
   trusses: []
 --- !u!114 &2700731729593169040
@@ -11374,6 +11379,56 @@ MonoBehaviour:
   zCoord: 0
   backSideLocation: 0
   onHighColumns: 1
+  MountUnitColumnBeamTrussDataList: {fileID: 11400000, guid: 5b63d2ce7fd59434dbae6d41fab74bb9, type: 2}
+--- !u!1 &5513910377527284489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2601682774399452398}
+  - component: {fileID: 1509890646182047430}
+  m_Layer: 0
+  m_Name: MountUnitBeamRafterTruss
+  m_TagString: MountUnitBeamRafterTruss
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2601682774399452398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513910377527284489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2700731729593169042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1509890646182047430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513910377527284489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92d5bbc5d3b36a43bd3dd126630fee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xCoord: 0
+  yCoord: 0
+  zCoord: 0
+  onHighColumns: 0
+  MountUnitBeamRafterTrussDataList: {fileID: 11400000, guid: e2f2af7a4976b324fb262f928ba79461, type: 2}
   MountUnitColumnBeamTrussDataList: {fileID: 11400000, guid: 5b63d2ce7fd59434dbae6d41fab74bb9, type: 2}
 --- !u!1 &6246395655934068580
 GameObject:

@@ -1,5 +1,6 @@
 using Assets.Models;
 using Assets.Scripts.SOdata;
+using Assets.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ public class MountUnitColumnBeamTrussGenerator : MonoBehaviour
     private readonly List<GameObject> screws = new();
     private readonly List<GameObject> washers = new();
     private readonly List<GameObject> nuts = new();
-
+    public MountUnitColumnBeamTruss MountUnitColumnBeamTruss { get; private set; }
     private void Awake()
     {
     }
@@ -43,6 +44,7 @@ public class MountUnitColumnBeamTrussGenerator : MonoBehaviour
     IEnumerator GetMountUnitColumnBeamTrussData()
     {
         canopy = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(e => e.CompareTag("Canopy")).GetComponent<CanopyGenerator>().Canopy;
+        MountUnitColumnBeamTruss = ScriptObjectsAction.GetMountUnitColumnBeamTrussByName(canopy.BeamTruss.Truss.Name, MountUnitColumnBeamTrussDataList);
         MountUnitColumnBeamTrussData = MountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.FirstOrDefault(e => e.BeamTrussName == canopy.BeamTruss.Truss.Name);
         flangeColumnPrefab = MountUnitColumnBeamTrussData.FlangeColumn;
         flangeColumnPrefab.tag = "FlangeColumnMUCBT";

@@ -36,6 +36,7 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
     private readonly List<GameObject> screws = new();
     private readonly List<GameObject> washers = new();
     private readonly List<GameObject> nuts = new();
+    public MountUnitBeamRafterTruss MountUnitBeamRafterTruss { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class MountUnitBeamRafterTrussGenerator : MonoBehaviour
     IEnumerator GetMountUnitBeamRafterTrussData()
     {
         canopy = Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(e => e.CompareTag("Canopy")).GetComponent<CanopyGenerator>().Canopy;
+        MountUnitBeamRafterTruss = ScriptObjectsAction.GetMountUnitBeamRafterTrussByName(canopy.RafterTruss.Truss.Name, MountUnitBeamRafterTrussDataList);
         MountUnitBeamRafterTrussData = MountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas.FirstOrDefault(e => e.RafterTrussName == canopy.RafterTruss.Truss.Name);
         MountUnitColumnBeamTrussData = MountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.FirstOrDefault(e => e.BeamTrussName == canopy.BeamTruss.Truss.Name);
         wallTableMountShort = GetGOfromMeshes("WallTableMount"

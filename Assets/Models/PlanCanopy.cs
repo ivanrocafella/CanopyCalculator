@@ -28,5 +28,6 @@ namespace Assets.Models
         public float StepGirder { get; set; }
         public KindMaterial KindMaterial { get; set; }
         public KindMountUnitBeamRafterTruss KindMountUnitBeamRafterTruss { get; set; }
+        public KindMountUnitColumnBeamTruss KindMountUnitColumnBeamTruss { get; set; }
     }
 }

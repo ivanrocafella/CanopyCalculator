@@ -19,6 +19,8 @@ namespace Assets.Models
         public GameObject[] Girders;
         public GameObject[] MountUnitsColumnBeamTrussOnHC;
         public GameObject[] MountUnitsColumnBeamTrussOnLC;
+        public GameObject[] MountUnitsBeamRafterTrussOnHC;
+        public GameObject[] MountUnitsBeamRafterTrussOnLC;
         public ColumnBody ColumnBodyHigh;
         public BeamTruss BeamTruss;
         public RafterTruss RafterTruss;
@@ -29,5 +31,6 @@ namespace Assets.Models
         public string CanopyDescription;
         public ResultCalculation ResultCalculation;
         public MountUnitBeamRafterTruss MountUnitBeamRafterTruss;
+        public MountUnitColumnBeamTruss MountUnitColumnBeamTruss;
     }
 }

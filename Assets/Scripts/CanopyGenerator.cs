@@ -2,6 +2,7 @@ using Assets.Models;
 using Assets.ModelsRequest;
 using Assets.Services;
 using Assets.Utils;
+using Assimp.Configs;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -23,10 +24,16 @@ public class CanopyGenerator : MonoBehaviour
     public GameObject CanopyDescription;
     public GameObject LoadingTextBox;
     public const float factorTolerance = 1.2f;
+    public DollarRate dollarRate = new();
+    [SerializeField]
+    private MountUnitColumnBeamTrussDataList MountUnitColumnBeamTrussDataList;
+    [SerializeField]
+    private MountUnitBeamRafterTrussDataList MountUnitBeamRafterTrussDataList;
     public List<ProfilePipe> profilePipes = new();
     public List<Truss> trusses = new();
-    public DollarRate dollarRate = new();
-
+    private int countStepRafterTrussSection;
+    private float stepRafterTrussSection;
+    private float lengthSection; 
     void Awake()
     {
         print("CanopyGenerator");
@@ -49,16 +56,24 @@ public class CanopyGenerator : MonoBehaviour
         Canopy.PlanColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         CanopyObject = GameObject.FindGameObjectWithTag("Canopy");
         Canopy.ColumnsHigh = new GameObject[Canopy.PlanColumn.CountStep + 1];
-        Canopy.ColumnsLow = new GameObject[Canopy.PlanColumn.CountStep + 1];
+        Canopy.ColumnsLow = new GameObject[Canopy.ColumnsHigh.Length];
         Canopy.BeamTrussesOnHigh = new GameObject[Canopy.PlanColumn.CountStep];
         Canopy.BeamTrussesOnLow = new GameObject[Canopy.BeamTrussesOnHigh.Length];
         Canopy.ColumnBodyHigh = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
         Canopy.BeamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
         Canopy.RafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
         Canopy.Girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
+        Canopy.MountUnitBeamRafterTruss = ScriptObjectsAction.GetMountUnitBeamRafterTrussByName(Canopy.RafterTruss.Truss.Name, MountUnitBeamRafterTrussDataList);
+        Canopy.MountUnitColumnBeamTruss = ScriptObjectsAction.GetMountUnitColumnBeamTrussByName(Canopy.BeamTruss.Truss.Name, MountUnitColumnBeamTrussDataList);
+
         Canopy.CountStepRafterTruss = Canopy.PlanColumn.SizeByZ / Mathf.FloorToInt(Canopy.PlanColumn.SizeByZ / Canopy.RafterTruss.Step) <= Canopy.RafterTruss.Step ?
             Mathf.FloorToInt(Canopy.PlanColumn.SizeByZ / Canopy.RafterTruss.Step) : Mathf.FloorToInt(Canopy.PlanColumn.SizeByZ / Canopy.RafterTruss.Step) + 1;
         Canopy.RafterTruss.Step = Canopy.PlanColumn.SizeByZ / Canopy.CountStepRafterTruss;
+
+        lengthSection = Canopy.PlanColumn.Step - Canopy.ColumnBodyHigh.Profile.Length - Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 - Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
+        countStepRafterTrussSection = lengthSection / Mathf.FloorToInt( lengthSection / Canopy.RafterTruss.Step) <= Canopy.RafterTruss.Step ? Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) : Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) + 1;
+        stepRafterTrussSection = lengthSection / countStepRafterTrussSection;
+
         Canopy.CountStepGirder = (Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / (Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step)) <= Canopy.Girder.Step ?
             Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) : Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) + 1;
         Canopy.Girder.Step = Canopy.RafterTruss.LengthTop / Canopy.CountStepGirder;
@@ -66,6 +81,9 @@ public class CanopyGenerator : MonoBehaviour
         Canopy.Girders = new GameObject[Canopy.CountStepGirder];
         Canopy.MountUnitsColumnBeamTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * 2];
         Canopy.MountUnitsColumnBeamTrussOnLC = new GameObject[Canopy.MountUnitsColumnBeamTrussOnHC.Length];
+        Canopy.MountUnitsBeamRafterTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * (countStepRafterTrussSection + 1)];
+        Canopy.MountUnitsBeamRafterTrussOnLC = new GameObject[Canopy.MountUnitsBeamRafterTrussOnHC.Length];
+
         float partAdditFromAngle = Mathf.Tan(Canopy.PlanColumn.Slope)
             * (Canopy.BeamTruss.Truss.ProfileBelt.Length / 2 - Canopy.BeamTruss.Truss.ProfileBelt.Radius + Canopy.PlanColumn.OutputRafter);
         float partAdditHalfBeltAngle = Canopy.RafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(Canopy.PlanColumn.Slope);
@@ -86,6 +104,10 @@ public class CanopyGenerator : MonoBehaviour
         MountUnitsColumnBeamTruss(Canopy.MountUnitsColumnBeamTrussOnHC, true);
         // Make mountUnitsColumnBeamTruss on lowColumns
         MountUnitsColumnBeamTruss(Canopy.MountUnitsColumnBeamTrussOnLC, false);
+        // Make mountUnitsBeamRufterTruss on highColumns
+        MountUnitsBeamRafterTruss(Canopy.MountUnitsBeamRafterTrussOnHC, true);
+        // Make mountUnitsBeamRufterTruss on lowColumns
+        MountUnitsBeamRafterTruss(Canopy.MountUnitsBeamRafterTrussOnLC, false);
         // Make beam trusses on high columns
         for (int i = 0; i < Canopy.BeamTrussesOnHigh.Length - 1; i++)
         {
@@ -182,6 +204,34 @@ public class CanopyGenerator : MonoBehaviour
         }
     }
 
+    // Methode that make mountUnitsBeamRafterTruss
+    private void MountUnitsBeamRafterTruss(GameObject[] MountUnitsBeamRafterTruss, bool isOnHighColumns)
+    {
+        int index = isOnHighColumns ? 0 : 1;
+        GameObject mountUnitBeamRafterTruss = GameObject.FindGameObjectsWithTag("MountUnitBeamRafterTruss")[index];
+        for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
+        {
+            for (int k = 0; k <= countStepRafterTrussSection; k++, j++)
+            {
+                if (j == MountUnitsBeamRafterTruss.Length)
+                    break;
+                if (j == 0)
+                    MountUnitsBeamRafterTruss[j] = mountUnitBeamRafterTruss;
+                else
+                {
+                    if (j != i * (countStepRafterTrussSection + 1))
+                    { 
+                        MountUnitsBeamRafterTruss[j] = Instantiate(mountUnitBeamRafterTruss);
+                        MountUnitsBeamRafterTruss[j].transform.SetParent(CanopyObject.transform);
+                        MountUnitsBeamRafterTruss[j].SetActive(false);
+                        MountUnitBeamRafterTrussGenerator mountUnitBeamRafterTrussGenerator = MountUnitsBeamRafterTruss[j].GetComponent<MountUnitBeamRafterTrussGenerator>();
+                        mountUnitBeamRafterTrussGenerator.zCoord = stepRafterTrussSection * k + Canopy.PlanColumn.Step * i;
+                        MountUnitsBeamRafterTruss[j].SetActive(true); 
+                    }
+                }
+            }
+        }
+    }
     public IEnumerator Calculate()
     {
         LoadPrefab loadPrefab = GameObject.FindGameObjectWithTag("LoadPrefab").GetComponent<LoadPrefab>();

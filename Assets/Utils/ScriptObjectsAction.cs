@@ -1,4 +1,5 @@
 ﻿using Assets.Models;
+using Assets.Scripts.SOdata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -251,5 +252,45 @@ namespace Assets.Utils
                 ThicknessTable = e.ThicknessTable
             }
             ).ToList().Find(e => e.RafterTrussName == name);
+
+        public static List<MountUnitColumnBeamTruss> GetListMountUnitColumnBeamTrusses(MountUnitColumnBeamTrussDataList mountUnitColumnBeamTrussDataList) =>
+           mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.Select(e =>
+           new MountUnitColumnBeamTruss()
+           {
+                MountUnitName = e.MountUnitName,
+                BeamTrussName = e.BeamTrussName,
+                SizeProfileBeamTruss = e.SizeProfileBeamTruss,
+                WidthFlangeColumn = e.WidthFlangeColumn,
+                LengthFlangeColumn = e.LengthFlangeColumn,
+                ThicknessFlangeColumn = e.ThicknessFlangeColumn,
+                WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
+                LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
+                ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
+                ThicknessHeadScrew = e.ThicknessHeadScrew,
+                ThicknessHeadNut = e.ThicknessHeadNut,
+                ThicknessWasher = e.ThicknessWasher,
+                CenterCenterDistance = e.CenterCenterDistance
+           }
+           ).ToList();
+
+        public static MountUnitColumnBeamTruss GetMountUnitColumnBeamTrussByName(string name, MountUnitColumnBeamTrussDataList mountUnitColumnBeamTrussDataList) =>
+            mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.Select(e =>
+            new MountUnitColumnBeamTruss()
+            {
+                MountUnitName = e.MountUnitName,
+                BeamTrussName = e.BeamTrussName,
+                SizeProfileBeamTruss = e.SizeProfileBeamTruss,
+                WidthFlangeColumn = e.WidthFlangeColumn,
+                LengthFlangeColumn = e.LengthFlangeColumn,
+                ThicknessFlangeColumn = e.ThicknessFlangeColumn,
+                WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
+                LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
+                ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
+                ThicknessHeadScrew = e.ThicknessHeadScrew,
+                ThicknessHeadNut = e.ThicknessHeadNut,
+                ThicknessWasher = e.ThicknessWasher,
+                CenterCenterDistance = e.CenterCenterDistance
+            }
+            ).ToList().Find(e => e.BeamTrussName == name);
     }
 }

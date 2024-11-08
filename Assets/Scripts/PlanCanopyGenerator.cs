@@ -18,14 +18,15 @@ public class PlanCanopyGenerator : MonoBehaviour
     public int CountStep;
     public float OutputRafter;
     public float OutputGirder;
+    public float StepRafter;
+    public float StepGirder;
     public KindProfilePipe KindProfileColumn;
     public KindTruss KindTrussBeam;
     public KindTruss KindTrussRafter;
-    public float StepRafter;
     public KindProfilePipe KindProfileGirder;
-    public float StepGirder;
     public KindMaterial KindMaterial;
     public KindMountUnitBeamRafterTruss KindMountUnitBeamRafterTruss;
+    public KindMountUnitColumnBeamTruss KindMountUnitColumnBeamTruss;
     [SerializeField]
     private GameObject groupMainButton;
     [SerializeField]
@@ -80,7 +81,8 @@ public class PlanCanopyGenerator : MonoBehaviour
             KindProfileGirder = KindProfileGirder,
             StepGirder = StepGirder,
             KindMaterial = KindMaterial,
-            KindMountUnitBeamRafterTruss = KindMountUnitBeamRafterTruss
+            KindMountUnitBeamRafterTruss = KindMountUnitBeamRafterTruss,
+            KindMountUnitColumnBeamTruss = KindMountUnitColumnBeamTruss
         };
         return planColumn;
     }

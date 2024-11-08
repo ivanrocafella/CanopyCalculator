@@ -51,6 +51,7 @@ public class LoadPrefab : MonoBehaviour
     public List<ProfilePipe> profilePipes;
     public List<Truss> trusses;
     public List<MountUnitBeamRafterTruss> mountUnitBeamRafterTrusses;
+    public List<MountUnitColumnBeamTruss> mountUnitColumnBeamTrusses;
     public DollarRate dollarRate;
 
     private void Awake()
@@ -130,6 +131,12 @@ public class LoadPrefab : MonoBehaviour
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(trussBeam);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(trussRafter);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileGirder = (KindProfilePipe)profilePipes.IndexOf(profilePipeGirder);
+
+            MountUnitBeamRafterTruss mountUnitBeamRafterTruss = mountUnitBeamRafterTrusses.Find(e => e.RafterTrussName == trussRafter.Name);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitBeamRafterTruss = (KindMountUnitBeamRafterTruss)mountUnitBeamRafterTrusses.IndexOf(mountUnitBeamRafterTruss);
+            MountUnitColumnBeamTruss mountUnitColumnBeamTruss = mountUnitColumnBeamTrusses.Find(e => e.BeamTrussName == trussBeam.Name);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitColumnBeamTruss = (KindMountUnitColumnBeamTruss)mountUnitColumnBeamTrusses.IndexOf(mountUnitColumnBeamTruss);
+
             Instantiate(canopyPrefab);
             toFbxButton.interactable = true;
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Empty;
@@ -149,12 +156,6 @@ public class LoadPrefab : MonoBehaviour
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Join(" ", errorMessages);
         }
 
-        if (trussRafter != null)
-        {
-            MountUnitBeamRafterTruss mountUnitBeamRafterTruss = mountUnitBeamRafterTrusses.Find(e => e.RafterTrussName == trussRafter.Name);
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitBeamRafterTruss = (KindMountUnitBeamRafterTruss)mountUnitBeamRafterTrusses.IndexOf(mountUnitBeamRafterTruss);
-        }
-        
         yield return new WaitForSeconds(0.001f);
         canopyObj = GameObject.FindGameObjectWithTag("Canopy");
         if (canopyObj != null)
@@ -237,6 +238,7 @@ public class LoadPrefab : MonoBehaviour
         profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
         trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
         mountUnitBeamRafterTrusses = ScriptObjectsAction.GetListMountUnitBeamRafterTrusses(mountUnitBeamRafterTrussDataList);
+        mountUnitColumnBeamTrusses = ScriptObjectsAction.GetListMountUnitColumnBeamTrusses(mountUnitColumnBeamTrussDataList);
 #endif
         yield return null;
     }
