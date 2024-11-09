@@ -29,5 +29,6 @@ namespace Assets.Models
         public KindMaterial KindMaterial { get; set; }
         public KindMountUnitBeamRafterTruss KindMountUnitBeamRafterTruss { get; set; }
         public KindMountUnitColumnBeamTruss KindMountUnitColumnBeamTruss { get; set; }
+        public bool IsDemountable { get { return true; } set {; } }
     }
 }

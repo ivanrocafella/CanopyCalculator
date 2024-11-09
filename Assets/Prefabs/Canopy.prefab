@@ -1952,6 +1952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mountUnitBeamRafterTrussDataList: {fileID: 11400000, guid: e2f2af7a4976b324fb262f928ba79461, type: 2}
+  mountUnitColumnBeamTrussDataList: {fileID: 11400000, guid: 5b63d2ce7fd59434dbae6d41fab74bb9, type: 2}
 --- !u!1 &2700731728114783636
 GameObject:
   m_ObjectHideFlags: 0

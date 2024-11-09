@@ -33,7 +33,8 @@ public class CanopyGenerator : MonoBehaviour
     public List<Truss> trusses = new();
     private int countStepRafterTrussSection;
     private float stepRafterTrussSection;
-    private float lengthSection; 
+    private float lengthSection;
+    private float stepRafterTrussSectionWide;
     void Awake()
     {
         print("CanopyGenerator");
@@ -73,16 +74,21 @@ public class CanopyGenerator : MonoBehaviour
         lengthSection = Canopy.PlanColumn.Step - Canopy.ColumnBodyHigh.Profile.Length - Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 - Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
         countStepRafterTrussSection = lengthSection / Mathf.FloorToInt( lengthSection / Canopy.RafterTruss.Step) <= Canopy.RafterTruss.Step ? Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) : Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) + 1;
         stepRafterTrussSection = lengthSection / countStepRafterTrussSection;
+        // Recalculation stepRafterTrussSection
+        stepRafterTrussSectionWide = stepRafterTrussSection + Canopy.ColumnBodyHigh.Profile.Length + Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 + Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
+        countStepRafterTrussSection = stepRafterTrussSectionWide <= Canopy.RafterTruss.Step ? countStepRafterTrussSection : countStepRafterTrussSection + 1;
+        stepRafterTrussSection = lengthSection / countStepRafterTrussSection;
 
         Canopy.CountStepGirder = (Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / (Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step)) <= Canopy.Girder.Step ?
             Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) : Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) + 1;
         Canopy.Girder.Step = Canopy.RafterTruss.LengthTop / Canopy.CountStepGirder;
-        Canopy.RafterTrusses = new GameObject[Canopy.CountStepRafterTruss + 1];
         Canopy.Girders = new GameObject[Canopy.CountStepGirder];
         Canopy.MountUnitsColumnBeamTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * 2];
         Canopy.MountUnitsColumnBeamTrussOnLC = new GameObject[Canopy.MountUnitsColumnBeamTrussOnHC.Length];
         Canopy.MountUnitsBeamRafterTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * (countStepRafterTrussSection + 1)];
         Canopy.MountUnitsBeamRafterTrussOnLC = new GameObject[Canopy.MountUnitsBeamRafterTrussOnHC.Length];
+        int countStepRafterTruss = Canopy.PlanColumn.IsDemountable ? Canopy.MountUnitsBeamRafterTrussOnHC.Length : Canopy.CountStepRafterTruss + 1; 
+        Canopy.RafterTrusses = new GameObject[countStepRafterTruss];
 
         float partAdditFromAngle = Mathf.Tan(Canopy.PlanColumn.Slope)
             * (Canopy.BeamTruss.Truss.ProfileBelt.Length / 2 - Canopy.BeamTruss.Truss.ProfileBelt.Radius + Canopy.PlanColumn.OutputRafter);
@@ -128,27 +134,9 @@ public class CanopyGenerator : MonoBehaviour
            , Canopy.PlanColumn.SizeByYLow + Canopy.ColumnPlug.Thickness + Canopy.BeamTruss.Truss.ProfileBelt.Height / 2
            , Canopy.PlanColumn.Step * i), Quaternion.Euler(0f, -90f, -90f));
         }
-        // Make rafter trusses
         yield return null;
-        Vector3 elemenRafterTrussPosition = GameObject.FindGameObjectWithTag("RafterTruss").transform.position;
-        for (int i = 0; i < Canopy.RafterTrusses.Length; i++)
-        {
-            Canopy.RafterTrusses[i] = Object.Instantiate(GameObject.FindGameObjectWithTag("RafterTruss"));
-            Canopy.RafterTrusses[i].transform.SetParent(CanopyObject.transform);
-            Destroy(Canopy.RafterTrusses[i].GetComponent<RafterTrussTransform>());
-            if (i == Canopy.RafterTrusses.Length - 1)
-            {
-                Canopy.RafterTrusses[i].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter
-                             , elemenRafterTrussPosition.y
-                             , Canopy.PlanColumn.SizeByZ), Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
-            }
-            else
-            {
-                Canopy.RafterTrusses[i].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter
-                             , elemenRafterTrussPosition.y
-                             , Canopy.RafterTruss.Step + Canopy.RafterTruss.Step * i), Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
-            }
-        }
+        // Make rafter trusses
+        MountRafterTrusses(Canopy.RafterTrusses, Canopy.PlanColumn.IsDemountable);
         // Make girders
         float stepGirder;
         float projectionHorStepGirder;
@@ -156,7 +144,7 @@ public class CanopyGenerator : MonoBehaviour
         Vector3 elemenGirderPosition = GameObject.FindGameObjectWithTag("Girder").transform.localPosition;
         for (int i = 0; i < Canopy.Girders.Length; i++)
         {
-            Canopy.Girders[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);
+            Canopy.Girders[i] = Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);
             Canopy.Girders[i].transform.SetParent(CanopyObject.transform);
             Destroy(Canopy.Girders[i].GetComponent<GirderTransform>());
             if (i == Canopy.Girders.Length - 1)
@@ -232,6 +220,55 @@ public class CanopyGenerator : MonoBehaviour
             }
         }
     }
+    // Methode that places RafterTrusses
+    private void MountRafterTrusses(GameObject[] RafterTrusses, bool isDemountable)
+    {
+        GameObject rafterTruss = GameObject.FindGameObjectWithTag("RafterTruss");
+        Vector3 elemenRafterTrussPosition = rafterTruss.transform.localPosition;
+        if (isDemountable)
+        {
+            for (int i = 0, j = 0; i < Canopy.PlanColumn.CountStep; i++)
+            {
+                for (int k = 0; k <= countStepRafterTrussSection; k++, j++)
+                {
+                    if (j == RafterTrusses.Length)
+                        break;
+                    if (j == 0)
+                        RafterTrusses[j] = rafterTruss;
+                    else
+                    {
+                        if (j != i * (countStepRafterTrussSection + 1))
+                        {
+                            RafterTrusses[j] = Instantiate(rafterTruss);
+                            RafterTrusses[j].transform.SetParent(CanopyObject.transform);
+                            Destroy(RafterTrusses[j].GetComponent<RafterTrussTransform>());
+                            RafterTrusses[j].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter
+                                , elemenRafterTrussPosition.y
+                                , elemenRafterTrussPosition.z + stepRafterTrussSection * k + Canopy.PlanColumn.Step * i)
+                                , Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < RafterTrusses.Length; i++)
+            {
+                if (i != 0)
+                {
+                    RafterTrusses[i] = Instantiate(rafterTruss);
+                    RafterTrusses[i].transform.SetParent(CanopyObject.transform);
+                    Destroy(RafterTrusses[i].GetComponent<RafterTrussTransform>());
+                    RafterTrusses[i].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter, elemenRafterTrussPosition.y, Canopy.RafterTruss.Step * i)
+                        , Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
+                }
+                else
+                    RafterTrusses[i] = rafterTruss;
+            }
+        }
+    }
+
     public IEnumerator Calculate()
     {
         LoadPrefab loadPrefab = GameObject.FindGameObjectWithTag("LoadPrefab").GetComponent<LoadPrefab>();
