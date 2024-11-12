@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -15,6 +16,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 using Object = UnityEngine.Object;
 
 public class CanopyGenerator : MonoBehaviour
@@ -238,15 +240,7 @@ public class CanopyGenerator : MonoBehaviour
                     else
                     {
                         if (j != i * (countStepRafterTrussSection + 1))
-                        {
-                            RafterTrusses[j] = Instantiate(rafterTruss);
-                            RafterTrusses[j].transform.SetParent(CanopyObject.transform);
-                            Destroy(RafterTrusses[j].GetComponent<RafterTrussTransform>());
-                            RafterTrusses[j].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter
-                                , elemenRafterTrussPosition.y
-                                , elemenRafterTrussPosition.z + stepRafterTrussSection * k + Canopy.PlanColumn.Step * i)
-                                , Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
-                        }
+                            InstantiateRafterTruss(RafterTrusses, rafterTruss, elemenRafterTrussPosition, j, elemenRafterTrussPosition.z + stepRafterTrussSection * k + Canopy.PlanColumn.Step * i);
                     }
                 }
             }
@@ -256,19 +250,21 @@ public class CanopyGenerator : MonoBehaviour
             for (int i = 0; i < RafterTrusses.Length; i++)
             {
                 if (i != 0)
-                {
-                    RafterTrusses[i] = Instantiate(rafterTruss);
-                    RafterTrusses[i].transform.SetParent(CanopyObject.transform);
-                    Destroy(RafterTrusses[i].GetComponent<RafterTrussTransform>());
-                    RafterTrusses[i].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter, elemenRafterTrussPosition.y, Canopy.RafterTruss.Step * i)
-                        , Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
-                }
+                    InstantiateRafterTruss(RafterTrusses, rafterTruss, elemenRafterTrussPosition, i, Canopy.RafterTruss.Step * i);
                 else
                     RafterTrusses[i] = rafterTruss;
             }
         }
     }
-
+    // Method for instantiating rafterTruss
+    private void InstantiateRafterTruss(GameObject[] RafterTrusses, GameObject rafterTruss, Vector3 elemenRafterTrussPosition, int iter, float coordZ)
+    {
+        RafterTrusses[iter] = Instantiate(rafterTruss);
+        RafterTrusses[iter].transform.SetParent(CanopyObject.transform);
+        Destroy(RafterTrusses[iter].GetComponent<RafterTrussTransform>());
+        RafterTrusses[iter].transform.SetLocalPositionAndRotation(new Vector3(-Canopy.PlanColumn.OutputRafter, elemenRafterTrussPosition.y, coordZ)
+            , Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
+    }
     public IEnumerator Calculate()
     {
         LoadPrefab loadPrefab = GameObject.FindGameObjectWithTag("LoadPrefab").GetComponent<LoadPrefab>();

@@ -27,6 +27,7 @@ public class PlanCanopyGenerator : MonoBehaviour
     public KindMaterial KindMaterial;
     public KindMountUnitBeamRafterTruss KindMountUnitBeamRafterTruss;
     public KindMountUnitColumnBeamTruss KindMountUnitColumnBeamTruss;
+    public bool IsDemountable;
     [SerializeField]
     private GameObject groupMainButton;
     [SerializeField]
@@ -82,7 +83,8 @@ public class PlanCanopyGenerator : MonoBehaviour
             StepGirder = StepGirder,
             KindMaterial = KindMaterial,
             KindMountUnitBeamRafterTruss = KindMountUnitBeamRafterTruss,
-            KindMountUnitColumnBeamTruss = KindMountUnitColumnBeamTruss
+            KindMountUnitColumnBeamTruss = KindMountUnitColumnBeamTruss,
+            IsDemountable = IsDemountable
         };
         return planColumn;
     }
