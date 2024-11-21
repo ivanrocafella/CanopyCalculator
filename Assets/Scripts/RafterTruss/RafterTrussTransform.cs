@@ -48,12 +48,14 @@ public class RafterTrussTransform : MonoBehaviour
         partAdditFromAngle = Mathf.Tan(planColumn.Slope)
             * (beamTruss.Truss.ProfileBelt.Length / 2 - beamTruss.Truss.ProfileBelt.Radius + planColumn.OutputRafter);
         partAdditHalfBeltAngle = rafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(planColumn.Slope);
-        float zCoord = planColumn.IsDemountable ? (columnBody.Profile.Height + mountUnitBeamRafterTruss.LengthFlangeBeamTruss) / 2 + mountUnitColumnBeamTruss.WidthFlangeColumn : 0;
-        transform.localPosition = new Vector3(-planColumn.OutputRafter
-            , planColumn.SizeByY + columnPlug.Thickness + partAdditFromAngle
-            + partAdditHalfBeltAngle + beamTruss.Truss.ProfileBelt.Height
-            + mountUnitBeamRafterTruss.ThicknessTable / Mathf.Cos(planColumn.Slope)
-             , zCoord);
+        float yCoord = planColumn.SizeByY + columnPlug.Thickness + partAdditFromAngle + partAdditHalfBeltAngle + beamTruss.Truss.ProfileBelt.Height;
+        float zCoord = 0;
+        if (planColumn.IsDemountable)
+        {
+            yCoord += mountUnitBeamRafterTruss.ThicknessTable / Mathf.Cos(planColumn.Slope);
+            zCoord += (columnBody.Profile.Height + mountUnitBeamRafterTruss.LengthFlangeBeamTruss) / 2 + mountUnitColumnBeamTruss.WidthFlangeColumn;
+        }
+        transform.localPosition = new Vector3(-planColumn.OutputRafter, yCoord, zCoord);
         transform.localRotation = Quaternion.Euler(0, 0, -(90 + planColumn.SlopeInDegree));
         yield return null;
     }

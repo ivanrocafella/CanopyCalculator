@@ -39,15 +39,31 @@ namespace Assets.Scripts.SOdata
         [SerializeField]
         private float centerCenterDistance;
         [SerializeField]
+        private string nameFlangeBeam;
+        [SerializeField]
+        private string nameFlangeRafter;
+        [SerializeField]
         private GameObject flangeBeamTruss;
         [SerializeField]
         private GameObject flangeRafterTruss;
         [SerializeField]
         private GameObject screw;
         [SerializeField]
+        private string nameScrew;
+        [SerializeField]
+        private float weightUnitScrew;
+        [SerializeField]
         private GameObject nut;
         [SerializeField]
+        private string nameNut;
+        [SerializeField]
+        private float weightUnitNut;
+        [SerializeField]
         private GameObject washer;
+        [SerializeField]
+        private string nameWasher;
+        [SerializeField]
+        private float weightUnitWasher;
 
         public string MountUnitName { get => mountUnitName; }
         public string RafterTrussName { get => rafterTrussName; }
@@ -63,10 +79,18 @@ namespace Assets.Scripts.SOdata
         public int LengthFlangeRafterTruss { get => lengthFlangeRafterTruss; }
         public int ThicknessFlangeRafterTruss { get => thicknessFlangeRafterTruss; }
         public float CenterCenterDistance { get => centerCenterDistance; }
+        public string NameFlangeBeam { get => nameFlangeBeam; }
+        public string NameFlangeRafter { get => nameFlangeRafter; }
         public GameObject FlangeBeamTruss { get => flangeBeamTruss; }
         public GameObject FlangeRafterTruss { get => flangeRafterTruss; }
         public GameObject Screw { get => screw; }
+        public string NameScrew { get => nameScrew; }
+        public float WeightUnitScrew { get => weightUnitScrew; }
         public GameObject Nut { get => nut; }
+        public string NameNut { get => nameNut; }
+        public float WeightUnitNut { get => weightUnitNut; }
         public GameObject Washer { get => washer; }
+        public string NameWasher { get => nameWasher; }
+        public float WeightUnitWasher { get => weightUnitWasher; }
     }
     }

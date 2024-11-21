@@ -19,6 +19,8 @@ using UnityEngine.Networking;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.UI;
+using System.Diagnostics.Tracing;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -53,6 +55,8 @@ public class LoadPrefab : MonoBehaviour
     public List<MountUnitBeamRafterTruss> mountUnitBeamRafterTrusses;
     public List<MountUnitColumnBeamTruss> mountUnitColumnBeamTrusses;
     public DollarRate dollarRate;
+    private List<GameObject> MountUnitColumnBeamTrussesForLoad;
+    private List<GameObject> MountUnitBeamRafterTrussesForLoad;
 
     private void Awake()
     {
@@ -89,8 +93,11 @@ public class LoadPrefab : MonoBehaviour
         GameObject outputRafterInputGB = GameObject.FindGameObjectWithTag("OutputRafterInput");
         GameObject outputGirderInputGB = GameObject.FindGameObjectWithTag("OutputGirderInput");
         GameObject workLoadInputGB = GameObject.FindGameObjectWithTag("WorkLoadInput");
+        GameObject isDemountableInput = GameObject.FindGameObjectWithTag("IsDemountableInput");
 
         GameObject canopy = GameObject.FindGameObjectWithTag("Canopy");
+
+
         StartCoroutine(DestroyGO(canopy));
         StartCoroutine(RunGC());
         StartCoroutine(UnloadUnusedAssets());
@@ -104,6 +111,7 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder = ValAction.ToFloat(stepGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ValAction.ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ValAction.ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
+        planCanopy.GetComponent<PlanCanopyGenerator>().IsDemountable = isDemountableInput.GetComponent<Toggle>().isOn;
         float cargo = ValAction.ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
@@ -125,8 +133,17 @@ public class LoadPrefab : MonoBehaviour
              , planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder
              , cargo, material, profilePipes);
 
+        bool isActive = planCanopy.GetComponent<PlanCanopyGenerator>().IsDemountable;
+        for (int i = 0; i < MountUnitColumnBeamTrussesForLoad.Count; i++)
+        {
+            MountUnitColumnBeamTrussesForLoad[i].SetActive(isActive);
+            MountUnitBeamRafterTrussesForLoad[i].SetActive(isActive);
+        }
+
         if (profilePipeColumn != null && trussBeam != null && trussRafter != null && profilePipeGirder != null)
         {
+   
+
             planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileColumn = (KindProfilePipe)profilePipes.IndexOf(profilePipeColumn);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(trussBeam);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(trussRafter);
@@ -223,6 +240,11 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator InitializePrefab()
     {
+        for (int i = 0; i < MountUnitColumnBeamTrussesForLoad.Count; i++)
+        {
+            MountUnitColumnBeamTrussesForLoad[i].SetActive(false);
+            MountUnitBeamRafterTrussesForLoad[i].SetActive(false);
+        }
         Instantiate(canopyPrefab);
         yield return null;
     }
@@ -247,6 +269,8 @@ public class LoadPrefab : MonoBehaviour
     {
         yield return StartCoroutine(GetProfiles());
         canopyObj = GameObject.FindGameObjectWithTag("Canopy") ?? Resources.FindObjectsOfTypeAll<GameObject>().FirstOrDefault(e => e.CompareTag("Canopy"));
+        MountUnitColumnBeamTrussesForLoad = Resources.FindObjectsOfTypeAll<GameObject>().Where(e => e.CompareTag("MountUnitColumnBeamTruss")).ToList();
+        MountUnitBeamRafterTrussesForLoad = Resources.FindObjectsOfTypeAll<GameObject>().Where(e => e.CompareTag("MountUnitBeamRafterTruss")).ToList();
         GameObject CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
         Debug.Log("LoadPrefab");
         if (canopyPrefab != null)
@@ -285,6 +309,8 @@ public class LoadPrefab : MonoBehaviour
     IEnumerator UnloadUnusedAssets()
     {
         Resources.UnloadUnusedAssets();
+        MountUnitColumnBeamTrussesForLoad = Resources.FindObjectsOfTypeAll<GameObject>().Where(e => e.CompareTag("MountUnitColumnBeamTruss")).ToList();
+        MountUnitBeamRafterTrussesForLoad = Resources.FindObjectsOfTypeAll<GameObject>().Where(e => e.CompareTag("MountUnitBeamRafterTruss")).ToList();
         yield return null;
     }
 

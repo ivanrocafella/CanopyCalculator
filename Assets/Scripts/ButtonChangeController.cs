@@ -2,6 +2,7 @@ using Assets.Models;
 using Assets.ModelsRequest;
 using Assets.Utils;
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,17 @@ using UnityEngine.UI;
 public class ButtonChangeController : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Dropdown dropdown;
+    private TMP_Dropdown dropdownProfiles;
+    [SerializeField]
+    private TMP_Dropdown dropdownPlates;
+    [SerializeField]
+    private TMP_Dropdown dropdownFixings;
     [SerializeField]
     private TMP_InputField inputFieldCostPr;
+    [SerializeField]
+    private TMP_InputField inputFieldCostPl;
+    [SerializeField]
+    private TMP_InputField inputFieldCostFixing;
     [SerializeField]
     private TMP_InputField inputFieldRateDollar;
     [SerializeField]
@@ -32,7 +41,10 @@ public class ButtonChangeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inputFieldCostPr.GetComponent<InputFieldValidator>().isValid || !inputFieldRateDollar.GetComponent<InputFieldValidator>().isValid)
+        if (!inputFieldCostPr.GetComponent<InputFieldValidator>().isValid ||
+            !inputFieldRateDollar.GetComponent<InputFieldValidator>().isValid ||
+            !inputFieldCostPl.GetComponent<InputFieldValidator>().isValid ||
+            !inputFieldCostFixing.GetComponent<InputFieldValidator>().isValid)
             ButtonChange.interactable = false;
         else
             ButtonChange.interactable = true;
@@ -40,28 +52,32 @@ public class ButtonChangeController : MonoBehaviour
 
     public void ClickButtonChange()
     {
-        string name = dropdown.options[dropdown.value].text;
+        string nameProfile = dropdownProfiles.options[dropdownProfiles.value].text;
+        string namePlate = dropdownPlates.options[dropdownPlates.value].text;
+        string nameFixing = dropdownFixings.options[dropdownFixings.value].text;
 #if UNITY_WEBGL
-        ProfileListController profileListController = dropdown.GetComponent<ProfileListController>();
-        Truss truss = profileListController.trusses.Find(e => e.Name == name);
-        ProfilePipe profilePipe = profileListController.profilePipes.Find(e => e.Name == name);
+        ProfileListController profileListController = dropdownProfiles.GetComponent<ProfileListController>();
+        Truss truss = profileListController.trusses.Find(e => e.Name == nameProfile);
+        ProfilePipe profilePipe = profileListController.profilePipes.Find(e => e.Name == nameProfile);
         dollarRate = profileListController.dollarRate;
         float newPrice = ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text);
         string kindAction;
         if (truss != null)
         {
-            profileListController.trusses.Find(e => e.Name == name).PricePerM = newPrice;
+            profileListController.trusses.Find(e => e.Name == nameProfile).PricePerM = newPrice;
             kindAction = "TrussUpdate";
         }
         else
         { 
-            profileListController.profilePipes.Find(e => e.Name == name).PricePerM = newPrice;
+            profileListController.profilePipes.Find(e => e.Name == nameProfile).PricePerM = newPrice;
             kindAction = "ProfileUpdate";
         }
-        StartCoroutine(UpdateProfile(name, newPrice, kindAction));
+        StartCoroutine(UpdateProfile(nameProfile, newPrice, kindAction));
         StartCoroutine(UpdateDollarRate());
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        ValAction.SetPricePmPlayerPrefs(name, ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text));
+        ValAction.SetPricePlayerPrefs(nameProfile, ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text));
+        ValAction.SetPricePlayerPrefs(namePlate, ValAction.ToFloat(inputFieldCostPl.GetComponent<TMP_InputField>().text));
+        ValAction.SetPricePlayerPrefs(nameFixing, ValAction.ToFloat(inputFieldCostFixing.GetComponent<TMP_InputField>().text));
         PlayerPrefs.SetFloat("DollarRate", ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text));
         PlayerPrefs.Save();
 #endif

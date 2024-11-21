@@ -82,6 +82,10 @@ TagManager:
   - ShelfTableMount
   - WallTableMount
   - IsDemountableInput
+  - CostPlInput
+  - EmCostPlInput
+  - CostFixingInput
+  - EmCostFixingInput
   layers:
   - Default
   - TransparentFX

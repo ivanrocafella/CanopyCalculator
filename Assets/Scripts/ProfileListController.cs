@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using Assets.ModelsRequest;
 using Assets.Utils;
 using Newtonsoft.Json;
@@ -17,7 +18,7 @@ public class ProfileListController : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown dropdown;
     [SerializeField]
-    private TMP_InputField inputFieldCostPr;
+    private TMP_InputField inputFieldCost;
     [SerializeField]
     private TMP_InputField inputFieldRateDollar;
     [SerializeField]
@@ -26,9 +27,17 @@ public class ProfileListController : MonoBehaviour
     private ProfilePipeDataList ProfilePipeDataList;
     [SerializeField]
     private DollarRateData DollarRateData;
+    [SerializeField]
+    private MountUnitColumnBeamTrussDataList MountUnitColumnBeamTrussDataList;
+    [SerializeField]
+    private MountUnitBeamRafterTrussDataList MountUnitBeamRafterTrussDataList;
+    [SerializeField]
+    private KindDropDown KindDropDown;
     private List<string> options;
     public List<ProfilePipe> profilePipes;
     public List<Truss> trusses;
+    public List<Flange> flanges;
+    public List<Fixing> fixings;
     public DollarRate dollarRate;
 
     // Start is called before the first frame update
@@ -46,12 +55,31 @@ public class ProfileListController : MonoBehaviour
 
     IEnumerator PopulateDropdown()
     {
-        // Make list options from profile and truss SO objects 
-        yield return StartCoroutine(GetProfiles());
-
-        // Filling options
-        options = trusses.Select(e => e.Name).ToList();
-        options.AddRange(profilePipes.Select(e => e.Name));
+        switch (KindDropDown)
+        {
+            case KindDropDown.DropdownProfiles:
+                 // Make list options from profile and truss SO objects 
+                 yield return StartCoroutine(GetProfiles());
+                 // Filling options
+                 options = trusses.Select(e => e.Name).ToList();
+                 options.AddRange(profilePipes.Select(e => e.Name));
+                break;
+            case KindDropDown.DropdownPlates:
+                // Make list options from profile and truss SO objects 
+                yield return StartCoroutine(GetFlanges());
+                // Filling options
+                options = flanges.Select(e => e.Name).ToList();
+                break;
+            case KindDropDown.DropdownFixings:
+                // Make list options from profile and truss SO objects 
+                yield return StartCoroutine(GetFixings());
+                // Filling options
+                options = fixings.Select(e => e.Name).ToList();
+                break;
+            default:
+                print("Undefined dropdown");
+                break;
+        }
         dropdown.ClearOptions();
         // Add new options from the dataList
         dropdown.AddOptions(options);
@@ -61,16 +89,16 @@ public class ProfileListController : MonoBehaviour
     public void SetValueInputCostPr(int value)
     {
         string name = dropdown.options[value].text;
-        float pricePerM;
+        float price;
 #if UNITY_WEBGL
         Truss truss = trusses.Find(e => e.Name == name);
         ProfilePipe profilePipe = profilePipes.Find(e => e.Name == name);
         pricePerM = truss != null ? truss.PricePerM : profilePipe.PricePerM;
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        pricePerM = ValAction.GetPricePmPlayerPrefs(name);
+        price = ValAction.GetPricePlayerPrefs(name);
 #endif
-        inputFieldCostPr.text = pricePerM.ToString();
-        print("Choosen value:" + pricePerM);      
+        inputFieldCost.text = price.ToString();
+        print("Choosen value:" + price);      
     }
 
     IEnumerator SetValueInputRateDollar()
@@ -96,6 +124,26 @@ public class ProfileListController : MonoBehaviour
         print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
         profilePipes = ScriptObjectsAction.GetListProfilePipes(ProfilePipeDataList);
         trusses = ScriptObjectsAction.GetListTrusses(TrussDataList);
+#endif
+        yield return null;
+    }
+
+    IEnumerator GetFlanges()
+    {
+#if UNITY_WEBGL
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
+        flanges = ScriptObjectsAction.GetListFlange(MountUnitColumnBeamTrussDataList, MountUnitBeamRafterTrussDataList);
+#endif
+        yield return null;
+    }
+
+    IEnumerator GetFixings()
+    {
+#if UNITY_WEBGL
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
+        fixings = ScriptObjectsAction.GetListFixing(MountUnitColumnBeamTrussDataList, MountUnitBeamRafterTrussDataList);
 #endif
         yield return null;
     }

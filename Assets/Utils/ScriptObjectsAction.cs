@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine.Profiling;
 
 namespace Assets.Utils
@@ -141,11 +142,11 @@ namespace Assets.Utils
         public static DollarRate GetDollarRate(DollarRateData dollarRatelData) =>
             new()
             {
-               Rate = dollarRatelData.rate
+                Rate = dollarRatelData.rate
             };
 
         public static List<ProfilePipe> GetListProfilePipes(ProfilePipeDataList profilePipeDataList) =>
-            profilePipeDataList.profilePipesData.Select( e =>
+            profilePipeDataList.profilePipesData.Select(e =>
             new ProfilePipe()
             {
                 Name = e.Name,
@@ -164,7 +165,7 @@ namespace Assets.Utils
         public static List<Truss> GetListTrusses(TrussDataList trussDataList) =>
             trussDataList.trussesData.Select(e =>
             new Truss()
-            { 
+            {
                 Name = e.Name,
                 Height = e.Height,
                 Gap = e.Gap,
@@ -172,7 +173,7 @@ namespace Assets.Utils
                 LengthCrate = e.LengthCrate,
                 AngleCrateInDegree = e.AngleCrateInDegree,
                 PricePerM = e.pricePerM,
-                ProfileBelt = 
+                ProfileBelt =
                 {
                     Name = e.profileBeltData.Name,
                     Height = e.profileBeltData.Height,
@@ -212,23 +213,23 @@ namespace Assets.Utils
             }
             ).ToList();
 
-        public static List<MountUnitBeamRafterTruss> GetListMountUnitBeamRafterTrusses(MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList) => 
-            mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas.Select( e => 
+        public static List<MountUnitBeamRafterTruss> GetListMountUnitBeamRafterTrusses(MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList) =>
+            mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas.Select(e =>
             new MountUnitBeamRafterTruss()
             {
-                 MountUnitName = e.MountUnitName,
-                 RafterTrussName = e.RafterTrussName,
-                 SizeProfileRafterTruss = e.SizeProfileRafterTruss,
-                 WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
-                 LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
-                 ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
-                 ThicknessHeadScrew = e.ThicknessHeadScrew,
-                 ThicknessHeadNut = e.ThicknessHeadNut,
-                 ThicknessWasher = e.ThicknessWasher,
-                 WidthFlangeRafterTruss = e.WidthFlangeRafterTruss,
-                 LengthFlangeRafterTruss = e.LengthFlangeRafterTruss,
-                 ThicknessFlangeRafterTruss = e.ThicknessFlangeRafterTruss,
-                 CenterCenterDistance = e.CenterCenterDistance
+                MountUnitName = e.MountUnitName,
+                RafterTrussName = e.RafterTrussName,
+                SizeProfileRafterTruss = e.SizeProfileRafterTruss,
+                WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
+                LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
+                ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
+                ThicknessHeadScrew = e.ThicknessHeadScrew,
+                ThicknessHeadNut = e.ThicknessHeadNut,
+                ThicknessWasher = e.ThicknessWasher,
+                WidthFlangeRafterTruss = e.WidthFlangeRafterTruss,
+                LengthFlangeRafterTruss = e.LengthFlangeRafterTruss,
+                ThicknessFlangeRafterTruss = e.ThicknessFlangeRafterTruss,
+                CenterCenterDistance = e.CenterCenterDistance
             }
             ).ToList();
 
@@ -257,19 +258,19 @@ namespace Assets.Utils
            mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas.Select(e =>
            new MountUnitColumnBeamTruss()
            {
-                MountUnitName = e.MountUnitName,
-                BeamTrussName = e.BeamTrussName,
-                SizeProfileBeamTruss = e.SizeProfileBeamTruss,
-                WidthFlangeColumn = e.WidthFlangeColumn,
-                LengthFlangeColumn = e.LengthFlangeColumn,
-                ThicknessFlangeColumn = e.ThicknessFlangeColumn,
-                WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
-                LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
-                ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
-                ThicknessHeadScrew = e.ThicknessHeadScrew,
-                ThicknessHeadNut = e.ThicknessHeadNut,
-                ThicknessWasher = e.ThicknessWasher,
-                CenterCenterDistance = e.CenterCenterDistance
+               MountUnitName = e.MountUnitName,
+               BeamTrussName = e.BeamTrussName,
+               SizeProfileBeamTruss = e.SizeProfileBeamTruss,
+               WidthFlangeColumn = e.WidthFlangeColumn,
+               LengthFlangeColumn = e.LengthFlangeColumn,
+               ThicknessFlangeColumn = e.ThicknessFlangeColumn,
+               WidthFlangeBeamTruss = e.WidthFlangeBeamTruss,
+               LengthFlangeBeamTruss = e.LengthFlangeBeamTruss,
+               ThicknessFlangeBeamTruss = e.ThicknessFlangeBeamTruss,
+               ThicknessHeadScrew = e.ThicknessHeadScrew,
+               ThicknessHeadNut = e.ThicknessHeadNut,
+               ThicknessWasher = e.ThicknessWasher,
+               CenterCenterDistance = e.CenterCenterDistance
            }
            ).ToList();
 
@@ -292,5 +293,43 @@ namespace Assets.Utils
                 CenterCenterDistance = e.CenterCenterDistance
             }
             ).ToList().Find(e => e.BeamTrussName == name);
+
+        public static List<Flange> GetListFlange(MountUnitColumnBeamTrussDataList mountUnitColumnBeamTrussDataList
+            , MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList)
+        {
+            IEnumerable<Flange> GetFlanges<T>(IEnumerable<T> source
+                , Func<T, string> selectorName
+                , Func<T, int> selectorWidth
+                , Func<T, int> selectorLength
+                , Func<T, float> selectorCenterCenterDistance) => source.Select(e => new Flange { Name = selectorName(e)
+                                                                                                , Width = selectorWidth(e)
+                                                                                                , Length = selectorLength(e)
+                                                                                               , CenterCenterDistance = selectorCenterCenterDistance(e) });
+
+            List<Flange> flanges = GetFlanges(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas
+                , e => e.NameFlangeColumn, e => e.WidthFlangeColumn, e => e.LengthFlangeColumn, e => e.CenterCenterDistance).ToList();
+            flanges.AddRange(GetFlanges(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas
+                , e => e.NameFlangeBeam, e => e.WidthFlangeBeamTruss, e => e.LengthFlangeBeamTruss, e => e.CenterCenterDistance));
+            flanges.AddRange(GetFlanges(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas
+                  , e => e.NameFlangeBeam, e => e.WidthFlangeBeamTruss, e => e.LengthFlangeBeamTruss, e => e.CenterCenterDistance));
+            flanges.AddRange(GetFlanges(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas
+                  , e => e.NameFlangeRafter, e => e.WidthFlangeRafterTruss, e => e.LengthFlangeRafterTruss, e => e.CenterCenterDistance));
+            return flanges.Distinct(new GenericEqualityComparer<Flange>(e => e.Name)).ToList();
+        }
+
+        public static List<Fixing> GetListFixing(MountUnitColumnBeamTrussDataList mountUnitColumnBeamTrussDataList
+            , MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList)
+        {
+            IEnumerable<Fixing> GetFixings<T>(IEnumerable<T> source, Func<T, string> selector) => source.Select(e => new Fixing { Name = selector(e) });
+
+            List<Fixing> fixings = GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameScrew).ToList();
+            fixings.AddRange(GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameNut).ToList());
+            fixings.AddRange(GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameWasher).ToList());
+            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameScrew).ToList());
+            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameNut).ToList());
+            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameWasher).ToList());
+
+            return fixings.Distinct(new GenericEqualityComparer<Fixing>(e => e.Name)).ToList();
+        }
     }
 }
