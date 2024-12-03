@@ -229,7 +229,15 @@ namespace Assets.Utils
                 WidthFlangeRafterTruss = e.WidthFlangeRafterTruss,
                 LengthFlangeRafterTruss = e.LengthFlangeRafterTruss,
                 ThicknessFlangeRafterTruss = e.ThicknessFlangeRafterTruss,
-                CenterCenterDistance = e.CenterCenterDistance
+                CenterCenterDistance = e.CenterCenterDistance,
+                NameFlangeBeam = e.NameFlangeBeam,
+                NameFlangeRafter = e.NameFlangeRafter,
+                NameScrew = e.NameScrew,
+                NameNut = e.NameNut,
+                NameWasher = e.NameWasher,
+                WeightUnitScrew = e.WeightUnitScrew,
+                WeightUnitNut = e.WeightUnitNut,
+                WeightUnitWasher = e.WeightUnitWasher
             }
             ).ToList();
 
@@ -250,7 +258,14 @@ namespace Assets.Utils
                 LengthFlangeRafterTruss = e.LengthFlangeRafterTruss,
                 ThicknessFlangeRafterTruss = e.ThicknessFlangeRafterTruss,
                 CenterCenterDistance = e.CenterCenterDistance,
-                ThicknessTable = e.ThicknessTable
+                NameFlangeBeam = e.NameFlangeBeam,
+                NameFlangeRafter = e.NameFlangeRafter,
+                NameScrew = e.NameScrew,
+                NameNut = e.NameNut,
+                NameWasher = e.NameWasher,
+                WeightUnitScrew = e.WeightUnitScrew,
+                WeightUnitNut = e.WeightUnitNut,
+                WeightUnitWasher = e.WeightUnitWasher
             }
             ).ToList().Find(e => e.RafterTrussName == name);
 
@@ -270,7 +285,15 @@ namespace Assets.Utils
                ThicknessHeadScrew = e.ThicknessHeadScrew,
                ThicknessHeadNut = e.ThicknessHeadNut,
                ThicknessWasher = e.ThicknessWasher,
-               CenterCenterDistance = e.CenterCenterDistance
+               CenterCenterDistance = e.CenterCenterDistance,
+               NameFlangeColumn = e.NameFlangeColumn,
+               NameFlangeBeam = e.NameFlangeBeam,
+               NameScrew = e.NameScrew,
+               NameNut = e.NameNut,
+               NameWasher = e.NameWasher,
+               WeightUnitScrew = e.WeightUnitScrew,
+               WeightUnitNut = e.WeightUnitNut,
+               WeightUnitWasher = e.WeightUnitWasher
            }
            ).ToList();
 
@@ -290,7 +313,15 @@ namespace Assets.Utils
                 ThicknessHeadScrew = e.ThicknessHeadScrew,
                 ThicknessHeadNut = e.ThicknessHeadNut,
                 ThicknessWasher = e.ThicknessWasher,
-                CenterCenterDistance = e.CenterCenterDistance
+                CenterCenterDistance = e.CenterCenterDistance,
+                NameFlangeColumn = e.NameFlangeColumn,
+                NameFlangeBeam = e.NameFlangeBeam,
+                NameScrew = e.NameScrew,
+                NameNut = e.NameNut,
+                NameWasher = e.NameWasher,
+                WeightUnitScrew = e.WeightUnitScrew,
+                WeightUnitNut = e.WeightUnitNut,
+                WeightUnitWasher = e.WeightUnitWasher
             }
             ).ToList().Find(e => e.BeamTrussName == name);
 
@@ -328,7 +359,6 @@ namespace Assets.Utils
             fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameScrew).ToList());
             fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameNut).ToList());
             fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameWasher).ToList());
-
             return fixings.Distinct(new GenericEqualityComparer<Fixing>(e => e.Name)).ToList();
         }
     }

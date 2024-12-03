@@ -21,6 +21,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using UnityEngine.UI;
 using System.Diagnostics.Tracing;
+using Assets.Scripts.SOdata;
 
 public class LoadPrefab : MonoBehaviour
 {
@@ -116,6 +117,8 @@ public class LoadPrefab : MonoBehaviour
 
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
         Material material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
+        bool IsDemountable = planCanopy.GetComponent<PlanCanopyGenerator>().IsDemountable;
+        float plusPartOtputGirder = 0;
 
         ProfilePipe profilePipeColumn = CalculationColumn.CalculateColumn(planCanopy.GetComponent<PlanCanopyGenerator>().SizeByX
              , planCanopy.GetComponent<PlanCanopyGenerator>().SizeByZ
@@ -128,16 +131,23 @@ public class LoadPrefab : MonoBehaviour
              , planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
              , planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter
              , cargo, material, trusses);
+        if (trussBeam != null && trussRafter != null)
+        {
+            MountUnitBeamRafterTruss mountUnitBeamRafterTruss = mountUnitBeamRafterTrusses.Find(e => e.RafterTrussName == trussRafter.Name);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitBeamRafterTruss = (KindMountUnitBeamRafterTruss)mountUnitBeamRafterTrusses.IndexOf(mountUnitBeamRafterTruss);
+            MountUnitColumnBeamTruss mountUnitColumnBeamTruss = mountUnitColumnBeamTrusses.Find(e => e.BeamTrussName == trussBeam.Name);
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitColumnBeamTruss = (KindMountUnitColumnBeamTruss)mountUnitColumnBeamTrusses.IndexOf(mountUnitColumnBeamTruss);
+            plusPartOtputGirder = IsDemountable ? (profilePipeColumn.Height + mountUnitBeamRafterTruss.LengthFlangeBeamTruss) / 2 + mountUnitColumnBeamTruss.WidthFlangeColumn : default;
+        }
         ProfilePipe profilePipeGirder = CalculationGirder.CalculateGirder(planCanopy.GetComponent<PlanCanopyGenerator>().StepRafter
              , planCanopy.GetComponent<PlanCanopyGenerator>().StepGirder
-             , planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder
+             , planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder + plusPartOtputGirder
              , cargo, material, profilePipes);
 
-        bool isActive = planCanopy.GetComponent<PlanCanopyGenerator>().IsDemountable;
         for (int i = 0; i < MountUnitColumnBeamTrussesForLoad.Count; i++)
         {
-            MountUnitColumnBeamTrussesForLoad[i].SetActive(isActive);
-            MountUnitBeamRafterTrussesForLoad[i].SetActive(isActive);
+            MountUnitColumnBeamTrussesForLoad[i].SetActive(IsDemountable);
+            MountUnitBeamRafterTrussesForLoad[i].SetActive(IsDemountable);
         }
 
         if (profilePipeColumn != null && trussBeam != null && trussRafter != null && profilePipeGirder != null)
@@ -148,11 +158,6 @@ public class LoadPrefab : MonoBehaviour
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussBeam = (KindTruss)trusses.IndexOf(trussBeam);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(trussRafter);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileGirder = (KindProfilePipe)profilePipes.IndexOf(profilePipeGirder);
-
-            MountUnitBeamRafterTruss mountUnitBeamRafterTruss = mountUnitBeamRafterTrusses.Find(e => e.RafterTrussName == trussRafter.Name);
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitBeamRafterTruss = (KindMountUnitBeamRafterTruss)mountUnitBeamRafterTrusses.IndexOf(mountUnitBeamRafterTruss);
-            MountUnitColumnBeamTruss mountUnitColumnBeamTruss = mountUnitColumnBeamTrusses.Find(e => e.BeamTrussName == trussBeam.Name);
-            planCanopy.GetComponent<PlanCanopyGenerator>().KindMountUnitColumnBeamTruss = (KindMountUnitColumnBeamTruss)mountUnitColumnBeamTrusses.IndexOf(mountUnitColumnBeamTruss);
 
             Instantiate(canopyPrefab);
             toFbxButton.interactable = true;

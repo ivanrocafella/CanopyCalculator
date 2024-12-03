@@ -1,23 +1,11 @@
 using Assets.Models;
-using Assets.ModelsRequest;
 using Assets.Services;
 using Assets.Utils;
-using Assimp.Configs;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using static UnityEditor.Progress;
-using Object = UnityEngine.Object;
 
 public class CanopyGenerator : MonoBehaviour
 {
@@ -33,6 +21,8 @@ public class CanopyGenerator : MonoBehaviour
     private MountUnitBeamRafterTrussDataList MountUnitBeamRafterTrussDataList;
     public List<ProfilePipe> profilePipes = new();
     public List<Truss> trusses = new();
+    public List<MountUnitColumnBeamTruss> mountUnitColumnBeamTrusses = new();
+    public List<MountUnitBeamRafterTruss> mountUnitBeamRafterTrusses = new();
     private int countStepRafterTrussSection;
     private float stepRafterTrussSection;
     private float lengthSection;
@@ -84,14 +74,15 @@ public class CanopyGenerator : MonoBehaviour
         Canopy.CountStepGirder = (Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / (Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step)) <= Canopy.Girder.Step ?
             Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) : Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) + 1;
         Canopy.Girder.Step = Canopy.RafterTruss.LengthTop / Canopy.CountStepGirder;
-        Canopy.Girders = new GameObject[Canopy.CountStepGirder];
+        Canopy.Girders = new GameObject[Canopy.CountStepGirder + 1];
 
         if (Canopy.PlanColumn.IsDemountable)
         {
-         Canopy.MountUnitsColumnBeamTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * 2];
-         Canopy.MountUnitsColumnBeamTrussOnLC = new GameObject[Canopy.MountUnitsColumnBeamTrussOnHC.Length];
-         Canopy.MountUnitsBeamRafterTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * (countStepRafterTrussSection + 1)];
-         Canopy.MountUnitsBeamRafterTrussOnLC = new GameObject[Canopy.MountUnitsBeamRafterTrussOnHC.Length];
+            Canopy.MountUnitsColumnBeamTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * 2];
+            Canopy.MountUnitsColumnBeamTrussOnLC = new GameObject[Canopy.MountUnitsColumnBeamTrussOnHC.Length];
+            Canopy.MountUnitsBeamRafterTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * (countStepRafterTrussSection + 1)];
+            Canopy.MountUnitsBeamRafterTrussOnLC = new GameObject[Canopy.MountUnitsBeamRafterTrussOnHC.Length];
+            Canopy.RafterTruss.Step = stepRafterTrussSection;
         }
 
         int countStepRafterTruss = Canopy.PlanColumn.IsDemountable ? Canopy.MountUnitsBeamRafterTrussOnHC.Length : Canopy.CountStepRafterTruss + 1; 
@@ -102,16 +93,20 @@ public class CanopyGenerator : MonoBehaviour
         float partAdditHalfBeltAngle = Canopy.RafterTruss.Truss.ProfileBelt.Height / 2 / Mathf.Cos(Canopy.PlanColumn.Slope);
 
         // Make columns
-        for (int i = 0; i < Canopy.PlanColumn.CountStep; i++)
+        for (int i = 0; i < Canopy.ColumnsHigh.Length; i++)
         {
-            Canopy.ColumnsHigh[i] = Instantiate(GameObject.FindGameObjectsWithTag("ColumnHigh")[0]);
-            Canopy.ColumnsHigh[i].transform.SetParent(CanopyObject.transform);
-            Destroy(Canopy.ColumnsHigh[i].GetComponent<TransformColumnHigh>());
-            Canopy.ColumnsHigh[i].transform.localPosition = new Vector3(0, 0, Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i);
-            Canopy.ColumnsLow[i] = Instantiate(GameObject.FindGameObjectsWithTag("ColumnLow")[0]);
-            Canopy.ColumnsLow[i].transform.SetParent(CanopyObject.transform);
-            Destroy(Canopy.ColumnsLow[i].GetComponent<TransformColumnLow>());
-            Canopy.ColumnsLow[i].transform.localPosition = new Vector3(Canopy.PlanColumn.SizeByX, 0, Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i);
+            GameObject columnHigh = GameObject.FindGameObjectWithTag("ColumnHigh");
+            GameObject columnLow = GameObject.FindGameObjectWithTag("ColumnLow");
+            if (i == 0)
+            {
+                Canopy.ColumnsHigh[i] = columnHigh;
+                Canopy.ColumnsLow[i] = columnLow;
+            }
+            else
+            {
+                InstantiateGO<TransformColumnHigh>(columnHigh, Canopy.ColumnsHigh, 0, 0, Canopy.PlanColumn.Step * i, 0f, 0f, 0f, i);
+                InstantiateGO<TransformColumnLow>(columnLow, Canopy.ColumnsLow, Canopy.PlanColumn.SizeByX, 0, Canopy.PlanColumn.Step * i, 0f, 0f, 0f, i);
+            }
         }
         if (Canopy.PlanColumn.IsDemountable)
         {
@@ -124,25 +119,23 @@ public class CanopyGenerator : MonoBehaviour
              // Make mountUnitsBeamRufterTruss on lowColumns
              MountUnitsBeamRafterTruss(Canopy.MountUnitsBeamRafterTrussOnLC, false);
         }
-        // Make beam trusses on high columns
-        for (int i = 0; i < Canopy.BeamTrussesOnHigh.Length - 1; i++)
+        // Make beam trusses
+        for (int i = 0; i < Canopy.BeamTrussesOnHigh.Length; i++)
         {
-            Canopy.BeamTrussesOnHigh[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
-            Canopy.BeamTrussesOnHigh[i].transform.SetParent(CanopyObject.transform);
-            Destroy(Canopy.BeamTrussesOnHigh[i].GetComponent<BeamTrussTransform>());
-            Canopy.BeamTrussesOnHigh[i].transform.SetLocalPositionAndRotation(new Vector3(0
-           , Canopy.PlanColumn.SizeByY + Canopy.ColumnPlug.Thickness + Canopy.BeamTruss.Truss.ProfileBelt.Height / 2
-           , Canopy.PlanColumn.Step + Canopy.PlanColumn.Step * i), Quaternion.Euler(0f, -90f, -90f));
-        }
-        // Make beam trusses on low columns
-        for (int i = 0; i < Canopy.BeamTrussesOnLow.Length; i++)
-        {
-            Canopy.BeamTrussesOnLow[i] = Object.Instantiate(GameObject.FindGameObjectsWithTag("BeamTruss")[0]);
-            Canopy.BeamTrussesOnLow[i].transform.SetParent(CanopyObject.transform);
-            Destroy(Canopy.BeamTrussesOnLow[i].GetComponent<BeamTrussTransform>());
-            Canopy.BeamTrussesOnLow[i].transform.SetLocalPositionAndRotation(new Vector3(Canopy.PlanColumn.SizeByX
-           , Canopy.PlanColumn.SizeByYLow + Canopy.ColumnPlug.Thickness + Canopy.BeamTruss.Truss.ProfileBelt.Height / 2
-           , Canopy.PlanColumn.Step * i), Quaternion.Euler(0f, -90f, -90f));
+            GameObject beamTruss = GameObject.FindGameObjectWithTag("BeamTruss");
+            if (i == 0)
+                Canopy.BeamTrussesOnHigh[i] = beamTruss;
+            else
+                InstantiateGO<BeamTrussTransform>(beamTruss, Canopy.BeamTrussesOnHigh
+                    , 0
+                    , Canopy.PlanColumn.SizeByY + Canopy.ColumnPlug.Thickness + Canopy.BeamTruss.Truss.ProfileBelt.Height / 2
+                    , Canopy.PlanColumn.Step * i
+                    , 0f, -90f, -90f, i);
+            InstantiateGO<BeamTrussTransform>(beamTruss, Canopy.BeamTrussesOnLow
+                 , Canopy.PlanColumn.SizeByX
+                 , Canopy.PlanColumn.SizeByYLow + Canopy.ColumnPlug.Thickness + Canopy.BeamTruss.Truss.ProfileBelt.Height / 2
+                 , Canopy.PlanColumn.Step * i
+                 , 0f, -90f, -90f, i);
         }
         yield return null;
         // Make rafter trusses
@@ -154,20 +147,27 @@ public class CanopyGenerator : MonoBehaviour
         Vector3 elemenGirderPosition = GameObject.FindGameObjectWithTag("Girder").transform.localPosition;
         for (int i = 0; i < Canopy.Girders.Length; i++)
         {
-            Canopy.Girders[i] = Instantiate(GameObject.FindGameObjectsWithTag("Girder")[0]);
-            Canopy.Girders[i].transform.SetParent(CanopyObject.transform);
-            Destroy(Canopy.Girders[i].GetComponent<GirderTransform>());
-            stepGirder = i == Canopy.Girders.Length - 1 ? Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length : Canopy.Girder.Step * (1 + i); 
-            projectionHorStepGirder = Mathf.Cos(Canopy.PlanColumn.Slope) * stepGirder;
-            projectionVertStepGirder = Mathf.Sin(Canopy.PlanColumn.Slope) * stepGirder;
-            Canopy.Girders[i].transform.SetLocalPositionAndRotation(new Vector3(elemenGirderPosition.x + projectionHorStepGirder
-                         , elemenGirderPosition.y - projectionVertStepGirder
-                         , elemenGirderPosition.z), Quaternion.Euler(-Canopy.PlanColumn.SlopeInDegree, -90, -90));
+            GameObject girder = GameObject.FindGameObjectWithTag("Girder");
+            if (i == 0)
+            {
+                Canopy.Girders[i] = girder;
+            }
+            else
+            {
+                stepGirder = i == Canopy.Girders.Length - 1 ? Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length : Canopy.Girder.Step * i; 
+                projectionHorStepGirder = Mathf.Cos(Canopy.PlanColumn.Slope) * stepGirder;
+                projectionVertStepGirder = Mathf.Sin(Canopy.PlanColumn.Slope) * stepGirder;
+                InstantiateGO<GirderTransform>(girder, Canopy.Girders
+                    , elemenGirderPosition.x + projectionHorStepGirder
+                    , elemenGirderPosition.y - projectionVertStepGirder
+                    , elemenGirderPosition.z
+                    , -Canopy.PlanColumn.SlopeInDegree, -90, -90, i);
+            }
         }
         yield return new WaitForSeconds(0.001f);
         LoadingTextBox.GetComponent<TMP_Text>().text = string.Empty;
     }
-
+    
     // Methode that make mountUnitsColumnBeamTruss
     private void MountUnitsColumnBeamTruss(GameObject[] MountUnitsColumnBeamTruss, bool isOnHighColumns)
     {
@@ -235,8 +235,12 @@ public class CanopyGenerator : MonoBehaviour
                         RafterTrusses[j] = rafterTruss;
                     else
                     {
-                        if (j != i * (countStepRafterTrussSection + 1))
-                            InstantiateRafterTruss(RafterTrusses, rafterTruss, elemenRafterTrussPosition, j, elemenRafterTrussPosition.z + stepRafterTrussSection * k + Canopy.PlanColumn.Step * i);
+                        if (j != i * (countStepRafterTrussSection + 1))                       
+                            InstantiateGO<RafterTrussTransform>(rafterTruss, RafterTrusses
+                                 , -Canopy.PlanColumn.OutputRafter
+                                 , elemenRafterTrussPosition.y
+                                 , elemenRafterTrussPosition.z + stepRafterTrussSection * k + Canopy.PlanColumn.Step * i
+                                 , 0f, 0f, -(90f + Canopy.PlanColumn.SlopeInDegree), j);
                     }
                 }
             }
@@ -246,11 +250,23 @@ public class CanopyGenerator : MonoBehaviour
             for (int i = 0; i < RafterTrusses.Length; i++)
             {
                 if (i != 0)
-                    InstantiateRafterTruss(RafterTrusses, rafterTruss, elemenRafterTrussPosition, i, Canopy.RafterTruss.Step * i);
+                    InstantiateGO<RafterTrussTransform>(rafterTruss, RafterTrusses
+                        , -Canopy.PlanColumn.OutputRafter
+                        , elemenRafterTrussPosition.y
+                        , Canopy.RafterTruss.Step * i
+                        , 0f, 0f, -(90f + Canopy.PlanColumn.SlopeInDegree), i);
                 else
                     RafterTrusses[i] = rafterTruss;
             }
         }
+    }
+    // Methode for instantiating go
+    void InstantiateGO<T>(GameObject gameObject, GameObject[] gameObjects, float x, float y, float z, float angleX, float angleY, float angleZ, int iter) where T : Component
+    {
+        gameObjects[iter] = Instantiate(gameObject);
+        gameObjects[iter].transform.SetParent(CanopyObject.transform);
+        Destroy(gameObjects[iter].GetComponent<T>());
+        gameObjects[iter].transform.SetLocalPositionAndRotation(new Vector3(x, y, z), Quaternion.Euler(angleX, angleY, angleZ));
     }
     // Method for instantiating rafterTruss
     private void InstantiateRafterTruss(GameObject[] RafterTrusses, GameObject rafterTruss, Vector3 elemenRafterTrussPosition, int iter, float coordZ)
@@ -267,6 +283,8 @@ public class CanopyGenerator : MonoBehaviour
         profilePipes = loadPrefab.profilePipes;
         trusses = loadPrefab.trusses;
         dollarRate = loadPrefab.dollarRate;
+        mountUnitColumnBeamTrusses = loadPrefab.mountUnitColumnBeamTrusses;
+        mountUnitBeamRafterTrusses = loadPrefab.mountUnitBeamRafterTrusses;
 
         CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
         LoadingTextBox = GameObject.FindGameObjectWithTag("LoadingTextBox");
@@ -280,6 +298,13 @@ public class CanopyGenerator : MonoBehaviour
         float pricePerMrafterTruss;
         float pricePerMgirder;
         float dollarRateValue;
+        int quantityFlangeColumnMucbt = Canopy.MountUnitsColumnBeamTrussOnHC.Length + Canopy.MountUnitsColumnBeamTrussOnLC.Length;
+        int quantityFlangeBeamTrussMucbt = quantityFlangeColumnMucbt;
+        int quantityFlangeBeamTrussMubrt = Canopy.MountUnitsBeamRafterTrussOnHC.Length + Canopy.MountUnitsBeamRafterTrussOnLC.Length;
+        int quantityFlangeRafterTrussMubrt = quantityFlangeBeamTrussMubrt;
+        int quantityScrew = (quantityFlangeColumnMucbt + quantityFlangeBeamTrussMubrt) * 2;
+        int quantityNut = quantityScrew;
+        int quantityWasher = quantityScrew * 2;
 #if UNITY_WEBGL
         pricePerMcolumn = ValAction.GetPricePmOfProfilePipe(Canopy.ColumnBodyHigh.Profile.Name, profilePipes);
         pricePerMbeamTruss = ValAction.GetPricePmOfTruss(Canopy.BeamTruss.Truss.Name, trusses);
@@ -292,7 +317,27 @@ public class CanopyGenerator : MonoBehaviour
         pricePerMrafterTruss = ValAction.GetPricePlayerPrefs(Canopy.RafterTruss.Truss.Name);
         pricePerMgirder = ValAction.GetPricePlayerPrefs(Canopy.Girder.Profile.Name);
         dollarRateValue = ValAction.GetDollarRatePlayerPrefs();
+
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceFlangeColumn = ValAction.GetPricePlayerPrefs(e.NameFlangeColumn));
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceFlangeBeam = ValAction.GetPricePlayerPrefs(e.NameFlangeBeam));
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceKgScrew = ValAction.GetPricePlayerPrefs(e.NameScrew));
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceKgNut = ValAction.GetPricePlayerPrefs(e.NameNut));
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceKgWasher = ValAction.GetPricePlayerPrefs(e.NameWasher));
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceFlangeBeam = ValAction.GetPricePlayerPrefs(e.NameFlangeBeam));
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceFlangeRafter = ValAction.GetPricePlayerPrefs(e.NameFlangeRafter));
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceKgScrew = ValAction.GetPricePlayerPrefs(e.NameScrew));
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceKgNut = ValAction.GetPricePlayerPrefs(e.NameNut));
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceKgWasher = ValAction.GetPricePlayerPrefs(e.NameWasher));
+
 #endif
+        float priceFlangeColumnMucbt = mountUnitColumnBeamTrusses.Find(e => e.MountUnitName == Canopy.MountUnitColumnBeamTruss.MountUnitName).PriceFlangeColumn;
+        float priceFlangeBeamTrussMucbt = mountUnitColumnBeamTrusses.Find(e => e.MountUnitName == Canopy.MountUnitColumnBeamTruss.MountUnitName).PriceFlangeBeam;
+        float priceFlangeBeamTrussMubrt = mountUnitBeamRafterTrusses.Find(e => e.MountUnitName == Canopy.MountUnitBeamRafterTruss.MountUnitName).PriceFlangeBeam;
+        float priceFlangeRafterTrussMubrt = mountUnitBeamRafterTrusses.Find(e => e.MountUnitName == Canopy.MountUnitBeamRafterTruss.MountUnitName).PriceFlangeRafter;
+        float priceScrew = quantityScrew * mountUnitColumnBeamTrusses.Find(e => e.MountUnitName == Canopy.MountUnitColumnBeamTruss.MountUnitName).PriceUnitScrew;
+        float priceNut = quantityNut * mountUnitColumnBeamTrusses.Find(e => e.MountUnitName == Canopy.MountUnitColumnBeamTruss.MountUnitName).PriceUnitNut; ;
+        float priceWasher = quantityWasher * mountUnitColumnBeamTrusses.Find(e => e.MountUnitName == Canopy.MountUnitColumnBeamTruss.MountUnitName).PriceUnitWasher; ;
+
         print("pricePerMcolumn:" + pricePerMcolumn);
         print("pricePerMbeamTruss:" + pricePerMbeamTruss);
         print("pricePerMrafterTruss:" + pricePerMrafterTruss);
@@ -300,9 +345,24 @@ public class CanopyGenerator : MonoBehaviour
         print("dollarRate:" + dollarRate);
 
         int costColumns = Mathf.RoundToInt(pricePerMcolumn * columnMaterialLength * dollarRateValue);
-        float costBeamTrusses = Mathf.RoundToInt(pricePerMbeamTruss * beamTrussMaterialLength * dollarRateValue);
-        float costRafterTrusses = Mathf.RoundToInt(pricePerMrafterTruss * rafterTrussMaterialLength * dollarRateValue);
-        float costGirders = Mathf.RoundToInt(pricePerMgirder * girderMaterialLength * dollarRateValue);
+        int costBeamTrusses = Mathf.RoundToInt(pricePerMbeamTruss * beamTrussMaterialLength * dollarRateValue);
+        int costRafterTrusses = Mathf.RoundToInt(pricePerMrafterTruss * rafterTrussMaterialLength * dollarRateValue);
+        int costGirders = Mathf.RoundToInt(pricePerMgirder * girderMaterialLength * dollarRateValue);
+        int costFlangeColumnMucbt = Mathf.RoundToInt(priceFlangeColumnMucbt * quantityFlangeColumnMucbt * dollarRateValue);
+        int costFlangeBeamTrussMucbt = Mathf.RoundToInt(priceFlangeBeamTrussMucbt * quantityFlangeBeamTrussMucbt * dollarRateValue);
+        int costFlangeBeamTrussMubrt = Mathf.RoundToInt(priceFlangeBeamTrussMubrt * quantityFlangeBeamTrussMubrt * dollarRateValue);
+        int costFlangeRafterTrussMubrt = Mathf.RoundToInt(priceFlangeRafterTrussMubrt * quantityFlangeRafterTrussMubrt * dollarRateValue);
+        int costScrews = Mathf.RoundToInt(priceScrew * quantityScrew * dollarRateValue);   
+        int costNuts = Mathf.RoundToInt(priceNut * quantityNut * dollarRateValue);
+        int costWashers = Mathf.RoundToInt(priceWasher * quantityWasher * dollarRateValue);
+        float countMaterialUnitFlangeColumnMucbt = Canopy.MountUnitColumnBeamTruss.LengthFlangeColumn * Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn / 1000000f;
+        float countMaterialUnitFlangeBeamTrussMucbt = Canopy.MountUnitColumnBeamTruss.LengthFlangeBeamTruss * Canopy.MountUnitColumnBeamTruss.WidthFlangeBeamTruss / 1000000f;
+        float countMaterialUnitFlangeBeamTrussMubrt = Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss * Canopy.MountUnitBeamRafterTruss.WidthFlangeBeamTruss / 1000000f;
+        float countMaterialUnitFlangeRafterTrussMubrt = Canopy.MountUnitBeamRafterTruss.LengthFlangeRafterTruss * Canopy.MountUnitBeamRafterTruss.WidthFlangeRafterTruss / 1000000f;
+        float countMaterialFlangeColumnMucbt = MathF.Round(countMaterialUnitFlangeColumnMucbt * quantityFlangeColumnMucbt, 3);
+        float countMaterialFlangeBeamTrussMucbt = MathF.Round(countMaterialUnitFlangeBeamTrussMucbt * quantityFlangeBeamTrussMucbt, 3);
+        float countMaterialFlangeBeamTrussMubrt = MathF.Round(countMaterialUnitFlangeBeamTrussMubrt * quantityFlangeBeamTrussMubrt, 3);
+        float countMaterialFlangeRafterTrussMubrt = MathF.Round(countMaterialUnitFlangeRafterTrussMubrt * quantityFlangeRafterTrussMubrt, 3);
 
         Canopy.ResultCalculation = new()
         {
@@ -337,43 +397,73 @@ public class CanopyGenerator : MonoBehaviour
             DeflectionFactGirder = MathF.Round(CalculationGirder.DeflectionFact, 1),
             DeflectionPermissibleGirder = MathF.Round(CalculationGirder.DeflectionPermissible, 1),
             CostGirders = costGirders,
+            NameFlangeColumnMucbt = Canopy.MountUnitColumnBeamTruss.NameFlangeColumn,
+            NameFlangeBeamTrussMucbt = Canopy.MountUnitColumnBeamTruss.NameFlangeBeam,
+            NameFlangeBeamTrussMubrt = Canopy.MountUnitBeamRafterTruss.NameFlangeBeam,
+            NameFlangeRafterTrussMubrt = Canopy.MountUnitBeamRafterTruss.NameFlangeRafter,
+            QuantityFlangeColumnMucbt = quantityFlangeColumnMucbt,
+            QuantityFlangeBeamTrussMucbt = quantityFlangeBeamTrussMucbt,
+            QuantityFlangeBeamTrussMubrt = quantityFlangeBeamTrussMubrt,
+            QuantityFlangeRafterTrussMubrt = quantityFlangeRafterTrussMubrt,
+            CountMaterialFlangeColumnMucbt = countMaterialFlangeColumnMucbt,
+            CountMaterialFlangeBeamTrussMucbt = countMaterialFlangeBeamTrussMucbt,
+            CountMaterialFlangeBeamTrussMubrt = countMaterialFlangeBeamTrussMubrt,
+            CountMaterialFlangeRafterTrussMubrt = countMaterialFlangeRafterTrussMubrt, 
+            CostFlangeColumnMucbt = costFlangeColumnMucbt,
+            CostFlangeBeamTrussMucbt = costFlangeBeamTrussMucbt,
+            CostFlangeBeamTrussMubrt = costFlangeBeamTrussMubrt,
+            CostFlangeRafterTrussMubrt = costFlangeRafterTrussMubrt,
+            NameScrew = Canopy.MountUnitColumnBeamTruss.NameScrew,
+            NameNut = Canopy.MountUnitColumnBeamTruss.NameNut,
+            NameWasher = Canopy.MountUnitColumnBeamTruss.NameWasher,
+            QuantityScrew = quantityScrew,
+            QuantityNut = quantityNut,
+            QuantityWasher = quantityWasher,
+            CostScrews = costScrews,
+            CostNuts = costNuts,
+            CostWashers = costWashers,
             CostTotal = costColumns + costBeamTrusses + costRafterTrusses + costGirders
+            + costFlangeColumnMucbt + costFlangeBeamTrussMucbt + costFlangeBeamTrussMubrt + costFlangeRafterTrussMubrt
+            + costScrews + costNuts + costWashers
         };
+        string description = Canopy.PlanColumn.IsDemountable ?
+            $"\n" +
+            $"Узел колонна-балка:\n\t{Canopy.ResultCalculation.NameFlangeColumnMucbt} - {Canopy.ResultCalculation.QuantityFlangeColumnMucbt} шт" +
+            $"\n\t{Canopy.ResultCalculation.NameFlangeBeamTrussMucbt} - {Canopy.ResultCalculation.QuantityFlangeBeamTrussMucbt} шт" +
+            $"\nУзел балка-стропило:\n\t{Canopy.ResultCalculation.NameFlangeBeamTrussMubrt} - {Canopy.ResultCalculation.QuantityFlangeBeamTrussMubrt} шт" +
+            $"\n\t{Canopy.ResultCalculation.NameFlangeRafterTrussMubrt} - {Canopy.ResultCalculation.QuantityFlangeRafterTrussMubrt} шт" +
+            $"\nСт-ть листового металла: {Canopy.ResultCalculation.CostFlangeColumnMucbt + Canopy.ResultCalculation.CostFlangeBeamTrussMucbt + Canopy.ResultCalculation.CostFlangeBeamTrussMubrt + Canopy.ResultCalculation.CostFlangeRafterTrussMubrt} сом" +
+            $"\n" +
+            $"Метизы:\n\t{Canopy.ResultCalculation.NameScrew} - {Canopy.ResultCalculation.QuantityScrew} шт" +
+            $"\n\t{Canopy.ResultCalculation.NameNut} - {Canopy.ResultCalculation.QuantityNut} шт" +
+            $"\n\t{Canopy.ResultCalculation.NameWasher} - {Canopy.ResultCalculation.QuantityWasher} шт" +
+            $"\nСт-ть метизов: {Canopy.ResultCalculation.CostScrews + Canopy.ResultCalculation.CostNuts + Canopy.ResultCalculation.CostWashers} сом"
+            : string.Empty;
 
-        CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\tПрофиль - {Canopy.ResultCalculation.NameColumn}" +
-            $"\n\tДлина - {Canopy.ResultCalculation.LengthHighColumn} мм" +
-            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityInRowColumn} шт" +
-            $"\nКолонна малой высоты:\n\tПрофиль - {Canopy.ColumnBodyHigh.Profile.Name}" +
-            $"\n\tДлина - {Canopy.ResultCalculation.LengthLowColumn} мм" +
-            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityInRowColumn} шт" +
+        CanopyDescription.GetComponent<TMP_Text>().text = $"Колонна большей высоты:\n\t{Canopy.ResultCalculation.NameColumn}, L={Canopy.ResultCalculation.LengthHighColumn} - {Canopy.ResultCalculation.QuantityInRowColumn} шт" +
+            $"\nКолонна малой высоты:\n\t{Canopy.ColumnBodyHigh.Profile.Name}, L={Canopy.ResultCalculation.LengthLowColumn} - {Canopy.ResultCalculation.QuantityInRowColumn} шт" +
             $"\nКол-во мат-ла на колонны: {Canopy.ResultCalculation.QuantityMaterialColumn} м" +
             $"\nСт-ть мат-ла на колонны: {Canopy.ResultCalculation.CostColumns} сом" +
             $"\n" +
-            $"Балочная ферма:\n\tТип - {Canopy.ResultCalculation.NameBeamTruss}" +
-            $"\n\tДлина - {Canopy.ResultCalculation.LengthBeamTruss} мм" +
-            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityBeamTruss} шт" +
+            $"Балочная ферма:\n\t{Canopy.ResultCalculation.NameBeamTruss}, L={Canopy.ResultCalculation.LengthBeamTruss} - {Canopy.ResultCalculation.QuantityBeamTruss} шт" +
             $"\nТреб. момент сопр. - {Canopy.ResultCalculation.MomentResistReqBeamTruss} см3" +
             $"\nФакт. прогиб - {Canopy.ResultCalculation.DeflectionFactBeamTruss} см" +
             $" (Доп. прогиб - {Canopy.ResultCalculation.DeflectionPermissibleBeamTruss} см)" +
             $"\nСт-ть балочных ферм: {Canopy.ResultCalculation.CostBeamTrusses} сом" +
             $"\n" +
-            $"Стропильная ферма:\n\tТип - {Canopy.ResultCalculation.NameRafterTruss}" +
-            $"\n\tДлина - {Canopy.ResultCalculation.LengthRafterTruss} мм" +
-            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityRafterTruss} шт" +
+            $"Стропильная ферма:\n\t{Canopy.ResultCalculation.NameRafterTruss}, L={Canopy.ResultCalculation.LengthRafterTruss} - {Canopy.ResultCalculation.QuantityRafterTruss} шт" +
             $"\n\tПодобранный шаг - {Canopy.ResultCalculation.StepRafterTruss} см" +
             $"\nТреб. момент сопр. - {Canopy.ResultCalculation.MomentResistReqRafterTruss} см3" +
             $"\nФакт. прогиб - {Canopy.ResultCalculation.DeflectionFactRafterTruss} см" +
             $" (Доп. прогиб - {Canopy.ResultCalculation.DeflectionPermissibleRafterTruss} см)" +
             $"\nСт-ть стропильных ферм: {Canopy.ResultCalculation.CostRafterTrusses} сом" +
             $"\n" +
-            $"Прогон:\n\tПрофиль - {Canopy.ResultCalculation.NameGirder}" +
-            $"\n\tДлина - {Canopy.ResultCalculation.LengthGirder} мм" +
-            $"\n\tКол-во - {Canopy.ResultCalculation.QuantityGirder} шт" +
+            $"Прогон:\n\t{Canopy.ResultCalculation.NameGirder}, L={Canopy.ResultCalculation.LengthGirder} - {Canopy.ResultCalculation.QuantityGirder} шт" +
             $"\n\tПодобранный шаг - {Canopy.ResultCalculation.StepGirder} см" +
             $"\nФакт. прогиб - {Canopy.ResultCalculation.DeflectionFactGirder} см" +
             $" (Доп. прогиб - {Canopy.ResultCalculation.DeflectionPermissibleGirder} см)" +
             $"\nКол-во мат-ла на прогоны: {Canopy.ResultCalculation.QuantityMaterialGirder} м" +
-            $"\nСт-ть мат-ла на прогоны: {Canopy.ResultCalculation.CostGirders} сом" +
+            $"\nСт-ть мат-ла на прогоны: {Canopy.ResultCalculation.CostGirders} сом" + description +
             $"\nИтого: {Canopy.ResultCalculation.CostTotal} сом";
         Canopy.CanopyDescription = CanopyDescription.GetComponent<TMP_Text>().text;
  

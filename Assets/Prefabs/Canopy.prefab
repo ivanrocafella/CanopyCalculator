@@ -10242,6 +10242,8 @@ MonoBehaviour:
   MountUnitBeamRafterTrussDataList: {fileID: 11400000, guid: e2f2af7a4976b324fb262f928ba79461, type: 2}
   profilePipes: []
   trusses: []
+  mountUnitColumnBeamTrusses: []
+  mountUnitBeamRafterTrusses: []
 --- !u!114 &2700731729593169040
 MonoBehaviour:
   m_ObjectHideFlags: 0

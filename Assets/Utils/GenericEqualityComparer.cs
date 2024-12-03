@@ -19,7 +19,6 @@ namespace Assets.Utils
         public bool Equals(T x, T y)
         {
             if (x == null || y == null) return false;
-            Console.WriteLine(_keySelector(x));
             return Equals(_keySelector(x), _keySelector(y));
         }
 
