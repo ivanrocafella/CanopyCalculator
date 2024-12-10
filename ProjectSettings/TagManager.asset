@@ -86,6 +86,7 @@ TagManager:
   - EmCostPlInput
   - CostFixingInput
   - EmCostFixingInput
+  - PopUpChangeObject
   layers:
   - Default
   - TransparentFX

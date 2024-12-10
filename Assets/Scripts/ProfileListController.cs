@@ -91,9 +91,25 @@ public class ProfileListController : MonoBehaviour
         string name = dropdown.options[value].text;
         float price;
 #if UNITY_WEBGL
-        Truss truss = trusses.Find(e => e.Name == name);
-        ProfilePipe profilePipe = profilePipes.Find(e => e.Name == name);
-        pricePerM = truss != null ? truss.PricePerM : profilePipe.PricePerM;
+        switch (KindDropDown)
+        {
+            case KindDropDown.DropdownProfiles:
+                Truss truss = trusses.Find(e => e.Name == name);
+                ProfilePipe profilePipe = profilePipes.Find(e => e.Name == name);
+                price = truss != null ? truss.PricePerM : profilePipe.PricePerM;
+                break;
+            case KindDropDown.DropdownPlates:
+                price = flanges.Find(e => e.Name == name).Price;
+                break;
+            case KindDropDown.DropdownFixings:
+                price = fixings.Find(e => e.Name == name).PricePerKg;
+                break;
+            default:
+                price = 0;
+                print("Undefined dropdown");
+                break;
+        }
+       
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         price = ValAction.GetPricePlayerPrefs(name);
 #endif
@@ -131,6 +147,7 @@ public class ProfileListController : MonoBehaviour
     IEnumerator GetFlanges()
     {
 #if UNITY_WEBGL
+        yield return DatabaseAction<List<Flange>>.GetData("/api/Flange/Flanges", (returnedFlanges) => flanges = returnedFlanges);
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
         flanges = ScriptObjectsAction.GetListFlange(MountUnitColumnBeamTrussDataList, MountUnitBeamRafterTrussDataList);
@@ -141,6 +158,7 @@ public class ProfileListController : MonoBehaviour
     IEnumerator GetFixings()
     {
 #if UNITY_WEBGL
+        yield return DatabaseAction<List<Fixing>>.GetData("/api/Fixing/Fixings", (returnedFixings) => fixings = returnedFixings);
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
         fixings = ScriptObjectsAction.GetListFixing(MountUnitColumnBeamTrussDataList, MountUnitBeamRafterTrussDataList);

@@ -58,6 +58,8 @@ public class LoadPrefab : MonoBehaviour
     public DollarRate dollarRate;
     private List<GameObject> MountUnitColumnBeamTrussesForLoad;
     private List<GameObject> MountUnitBeamRafterTrussesForLoad;
+    public float cargo;
+    public Material material;
 
     private void Awake()
     {
@@ -113,10 +115,11 @@ public class LoadPrefab : MonoBehaviour
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputRafter = ValAction.ToFloat(outputRafterInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().OutputGirder = ValAction.ToFloat(outputGirderInputGB.GetComponent<TMP_InputField>().text) * MultipleForSentimeter;
         planCanopy.GetComponent<PlanCanopyGenerator>().IsDemountable = isDemountableInput.GetComponent<Toggle>().isOn;
-        float cargo = ValAction.ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
 
+        cargo = ValAction.ToFloat(workLoadInputGB.GetComponent<TMP_InputField>().text) * coefficientReliability;
         string nameMaterial = planCanopy.GetComponent<PlanCanopyGenerator>().KindMaterial.ToString();
-        Material material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
+        material = ScriptObjectsAction.GetMaterialByName(nameMaterial, materialDataList);
+
         bool IsDemountable = planCanopy.GetComponent<PlanCanopyGenerator>().IsDemountable;
         float plusPartOtputGirder = 0;
 
@@ -256,17 +259,10 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator GetProfiles()
     {
-#if UNITY_WEBGL
-        yield return DatabaseAction<List<ProfilePipe>>.GetData("/api/ProfilePipe/ProfilePipes", (returnedProfiles) => profilePipes = returnedProfiles);
-        yield return DatabaseAction<List<Truss>>.GetData("/api/Truss/Trusses", (returnedProfiles) => trusses = returnedProfiles);
-        yield return DatabaseAction<DollarRate>.GetData("/api/DollarRate", (returnedDollarRate) => dollarRate = returnedDollarRate);
-#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        print("UNITY_STANDALONE_WIN || UNITY_EDITOR");
         profilePipes = ScriptObjectsAction.GetListProfilePipes(profilePipeDataList);
         trusses = ScriptObjectsAction.GetListTrusses(trussDataList);
         mountUnitBeamRafterTrusses = ScriptObjectsAction.GetListMountUnitBeamRafterTrusses(mountUnitBeamRafterTrussDataList);
         mountUnitColumnBeamTrusses = ScriptObjectsAction.GetListMountUnitColumnBeamTrusses(mountUnitColumnBeamTrussDataList);
-#endif
         yield return null;
     }
 

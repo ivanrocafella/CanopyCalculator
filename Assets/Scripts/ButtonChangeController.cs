@@ -30,7 +30,7 @@ public class ButtonChangeController : MonoBehaviour
     private TMP_InputField inputFieldRateDollar;
     [SerializeField]
     private Button ButtonChange;
-    private DollarRate dollarRate;
+    public GameObject PopUp;
 
     // Start is called before the first frame update
     void Start()
@@ -56,24 +56,32 @@ public class ButtonChangeController : MonoBehaviour
         string namePlate = dropdownPlates.options[dropdownPlates.value].text;
         string nameFixing = dropdownFixings.options[dropdownFixings.value].text;
 #if UNITY_WEBGL
-        ProfileListController profileListController = dropdownProfiles.GetComponent<ProfileListController>();
-        Truss truss = profileListController.trusses.Find(e => e.Name == nameProfile);
-        ProfilePipe profilePipe = profileListController.profilePipes.Find(e => e.Name == nameProfile);
-        dollarRate = profileListController.dollarRate;
-        float newPrice = ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text);
-        string kindAction;
+        ProfileListController profileListControllerProfile = dropdownProfiles.GetComponent<ProfileListController>();
+        ProfileListController profileListControllerFlange = dropdownPlates.GetComponent<ProfileListController>();
+        ProfileListController profileListControllerFixing = dropdownFixings.GetComponent<ProfileListController>();
+        Truss truss = profileListControllerProfile.trusses.Find(e => e.Name == nameProfile);
+        ProfilePipe profilePipe = profileListControllerProfile.profilePipes.Find(e => e.Name == nameProfile);
+        DollarRate dollarRate = profileListControllerProfile.dollarRate;
+        float newPriceProfile = ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text);
+        float newPricePlate = ValAction.ToFloat(inputFieldCostPl.GetComponent<TMP_InputField>().text);
+        float newPriceFixing = ValAction.ToFloat(inputFieldCostFixing.GetComponent<TMP_InputField>().text);
+        float newRateDollar = ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text);
         if (truss != null)
         {
-            profileListController.trusses.Find(e => e.Name == nameProfile).PricePerM = newPrice;
-            kindAction = "TrussUpdate";
+            profileListControllerProfile.trusses.Find(e => e.Name == nameProfile).PricePerM = newPriceProfile;
+            StartCoroutine(UpdateEntity(nameProfile, newPriceProfile, "TrussUpdate"));
         }
         else
-        { 
-            profileListController.profilePipes.Find(e => e.Name == nameProfile).PricePerM = newPrice;
-            kindAction = "ProfileUpdate";
+        {
+            profileListControllerProfile.profilePipes.Find(e => e.Name == nameProfile).PricePerM = newPriceProfile;
+            StartCoroutine(UpdateEntity(nameProfile, newPriceProfile, "ProfileUpdate"));
         }
-        StartCoroutine(UpdateProfile(nameProfile, newPrice, kindAction));
-        StartCoroutine(UpdateDollarRate());
+        profileListControllerFlange.flanges.Find(e => e.Name == namePlate).Price = newPricePlate;
+        StartCoroutine(UpdateEntity(namePlate, newPricePlate, "FlangeUpdate"));
+        profileListControllerFixing.fixings.Find(e => e.Name == nameFixing).PricePerKg = newPriceFixing;
+        StartCoroutine(UpdateEntity(nameFixing, newPriceFixing, "FixingUpdate"));
+        dollarRate.Rate = newRateDollar;
+        StartCoroutine(UpdateEntity(default, newRateDollar, "DollarRateUpdate"));
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         ValAction.SetPricePlayerPrefs(nameProfile, ValAction.ToFloat(inputFieldCostPr.GetComponent<TMP_InputField>().text));
         ValAction.SetPricePlayerPrefs(namePlate, ValAction.ToFloat(inputFieldCostPl.GetComponent<TMP_InputField>().text));
@@ -84,37 +92,31 @@ public class ButtonChangeController : MonoBehaviour
         print(name);
     }
 
-    IEnumerator UpdateDollarRate()
+    IEnumerator UpdateEntity(string name, float newPrice, string kindAction)
     {
-        dollarRate.Rate = ValAction.ToFloat(inputFieldRateDollar.GetComponent<TMP_InputField>().text);
-        string dollarRateJson = JsonConvert.SerializeObject(dollarRate);
-        print("dollarRateJson: " + dollarRateJson);
-        UnityWebRequest unityWebRequestUpdateDollarRate = UnityWebRequest.Put(Config.baseUrl + "/api/DollarRate/Update", dollarRateJson);
-        unityWebRequestUpdateDollarRate.SetRequestHeader("Content-Type", "application/json");
-        yield return unityWebRequestUpdateDollarRate.SendWebRequest();
-        print("unityWebRequestUpdateDollarRate.result: " + unityWebRequestUpdateDollarRate.result);
-        if (unityWebRequestUpdateDollarRate.result != UnityWebRequest.Result.Success)
-            Debug.Log(unityWebRequestUpdateDollarRate.error);
-        else
-            Debug.Log("UpdateDollarRate complete!");
-    }
-
-    IEnumerator UpdateProfile(string name, float newPrice, string kindAction)
-    {
-        ProfileUpdateModel profileUpdateModel = new()
+        EntityUpdateModel entityUpdateModel = new()
         {
             Name = name,
-            PricePerM = newPrice
+            Price = newPrice
         };
-        string profileUpdateModelJson = JsonConvert.SerializeObject(profileUpdateModel);
+        string entityUpdateModelJson = JsonConvert.SerializeObject(entityUpdateModel);
         UnityWebRequest unityWebRequest = new();        
         switch (kindAction)
         {
             case "TrussUpdate":
-                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/Truss/Update", profileUpdateModelJson);
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/Truss/Update", entityUpdateModelJson);
                 break;
             case "ProfileUpdate":
-                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/ProfilePipe/Update", profileUpdateModelJson);
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/ProfilePipe/Update", entityUpdateModelJson);
+                break;
+            case "FlangeUpdate":
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/Flange/Update", entityUpdateModelJson);
+                break;
+            case "FixingUpdate":
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/Fixing/Update", entityUpdateModelJson);
+                break;
+            case "DollarRateUpdate":
+                unityWebRequest = UnityWebRequest.Put(Config.baseUrl + "/api/DollarRate/Update", entityUpdateModelJson);
                 break;
         }
         unityWebRequest.SetRequestHeader("Content-Type", "application/json");
@@ -123,6 +125,9 @@ public class ButtonChangeController : MonoBehaviour
         if (unityWebRequest.result != UnityWebRequest.Result.Success)
             Debug.Log(unityWebRequest.error);
         else
-            Debug.Log("UpdateProfile complete!");
+        { 
+            Debug.Log("UpdateEntity complete!");
+            PopUp.GetComponent<PopUpController>().StartPopUpFadeOut();
+        }
     }
 }

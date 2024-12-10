@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.ModelsRequest
 {
-    public class ProfileUpdateModel
+    public class EntityUpdateModel
     {
         public string Name { get; set; }
-        public float PricePerM { get; set; } // u.m. = $ / m
+        public float Price { get; set; } // u.m. = $
     }
 }

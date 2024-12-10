@@ -20,6 +20,7 @@ public class PlanCanopyGenerator : MonoBehaviour
     public float OutputGirder;
     public float StepRafter;
     public float StepGirder;
+    public float StepColumn { get { return SizeByZ / CountStep; } }
     public KindProfilePipe KindProfileColumn;
     public KindTruss KindTrussBeam;
     public KindTruss KindTrussRafter;

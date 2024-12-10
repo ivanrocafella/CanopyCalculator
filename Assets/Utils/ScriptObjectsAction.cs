@@ -351,14 +351,17 @@ namespace Assets.Utils
         public static List<Fixing> GetListFixing(MountUnitColumnBeamTrussDataList mountUnitColumnBeamTrussDataList
             , MountUnitBeamRafterTrussDataList mountUnitBeamRafterTrussDataList)
         {
-            IEnumerable<Fixing> GetFixings<T>(IEnumerable<T> source, Func<T, string> selector) => source.Select(e => new Fixing { Name = selector(e) });
+            IEnumerable<Fixing> GetFixings<T>(IEnumerable<T> source
+                , Func<T, string> selectorName
+                , Func<T, float> selectorWeight) => source.Select(e => new Fixing { Name = selectorName(e),
+                                                                                    Weight = selectorWeight(e)});
 
-            List<Fixing> fixings = GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameScrew).ToList();
-            fixings.AddRange(GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameNut).ToList());
-            fixings.AddRange(GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameWasher).ToList());
-            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameScrew).ToList());
-            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameNut).ToList());
-            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameWasher).ToList());
+            List<Fixing> fixings = GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameScrew, e => e.WeightUnitScrew).ToList();
+            fixings.AddRange(GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameNut, e => e.WeightUnitNut).ToList());
+            fixings.AddRange(GetFixings(mountUnitColumnBeamTrussDataList.mountUnitColumnBeamTrussDatas, e => e.NameWasher, e => e.WeightUnitWasher).ToList());
+            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameScrew, e => e.WeightUnitScrew).ToList());
+            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameNut, e => e.WeightUnitNut).ToList());
+            fixings.AddRange(GetFixings(mountUnitBeamRafterTrussDataList.mountUnitBeamRafterTrussDatas, e => e.NameWasher, e => e.WeightUnitWasher).ToList());
             return fixings.Distinct(new GenericEqualityComparer<Fixing>(e => e.Name)).ToList();
         }
     }

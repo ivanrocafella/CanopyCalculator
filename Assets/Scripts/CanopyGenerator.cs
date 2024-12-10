@@ -1,4 +1,5 @@
 using Assets.Models;
+using Assets.Models.Enums;
 using Assets.Services;
 using Assets.Utils;
 using System;
@@ -6,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class CanopyGenerator : MonoBehaviour
 {
@@ -21,12 +23,15 @@ public class CanopyGenerator : MonoBehaviour
     private MountUnitBeamRafterTrussDataList MountUnitBeamRafterTrussDataList;
     public List<ProfilePipe> profilePipes = new();
     public List<Truss> trusses = new();
+    public List<Flange> flanges = new();
+    public List<Fixing> fixings = new();
     public List<MountUnitColumnBeamTruss> mountUnitColumnBeamTrusses = new();
     public List<MountUnitBeamRafterTruss> mountUnitBeamRafterTrusses = new();
     private int countStepRafterTrussSection;
     private float stepRafterTrussSection;
     private float lengthSection;
     private float stepRafterTrussSectionWide;
+    private LoadPrefab LoadPrefab;
     void Awake()
     {
         print("CanopyGenerator");
@@ -46,30 +51,24 @@ public class CanopyGenerator : MonoBehaviour
 
     IEnumerator MakeCanopy()
     {
-        Canopy.PlanColumn = GameObject.FindGameObjectWithTag("PlanCanopy").GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
+        LoadPrefab = GameObject.FindGameObjectWithTag("LoadPrefab").GetComponent<LoadPrefab>();
+        GameObject planCanopy = GameObject.FindGameObjectWithTag("PlanCanopy");
+        Canopy.PlanColumn = planCanopy.GetComponent<PlanCanopyGenerator>().MakePlanCanopy();
         CanopyObject = GameObject.FindGameObjectWithTag("Canopy");
         Canopy.ColumnsHigh = new GameObject[Canopy.PlanColumn.CountStep + 1];
         Canopy.ColumnsLow = new GameObject[Canopy.ColumnsHigh.Length];
         Canopy.BeamTrussesOnHigh = new GameObject[Canopy.PlanColumn.CountStep];
         Canopy.BeamTrussesOnLow = new GameObject[Canopy.BeamTrussesOnHigh.Length];
-        Canopy.ColumnBodyHigh = GameObject.FindGameObjectsWithTag("ColumnHigh")[0].GetComponent<ColumnGenerator>().ColumnBody;
-        Canopy.BeamTruss = GameObject.FindGameObjectsWithTag("BeamTruss")[0].GetComponent<BeamTrussGenerator>().beamTrussForRead;
-        Canopy.RafterTruss = GameObject.FindGameObjectsWithTag("RafterTruss")[0].GetComponent<RafterTrussGenerator>().rafterTrussForRead;
-        Canopy.Girder = GameObject.FindGameObjectsWithTag("Girder")[0].GetComponent<GirderGenerator>().girder;
+        Canopy.ColumnBodyHigh = GameObject.FindGameObjectWithTag("ColumnHigh").GetComponent<ColumnGenerator>().ColumnBody;
+        Canopy.BeamTruss = GameObject.FindGameObjectWithTag("BeamTruss").GetComponent<BeamTrussGenerator>().beamTrussForRead;
+        Canopy.RafterTruss = GameObject.FindGameObjectWithTag("RafterTruss").GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+        Canopy.Girder = GameObject.FindGameObjectWithTag("Girder").GetComponent<GirderGenerator>().girder;
         Canopy.MountUnitBeamRafterTruss = ScriptObjectsAction.GetMountUnitBeamRafterTrussByName(Canopy.RafterTruss.Truss.Name, MountUnitBeamRafterTrussDataList);
         Canopy.MountUnitColumnBeamTruss = ScriptObjectsAction.GetMountUnitColumnBeamTrussByName(Canopy.BeamTruss.Truss.Name, MountUnitColumnBeamTrussDataList);
 
         Canopy.CountStepRafterTruss = Canopy.PlanColumn.SizeByZ / Mathf.FloorToInt(Canopy.PlanColumn.SizeByZ / Canopy.RafterTruss.Step) <= Canopy.RafterTruss.Step ?
             Mathf.FloorToInt(Canopy.PlanColumn.SizeByZ / Canopy.RafterTruss.Step) : Mathf.FloorToInt(Canopy.PlanColumn.SizeByZ / Canopy.RafterTruss.Step) + 1;
         Canopy.RafterTruss.Step = Canopy.PlanColumn.SizeByZ / Canopy.CountStepRafterTruss;
-
-        lengthSection = Canopy.PlanColumn.Step - Canopy.ColumnBodyHigh.Profile.Length - Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 - Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
-        countStepRafterTrussSection = lengthSection / Mathf.FloorToInt( lengthSection / Canopy.RafterTruss.Step) <= Canopy.RafterTruss.Step ? Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) : Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) + 1;
-        stepRafterTrussSection = lengthSection / countStepRafterTrussSection;
-        // Recalculation stepRafterTrussSection
-        stepRafterTrussSectionWide = stepRafterTrussSection + Canopy.ColumnBodyHigh.Profile.Length + Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 + Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
-        countStepRafterTrussSection = stepRafterTrussSectionWide <= Canopy.RafterTruss.Step ? countStepRafterTrussSection : countStepRafterTrussSection + 1;
-        stepRafterTrussSection = lengthSection / countStepRafterTrussSection;
 
         Canopy.CountStepGirder = (Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / (Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step)) <= Canopy.Girder.Step ?
             Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) : Mathf.FloorToInt((Canopy.RafterTruss.LengthTop - Canopy.Girder.Profile.Length) / Canopy.Girder.Step) + 1;
@@ -78,6 +77,28 @@ public class CanopyGenerator : MonoBehaviour
 
         if (Canopy.PlanColumn.IsDemountable)
         {
+            lengthSection = Canopy.PlanColumn.Step - Canopy.ColumnBodyHigh.Profile.Length - Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 - Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
+            countStepRafterTrussSection = lengthSection / Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) <= Canopy.RafterTruss.Step ? Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) : Mathf.FloorToInt(lengthSection / Canopy.RafterTruss.Step) + 1;
+            stepRafterTrussSection = lengthSection / countStepRafterTrussSection;
+            // Recalculation stepRafterTrussSection
+            stepRafterTrussSectionWide = stepRafterTrussSection + Canopy.ColumnBodyHigh.Profile.Length + Canopy.MountUnitColumnBeamTruss.WidthFlangeColumn * 2 + Canopy.MountUnitBeamRafterTruss.LengthFlangeBeamTruss;
+            countStepRafterTrussSection = stepRafterTrussSectionWide <= Canopy.RafterTruss.Step ? countStepRafterTrussSection : countStepRafterTrussSection + 1;
+            stepRafterTrussSection = lengthSection / countStepRafterTrussSection;;
+            // Recalculation RafterTruss
+            Truss trussRafter = CalculationRafterTruss.CalculateRafterTruss(Canopy.PlanColumn.SizeByX
+             , (stepRafterTrussSectionWide + stepRafterTrussSection) / 2
+             , Canopy.PlanColumn.OutputRafter
+             , LoadPrefab.cargo, LoadPrefab.material, LoadPrefab.trusses);
+            Canopy.PlanColumn.KindTrussRafter = (KindTruss)LoadPrefab.trusses.IndexOf(trussRafter);
+            DestroyImmediate(GameObject.FindGameObjectWithTag("RafterTruss"));
+            var newRafterTruss = LoadPrefab.canopyPrefab.transform.GetChild(2).gameObject;
+            planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = Canopy.PlanColumn.KindTrussRafter;
+            Instantiate(newRafterTruss);
+            GameObject rafterTrussGO = GameObject.FindGameObjectWithTag("RafterTruss");
+            Canopy.RafterTruss = rafterTrussGO.GetComponent<RafterTrussGenerator>().rafterTrussForRead;
+            rafterTrussGO.transform.SetParent(CanopyObject.transform);
+
+
             Canopy.MountUnitsColumnBeamTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * 2];
             Canopy.MountUnitsColumnBeamTrussOnLC = new GameObject[Canopy.MountUnitsColumnBeamTrussOnHC.Length];
             Canopy.MountUnitsBeamRafterTrussOnHC = new GameObject[Canopy.PlanColumn.CountStep * (countStepRafterTrussSection + 1)];
@@ -278,13 +299,9 @@ public class CanopyGenerator : MonoBehaviour
             , Quaternion.Euler(0, 0, -(90 + Canopy.PlanColumn.SlopeInDegree)));
     }
     public IEnumerator Calculate()
-    {
-        LoadPrefab loadPrefab = GameObject.FindGameObjectWithTag("LoadPrefab").GetComponent<LoadPrefab>();
-        profilePipes = loadPrefab.profilePipes;
-        trusses = loadPrefab.trusses;
-        dollarRate = loadPrefab.dollarRate;
-        mountUnitColumnBeamTrusses = loadPrefab.mountUnitColumnBeamTrusses;
-        mountUnitBeamRafterTrusses = loadPrefab.mountUnitBeamRafterTrusses;
+    {      
+        mountUnitColumnBeamTrusses = LoadPrefab.mountUnitColumnBeamTrusses;
+        mountUnitBeamRafterTrusses = LoadPrefab.mountUnitBeamRafterTrusses;
 
         CanopyDescription = GameObject.FindGameObjectWithTag("CanopyDescription");
         LoadingTextBox = GameObject.FindGameObjectWithTag("LoadingTextBox");
@@ -306,11 +323,26 @@ public class CanopyGenerator : MonoBehaviour
         int quantityNut = quantityScrew;
         int quantityWasher = quantityScrew * 2;
 #if UNITY_WEBGL
+        yield return DatabaseAction<List<ProfilePipe>>.GetData("/api/ProfilePipe/ProfilePipes", (p) => profilePipes = p);
+        yield return DatabaseAction<List<Truss>>.GetData("/api/Truss/Trusses", (t) => trusses = t);
+        yield return DatabaseAction<List<Flange>>.GetData("/api/Flange/Flanges", (f) => flanges = f);
+        yield return DatabaseAction<List<Fixing>>.GetData("/api/Fixing/Fixings", (f) => fixings = f);
+        yield return DatabaseAction<DollarRate>.GetData("/api/DollarRate", (d) => dollarRate = d);
         pricePerMcolumn = ValAction.GetPricePmOfProfilePipe(Canopy.ColumnBodyHigh.Profile.Name, profilePipes);
         pricePerMbeamTruss = ValAction.GetPricePmOfTruss(Canopy.BeamTruss.Truss.Name, trusses);
         pricePerMrafterTruss = ValAction.GetPricePmOfTruss(Canopy.RafterTruss.Truss.Name, trusses);
         pricePerMgirder = ValAction.GetPricePmOfProfilePipe(Canopy.Girder.Profile.Name, profilePipes);
         dollarRateValue = dollarRate.Rate;
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceFlangeColumn = ValAction.GetObjectByName<Flange>(flanges, t => t.Name, e.NameFlangeColumn).Price);
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceFlangeBeam = ValAction.GetObjectByName<Flange>(flanges, t => t.Name, e.NameFlangeBeam).Price);
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceKgScrew = ValAction.GetObjectByName<Fixing>(fixings, t => t.Name, e.NameScrew).PricePerKg);
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceKgNut = ValAction.GetObjectByName<Fixing>(fixings, t => t.Name, e.NameNut).PricePerKg);
+        mountUnitColumnBeamTrusses.ForEach(e => e.PriceKgWasher = ValAction.GetObjectByName<Fixing>(fixings, t => t.Name, e.NameWasher).PricePerKg);
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceFlangeBeam = ValAction.GetObjectByName<Flange>(flanges, t => t.Name, e.NameFlangeBeam).Price);
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceFlangeRafter = ValAction.GetObjectByName<Flange>(flanges, t => t.Name, e.NameFlangeRafter).Price);
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceKgScrew = ValAction.GetObjectByName<Fixing>(fixings, t => t.Name, e.NameScrew).PricePerKg);
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceKgNut = ValAction.GetObjectByName<Fixing>(fixings, t => t.Name, e.NameNut).PricePerKg);
+        mountUnitBeamRafterTrusses.ForEach(e => e.PriceKgWasher = ValAction.GetObjectByName<Fixing>(fixings, t => t.Name, e.NameWasher).PricePerKg);
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
         pricePerMcolumn = ValAction.GetPricePlayerPrefs(Canopy.ColumnBodyHigh.Profile.Name);
         pricePerMbeamTruss = ValAction.GetPricePlayerPrefs(Canopy.BeamTruss.Truss.Name);
