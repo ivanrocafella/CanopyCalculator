@@ -80,6 +80,7 @@ public class LoadPrefab : MonoBehaviour
 
     IEnumerator CalculateButtonClick()
     {
+        toResultButton.gameObject.SetActive(false);
         loadingTextBox.transform.localPosition = new Vector3(-45, -150, 0);
         loadingTextBox.GetComponent<TMP_Text>().fontSize = 36;
         loadingTextBox.GetComponent<TMP_Text>().text = "Загрузка...";
@@ -162,7 +163,7 @@ public class LoadPrefab : MonoBehaviour
             planCanopy.GetComponent<PlanCanopyGenerator>().KindTrussRafter = (KindTruss)trusses.IndexOf(trussRafter);
             planCanopy.GetComponent<PlanCanopyGenerator>().KindProfileGirder = (KindProfilePipe)profilePipes.IndexOf(profilePipeGirder);
 
-            Instantiate(canopyPrefab);
+            yield return Instantiate(canopyPrefab);
             toFbxButton.interactable = true;
             EmProfilePipeCol.GetComponent<TMP_Text>().text = string.Empty;
         }
